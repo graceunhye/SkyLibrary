@@ -66,22 +66,22 @@ public class HomeController {
 	
 	
 	
-	@RequestMapping(value = "/moveUseGuide")
+	@RequestMapping(value = "/useGuide")
 	public String moveUseGuide() {
 		return "/User/use/useGuide";
 	}
 	
-	@RequestMapping(value = "/moveUseTime")
+	@RequestMapping(value = "/useTime")
 	public String moveUseTime() {
 		return "/User/use/useTime";
 	}
 	
-	@RequestMapping(value = "/moveCalendar")
+	@RequestMapping(value = "/calendar")
 	public String moveCalendar() {
 		return "/User/intro/calendar";
 	}
 	
-	@RequestMapping(value = "/movePath")
+	@RequestMapping(value = "/path")
 	public String movePath() {
 		return "/User/intro/path";
 	}

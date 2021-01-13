@@ -57,7 +57,7 @@
 						<c:forEach var="list" items="${noticeList}" varStatus="status">
 						<tr class="mid_tr">
 							<th align="center" class="mid_td">${status.count + paging.start}</th>
-							<td><a href="/User/intro/notice/view?noticeNo=${list.noticeNo }" class="mid_td">${list.noticeTitle }</a></td>
+							<td><a href="/notice/view?noticeNo=${list.noticeNo }" class="mid_td">${list.noticeTitle }</a></td>
 							<td align="center" class="mid_td">${list.managerID }</td>
 							<td align="center" class="mid_td">${list.noticeDate }</td>
 							<td align="center" class="mid_td">${list.noticeHit }</td>

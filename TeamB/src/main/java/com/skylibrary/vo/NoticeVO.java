@@ -1,12 +1,5 @@
 package com.skylibrary.vo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Setter
-@Getter
-@ToString
 public class NoticeVO {
 	
 	private int    noticeNo;    //공지번호
@@ -28,5 +21,72 @@ public class NoticeVO {
 		String[] array = noticeDate.split(" ");
 		this.noticeDate = array[0];
 	}
+
+
+	public int getNoticeNo() {
+		return noticeNo;
+	}
+
+
+	public void setNoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
+	}
+
+
+	public String getManagerID() {
+		return managerID;
+	}
+
+
+	public void setManagerID(String managerID) {
+		this.managerID = managerID;
+	}
+
+
+	public String getNoticeTitle() {
+		return noticeTitle;
+	}
+
+
+	public void setNoticeTitle(String noticeTitle) {
+		this.noticeTitle = noticeTitle;
+	}
+
+
+	public String getNoticeBody() {
+		return noticeBody;
+	}
+
+
+	public void setNoticeBody(String noticeBody) {
+		this.noticeBody = noticeBody;
+	}
+
+
+	public int getNoticeHit() {
+		return noticeHit;
+	}
+
+
+	public void setNoticeHit(int noticeHit) {
+		this.noticeHit = noticeHit;
+	}
+
+
+	public String getNoticeFile() {
+		return noticeFile;
+	}
+
+
+	public void setNoticeFile(String noticeFile) {
+		this.noticeFile = noticeFile;
+	}
+
+
+	public String getNoticeDate() {
+		return noticeDate;
+	}
+	
+	
 	
 }

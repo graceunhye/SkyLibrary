@@ -9,7 +9,7 @@
 		<title>이용 시간 안내</title>
 		
 		<link rel="stylesheet" href="/css/common.css" type="text/css"/>
-		<link rel="stylesheet" href="/css/useTime.css" type="text/css"/>
+		<link rel="stylesheet" href="/css/use/useTime.css" type="text/css"/>
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/common.js"></script>
@@ -26,9 +26,9 @@
 			<nav class="left_menu">
 				<ul>
 						<li class="left_menu_title">도서관 이용</li>
-						<a href="/moveUseTime"><li class="on left_menu_sub">이용시간</li></a>
-						<a href="/moveUseGuide"><li class="left_menu_sub">대출/반납/예약/연장</li></a>
-						<a href="/qna/"><li class="on left_menu_sub last_sub">질의응답</li></a>
+						<a href="/useTime"><li class="on left_menu_sub">이용시간</li></a>
+						<a href="/useGuide"><li class="left_menu_sub">대출/반납/예약/연장</li></a>
+						<a href="/qna/"><li class="left_menu_sub last_sub">질의응답</li></a>
 					</ul>
 			</nav>
 			<div class="section">

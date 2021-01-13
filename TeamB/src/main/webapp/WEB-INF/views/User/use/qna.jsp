@@ -58,17 +58,24 @@
 									<th align="center" class="top_td">작성일</th>
 									<th align="center" class="top_td">상태</th>
 								</tr>
+								<c:forEach items="${qList }" var="qList" varStatus="status">
 								<tr>
-									<td></td>
+									<td>${status.count + paging.start}</td>
 									<td>
-										<a href="qnaView.jsp?no="></a>
+										<a href="/qna/View?questionNo=${qList.questionNo }">${qList.questionTitle }</a>
 									</td>
-									<td></td>
-									<td></td>
+									<td>${qList.userID }</td>
+									<td>${qList.questionDate }</td>
 									<td>
-										<font color="blue">답변대기</font>
+										<c:if test="${qList.questionType eq 1 }">
+											<font color="orange">답변완료</font>
+										</c:if>
+										<c:if test="${qList.questionType eq 0 }">
+											<font color="blue">답변대기</font>
+										</c:if>
 									</td>
 								</tr>
+								</c:forEach>
 							</table>
 							<br>
 							<span class="btns">
@@ -77,6 +84,23 @@
 							<br>
 						</div>
 						<div class="searchpage">	
+						<c:if test="${paging.startPage != 1}">
+						<a href="/qna/?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+						</c:if>
+						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+							<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
+							<c:choose>
+								<c:when test="${p eq paging.nowPage}">
+									<b>${p}</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage}">
+									<a href="/qna/?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a href="/qna/?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+						</c:if>
 						</div>	
 					</div>
 				</div>

@@ -1,13 +1,13 @@
 package com.skylibrary.vo;
 
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Setter
-@Getter
-@ToString
+//import lombok.Getter;
+//import lombok.Setter;
+//import lombok.ToString;
+//
+//@Setter
+//@Getter
+//@ToString
 public class UserVO {
 
 	private String userID;          //아이디
@@ -20,5 +20,67 @@ public class UserVO {
 	private String userEmail;       //이메일아이디
 	private String userEmailDomain; //이메일도메인
 	private boolean loginCon;       //로그인 성공여부 || 보류
+	
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public String getUserPW() {
+		return userPW;
+	}
+	public void setUserPW(String userPW) {
+		this.userPW = userPW;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getUserNum() {
+		return userNum;
+	}
+	public void setUserNum(String userNum) {
+		this.userNum = userNum;
+	}
+	public int getUserPostNum() {
+		return userPostNum;
+	}
+	public void setUserPostNum(int userPostNum) {
+		this.userPostNum = userPostNum;
+	}
+	public String getUserAddr() {
+		return userAddr;
+	}
+	public void setUserAddr(String userAddr) {
+		this.userAddr = userAddr;
+	}
+	public String getUserAddrDetail() {
+		return userAddrDetail;
+	}
+	public void setUserAddrDetail(String userAddrDetail) {
+		this.userAddrDetail = userAddrDetail;
+	}
+	public String getUserEmail() {
+		return userEmail;
+	}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	public String getUserEmailDomain() {
+		return userEmailDomain;
+	}
+	public void setUserEmailDomain(String userEmailDomain) {
+		this.userEmailDomain = userEmailDomain;
+	}
+	public boolean isLoginCon() {
+		return loginCon;
+	}
+	public void setLoginCon(boolean loginCon) {
+		this.loginCon = loginCon;
+	}
+	
 	
 }

@@ -1,12 +1,12 @@
 package com.skylibrary.vo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Setter
-@Getter
-@ToString
+//import lombok.Getter;
+//import lombok.Setter;
+//import lombok.ToString;
+//
+//@Setter
+//@Getter
+//@ToString
 public class SearchVO {
 	private int start;
 	private int end;
