@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.skylibrary.mappers.bookMapper">
+<sql id="basicSelectAll">
+	SELECT 
+			bookISBN,
+			bookSubject, 
+			bookStory, 
+			bookCount, 
+			bookCompany, 
+			bookWriter, 
+			bookPublicationDate, 
+			bookRent, 
+			bookCoverImg
+			
+	FROM 	book
+</sql>
+<!-- 메인 -->
+<select id="listMain" resultType="bookVO">
+	SELECT 
+			bookISBN,
+			bookSubject, 
+			bookCoverImg
+			
+	FROM     book
+	ORDER BY bookPublicationDate DESC 
+	LIMIT    0,7
+</select>
+</mapper>
