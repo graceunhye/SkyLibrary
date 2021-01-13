@@ -26,8 +26,8 @@
 				<nav class="left_menu">
 					<ul>
 						<li class="left_menu_title">도서관 이용</li>
-						<a href="/moveUseTime"><li class="left_menu_sub">이용시간</li></a>
-						<a href="/moveUseGuide"><li class="left_menu_sub">대출/반납/예약/연장</li></a>
+						<a href="/useTime"><li class="left_menu_sub">이용시간</li></a>
+						<a href="/useGuide"><li class="left_menu_sub">대출/반납/예약/연장</li></a>
 						<a href="/qna/"><li class="on left_menu_sub last_sub">질의응답</li></a>
 					</ul>
 				</nav>
