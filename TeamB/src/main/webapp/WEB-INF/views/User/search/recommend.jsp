@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
-<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,8 +11,8 @@
 		<link rel="stylesheet" href="/css/common.css" type="text/css"/>
 		<link rel="stylesheet" href="/css/recommend.css" type="text/css"/>
 		
-		<script src="../../../js/jquery-3.5.1.min.js"></script>
-		<script src="../../../js/common.js"></script>
+		<script src="/js/jquery-3.5.1.min.js"></script>
+		<script src="/js/common.js"></script>
 	</head>
 	<body style="margin:0px">
 		<div class="wrap"> 
@@ -27,10 +26,10 @@
 				<nav class="left_menu">
 					<ul>
 						<li class="left_menu_title">도서검색</li>
-						<a href="total"><li class="left_menu_sub">통합검색</li></a>
-						<a href="best"><li class="left_menu_sub">인기도서</li></a>
-						<a href="new"><li class="left_menu_sub">신착도서</li></a>
-						<a href="recommend"><li class="on left_menu_sub last_sub">사서추천도서</li></a>
+						<a href="/search/total"><li class="left_menu_sub">통합검색</li></a>
+						<a href="/search/best"><li class="left_menu_sub">인기도서</li></a>
+						<a href="/search/new"><li class="left_menu_sub">신착도서</li></a>
+						<a href="/search/recommend"><li class="on left_menu_sub last_sub">사서추천도서</li></a>
 					</ul>
 				</nav>
 				<div class="section">
@@ -48,7 +47,7 @@
 										<td rowspan="3" width="20%" align="center">
 											<a href="recommendView.jsp?isbn="><img src="" alt=""></a>
 										</td>
-										<td colspan="2"><a href="recommendView.jsp?isbn="><b></b></a></td>
+										<td colspan="2"><a href="/search/recommendView?isbn="><b></b></a></td>
 									</tr>
 									<tr>
 										<td colspan="2"></td>

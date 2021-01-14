@@ -29,4 +29,146 @@
 	ORDER BY bookPublicationDate DESC 
 	LIMIT    0,7
 </select>
+
+<!-- 통합검색 -->
+<select id="total" resultType="bookVO" parameterType="searchVO">
+		SELECT 
+			bookISBN,
+			bookSubject, 
+			bookStory, 
+			bookCount, 
+			bookCompany, 
+			bookWriter, 
+			bookPublicationDate, 
+			bookRent, 
+			bookCoverImg
+	FROM 	book
+	WHERE 1=1
+	<if test="searchText neq null">
+		<if test="searchType eq 'all'">
+			AND bookSubject  like CONCAT('%',#{searchText},'%')
+			OR  bookCompany   like CONCAT('%',#{searchText},'%')
+			OR  bookWriter like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookSubject'">
+			AND bookSubject like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookCompany'">
+			AND bookCompany like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookWriter'">
+			AND bookWriter like CONCAT('%',#{searchText},'%')
+		</if>
+	</if>
+	ORDER BY bookSubject
+	LIMIT #{start},#{end}
+</select>
+<select id="countList" parameterType="searchVO" resultType="int">
+	SELECT COUNT(*)
+	FROM book
+	WHERE 1=1
+	<if test="searchText neq null">
+		<if test="searchType eq 'all'">
+			AND bookSubject  like CONCAT('%',#{searchText},'%')
+			OR  bookCompany   like CONCAT('%',#{searchText},'%')
+			OR  bookWriter like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookSubject'">
+			AND bookSubject like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookCompany'">
+			AND bookCompany like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookWriter'">
+			AND bookWriter like CONCAT('%',#{searchText},'%')
+		</if>
+	</if>
+</select>
+<!-- 인기도서 -->
+<select id="best" resultType="bookVO" parameterType="pagingVO">
+		SELECT 
+			bookISBN,
+			bookSubject, 
+			bookStory, 
+			bookCount, 
+			bookCompany, 
+			bookWriter, 
+			bookPublicationDate, 
+			bookRent, 
+			bookCoverImg
+	FROM 	book
+	ORDER BY bookCount DESC
+	LIMIT #{start},#{end}
+</select>
+
+<!-- 도서상세페이지 -->
+<select id="bookView" parameterType="String" resultType="bookVO">
+	SELECT 
+		bookSubject, bookStory, bookPublicationDate, bookCoverImg, bookCompany, bookWriter, bookISBN, bookCount, bookRent,
+	(select rentEndDate from rent where bookISBN = book.bookISBN and bookRent = 1 order by rentEndDate desc limit 0,1) as rentEndDate,
+	(select userID from rent where bookISBN = book.bookISBN and bookRent = 1 order by rentEndDate desc limit 0,1) as userID
+	FROM book
+	WHERE bookISBN = #{bookISBN};	
+</select>
+
+<!-- 도서상세페이지 cnt -->
+<select id="bookCnt" resultType="int">
+	SELECT COUNT(*) FROM rent 
+	WHERE userID = #{userID}
+</select>
+
+<!-- 도서상세페이지 book 테이블 update -->
+<update id="updateBook" parameterType="bookVO">
+	UPDATE book 
+	SET 
+		bookCount = bookCount + 1,
+		bookRent = 1
+	WHERE bookISBN = #{bookISBN}	
+</update>
+
+<!-- 도서상세페이지 rent 테이블 insert -->
+<insert id="insertRent" parameterType="bookVO">
+	INSERT INTO rent 
+		(userID, bookISBN,<!--  bookSubejct, bookCompany, bookWriter, --> rentStartDate, rentEndDate)
+	values 
+		(#{userID}, #{bookISBN},<!-- #{bookSubejct},#{bookCompany},#{bookWriter}, --> now(), date_add(now(), interval 14 day))
+	<selectKey resultType="integer" keyProperty="no" order="AFTER">
+		SELECT MAX(rentNo) FROM rent
+	</selectKey>	 
+</insert>
+
+<!-- rent 테이블 -->
+<select id="selectRent" parameterType="int" resultType="bookVO">
+	SELECT 
+		rentNo, userID, bookISBN, rentStartDate, rentEndDate
+	FROM rent
+	WHERE rentNo = #{no}
+</select>
+
+<!-- 신착도서 -->
+<select id="new" resultType="bookVO" parameterType="pagingVO">
+		SELECT 
+			bookISBN,
+			bookSubject, 
+			bookStory, 
+			bookCount, 
+			bookCompany, 
+			bookWriter, 
+			bookPublicationDate, 
+			bookRent, 
+			bookCoverImg
+	FROM 	book
+	ORDER BY bookPublicationDate DESC
+	LIMIT #{start},#{end}
+</select>
+<select id="newCountList" resultType="int">
+	SELECT COUNT(*)
+	FROM book
+	ORDER BY bookPublicationDate DESC
+</select>
+<select id="bestCountList" resultType="int">
+	SELECT COUNT(*)
+	FROM book
+	ORDER BY bookCount DESC
+</select>
 </mapper>

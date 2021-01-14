@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
-<%@ page import="java.sql.*" %>        
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>           
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,10 +26,10 @@
 				<nav class="left_menu">
 					<ul>
 						<li class="left_menu_title">도서검색</li>
-						<a href="total"><li class="left_menu_sub">통합검색</li></a>
-						<a href="best"><li class="on left_menu_sub">인기도서</li></a>
-						<a href="new"><li class="left_menu_sub">신착도서</li></a>
-						<a href="recommend"><li class="left_menu_sub last_sub">사서추천도서</li></a>
+						<a href="/search/total"><li class="left_menu_sub">통합검색</li></a>
+						<a href="/search/best"><li class="on left_menu_sub">인기도서</li></a>
+						<a href="/search/new"><li class="left_menu_sub">신착도서</li></a>
+						<a href="/search/recommend"><li class="left_menu_sub last_sub">사서추천도서</li></a>
 					</ul>
 				</nav>
 				<div class="section">
@@ -48,9 +47,9 @@
 									<table width="800px">
 										<tr>
 											<td rowspan="4" width="15%" align="center">
-												<a href="/User/search/bestView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg}" alt="${list.bookSubject}" width="82px"></a>
+												<a href="/search/bestView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg}" alt="${list.bookSubject}" width="82px"></a>
 											</td>
-											<td colspan="2"><a href="/User/search/bestView?isbn=${list.bookISBN}"><b>${list.bookSubject}</b></a></td>
+											<td colspan="2"><a href="/search/bestView?isbn=${list.bookISBN}"><b>${list.bookSubject}</b></a></td>
 										</tr>
 										<tr>
 											<td width="30%">저자 : ${list.bookWriter}</td>
@@ -71,14 +70,23 @@
 							<br>
 							<br>
 							<div class="searchpage">	
-								<a href="best.jsp?page=1">맨앞으로</a> 
-								<a href="best.jsp?page=">이전</a>
-
-								<b><a href="best.jsp?page="></a></b>
-								   <a href="best.jsp?page="></a> 
-
-									<a href="best.jsp?page=">다음</a>
-									<a href="best.jsp?page=">맨뒤로</a>	
+							<c:if test="${paging.startPage != 1}">
+							<a href="/search/best?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+							</c:if>
+							<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+								<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
+								<c:choose>
+									<c:when test="${p eq paging.nowPage}">
+										<b>${p}</b>
+									</c:when>
+									<c:when test="${p != paging.nowPage}">
+										<a href="/search/best?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${paging.endPage != paging.lastPage}">
+								<a href="/search/best?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+							</c:if>
 							</div>	
 						</div>		
 					</div>	

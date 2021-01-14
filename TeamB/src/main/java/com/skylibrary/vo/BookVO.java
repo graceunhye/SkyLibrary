@@ -2,6 +2,7 @@ package com.skylibrary.vo;
 
 public class BookVO {
 	
+	private int no;
 	private String bookISBN;            //isbn
 	private String bookSubject;         //책제목
 	private String bookStory;           //줄거리
@@ -12,6 +13,43 @@ public class BookVO {
 	private int    bookRent;            //대여여부
 	private String bookCoverImg;        //책커버이미지
 	
+	private String userID;        //회원 아이디
+	private String rentStartDate; //책 대여시작일
+	private String rentEndDate;   //책 반납예정일
+	private int rentNo;
+	
+	
+	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public String getRentStartDate() {
+		return rentStartDate;
+	}
+	public void setRentStartDate(String rentStartDate) {
+		this.rentStartDate = rentStartDate;
+	}
+	public String getRentEndDate() {
+		return rentEndDate;
+	}
+	public void setRentEndDate(String rentEndDate) {
+		this.rentEndDate = rentEndDate;
+	}
+	public int getRentNo() {
+		return rentNo;
+	}
+	public void setRentNo(int rentNo) {
+		this.rentNo = rentNo;
+	}
 	public String getBookISBN() {
 		return bookISBN;
 	}

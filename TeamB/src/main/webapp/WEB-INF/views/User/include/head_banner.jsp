@@ -7,7 +7,7 @@
 		</div>
 		<nav class="top_menu">
 			<ul>
-				<li><a href="/User/search/total">도서검색</a></li>
+				<li><a href="/search/total">도서검색</a></li>
 				<li class="rain"><img src="/image/homePage/rain.png" width="20px" alt="빗방울"></li>
 				<li><a href="/use/useTime">도서관 이용</a></li>
 				<li class="rain"><img src="/image/homePage/rain.png" width="20px" alt="빗방울"></li>

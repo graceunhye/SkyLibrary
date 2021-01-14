@@ -23,4 +23,8 @@ public class UserDAO {
 		sql.insert(namespace + ".join", vo);
 	}
 	
+	public UserVO userInfo(UserVO vo) throws Exception {
+		return sql.selectOne(namespace + ".userInfo", vo);
+	}
+	
 }

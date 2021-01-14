@@ -22,6 +22,7 @@ public class QuestionDAO {
 	public List<QuestionVO> list(SearchVO vo) throws Exception {
 		return sql.selectList(namespace + ".list", vo);
 	}
+	
 	public QuestionVO qView(QuestionVO vo) throws Exception {
 		return sql.selectOne(namespace + ".qView", vo);
 	}

@@ -8,5 +8,7 @@ public interface UserService {
 	public UserVO login(UserVO vo) throws Exception;
 	//회원가입
 	public void join(UserVO vo) throws Exception;
+	
+	public UserVO userInfo(UserVO vo) throws Exception;
 
 }

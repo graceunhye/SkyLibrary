@@ -35,15 +35,15 @@
 				<div class="login_box">
 				<h2 class="login_title">로그인</h2>
 					<div class="login_input_box">
-						<form action="loginProc.jsp" method="post" name="login_frm">
+						<form action="/User/loginout/login" method="post" name="login_frm">
 							<table>
 								<tr height="50" class="login_txt">
 									<td width="100" align="right" class="login_input"><span class="point id">*</span><span class="id_title">아이디</span>:</td>
-									<td width="300"><input type="text" class="input" name="id" size="38" placeholder=" 아이디를 입력해주세요."></td>
+									<td width="300"><input type="text" class="input" name="userID" size="38" placeholder=" 아이디를 입력해주세요."></td>
 								</tr>
 								<tr height="50" class="login_txt">
 									<td align="right" class="login_input"><span class="point">*</span>비밀번호:</td>
-									<td><input type="password" name="pw"  class="input" size="38" placeholder=" 비밀번호를 입력해주세요."></td>
+									<td><input type="password" name="userPW"  class="input" size="38" placeholder=" 비밀번호를 입력해주세요."></td>
 								</tr>
 								<tr class="login_option">
 									<td colspan="2" align="center">
