@@ -36,7 +36,7 @@
 				</div>
 				<div>
 					<div class="searchOptionWrap">
-						<form method="post" action="wishCheck.jsp">
+						<form method="post" action="/myPage/wishCheck">
 							날짜:: <input type="date" name="startDay"/> 일부터
 							<input type="date" name="finishDay"/> 일까지
 							<input type="submit" value="적용" class="normalBtn">

@@ -27,9 +27,9 @@
 				<nav class="left_menu">
 					<ul>
 						<li class="left_menu_title">마이페이지</li>
-						<a href="/User/myPage/userInfo"><li class="left_menu_sub">회원정보</li></a>
-						<a href="/User/myPage/wish"><li class="left_menu_sub">희망도서 신청</li></a>
-						<a href="/User/myPage/renting"><li class="on left_menu_sub last_sub">대출도서 조회</li></a>
+						<a href="/myPage/userInfo"><li class="left_menu_sub">회원정보</li></a>
+						<a href="/myPage/wish"><li class="left_menu_sub">희망도서 신청</li></a>
+						<a href="/myPage/renting"><li class="on left_menu_sub last_sub">대출도서 조회</li></a>
 					</ul>
 				</nav>
 				<!-- nav end -->

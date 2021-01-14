@@ -25,9 +25,9 @@
 				<nav class="left_menu">
 					<ul>
 						<li class="left_menu_title">마이페이지</li>
-						<a href="/User/myPage/userInfo"><li class="left_menu_sub">회원정보</li></a>
-						<a href="/User/myPage/wish"><li class="on left_menu_sub">희망도서 신청</li></a>
-						<a href="/User/myPage/renting"><li class="left_menu_sub last_sub">대출도서 조회</li></a>
+						<a href="/myPage/userInfo"><li class="left_menu_sub">회원정보</li></a>
+						<a href="/myPage/wish"><li class="on left_menu_sub">희망도서 신청</li></a>
+						<a href="/myPage/renting"><li class="left_menu_sub last_sub">대출도서 조회</li></a>
 					</ul>
 				</nav>
 				<!-- nav end -->
@@ -38,7 +38,7 @@
 						<span class="page_map">마이페이지 > 희망도서 신청 > 신청하기</span>
 					</div>
 					<div class="content">
-						<form method="post" action="/User/myPage/wishOk">
+						<form method="post" action="/myPage/wishOk">
 						<p class="tip"><span class="point">*</span> 표시된 항목은 필수 입력 항목입니다</p>
 						<table class="wish_table" >
 							<tbody>
