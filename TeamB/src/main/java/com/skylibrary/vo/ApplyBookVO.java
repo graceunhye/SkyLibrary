@@ -1,6 +1,6 @@
 package com.skylibrary.vo;
 
-public class aBookVO {
+public class ApplyBookVO {
 	private int    applyNo; //신청도서번호
 	private String userID; //유저아이디
 	private String applyISBN; //isbn

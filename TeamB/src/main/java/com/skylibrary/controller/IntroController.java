@@ -21,19 +21,23 @@ public class IntroController {
 	NoticeService noticeService;
 	
 	@RequestMapping(value = "/calendar")
-	public String moveCalendar() {
+	public String calendar() {
+		System.out.println("In IntroController (value=/calendar)");
+		System.out.println("In IntroController (value=/calendar)");
 		return "/User/intro/calendar";
 	}
 	
 	@RequestMapping(value = "/path")
-	public String movePath() {
+	public String path() {
+		System.out.println("In IntroController (value=/path)");
+		System.out.println("In IntroController (value=/path)");
 		return "/User/intro/path";
 	}
 	
 	
 	@RequestMapping(value = "/notice")
 	public String list(Model model, SearchVO search, PagingVO paging) throws Exception {
-		System.out.println("in noticeController");
+		System.out.println("In IntroController (value=/notice)");
 		
 		
 		int total = noticeService.countList(search); //10
@@ -63,7 +67,7 @@ public class IntroController {
 		model.addAttribute("noticeList", list);
 		model.addAttribute("paging", paging);
 		
-		System.out.println("out noticeController");
+		System.out.println("Out IntroController (value=/notice)");
 		return "/User/intro/notice";
 	}
 	
@@ -71,10 +75,10 @@ public class IntroController {
 	
 	@RequestMapping(value = "/notice/view")
 	public String view(Model model, NoticeVO noticeVO) throws Exception {
-		
+		System.out.println("In IntroController (value=/notice/view)");
 		NoticeVO resultVO = noticeService.view(noticeVO);
 		model.addAttribute("noticeVO",resultVO);
-		
+		System.out.println("Out IntroController (value=/notice/view)");
 		return "/User/intro/noticeView";
 	}
 	

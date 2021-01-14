@@ -8,26 +8,24 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.skylibrary.vo.SearchVO;
-import com.skylibrary.vo.aVO;
-import com.skylibrary.vo.qVO;
+import com.skylibrary.vo.AnswerVO;
+import com.skylibrary.vo.QuestionVO;
 
 @Repository
-public class qnaDAO {
+public class QuestionDAO {
 	
 	@Inject
 	SqlSession sql;
 	
 	private static final String namespace = "com.skylibrary.mappers.qnaMapper";
 	
-	public List<qVO> list(SearchVO vo) throws Exception {
+	public List<QuestionVO> list(SearchVO vo) throws Exception {
 		return sql.selectList(namespace + ".list", vo);
 	}
-	public qVO qView(qVO vo) throws Exception {
+	public QuestionVO qView(QuestionVO vo) throws Exception {
 		return sql.selectOne(namespace + ".qView", vo);
 	}
-	public aVO aView(qVO vo) throws Exception {
-		return sql.selectOne(namespace + ".aView", vo);
-	}
+
 	public int countList() throws Exception {
 		return sql.selectOne(namespace + ".countList");
 	}

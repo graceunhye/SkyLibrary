@@ -7,7 +7,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString*/
-public class qVO {
+public class QuestionVO {
 	
 	private int    questionNo;     //글번호
 	private String userID;         //회원아이디

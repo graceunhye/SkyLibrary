@@ -2,8 +2,8 @@ package com.skylibrary.service;
 
 import java.util.List;
 
-import com.skylibrary.vo.aBookVO;
+import com.skylibrary.vo.ApplyBookVO;
 
 public interface ApplyBookService {
-	public List<aBookVO> list() throws Exception;
+	public List<ApplyBookVO> list() throws Exception;
 }

@@ -1,6 +1,6 @@
 package com.skylibrary.vo;
 
-public class aVO {
+public class AnswerVO {
 	
 	private int    questionNo; //질문번호
 	private String managerID; //사서아이디

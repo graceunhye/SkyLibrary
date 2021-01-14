@@ -8,33 +8,39 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.skylibrary.service.qnaService;
+import com.skylibrary.service.AnswerService;
+import com.skylibrary.service.QuestionService;
+import com.skylibrary.vo.AnswerVO;
 import com.skylibrary.vo.PagingVO;
+import com.skylibrary.vo.QuestionVO;
 import com.skylibrary.vo.SearchVO;
-import com.skylibrary.vo.aVO;
-import com.skylibrary.vo.qVO;
 
 @Controller
 @RequestMapping(value = "/use")
 public class UseController {
 
 	@Inject
-	qnaService qnaservice;	
+	QuestionService questionService;	
+	AnswerService answerService;
 	
 	@RequestMapping(value = "/useGuide")
 	public String moveUseGuide() throws Exception {
+		System.out.println("In UseController (value=/useGuide)");
+		System.out.println("Out UseController (value=/useGuide)");
 		return "/User/use/useGuide";
 	}
 	
 	@RequestMapping(value = "/useTime")
 	public String moveUseTime() throws Exception {
+		System.out.println("In UseController (value=/useTime)");
+		System.out.println("Out UseController (value=/useTime)");
 		return "/User/use/useTime";
 	}
 	
 	@RequestMapping(value = "/qna")
 	public String qnaList(Model model, PagingVO paging, SearchVO search) throws Exception {
-		System.out.println("int qnaController");
-		int total = qnaservice.countList();
+		System.out.println("In UseController (value=/qna)");
+		int total = questionService.countList();
 		
 		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
 			paging.setNowPage(1);
@@ -49,27 +55,26 @@ public class UseController {
 		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
 		search.setStart(paging.getStart());
 		search.setEnd(15);
-		List<qVO> qList = qnaservice.list(search);
+		List<QuestionVO> qList = questionService.list(search);
 		model.addAttribute("paging", paging);
 		model.addAttribute("qList",qList);
-		System.out.println("out qnaController");
+		System.out.println("Out UseController (value=/qna)");
 		return "/User/use/qna";
 	}
 	
 	@RequestMapping(value="/qna/view")
-	public String qView(Model model, qVO vo) throws Exception {
-		
-		qVO q = qnaservice.qView(vo);
+	public String qView(Model model, QuestionVO vo) throws Exception {
+		System.out.println("In UseController (value=/qna/view)");
+		QuestionVO q = questionService.qView(vo);
 		
 		if(q.getQuestionType() == 1) {
 		
-			aVO a = qnaservice.aView(vo);
+			AnswerVO a = answerService.aView(vo);
 			model.addAttribute("a",a);
 		}
 		
 		model.addAttribute("q",q);
-		
-		
+		System.out.println("Out UseController (value=/qna/view)");
 		return "/User/use/qnaView";
 	}
 		

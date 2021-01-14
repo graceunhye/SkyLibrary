@@ -33,15 +33,14 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
 		
-		System.out.println("in controller");
+		System.out.println("In HomeController (value=/)");
 		List<BookVO> bookList = bookService.MainList();
 		List<NoticeVO> noticeList = noticeService.MainList();
 		
-		System.out.println("data load complete");
 		model.addAttribute("bookList",bookList);
 		model.addAttribute("noticeList",noticeList);
 
-		
+		System.out.println("Out HomeController (value=/)");
 		return "home";
 	}
 	

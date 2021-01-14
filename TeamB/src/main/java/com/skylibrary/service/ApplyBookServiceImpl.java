@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.skylibrary.dao.ApplyBookDAO;
-import com.skylibrary.vo.aBookVO;
+import com.skylibrary.vo.ApplyBookVO;
 
 @Service
 public class ApplyBookServiceImpl implements ApplyBookService {
@@ -16,7 +16,7 @@ public class ApplyBookServiceImpl implements ApplyBookService {
 	ApplyBookDAO dao;
 	
 	@Override
-	public List<aBookVO> list() throws Exception {
+	public List<ApplyBookVO> list() throws Exception {
 		return null;
 	}
 
