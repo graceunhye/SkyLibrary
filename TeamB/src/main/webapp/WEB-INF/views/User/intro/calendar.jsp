@@ -32,8 +32,8 @@
 					<ul>
 						<li class="left_menu_title">도서관 소개</li>
 						<a href="/notice/"><li class="left_menu_sub">공지사항</li></a>
-						<a href="/moveCalendar"><li class="on left_menu_sub">월별 일정</li></a>
-						<a href="/movePath"><li class="left_menu_sub last_sub">오시는 길</li></a>
+						<a href="/calendar"><li class="on left_menu_sub">월별 일정</li></a>
+						<a href="/path"><li class="left_menu_sub last_sub">오시는 길</li></a>
 					</ul>
 				</nav>
 				<div class="section">

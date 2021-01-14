@@ -29,11 +29,6 @@ public class HomeController {
 	@Inject
 	BookService bookService;
 	
-	/*
-	 * private static final Logger logger =
-	 * LoggerFactory.getLogger(HomeController.class);
-	 */
-	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
@@ -45,45 +40,10 @@ public class HomeController {
 		System.out.println("data load complete");
 		model.addAttribute("bookList",bookList);
 		model.addAttribute("noticeList",noticeList);
-		/* logger.info("Welcome home! The client locale is {}.", locale); */
-		
-		
-		
-		/*
-		 * Date date = new Date(); DateFormat dateFormat =
-		 * DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		 */
-		
-		/*
-		 * String formattedDate = dateFormat.format(date);
-		 * 
-		 * model.addAttribute("serverTime", formattedDate );
-		 */
+
 		
 		return "home";
 	}
 	
-	
-	
-	
-	@RequestMapping(value = "/useGuide")
-	public String moveUseGuide() {
-		return "/User/use/useGuide";
-	}
-	
-	@RequestMapping(value = "/useTime")
-	public String moveUseTime() {
-		return "/User/use/useTime";
-	}
-	
-	@RequestMapping(value = "/calendar")
-	public String moveCalendar() {
-		return "/User/intro/calendar";
-	}
-	
-	@RequestMapping(value = "/path")
-	public String movePath() {
-		return "/User/intro/path";
-	}
 	
 }

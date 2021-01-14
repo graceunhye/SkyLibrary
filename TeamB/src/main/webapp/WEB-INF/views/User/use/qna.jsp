@@ -26,9 +26,9 @@
 				<nav class="left_menu">
 					<ul>
 						<li class="left_menu_title">도서관 이용</li>
-						<a href="/useTime"><li class="left_menu_sub">이용시간</li></a>
-						<a href="/useGuide"><li class="left_menu_sub">대출/반납/예약/연장</li></a>
-						<a href="/qna/"><li class="on left_menu_sub last_sub">질의응답</li></a>
+						<a href="/User/use/useTime"><li class="left_menu_sub">이용시간</li></a>
+						<a href="/User/use/useGuide"><li class="left_menu_sub">대출/반납/예약/연장</li></a>
+						<a href="/User/use/qna"><li class="on left_menu_sub last_sub">질의응답</li></a>
 					</ul>
 				</nav>
 				<div class="section">
@@ -62,7 +62,7 @@
 								<tr>
 									<td>${status.count + paging.start}</td>
 									<td>
-										<a href="/qna/View?questionNo=${qList.questionNo }">${qList.questionTitle }</a>
+										<a href="/User/qna/view?questionNo=${qList.questionNo }">${qList.questionTitle }</a>
 									</td>
 									<td>${qList.userID }</td>
 									<td>${qList.questionDate }</td>
@@ -85,7 +85,7 @@
 						</div>
 						<div class="searchpage">	
 						<c:if test="${paging.startPage != 1}">
-						<a href="/qna/?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+						<a href="/User/qna/?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
 						</c:if>
 						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
 							<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
@@ -94,12 +94,12 @@
 									<b>${p}</b>
 								</c:when>
 								<c:when test="${p != paging.nowPage}">
-									<a href="/qna/?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+									<a href="/User/qna/?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
 								</c:when>
 							</c:choose>
 						</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
-							<a href="/qna/?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+							<a href="/User/qna/?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
 						</c:if>
 						</div>	
 					</div>

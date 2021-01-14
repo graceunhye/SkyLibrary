@@ -10,7 +10,7 @@
 	LIMIT #{start}, #{end}
 </select>
 <select id="qView" resultType="qVO" parameterType="qVO">
-	SELECT * FROM q WHERE questionNo = #{questionNO}
+	SELECT * FROM q WHERE questionNo = #{questionNo}
 </select>
 <select id="aView" resultType="aVO" parameterType="qVO">
 	SELECT * FROM a WHERE questionNo = #{questionNo}

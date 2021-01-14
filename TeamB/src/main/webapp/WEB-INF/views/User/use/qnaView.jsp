@@ -26,9 +26,9 @@
 				<nav class="left_menu">
 					<ul>
 						<li class="left_menu_title">도서관 이용</li>
-						<a href="/moveUseTime"><li class="left_menu_sub">이용시간</li></a>
-						<a href="/moveUseGuide"><li class="left_menu_sub">대출/반납/예약/연장</li></a>
-						<a href="/qna/"><li class="on left_menu_sub last_sub">질의응답</li></a>
+						<a href="/use/useTime"><li class="left_menu_sub">이용시간</li></a>
+						<a href="/use/useGuide"><li class="left_menu_sub">대출/반납/예약/연장</li></a>
+						<a href="/use/qna/"><li class="on left_menu_sub last_sub">질의응답</li></a>
 					</ul>
 				</nav>
 				<!-- nav end -->
@@ -44,41 +44,45 @@
 							<table border="1" width="1200px" class="qTable">
 								<tr height="40px;">
 									<th>질문번호</th>
-									<td></td>
+									<td>${q.questionNo }</td>
 									<th>질문자</th>
-									<td></td>
+									<td>${q.userID }</td>
 									<th>작성일</th>
-									<td></td>
+									<td>${q.questionDate }</td>
 								</tr>
 								<tr height="40px;">
 									<th>질문</th>
-									<td colspan="5"></td>
+									<td colspan="5">${q.questionTitle }</td>
 								</tr>
 								<tr>
-									<td colspan="6" class="body"></td>
+									<td colspan="6" class="body">${q.questionBody }</td>
 								</tr>
 							</table>
-							<input type="button" value="목록으로" onclick="location.href='qna.jsp'" class="qna_btn gotolist">
+							<input type="button" value="목록으로" onclick="location.href='/qna/'" class="qna_btn gotolist">
 						</div>
 						<div>
 							<hr class="hr">
-							<span class="aEmpty"><span class="point">*</span>등록된 답변이 없습니다.</span>
-							<hr class="hr">
-							<h2 class="subTitle"><span class="point">*</span>답변</h2>
+							<c:if test="${q.questionType eq 1 }">
+								<h2 class="subTitle"><span class="point">*</span>답변</h2>
 							<table border="1" class="aTable" width="1200px;" >
 								<tr height="40px">
 									<th>제목</th>
-									<td></td>
+									<td>${a.answerTitle }</td>
 									<th>작성자</th>
-									<td></td>
+									<td>${a.managerID }</td>
 									<th>답변일</th>
-									<td></td>
+									<td>${a.answerDate }</td>
 								</tr>
 								<tr>
 									<td colspan="6" class="body">
+									${a.answerBody }
 									</td>
 								</tr>
 							</table>
+							</c:if>
+							<c:if test="${q.questionType != 1 }">
+								<span class="aEmpty"><span class="point">*</span>등록된 답변이 없습니다.</span>
+							</c:if>
 						</div>
 					</div>
 				</div>
