@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skylibrary.mappers.rentMapper">
+<select id="list" resultType="rentVO" parameterType="userVO">
+	SELECT * FROM rent WHERE userID = #{userID}
+</select>
+<insert id="insert" parameterType="rentVO">
+	insert into rent
+	(userID, bookISBN, rentEndDate, bookSubject, bookWriter)
+	value
+	(#{userID},#{bookISBN},now()+7,#{bookSubject},#{bookWriter})
+</insert>
+</mapper>

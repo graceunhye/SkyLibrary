@@ -13,7 +13,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0/EN"
 		<typeAlias type="com.skylibrary.vo.PagingVO"   alias="pagingVO" />
 		<typeAlias type="com.skylibrary.vo.qVO"   alias="qVO" />
 		<typeAlias type="com.skylibrary.vo.aVO"   alias="aVO" />
-		
+		<typeAlias type="com.skylibrary.vo.RentVO"   alias="rentVO" />
+		<typeAlias type="com.skylibrary.vo.ApplyBookVO"   alias="applyBookVO" />
 	</typeAliases>
 
 </configuration>

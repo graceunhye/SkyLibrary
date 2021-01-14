@@ -31,7 +31,7 @@ public class UseController {
 		return "/User/use/useTime";
 	}
 	
-	@RequestMapping(value="/qna")
+	@RequestMapping(value = "/qna")
 	public String qnaList(Model model, PagingVO paging, SearchVO search) throws Exception {
 		System.out.println("int qnaController");
 		int total = qnaservice.countList();
