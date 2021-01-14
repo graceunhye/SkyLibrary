@@ -12,7 +12,7 @@ public class AnswerDAO {
 	@Inject
 	SqlSession sql;
 	
-	private static final String namespace = "com.skylibrary.mappers.qnaMapper";
+	private static final String namespace = "com.skylibrary.mappers.answerMapper";
 	
 	public AnswerVO aView(QuestionVO vo) throws Exception {
 		return sql.selectOne(namespace + ".aView", vo);

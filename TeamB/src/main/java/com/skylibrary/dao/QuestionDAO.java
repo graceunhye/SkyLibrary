@@ -17,7 +17,7 @@ public class QuestionDAO {
 	@Inject
 	SqlSession sql;
 	
-	private static final String namespace = "com.skylibrary.mappers.qnaMapper";
+	private static final String namespace = "com.skylibrary.mappers.questionMapper";
 	
 	public List<QuestionVO> list(SearchVO vo) throws Exception {
 		return sql.selectList(namespace + ".list", vo);
