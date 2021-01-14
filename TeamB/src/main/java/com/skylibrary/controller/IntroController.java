@@ -14,7 +14,7 @@ import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.SearchVO;
 
 @Controller
-@RequestMapping(value = "/User/intro")
+@RequestMapping(value = "/intro")
 public class IntroController {
 
 	@Inject

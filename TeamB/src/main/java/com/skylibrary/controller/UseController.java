@@ -15,7 +15,7 @@ import com.skylibrary.vo.aVO;
 import com.skylibrary.vo.qVO;
 
 @Controller
-@RequestMapping(value = "/User/use")
+@RequestMapping(value = "/use")
 public class UseController {
 
 	@Inject
