@@ -6,12 +6,16 @@ import com.skylibrary.vo.NoticeVO;
 import com.skylibrary.vo.SearchVO;
 
 public interface NoticeService {
-	//mainì—  ê³µì§€ì‚¬í•­ ë¦¬ìŠ¤íŠ¸ êµ¬í•˜ëŠ” ë©”ì„œë“œ
+	//main¿¡  °øÁö»çÇ× ¸®½ºÆ® ±¸ÇÏ´Â ¸Ş¼­µå
 	public List<NoticeVO> MainList() throws Exception;
-	//ê²€ìƒ‰ì–´ ë°›ì•„ ê²Œì‹œë¬¼ ì¡°íšŒí•˜ëŠ” ë©”ì„œë“œ
+	//°Ë»ö¾î ¹Ş¾Æ °Ô½Ã¹° Á¶È¸ÇÏ´Â ¸Ş¼­µå
 	public List<NoticeVO> search(SearchVO vo) throws Exception;
-	//ë¦¬ìŠ¤íŠ¸ ê°¯ìˆ˜ êµ¬í•˜ëŠ” ë©”ì„œë“œ
+	//¸®½ºÆ® °¹¼ö ±¸ÇÏ´Â ¸Ş¼­µå
 	public int countList(SearchVO vo) throws Exception;
 	
 	public NoticeVO view(NoticeVO vo) throws Exception;
+	
+	public List<NoticeVO> NoticeList() throws Exception;
+	
+	public void NoticeWrite(NoticeVO vo) throws Exception;
  }

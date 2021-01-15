@@ -36,5 +36,14 @@ public class NoticeServiceImpl implements NoticeService {
 	public NoticeVO view(NoticeVO vo) throws Exception {
 		return dao.view(vo);
 	}
-
+	
+	@Override
+	public List<NoticeVO> NoticeList() throws Exception{
+		return dao.NoticeList();
+	}
+	
+	@Override
+	public void NoticeWrite(NoticeVO vo) throws Exception{
+		dao.NoticeWrite(vo);
+	}
 }
