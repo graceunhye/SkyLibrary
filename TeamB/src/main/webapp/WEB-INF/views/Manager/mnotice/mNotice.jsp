@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-<%
-	String id = (String)session.getAttribute("idKey");
-	if(id == null){ id = ""; }
-%>   
+<%@ page session="true" %>  
 <!DOCTYPE html>
 <html>
 <head>

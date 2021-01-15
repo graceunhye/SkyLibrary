@@ -19,7 +19,7 @@ public class JoinController {
 	// 회원가입 get
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String getJoin() throws Exception {
-		return "User/join/join";
+		return "/User/join/join";
 	}
 	
 	// 회원가입 post

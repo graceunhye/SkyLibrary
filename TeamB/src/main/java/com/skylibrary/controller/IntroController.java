@@ -3,6 +3,8 @@ package com.skylibrary.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import com.skylibrary.service.NoticeService;
 import com.skylibrary.vo.NoticeVO;
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.UserVO;
 
 @Controller
 @RequestMapping(value = "/intro")
@@ -21,14 +24,14 @@ public class IntroController {
 	NoticeService noticeService;
 	
 	@RequestMapping(value = "/calendar")
-	public String calendar() {
+	public String calendar(Model model) throws Exception {
 		System.out.println("In IntroController (value=/calendar)");
 		System.out.println("In IntroController (value=/calendar)");
 		return "/User/intro/calendar";
 	}
 	
 	@RequestMapping(value = "/path")
-	public String path() {
+	public String path(Model model) throws Exception {
 		System.out.println("In IntroController (value=/path)");
 		System.out.println("In IntroController (value=/path)");
 		return "/User/intro/path";
@@ -38,8 +41,6 @@ public class IntroController {
 	@RequestMapping(value = "/notice")
 	public String list(Model model, SearchVO search, PagingVO paging) throws Exception {
 		System.out.println("In IntroController (value=/notice)");
-		
-		
 		int total = noticeService.countList(search); //10
 		//nowPage 현재페이지 //0
 		//cntPerpage 페이지당 글 갯수 
@@ -56,17 +57,12 @@ public class IntroController {
 		
 		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
 		search.setStart(paging.getStart());
-		search.setEnd(10);
-		System.out.println("start::"+search.getEnd());
-		System.out.println("end::"+search.getEnd());
-		
-		
+		search.setEnd(10);	
 		
 		List<NoticeVO> list = noticeService.search(search);
 		
 		model.addAttribute("noticeList", list);
 		model.addAttribute("paging", paging);
-		
 		System.out.println("Out IntroController (value=/notice)");
 		return "/User/intro/notice";
 	}

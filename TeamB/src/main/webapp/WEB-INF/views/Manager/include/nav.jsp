@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 			<nav class="nav">
 				<div class="menu">
 					<ul class="manager_list">
-						<a href="/Manager/muser/mUser"><li>È¸¿ø°ü¸®</li></a>
-						<a href="#"><li>µµ¼­°ü¸®</li></a>
-						<a href="/Manager/mwish/mWish"><li>Èñ¸Áµµ¼­°ü¸®</li></a>
-						<a href="/Manager/mrecommend/mRecommend"><li>»ç¼­ÃßÃµµµ¼­°ü¸®</li></a>
-						<a href="/Manager/mqna/mQna"><li>ÁúÀÇÀÀ´ä°ü¸®</li></a>
-						<a href="/Manager/mnotice/mNotice"><li>°øÁö»çÇ×°ü¸®</li></a>
+						<a href="/muser/mUser"><li>íšŒì›ê´€ë¦¬</li></a>
+						<a href="#"><li>ë„ì„œê´€ë¦¬</li></a>
+						<a href="/mwish/mWish"><li>í¬ë§ë„ì„œê´€ë¦¬</li></a>
+						<a href="/mrecommend/mRecommend"><li>ì‚¬ì„œì¶”ì²œë„ì„œê´€ë¦¬</li></a>
+						<a href="/mqna/mQna"><li>ì§ˆì˜ì‘ë‹µê´€ë¦¬</li></a>
+						<a href="/mnotice/mNotice"><li>ê³µì§€ì‚¬í•­ê´€ë¦¬</li></a>
 					</ul>
 				</div>
 			</nav>

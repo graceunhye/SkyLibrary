@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/Manager/mnotice")
+@RequestMapping(value="/mnotice")
 public class mNoticeCotroller {
 	
-	@RequestMapping(value="/mNotice", method=RequestMethod.GET)
+	@RequestMapping(value="/mnotice", method=RequestMethod.GET)
 	public void getUserList(Locale locale, Model model) throws Exception {
 		
 	}

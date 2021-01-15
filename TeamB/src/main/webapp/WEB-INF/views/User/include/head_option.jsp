@@ -11,7 +11,7 @@
 			<input class="head_btn" type="button" value="회원가입" onclick="location.href='/join/join'">
 		</c:if>
 		<c:if test="${user != null }">
-			<span class="head_id">${user.userID } 님</span>
+			<span class="head_id">${user.userID} 님</span>
 			<input class="head_btn" type="button" value="로그아웃" onclick="location.href='/loginout/logout'">
 		</c:if>
 	</div>

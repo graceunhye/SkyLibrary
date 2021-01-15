@@ -16,10 +16,10 @@
 	userEmailDomain
 </sql>
 <select id="login" parameterType="userVO" resultType="userVO">
-	SELECT COUNT(*) 
+	SELECT userID,userPW
 	FROM user 
-	WHERE userID = '#{userID}' 
-	AND userPW = md5('#{userPW}')
+	WHERE userID = #{userID}
+	AND userPW = md5(#{userPW})
 </select>
 <!-- <select id="list" resultType="userVO">
 	select 
@@ -35,7 +35,7 @@
 	VALUE
 	(
 	#{userID},
-	#{userPW},
+	md5(#{userPW}),
 	#{userName},
 	#{userNum},
 	#{userPostNum},

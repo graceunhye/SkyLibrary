@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/Manager/mqna")
+@RequestMapping(value="/mqna")
 public class mQnaController {
 	
-	@RequestMapping(value="/mQna", method=RequestMethod.GET)
+	@RequestMapping(value="/mqna", method=RequestMethod.GET)
 	public void getQnaList(Locale locale, Model model) throws Exception {
 		
 	}

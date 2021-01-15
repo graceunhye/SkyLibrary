@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/Manager/mwish")
+@RequestMapping(value="/mwish")
 public class mWishController {
 	
-	@RequestMapping(value="/mWish", method=RequestMethod.GET)
+	@RequestMapping(value="/mwish", method=RequestMethod.GET)
 	public void getWishList(Locale locale, Model model) throws Exception {
 		
 	}

@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/Manager/mrecommend")
+@RequestMapping(value="/mrecommend")
 public class mRecommendController {
 	
-	@RequestMapping(value="/mRecommend", method=RequestMethod.GET)
+	@RequestMapping(value="/mrecommend", method=RequestMethod.GET)
 	public void getRecommendList(Locale locale, Model model) throws Exception {
 		
 	}
