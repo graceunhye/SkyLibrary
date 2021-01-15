@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/muser")
+@RequestMapping(value="/Manager/muser")
 public class mUserController {
 
-	@RequestMapping(value="/muser", method=RequestMethod.GET)
+	@RequestMapping(value="/mUser", method=RequestMethod.GET)
 	public void getUserList(Locale locale, Model model) throws Exception {
 		
 	}
