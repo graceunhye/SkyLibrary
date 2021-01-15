@@ -7,8 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.skylibrary.vo.SearchVO;
-import com.skylibrary.vo.AnswerVO;
+import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.QuestionVO;
 
 @Repository
@@ -19,7 +18,7 @@ public class QuestionDAO {
 	
 	private static final String namespace = "com.skylibrary.mappers.questionMapper";
 	
-	public List<QuestionVO> list(SearchVO vo) throws Exception {
+	public List<QuestionVO> list(PagingVO vo) throws Exception {
 		return sql.selectList(namespace + ".list", vo);
 	}
 	

@@ -37,19 +37,7 @@
 						<span class="page_map">도서관 이용 > 질의응답</span>
 					</div>
 					<div class="content">
-						<div align="center">
-							<span class="searchResultNum">검색된 결과수:: <font color="orange"></font></span>		
-							<div class="searchBox">
-								<form id="frm" name="frm" method="post" action="qna.jsp">
-									<select id="select" class="select" name="select">
-										<option value="0">전체</option>
-										<option value="title">제목</option>
-										<option value="body">내용</option>
-									</select>
-									<input type="text" name="keyword" id="keyword" class="keyword" value="">
-									<input type="submit" value="검색" class="searchBtn">
-								</form>
-							</div>		
+						<div align="center">	
 							<table width="1200px" class="qnaTable">
 								<tr height="50px" class="top_tr">
 									<th align="center" class="top_td">글번호</th>

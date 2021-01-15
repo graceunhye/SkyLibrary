@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.skylibrary.mappers.questionMapper">
-<select id="list" resultType="questionVO" parameterType="searchVO">
+<select id="list" resultType="questionVO" parameterType="pagingVO">
 	SELECT * FROM q 
 	ORDER BY questionNo DESC
 	LIMIT #{start}, #{end}

@@ -51,6 +51,8 @@ public class SearchController {
 		
 		model.addAttribute("totallist", totallist);
 		model.addAttribute("paging", paging);
+		model.addAttribute("search", search);
+		model.addAttribute("totalCount",total);
 		
 		return "/User/search/total"; 
 	}	

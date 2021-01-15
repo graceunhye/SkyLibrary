@@ -58,7 +58,7 @@
 									<td colspan="6" class="body">${q.questionBody }</td>
 								</tr>
 							</table>
-							<input type="button" value="목록으로" onclick="location.href='/qna/'" class="qna_btn gotolist">
+							<input type="button" value="목록으로" onclick="location.href='/use/qna'" class="qna_btn gotolist">
 						</div>
 						<div>
 							<hr class="hr">

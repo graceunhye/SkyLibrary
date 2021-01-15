@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="EUC-KR">
+		<meta charset="UTF-8">
 		
-		<title>·Î±×ÀÎ</title>
+		<title>ë¡œê·¸ì¸</title>
 		
 		<link rel="stylesheet" href="/css/mainCommon.css" type="text/css"/>
 		<link rel="stylesheet" href="/css/loginout/loginoutSection.css" type="text/css"/>
@@ -17,15 +17,7 @@
 	<body style="margin:0px">
 		<div class="wrap"> 
 			<header>
-				<div class="head_option">
-					<div class="rightnow">
-						<a href="#section"><span class="rightnow_click">º»¹® ¹Ù·Î°¡±â</span></a>
-					</div>
-					<div class="head_btns">
-						<input class="head_btn" type="button" value="·Î±×ÀÎ" onclick="location.href='login.jsp'">
-						<input class="head_btn" type="button" value="È¸¿ø°¡ÀÔ" onclick="location.href='../join/join.jsp'">
-					</div>
-				</div>
+				<jsp:include page="../include/head_option.jsp" />
 				<jsp:include page="../include/head_banner.jsp" />
 			</header>
 			<!-- header end -->
@@ -33,30 +25,30 @@
 		<section id="section">
 			<div class="section">
 				<div class="login_box">
-				<h2 class="login_title">·Î±×ÀÎ</h2>
+				<h2 class="login_title">ë¡œê·¸ì¸</h2>
 					<div class="login_input_box">
-						<form action="/User/loginout/login" method="post" name="login_frm">
+						<form action="/loginout/loginOk" method="post" name="login_frm">
 							<table>
 								<tr height="50" class="login_txt">
-									<td width="100" align="right" class="login_input"><span class="point id">*</span><span class="id_title">¾ÆÀÌµð</span>:</td>
-									<td width="300"><input type="text" class="input" name="userID" size="38" placeholder=" ¾ÆÀÌµð¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä."></td>
+									<td width="100" align="right" class="login_input"><span class="point id">*</span><span class="id_title">ì•„ì´ë””</span>:</td>
+									<td width="300"><input type="text" class="input" name="userID" size="38" placeholder=" ì•„ì´ë””ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”."></td>
 								</tr>
 								<tr height="50" class="login_txt">
-									<td align="right" class="login_input"><span class="point">*</span>ºñ¹Ð¹øÈ£:</td>
-									<td><input type="password" name="userPW"  class="input" size="38" placeholder=" ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä."></td>
+									<td align="right" class="login_input"><span class="point">*</span>ë¹„ë°€ë²ˆí˜¸:</td>
+									<td><input type="password" name="userPW"  class="input" size="38" placeholder=" ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”."></td>
 								</tr>
 								<tr class="login_option">
 									<td colspan="2" align="center">
-										<a href="#">¾ÆÀÌµð/ºñ¹Ð¹øÈ£Ã£±â</a>
+										<a href="#">ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ì°¾ê¸°</a>
 										<font color="#2C78D7">&nbsp;|&nbsp;</font>
-										<a href="../join/join.jsp">È¸¿ø°¡ÀÔ</a>
+										<a href="../join/join.jsp">íšŒì›ê°€ìž…</a>
 										<font color="#2C78D7">&nbsp;|&nbsp;</font>
-										<a href="javascript:m_login()">»ç¼­ ·Î±×ÀÎ</a>
+										<a href="javascript:m_login()">ì‚¬ì„œ ë¡œê·¸ì¸</a>
 									</td>
 								</tr>
 								<tr height="70">
 									<td colspan="2" align="center">
-										<button type="button" class="login_btn" onclick="login()" >·Î±×ÀÎ</button>
+										<button type="button" class="login_btn" onclick="login()" >ë¡œê·¸ì¸</button>
 									</td>
 								</tr>
 							</table>

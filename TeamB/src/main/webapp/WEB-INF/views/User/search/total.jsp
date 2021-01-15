@@ -40,22 +40,48 @@
 					</div>
 					<div class="content">
 						<div class="searchOptionBox">	
-							<form action="/search/total" method="post">
+							<form action="/search/total" method="get">
 								<span class="options">
 								<select id="select" class="select" name="searchType">
-									<option value="all">전체</option>
-									<option value="bookSubject">도서명</option>
-									<option value="bookWriter">저자</option>
-									<option value="bookCompany">출판사</option>
+									<c:if test="${search.searchType eq 'all' }">
+										<option value="all" selected>전체</option>
+										<option value="bookSubject">도서명</option>
+										<option value="bookWriter">저자</option>
+										<option value="bookCompany">출판사</option>
+									</c:if>
+									<c:if test="${search.searchType eq 'bookSubject' }">
+										<option value="all">전체</option>
+										<option value="bookSubject" selected>도서명</option>
+										<option value="bookWriter">저자</option>
+										<option value="bookCompany">출판사</option>
+									</c:if>
+									<c:if test="${search.searchType eq 'bookWriter' }">
+										<option value="all">전체</option>
+										<option value="bookSubject">도서명</option>
+										<option value="bookWriter" selected>저자</option>
+										<option value="bookCompany">출판사</option>
+									</c:if>
+									<c:if test="${search.searchType eq 'bookCompany' }">
+										<option value="all">전체</option>
+										<option value="bookSubject">도서명</option>
+										<option value="bookWriter">저자</option>
+										<option value="bookCompany" selected>출판사</option>
+									</c:if>
+									<c:if test="${search.searchType eq null }">
+										<option value="all">전체</option>
+										<option value="bookSubject">도서명</option>
+										<option value="bookWriter">저자</option>
+										<option value="bookCompany">출판사</option>
+									</c:if>
 								</select>
-								<input type="text" size="60" id="keyword" class="keyword" name="searchText" value="">
+								<input type="text" size="60" id="keyword" class="keyword" name="searchText" value="${ search.searchText}">
 								<input type="submit" value="검색" class="searchBtn">
 								</span>
 							</form>		
 						</div>
 						
 						<div class="booklist" id="booklist">	
-							<span class="resultSum">검색결과:: <b><font color="orange"> </font></b>건</span>
+							<span class="resultSum">검색결과:: <b><font color="orange">${totalCount }</font></b>건</span>
 							
 							<c:forEach items="${totallist}" var="list">
 								<div class="total">					

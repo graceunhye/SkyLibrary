@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.skylibrary.dao.QuestionDAO;
+import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.QuestionVO;
-import com.skylibrary.vo.SearchVO;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -16,7 +16,7 @@ public class QuestionServiceImpl implements QuestionService {
 	QuestionDAO dao;
 	
 	@Override
-	public List<QuestionVO> list(SearchVO vo) throws Exception {
+	public List<QuestionVO> list(PagingVO vo) throws Exception {
 		return dao.list(vo);
 	}
 
