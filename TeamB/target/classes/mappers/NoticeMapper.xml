@@ -13,6 +13,7 @@
 	noticeHit,
 	noticeFile   
 </sql>
+
 <!-- 메인 -->
 <select id="listMain" resultType="noticeVO">
 	SELECT 
@@ -27,6 +28,7 @@
 	LIMIT    0,5
 </select>
 <!-- 공지사항 -->
+
 <select id="list" parameterType="searchVO" resultType="noticeVO">
 	SELECT 
 			noticeNo,
@@ -57,6 +59,7 @@
 	</if>
 	LIMIT #{start},#{end}
 </select>
+
 <select id="countList" parameterType="searchVO" resultType="int">
 	SELECT COUNT(*)
 	FROM notice
@@ -78,9 +81,34 @@
 		</if>
 	</if>
 </select>
+
 <select id="view" parameterType="noticeVO" resultType="noticeVO">
 	SELECT <include refid="*" />
 	FROM notice
 	WHERE noticeNo = #{noticeNo}
 </select>
+
+<!-- 사서 공지사항 목록 -->
+<select id="noticeList" resultType="com.skylibrary.vo.NoticeVO">
+	SELECT
+		noticeNo,
+		managerID,
+		noticeTitle,
+		noticeBody,
+		noticeDate,
+		noticeHit,
+		noticeFile 
+	FROM notice
+	order by noticeNo desc
+	limit 0,10	  
+</select>
+
+<!-- 공지사항 작성 -->
+<insert id="noticeWrite" parameterType="com.skylibrary.vo.NoticeVO">
+	INSERT INTO 
+		notice (managerID, noticeTitle, noticeBody, noticeDate, noticeFile)
+	VALUES 
+		(#{managerID}, #{title}, #{ir1}, now(), #{fname})
+</insert>
+
 </mapper>
