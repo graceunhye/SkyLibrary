@@ -30,13 +30,10 @@ public class JoinController {
 	
 	//회원가입 post
 	@RequestMapping(value = "/joinOk", method = RequestMethod.POST)
-<<<<<<< HEAD
+
 	public String postJoin(UserVO vo, String userNumSplit1, String userNumSplit2, String userNumSplit3) throws Exception {
 		
 		vo.setUserNum(userNumSplit1,userNumSplit2,userNumSplit3);
-=======
-	public String postJoin(UserVO vo)throws Exception {
->>>>>>> 4e1c0b5902272a82c80dcbb4b8cd1e4d05198201
 		userService.join(vo);
 		
 		return "/User/loginout/login";
