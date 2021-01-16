@@ -10,26 +10,45 @@ import com.skylibrary.service.UserService;
 import com.skylibrary.vo.UserVO;
 
 @Controller
-@RequestMapping(value = "/join")
 public class JoinController {
 	
 	@Inject
 	UserService userService;
 	
-	// 회원가입 get
+	//중복확인 get
+	@RequestMapping(value = "/IDcheck", method = { RequestMethod.GET , RequestMethod.POST })
+	public String isThereID() throws Exception {
+		
+		return "/User/join/join";
+	}
+	
+	//회원가입 get
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String getJoin() throws Exception {
 		return "/User/join/join";
 	}
 	
-	// 회원가입 post
+	//회원가입 post
 	@RequestMapping(value = "/joinOk", method = RequestMethod.POST)
-	public String postJoin(UserVO vo, String num1, String num2, String num3) throws Exception {
-		
-		vo.setUserNum(num1+num2+num3);
+	public String postJoin(UserVO vo)throws Exception {
 		userService.join(vo);
 		
-		return "redirect:/";
+		return "/User/loginout/login";
+		
 	}
+	
+	/*
+	 * // 회원가입 post
+	 * 
+	 * @RequestMapping(value = "/joinOk", method = RequestMethod.POST) public String
+	 * postJoin(UserVO vo, String num1, String num2, String num3) throws Exception {
+	 * 
+	 * vo.setUserNum(num1+num2+num3); userService.join(vo);
+	 * 
+	 * return "redirect:/loginout/login"; }
+	 */
+	
+
+
 
 }

@@ -37,7 +37,7 @@
 					<span class="top_title">회원가입</span>
 					<br>
 					<br>
-					<form method="post" class="joinfrm" name="joinfrm" action="/User/join/joinOk">
+					<form method="post" class="joinfrm" name="joinfrm" action="/joinOk">
 						<div class="joinbox">
 							<table style="width:550px; height:700px; border-collapse:collapse; margin-left:25px;" >
 								<tr>
@@ -74,15 +74,15 @@
 								<tr>
 									<td>연락처<span class="star">*</span></td>
 									<td>
-										<select name="num1">
+										<select name="userNumSplit1">
 											<option value="010">010
 											<option value="011">011
 											<option value="016">016										
 										</select>
 										 -
-										<input type="text" id="num2" name="num2" maxlength="4">
+										<input type="text" id="num2" name="userNumSplit2" maxlength="4">
 										 - 
-										<input type="text" id="num3" name="num3" maxlength="4">	
+										<input type="text" id="num3" name="userNumSplit3" maxlength="4">	
 									</td>
 								</tr>
 								<tr>
