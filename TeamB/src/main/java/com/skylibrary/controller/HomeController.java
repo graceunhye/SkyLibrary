@@ -33,7 +33,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, HttpServletRequest req) throws Exception {
+	public String home(Locale locale, Model model) throws Exception {
 		System.out.println("In HomeController (value=/)");
 		
 		List<BookVO> bookList = bookService.MainList();
