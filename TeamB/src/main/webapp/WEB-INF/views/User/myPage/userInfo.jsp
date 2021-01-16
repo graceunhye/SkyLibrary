@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -39,7 +41,7 @@
 							<table class="content_table">
 									<tr class="top_tr">
 										<th style="width:25%;">ID</th>
-										<td class="top_td"></td>
+										<td class="top_td">${userInfo.userID }</td>
 									</tr>
 									<tr class="mid_tr">
 										<th>이름</th>

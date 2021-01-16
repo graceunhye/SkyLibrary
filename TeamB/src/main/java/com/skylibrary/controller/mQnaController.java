@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/mqna")
 public class mQnaController {
 	
-	@RequestMapping(value="/mqna", method=RequestMethod.GET)
+	@RequestMapping(value="/mQna", method=RequestMethod.GET)
 	public void getQnaList(Locale locale, Model model) throws Exception {
 		
 	}

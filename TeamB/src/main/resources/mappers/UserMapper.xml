@@ -45,4 +45,9 @@
 	#{userEmailDomain}
 	)
 </insert>
+<select id="userInfo" resultType="userVO" parameterType="userVO">
+	SELECT <include refid="allColumns"/> 
+	FROM user
+	WHERE userID=#{userID}
+</select>
 </mapper>

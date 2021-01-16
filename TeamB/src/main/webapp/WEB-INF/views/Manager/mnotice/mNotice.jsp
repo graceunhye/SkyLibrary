@@ -9,24 +9,10 @@
 	<title>공지사항</title>
 	
 	<link rel="stylesheet" href="/css/mCommon.css" type="text/css"/>
+	<link rel="stylesheet" href="/css/mNotice/mnotice.css" type="text/css"/>
 	
 	<script src="/js/jquery-3.5.1.min.js"></script>
 	
-	<style>
-		/** notice.jsp css **/
-		#insert_btn{
-			position : relative;
-			margin-left : 5%;
-		}
-		.notice_page{
-			positon : relative;
-			margin-left : 40%;
-		}
-		a{
-			color : black;
-			text-decoration: none;
-		}
-	</style>
 </head>
 <body style="margin: 0px;">
 	<div class="wrap">
@@ -44,7 +30,7 @@
 					<br>
 					<div class="user_content">										
 					<br>
-					<button id="insert_btn" type="button" class="optionBox_btn_free" width="200" onclick="location.href='noticeInsert.jsp'">공지사항 작성</button>
+					<button id="insert_btn" type="button" class="optionBox_btn_free" width="200" onclick="location.href='mNoticeInsert'">공지사항 작성</button>
 						<table class="content_table">
 						<tr class="top_tr">
 							<td>글번호</td>
@@ -53,13 +39,15 @@
 							<td>작성일</td>
 							<td>조회수</td>
 						</tr>
+						<c:forEach items="noticelist" var="list">
 							<tr class="mid_tr">
+								<td align="center">${list.noticeNo}</td>
+								<td><a href="noticeView.?no=">${list.noticeTitle}</a></td>
 								<td align="center"></td>
-								<td><a href="noticeView.jsp?no="></a></td>
-								<td align="center"></td>
-								<td align="center"></td>
-								<td align="center"></td>
-							</tr>												
+								<td align="center">${list.noticeDate}</td>
+								<td align="center">${list.noticeHit}</td>
+							</tr>
+						</c:forEach>													
 						</table>
 						</div>
 						<br>

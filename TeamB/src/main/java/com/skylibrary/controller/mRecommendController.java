@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/mrecommend")
 public class mRecommendController {
 	
-	@RequestMapping(value="/mrecommend", method=RequestMethod.GET)
+	@RequestMapping(value="/mRecommend", method=RequestMethod.GET)
 	public void getRecommendList(Locale locale, Model model) throws Exception {
 		
 	}

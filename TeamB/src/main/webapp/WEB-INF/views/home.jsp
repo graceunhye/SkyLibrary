@@ -26,6 +26,7 @@
 						<span class="sub_title newbook">신착도서</span>
 						<div class="book"> 
 							<ul class="book_list" id="book">
+							
 								<c:forEach items="${bookList}" var="list">
 								<li>
 									<div class="book_cover">

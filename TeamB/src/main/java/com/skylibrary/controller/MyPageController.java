@@ -81,19 +81,22 @@ public class MyPageController {
 		return "/User/myPage/wishCheck";
 	}
 	
+	
 	@RequestMapping(value = "/userInfo")
 	public String userInfo(Model model, HttpServletRequest req) throws Exception {
 		System.out.println("In MyPageController (value=/userInfo)");
 		HttpSession session = req.getSession();
 		UserVO user = null;
-		
 		if(session.getAttribute("user") != null) {
 			user = (UserVO)session.getAttribute("user");
 		}
+		
+		//아이디값으로 정보 조회
 		model.addAttribute("user",user);
 		System.out.println("Out MyPageController (value=/userInfo)");
 		return "/User/myPage/userInfo";
 	}
+	
 	
 	
 }

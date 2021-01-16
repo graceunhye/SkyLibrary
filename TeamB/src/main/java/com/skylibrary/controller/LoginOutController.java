@@ -32,7 +32,7 @@ public class LoginOutController {
 	public String login(UserVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
 	{
 		System.out.println("In LoginoutController (value=/loginout/loginOk)");
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(true);
 		
 		UserVO login = userService.login(vo);
 		

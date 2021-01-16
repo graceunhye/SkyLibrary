@@ -14,4 +14,8 @@ public interface NoticeService {
 	public int countList(SearchVO vo) throws Exception;
 	
 	public NoticeVO view(NoticeVO vo) throws Exception;
+	
+	public List<NoticeVO> NoticeList() throws Exception;
+	
+	public void NoticeWrite(NoticeVO vo) throws Exception;
  }

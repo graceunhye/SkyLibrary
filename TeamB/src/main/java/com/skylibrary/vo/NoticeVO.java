@@ -1,5 +1,6 @@
 package com.skylibrary.vo;
 
+
 public class NoticeVO {
 	
 	private int    noticeNo;    //공지번호

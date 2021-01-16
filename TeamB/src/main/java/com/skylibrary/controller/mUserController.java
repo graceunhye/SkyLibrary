@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/muser")
 public class mUserController {
 
-	@RequestMapping(value="/muser", method=RequestMethod.GET)
+	@RequestMapping(value="/mUser", method=RequestMethod.GET)
 	public void getUserList(Locale locale, Model model) throws Exception {
 		
 	}

@@ -33,4 +33,12 @@ public class NoticeDAO {
 	public NoticeVO view(NoticeVO vo) throws Exception {
 		return sql.selectOne(namespace + ".view", vo);
 	}
+	
+	public List<NoticeVO> NoticeList() throws Exception{
+		return sql.selectList(namespace + ".noticeList");
+	}
+	
+	public void NoticeWrite(NoticeVO vo) throws Exception{
+		sql.insert(namespace + "noticeWrite");
+	}
 }
