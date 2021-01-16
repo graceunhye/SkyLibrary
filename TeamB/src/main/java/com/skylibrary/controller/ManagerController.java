@@ -11,20 +11,19 @@ import com.skylibrary.vo.ManagerVO;
 
 
 @Controller
-@RequestMapping(value = "/User")
 public class ManagerController {
 
 	@Inject
 	ManagerService managerservice;
 	
-	// 사서 회원가입 get
-	@RequestMapping(value = "/join/mjoin", method = RequestMethod.GET)
+	// get
+	@RequestMapping(value = "/mjoin", method = RequestMethod.GET)
 	public void getMjoin() throws Exception {
 
 	}
 	
-	// 사서 회원가입 post
-	@RequestMapping(value = "/join/mjoinOk", method = RequestMethod.POST)
+	// post
+	@RequestMapping(value = "/mjoinOk", method = RequestMethod.POST)
 	public String postMjoin(ManagerVO vo) throws Exception {
 		
 		managerservice.mjoin(vo);
