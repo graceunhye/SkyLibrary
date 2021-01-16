@@ -26,6 +26,7 @@
 						<span class="sub_title newbook">신착도서</span>
 						<div class="book"> 
 							<ul class="book_list" id="book">
+							
 								<c:forEach items="${bookList}" var="list">
 								<li>
 									<div class="book_cover">
@@ -82,7 +83,7 @@
 										<span class="point2">평일</span> 오전 09:00 ~ 오후 18:00<br />
 										<span class="point2">주말</span> 오전 10:00 ~ 오후 18:00<br />
 										<font color="orange">*</font><font class="font">위 사항은 사정에 따라 변경 될 수 있습니다.</font><br>
-										<a href="/notice/"><span class="more use_time_more">더보기</span></a>
+										<a href="/notice"><span class="more use_time_more">더보기</span></a>
 									</td>
 									<td>
 										<img class="sub_banner" src="/image/homePage/sub_banner1.jpg" width="300px"/>
