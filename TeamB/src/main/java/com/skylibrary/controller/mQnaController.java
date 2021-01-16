@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/mqna")
+@RequestMapping(value="/Manager/mqna")
 public class mQnaController {
 	
 	@RequestMapping(value="/mQna", method=RequestMethod.GET)

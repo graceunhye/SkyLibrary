@@ -29,6 +29,7 @@
 	SELECT COUNT(*) FROM user
 	WHERE userID = '#{userID}'
 </select>
+
 <insert id="join" parameterType="userVO">
 	INSERT INTO user
 	(<include refid="allColumns"/>) 
@@ -45,10 +46,13 @@
 	#{userEmailDomain}
 	)
 </insert>
+<<<<<<< HEAD
 <select id="userInfo" resultType="userVO" parameterType="userVO">
 	SELECT <include refid="allColumns"/> 
 	FROM user
 	WHERE userID=#{userID}
 </select>
+=======
+>>>>>>> 4e1c0b5902272a82c80dcbb4b8cd1e4d05198201
 
 </mapper>

@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
 	public UserVO userInfo(UserVO vo) throws Exception {
 		return dao.userInfo(vo);
 	}
+	
 
 
 }

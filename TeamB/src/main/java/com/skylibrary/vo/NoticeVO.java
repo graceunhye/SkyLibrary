@@ -2,92 +2,64 @@ package com.skylibrary.vo;
 
 
 public class NoticeVO {
+	private int noticeNo; //°øÁö¹øÈ£
+	private String managerID; //»ç¼­¾ÆÀÌµğ
+	private String noticeTitle; //°øÁöÁ¦¸ñ
+	private String noticeBody; //°øÁö³»¿ë
+	private String noticeDate; //°øÁö³¯Â¥
+	private int noticeHit; //°øÁö Á¶È¸¼ö
+	private String noticeFile; //Ã·ºÎÆÄÀÏ
 	
-	private int    noticeNo;    //ê³µì§€ë²ˆí˜¸
-	private String managerID;   //ì‚¬ì„œì•„ì´ë””
-	private String noticeTitle; //ê³µì§€ì œëª©
-	private String noticeBody;  //ê³µì§€ë‚´ìš©
-	private String noticeDate;  //ê³µì§€ë‚ ì§œ
-	private int    noticeHit;   //ê³µì§€ ì¡°íšŒìˆ˜
-	private String noticeFile;  //ì²¨ë¶€íŒŒì¼
 	
-	
-	public void setNoticeDate(String noticeDate) {
-		//noticeDate ëŠ” timestamp í˜•ì‹ì´ë¼
-		//yyyy-MM-dd hh:mm:ss í˜•íƒœë¡œ ê°’ì„ ë°›ì•„ì˜´.
-		//"ê³µë°±"ì„ ê¸°ì¤€ìœ¼ë¡œ ì˜ë¼ ë°°ì—´ì— ë„£ì–´ì¤€ë‹¤.
-		//array[0] = yyyy-MM-dd
-		//array[1] = hh:mm:ss
-		//array[0] = yyyy-MM-dd ë¥¼ this.noticeDateì— ì…‹íŒ…í•œë‹¤.
-		String[] array = noticeDate.split(" ");
-		this.noticeDate = array[0];
-	}
-
-
 	public int getNoticeNo() {
 		return noticeNo;
 	}
-
-
 	public void setNoticeNo(int noticeNo) {
 		this.noticeNo = noticeNo;
 	}
-
-
 	public String getManagerID() {
 		return managerID;
 	}
-
-
 	public void setManagerID(String managerID) {
 		this.managerID = managerID;
 	}
-
-
 	public String getNoticeTitle() {
 		return noticeTitle;
 	}
-
-
 	public void setNoticeTitle(String noticeTitle) {
 		this.noticeTitle = noticeTitle;
 	}
-
-
 	public String getNoticeBody() {
 		return noticeBody;
 	}
-
-
 	public void setNoticeBody(String noticeBody) {
 		this.noticeBody = noticeBody;
 	}
-
-
-	public int getNoticeHit() {
-		return noticeHit;
-	}
-
-
-	public void setNoticeHit(int noticeHit) {
-		this.noticeHit = noticeHit;
-	}
-
-
-	public String getNoticeFile() {
-		return noticeFile;
-	}
-
-
-	public void setNoticeFile(String noticeFile) {
-		this.noticeFile = noticeFile;
-	}
-
-
 	public String getNoticeDate() {
 		return noticeDate;
 	}
-	
+	public void setNoticeDate(String noticeDate) {
+		//noticeDate ´Â timestamp Çü½ÄÀÌ¶ó
+		//yyyy-MM-dd hh:mm:ss ÇüÅÂ·Î °ªÀ» ¹Ş¾Æ¿È.
+		//"°ø¹é"À» ±âÁØÀ¸·Î Àß¶ó ¹è¿­¿¡ ³Ö¾îÁØ´Ù.
+		//array[0] = yyyy-MM-dd
+		//array[1] = hh:mm:ss
+		//array[0] = yyyy-MM-dd ¸¦ this.noticeDate¿¡ ¼ÂÆÃÇÑ´Ù.
+		String[] array = noticeDate.split(" ");
+		this.noticeDate = array[0];
+	}
+	public int getNoticeHit() {
+		return noticeHit;
+	}
+	public void setNoticeHit(int noticeHit) {
+		this.noticeHit = noticeHit;
+	}
+	public String getNoticeFile() {
+		return noticeFile;
+	}
+	public void setNoticeFile(String noticeFile) {
+		this.noticeFile = noticeFile;
+	}
 	
 	
 }

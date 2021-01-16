@@ -1,6 +1,12 @@
 package com.skylibrary.controller;
 
 import java.util.List;
+<<<<<<< HEAD
+
+import javax.inject.Inject;
+=======
+import java.util.Locale;
+>>>>>>> 4e1c0b5902272a82c80dcbb4b8cd1e4d05198201
 
 import javax.inject.Inject;
 
@@ -13,7 +19,7 @@ import com.skylibrary.service.NoticeService;
 import com.skylibrary.vo.NoticeVO;
 
 @Controller
-@RequestMapping(value="/mnotice")
+@RequestMapping(value="/Manager/mnotice")
 public class mNoticeCotroller {
 	
 	@Inject

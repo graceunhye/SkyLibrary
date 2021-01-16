@@ -8,7 +8,7 @@ create table user
 	userID    	    varchar(20)	           comment '회원 아이디' ,  
 	userPW 		    varchar(200) not null  comment '비밀번호',
 	userName        varchar(20)  not null  comment '이름',
-	userNum		    varchar(15)            comment '전화번호',
+	userNum			varchar(15)             comment '전화번호',
 	userPostNum     int 		           comment '우편번호', 
 	userAddr        varchar(100)           comment '주소',
 	userAddrDetail  varchar(100)           comment '상세주소',

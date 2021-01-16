@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page session="true" %>  
+<%@ page session="true" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="/css/mCommon.css" type="text/css"/>
 	<link rel="stylesheet" href="/css/mNotice/mnotice.css" type="text/css"/>
 	
-	<script src="/js/jquery-3.5.1.min.js"></script>
+	<script src="../mnotice/js/jquery-3.5.1.min.js"></script>
 	
 </head>
 <body style="margin: 0px;">

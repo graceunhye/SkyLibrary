@@ -19,6 +19,7 @@ public class UserDAO {
 		return sql.selectOne(namespace + ".login", vo);
 	}
 	
+	//회원가입
 	public void join(UserVO vo) throws Exception {
 		sql.insert(namespace + ".join", vo);
 	}
@@ -26,5 +27,7 @@ public class UserDAO {
 	public UserVO userInfo(UserVO vo) throws Exception {
 		return sql.selectOne(namespace + ".userInfo", vo);
 	}
+	
+
 	
 }

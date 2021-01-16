@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/mwish")
+@RequestMapping(value="/Manager/mwish")
 public class mWishController {
 	
 	@RequestMapping(value="/mWish", method=RequestMethod.GET)
