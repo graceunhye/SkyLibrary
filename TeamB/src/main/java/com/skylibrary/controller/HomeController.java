@@ -32,34 +32,38 @@ public class HomeController {
 	@Inject
 	BookService bookService;
 	
+	/*
+	 * private static final Logger logger =
+	 * LoggerFactory.getLogger(HomeController.class);
+	 */
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, HttpServletRequest req) throws Exception {
-		System.out.println("In HomeController (value=/)");
+	public String home(Locale locale, Model model) throws Exception {
 		
-		UserVO user = loginSession(model, req);
-		
+		System.out.println("in controller");
 		List<BookVO> bookList = bookService.MainList();
 		List<NoticeVO> noticeList = noticeService.MainList();
 		
+		System.out.println("data load complete");
 		model.addAttribute("bookList",bookList);
 		model.addAttribute("noticeList",noticeList);
-		model.addAttribute("user",user);
+		/* logger.info("Welcome home! The client locale is {}.", locale); */
 		
-		System.out.println("Out HomeController (value=/)");
+		
+		
+		/*
+		 * Date date = new Date(); DateFormat dateFormat =
+		 * DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		 */
+		
+		/*
+		 * String formattedDate = dateFormat.format(date);
+		 * 
+		 * model.addAttribute("serverTime", formattedDate );
+		 */
+		
 		return "home";
-	}
-	
-	public UserVO loginSession(Model model,  HttpServletRequest req) throws Exception {
-		
-		HttpSession session = req.getSession();
-		UserVO user = null;
-		
-		if(session.getAttribute("user") != null) {
-			user = (UserVO)session.getAttribute("user");
-		}
-		
-		return user;
 	}
 	
 }
