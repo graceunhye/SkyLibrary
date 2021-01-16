@@ -50,4 +50,5 @@
 	FROM user
 	WHERE userID=#{userID}
 </select>
+
 </mapper>

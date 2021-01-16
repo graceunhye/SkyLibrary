@@ -24,9 +24,9 @@ public class JoinController {
 	
 	// 회원가입 post
 	@RequestMapping(value = "/joinOk", method = RequestMethod.POST)
-	public String postJoin(UserVO vo, String num1, String num2, String num3) throws Exception {
+	public String postJoin(UserVO vo, String userNumSplit1, String userNumSplit2, String userNumSplit3) throws Exception {
 		
-		vo.setUserNum(num1+num2+num3);
+		vo.setUserNum(userNumSplit1,userNumSplit2,userNumSplit3);
 		userService.join(vo);
 		
 		return "redirect:/";

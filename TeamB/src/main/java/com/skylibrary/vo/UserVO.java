@@ -14,12 +14,19 @@ public class UserVO {
 	private String userPW;          //비밀번호
 	private String userName;        //이름  
 	private String userNum;         //전화번호
+	private String userNumSplit1;   //"-" 기준으로 잘라낸 첫번재째 값
+	private String userNumSplit2;
+	private String userNumSplit3;
 	private int    userPostNum;     //우편번호
 	private String userAddr;        //주소
 	private String userAddrDetail;  //상세주소
 	private String userEmail;       //이메일아이디
 	private String userEmailDomain; //이메일도메인
 	private boolean loginCon;       //로그인 성공여부 || 보류
+	
+	UserVO(){
+		setUserNum(userNumSplit1, userNumSplit2, userNumSplit3);
+	}
 	
 	public String getUserID() {
 		return userID;
@@ -42,8 +49,8 @@ public class UserVO {
 	public String getUserNum() {
 		return userNum;
 	}
-	public void setUserNum(String userNum) {
-		this.userNum = userNum;
+	public void setUserNum(String userNumSplit1, String userNumSplit2, String userNumSplit3) {
+		this.userNum = userNumSplit1+"-"+userNumSplit2+"-"+userNumSplit3;
 	}
 	public int getUserPostNum() {
 		return userPostNum;
