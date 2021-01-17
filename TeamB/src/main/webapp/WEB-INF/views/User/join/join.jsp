@@ -35,31 +35,37 @@
 								<tr>
 									<td>아이디<span class="star">*</span></td>
 									<td>
-										<input type="text" id="id" name="userID">&nbsp;
-										<input type="button" class="joinbtn1" onclick="ID_check()" value="중복확인">
-										<a id="id_message"></a>
+										<input type="text" id="userID" name="userID">&nbsp;
+										<input type="button" class="joinbtn1" onclick="idCheck()" value="중복확인">
+										<a id="idCheckResult"></a>
 									</td>
 								</tr>
 								<tr>
 									<td>비밀번호<span class="star">*</span></td>
-									<td><input type="password" id="pw1" name="userPW" onblur="Password_check()"><p/><a id="password_message"></a></td>
+									<td>
+										<input type="password" id="userPW" name="userPW" onblur="PW_check()"><br />
+										<span id="passwordCheckResult"></span>
+									</td>
 								</tr>
 								<tr>
 									<td>비밀번호 확인<span class="star">*</span></td>
-									<td><input type="password" id="pw2" name="pw2" onblur="Password_check2()"><p/><a id="password_message2"></a></td>
+									<td>
+										<input type="password" id="userRPW" name="userRPW" onblur="RPW_check()"><br />
+										<span id="rePasswordCheckResult"></span>
+									</td>
 								</tr>
 								<tr>
 									<td>이름<span class="star">*</span></td>
-									<td><input type="text" id="name" name="userName"></td>
+									<td><input type="text" id="userName" name="userName"></td>
 								</tr>
 								<tr>
 									<td>이메일<span class="star">*</span></td>
 									<td>
-										<input type="text" id="email1" name="userEmail"> @
+										<input type="text" id="userEmail" name="userEmail"> @
 										<select name="userEmailDomain">
-											<option value="e1">naver.com
-											<option value="e2">nate.com
-											<option value="e3">gmail.com
+											<option value="naver.com">naver.com
+											<option value="nate.com">nate.com
+											<option value="gmail.com">gmail.com
 										</select>
 									</td>
 								</tr>
@@ -72,18 +78,18 @@
 											<option value="016">016										
 										</select>
 										 -
-										<input type="text" id="num2" name="userNumSplit2" maxlength="4">
+										<input type="text" id="userNumSplit2" name="userNumSplit2" maxlength="4">
 										 - 
-										<input type="text" id="num3" name="userNumSplit3" maxlength="4">	
+										<input type="text" id="userNumSplit3" name="userNumSplit3" maxlength="4">	
 									</td>
 								</tr>
 								<tr>
 									<td>주소</td>
 									<td>
-										<input type="text" id="postnum" name="userPostNum" size="7">&nbsp;
+										<input type="text" id="userPostNum" name="userPostNum" size="7">&nbsp;
 										<input type="button" class="joinbtn1" value="우편번호 찾기" onclick="PostOpen()"><br>
-										<input type="text" id="addr1" name="userAddr" size="50"><br>
-										<input type="text" id="addr2" name="userAddrDetail" size="50">
+										<input type="text" id="userAddr" name="userAddr" size="50"><br>
+										<input type="text" id="userAddrDetail" name="userAddrDetail" size="50">
 									</td>
 								</tr>
 							</table>

@@ -7,8 +7,8 @@
 	</div>
 	<div class="head_btns">
 		<c:if test="${sessionScope.user == null}">
-			<input class="head_btn" type="button" value="로그인" onclick="location.href='/loginout/moveLogin'">
-			<input class="head_btn" type="button" value="회원가입" onclick="location.href='/join/moveJoin'">
+			<input class="head_btn" type="button" value="로그인" onclick="location.href='/loginout/login'">
+			<input class="head_btn" type="button" value="회원가입" onclick="location.href='/join'">
 
 		</c:if>
 		<c:if test="${sessionScope.user != null}">

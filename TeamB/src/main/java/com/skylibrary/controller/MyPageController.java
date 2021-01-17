@@ -69,16 +69,24 @@ public class MyPageController {
 	@RequestMapping(value = "/userInfo")
 	public String userInfo(Model model, HttpServletRequest req) throws Exception {
 		System.out.println("In MyPageController (value=/userInfo)");
-		HttpSession session = req.getSession();
-		UserVO user = null;
-		
-		if(session.getAttribute("user") != null) {
-			user = (UserVO)session.getAttribute("user");
-			user = userService.userInfo(user);
-		}
-		model.addAttribute("userInfo",user);
 		
 		System.out.println("Out MyPageController (value=/userInfo)");
+		return "/User/myPage/userInfo";
+	}
+	
+	@RequestMapping(value = "/userInfoModify")
+	public String userInfoModify(Model model) throws Exception {
+		return "/User/myPage/userInfoModify";
+	}
+	
+	@RequestMapping(value = "/userInfoModifyOk")
+	public String userInfoModifyOk(Model model, UserVO vo) {
+		System.out.println("In MyPageController (value=/userInfoModifyOk)");
+		
+		//수정한 정보를 업데이트문에 넣고 돌림
+		//다시 userVO에 셋팅해 넘겨줌.
+		
+		System.out.println("Out MyPageController (value=/userInfoModifyOk)");
 		return "/User/myPage/userInfo";
 	}
 	

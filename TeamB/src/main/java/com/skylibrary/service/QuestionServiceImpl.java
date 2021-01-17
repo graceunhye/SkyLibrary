@@ -29,4 +29,20 @@ public class QuestionServiceImpl implements QuestionService {
 	public int countList() throws Exception {
 		return dao.countList();
 	}
+
+	@Override
+	public int typeCountList(QuestionVO vo) throws Exception {
+		return dao.typeCountList(vo);
+	}
+	
+	@Override
+	public List<QuestionVO> selectTypeList(QuestionVO vo) throws Exception {
+		return dao.selectTypeList(vo);
+	}
+
+	@Override
+	public void typeUpdate(QuestionVO vo) throws Exception {
+		dao.typeUpdate(vo);
+	}
+
 }

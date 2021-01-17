@@ -16,7 +16,7 @@
 	userEmailDomain
 </sql>
 <select id="login" parameterType="userVO" resultType="userVO">
-	SELECT userID,userPW
+	SELECT <include refid="allColumns"/>
 	FROM user 
 	WHERE userID = #{userID}
 	AND userPW = md5(#{userPW})
@@ -41,9 +41,34 @@
 	#{userEmailDomain}
 	)
 </insert>
-<select id="userInfo" resultType="userVO" parameterType="userVO">
-	SELECT <include refid="allColumns"/> 
+<select id="userList" resultType="userVO">
+	SELECT <include refid="allColumns"/>
 	FROM user
-	WHERE userID=#{userID}
 </select>
+<update id="userModify" parameterType="userVO">
+	UPDATE user 
+	SET  userNum = #{userNum}
+		,userEmail = #{userEmail}
+		,userEmailDomain = #{userEmailDomain}
+		,userName = #{userName}
+		<if test="#{userPostNum != null}">
+		,userPostNum = #{userPostNum}
+		</if>
+		<if test="#{userAddr != null}">
+		,userAddr = #{userAddr}	
+		</if>
+		<if test="#{userAddrDetail != null}">
+		,userAddrDetail = #{userAddrDetail}
+		</if>
+	WHERE userID = #{userID}
+</update>
+<update id="userPWModify" parameterType="userVO">
+	UPDATE user
+	SET userPW = md5('#{userPW}')
+	WHERE userID = #{userID}
+</update>
+<delete id="userRemove" parameterType="userVO">
+	DELETE FROM user 
+	WHERE userID = #{userID}
+</delete>
 </mapper>

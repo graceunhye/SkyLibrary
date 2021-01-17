@@ -29,4 +29,16 @@ public class QuestionDAO {
 	public int countList() throws Exception {
 		return sql.selectOne(namespace + ".countList");
 	}
+	
+	public int typeCountList(QuestionVO vo) throws Exception {
+		return sql.selectOne(namespace + ".typeCountList", vo);
+	}
+	
+	public List<QuestionVO> selectTypeList(QuestionVO vo) throws Exception {
+		return sql.selectList(namespace + ".selectTypeList", vo);
+	}
+	
+	public void typeUpdate(QuestionVO vo) throws Exception {
+		sql.update(namespace + ".typeUpdate", vo);
+	}
 }

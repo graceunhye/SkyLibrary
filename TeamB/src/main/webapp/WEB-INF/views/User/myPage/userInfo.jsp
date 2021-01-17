@@ -14,6 +14,11 @@
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/common.js"></script>
+		<script>
+			function userInfoModify{
+				
+			}
+		</script>
 	</head>
 	<body style="margin:0px">
 		<div class="wrap"> 
@@ -41,19 +46,19 @@
 							<table class="content_table">
 								<tr class="top_tr">
 									<th style="width:25%;">ID</th>
-									<td class="top_td">${userInfo.userID }</td>
+									<td class="top_td">${user.userID }</td>
 								</tr>
 								<tr class="mid_tr">
 									<th>이름</th>
-									<td class="mid_td">${userInfo.userName }</td>
+									<td class="mid_td">${user.userName }</td>
 								</tr>
 								<tr class="mid_tr">
 									<th>연락처</th>
 									<td class="mid_td">
-										<c:if test="${userInfo.userNum != null }">
-										${userInfo.userNum }
+										<c:if test="${user.userNum != null }">
+										${user.userNum }
 										</c:if>
-										<c:if test="${userInfo.userNum == null }">
+										<c:if test="${user.userNum == null }">
 										등록된 정보가 없습니다.
 										</c:if>
 									</td>
@@ -61,13 +66,13 @@
 								<tr class="mid_tr">
 									<th>주소</th>
 									<td class="mid_td">
-										<c:if test="${userInfo.userPostNum != null }">
-										[${userInfo.userPostNum }]${userInfo.userAddr }
-										<c:if test="${userInfo.userAddrDetail != null}">
-										${userInfo.userAddrDetail }
+										<c:if test="${user.userPostNum != null }">
+										[${user.userPostNum }]${user.userAddr }
+										<c:if test="${useruser.userAddrDetail != null}">
+										${user.userAddrDetail }
 										</c:if>
 										</c:if>
-										<c:if test="${userInfo.userPostNum == null }">
+										<c:if test="${user.userPostNum == null }">
 										등록된 정보가 없습니다.
 										</c:if>
 									</td>
@@ -75,10 +80,10 @@
 								<tr class="mid_tr">
 									<th >이메일</th>
 									<td>
-										<c:if test="${userInfo.userEmail != null }">
-										${userInfo.userEmail }@${userInfo.userDomain }
+										<c:if test="${user.userEmail != null }">
+										${user.userEmail }@${user.userEmailDomain }
 										</c:if>
-										<c:if test="${userInfo.userEmail == null }">
+										<c:if test="${user.userEmail == null }">
 										등록된 정보가 없습니다.
 										</c:if>
 									</td>
@@ -91,6 +96,7 @@
 			</section>
 			<!-- section end -->
 			
+
 			<jsp:include page="../include/footer.jsp"/>
 			<!-- footer end -->
 		</div>

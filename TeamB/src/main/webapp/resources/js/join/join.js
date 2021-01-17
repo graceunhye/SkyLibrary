@@ -1,91 +1,115 @@
-function ID_check(){				
+		var idCheck = "false";
+
+		function idCheck(){				
 			var id = document.joinfrm.id.value;
-		
+			
 			$.ajax({
-				url:"/IDcheck?id=" + id,
+				url: "/IDcheck?id=" + id,
 				type:"get",
 				success: function(data)
 				{
-					if(data.trim() == "result1"){
-						$("#id_message").html("<br>���̵� �Է����ּ���.");
-						document.joinfrm.id.value = "";
-					}else if(data.trim() == "result4"){
-						$("#id_message").html("<br>���̵�� 5~20���� ����� ���ڸ� ����Ͻ� �� �ֽ��ϴ�.");
-					}else if(data.trim() == "result2"){
-						$("#id_message").html("<br>�̹� ������� ���̵� �Դϴ�.");
+					if(data.trim() == "idEmpty") {
+					
+						$("#idCheckResult").css("color", "red");
+						$("#idCheckResult").html("아이디를 입력해주세요.");
+						$("#userID").focus();
+						
+					}else if(data.trim() == "mismatch") {
+					
+						$("#idCheckResult").css("color", "red");
+						$("#idCheckResult").html("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
+							
+					}else if(data.trim() == "alreadyUse") {
+					
+						$("#idCheckResult").css("color", "red");
+						$("#idCheckResult").html("이미 사용중인 아이디 입니다.");
+						
 					}else{
-						$("#id_message").html("<br>���� ���̵�׿� *^��^*");
+					
+						$("#idCheckResult").css("color", "blue");
+						$("#idCheckResult").html("사용 가능한 아이디입니다.");
+						idCheck = "true";
+						
 					}
 				}
 			});	
-		}
-	
-		/* Password_check */
-		function Password_check(){
-			 var pw 	= $("#pw1").val().trim();
-			 
-			  
+		} 
+
+		function PW_check(){
+		
+		     var userPW = $("#userPW").val().trim();
+		     
 			 var pattern1 = /[0-9]/;
-	
 	         var pattern2 = /[a-zA-Z]/;
-	
 	         var pattern3 = /[~!@\#$%<>^&*]/; 
 			 
-			 
-			if(!pw){
+			if(!userPW){
 				 
-				 $("#pw1").val("");	//��й�ȣ �ʱⰪ���� �ʱ�ȭ
-				 $("#password_message").html("<br>��й�ȣ�� �Է����ּ���.");
+				 $("#userPW").val("");	//비밀번호 초기값으로 초기화
+				 $("#passwordCheckResult").html("비밀번호를 입력해주세요.");
 				 return false;
 			 
 			 }else if(pw.length < 8 || pw.length > 20){
-				 $("#password_message").html("<br>��й�ȣ�� 8�ڸ� �̻� 20�ڸ� �����Դϴ�.");
-				 $("#pw1").val("");
-				 $("#pw1").focus();
+			 
+				 $("#passwordCheckResult").css("color","red");
+				 $("#passwordCheckResult").html("비밀번호는 8자리 이상 20자리 이하입니다.");
+				 $("#userPW").val("");
+				 $("#userPW").focus();
 				 return false;
 			 
-			 }else if(pw.search(/\s/) != -1){
-				  alert("��й�ȣ�� ���� ���� �Է����ּ���.");
+			 }else if(userPW.search(/\s/) != -1){
+			 
+				  $("#passwordCheckResult").css("color","red");
+				  $("#passwordCheckResult").html("비밀번호엔 공백을 쓰실 수 없습니다.");
+				  $("#userPW").val("");
+				   $("#userPW").focus();
+				   
 				  return false;
 				  
-			}else if(!pattern1.test(pw)||!pattern2.test(pw)||!pattern3.test(pw)){
+			}else if(!pattern1.test(userPW) || !pattern2.test(userPW) || !pattern3.test(userPW)){
 				 
-				 $("#password_message").html("<br>��й�ȣ�� ����, ����, Ư������ 1������ �����Ͽ��� �մϴ�.");
-				 $("#pw1").val("");
-				 $("#pw1").focus();
+				 $("#passwordCheckResult").css("color","red");
+				 $("#passwordCheckResult").html("비밀번호는 영어, 숫자, 특수문자 1개씩은 포함하여야 합니다.");
+				 
+				 $("#userPW").val("");
+				 $("#userPW").focus();
 				 return false;
 				 
 			 }else{
 				 
-				 $("#password_message").html(" ");
+				 $("#passwordCheckResult").css("color","blue");
+				 $("#passwordCheckResult").html("사용 가능한 비밀번호 입니다.");
 				 return true;
 			 }
 		}
 		
-		/* Password_check2 */	 
-		function Password_check2(){
-			 var pw 	= $("#pw1").val().trim();
-			 var pw2 	= $("#pw2").val().trim();
+		
+		function RPW_check(){
+			 var userPW  = $("#userPW").val().trim();
+			 var userRPW = $("#userRPW").val().trim();
 			 
-			 if(!(pw==pw2)){
+			 if(userPW != userRPW) {
 				 
-				 $("#pw2").val("");	//��й�ȣ �ʱⰪ���� �ʱ�ȭ
-				 $("#password_message2").html("<br>��й�ȣ�� ��ġ���� �ʽ��ϴ�.");
+				 $("#userRPW").val("");	//비밀번호 초기값으로 초기화
+				 $("#rePasswordCheckResult").css("color","red");
+				 $("#rePasswordCheckResult").html("비밀번호가 일치하지 않습니다.");
+
 				 return false;
 				 
-			}else{
+			}else {
 				
-				 $("#password_message2").html(" ");
+				 $("#rePasswordCheckResult").html(" ");
 				 return true;
 			}
 		}
 		
+		
 		function PostOpen(){
 				new daum.Postcode({
 				    oncomplete: function(data) {
-				        //data�� ����ڰ� ������ �ּ� ������ ��� �ִ� ��ü
-				    	$("#postnum").val(data.zonecode);
-						$("#addr1").val(data.address);
+				        //data는 사용자가 선택한 주소 정보를 담고 있는 객체
+				    	$("#userPostNum").val(data.zonecode);
+						$("#userAddr").val(data.address);
 				    }
 				}).open();
 				
@@ -94,36 +118,94 @@ function ID_check(){
 		
 		
 		function Submit(){
+		
+			var userIDValue        = $("#userID").val();
+			var userNameValue      = $("#userName").val();
+			var userPWValue        = $("#userPW").val();
+			var userRPWValue       = $("#userRPW").val();
+			var userEmailValue     = $("#userEmail").val();
+			var userNumSplit2Value = $("#userNumSplit2").val();
+			var userNumSplit3Value = $("#userNumSplit3").val();
+			var userPostNumValue   = $("#userPostNum").val();
 			
-			var numCheck1 = $('#num2').val();
-			var numCheck2 = $('#num3').val();
-			var postCheck = $('#postnum').val();
-			var emailCheck = $("#email1").val();
 			
-			if($("#id").val()==""){
-				alert("���̵�� �ʼ� �׸��Դϴ�.");
-			}else if($("#pw1").val()==""){
-				alert("��й�ȣ�� �ʼ� �׸��Դϴ�.");
-			}else if($("#pw2").val()==""){
-				alert("��й�ȣ Ȯ���� �ʼ� �׸��Դϴ�.");
-			}else if($("#name").val()==""){
-				alert("�̸��� �ʼ� �׸��Դϴ�.");
-			}else if($("#email1").val()==""){
-				alert("�̸����� �ʼ� �׸��Դϴ�.");
-			}else if(emailCheck.trim()==""){
-				alert("���� ���������䤻�� �ʼ� �׸��Դϴ�.");
-			}else if($("#num2").val()=="" && $("#num3").val()==""){
-				alert("����ó�� �ʼ� �׸� �Դϴ�.");
-			}else if(isNaN(numCheck1)){ //isNaN() true==���� �ƴϴ�. false== ���ڴ�.
-				alert("�ùٸ� ������ ��ȭ��ȣ�� �Է����ּ���");
-			}else if(isNaN(numCheck2)){
-				alert("�ùٸ� ������ ��ȭ��ȣ�� �Է����ּ���");
-			}else if($("#num2").val()=="" || $("#num3").val()==""){
-				alert("�ùٸ� ������ ��ȭ��ȣ�� �Է����ּ���");
-			}else if(postCheck!=""&&isNaN(postCheck)){
-				alert("�����ȣ�� ���ڸ� �� �� �ֽ��ϴ�.");
-			}else{
+			if(userIDValue == "")
+			{
+				alert("아이디는 필수 항목입니다.");
+				$("#userID").focus();
+				
+			}else if(idCheck == "false")
+			{
+				alert("아이디 중복체크를 해주세요.");
+			}
+			else if(userPWValue == "") 
+			{
+				alert("비밀번호는 필수 항목입니다.");
+				$("#userPW").focus();
+				
+			}else if(userRPWValue == "") 
+			{
+				alert("비밀번호 확인은 필수 항목입니다.");
+				$("#userRPW").focus();
+			}
+			else if(userNameValue == "") 
+			{
+				alert("이름은 필수 항목입니다.");
+				$("#userName").focus();
+				
+			}else if(userEmailValue == "") 
+			{
+				alert("이메일은 필수 항목입니다.");
+				$("#userEmail").focus();
+				
+			}else if(userEmailValue.trim() == "") 
+			{
+			
+				alert("이메일에 공백은 넣을 수 없습니다. 다시 시도해주세요.");
+				userEmailValue = "";
+				$("#userEmail").focus();
+				
+			}else if(userNumSplit2Value == "" && userNumSplit3Value == "")
+			{
+				alert("연락처는 필수 항목 입니다.");
+				if(userNumSplit2Value == ""){
+					$("#userNumSplit2").focus();
+				}
+				if(userNumSplit3Value == ""){
+					$("#userNumSplit3").focus();
+				}
+			}
+			else if(isNaN(userNumSplit2Value)) //isNaN() true==숫자 아니다. false== 숫자다.
+			{ 
+				alert("올바른 형식의 전화번호를 입력해주세요");
+				userNumSplit2Value = "";
+				$("#userNumSplit2").focus();
+			}
+			else if(isNaN(userNumSplit3Value))
+			{
+				alert("올바른 형식의 전화번호를 입력해주세요");
+				userNumSplit3Value = "";
+				$("#userNumSplit3").focus();
+			}
+			else if(userNumSplit2Value == "" || userNumSplit3Value == "")
+			{
+				alert("올바른 형식의 전화번호를 입력해주세요");
+				if(userNumSplit2Value == "") {
+					$("#userNumSplit2").focus();
+				}
+				if(userNumSplit3Value == "") {
+					$("#userNumSplit3").focus();
+				}
+			}
+			else if(userPostNumValue != "" && isNaN(userPostNumValue))
+			{
+				alert("올바른 형식의 우편번호가 아닙니다. 다시 시도해주세요.");
+			}
+			else
+			{
 				document.joinfrm.submit();
 			}
+			
+			idCheck = "false";
 	
 		}
