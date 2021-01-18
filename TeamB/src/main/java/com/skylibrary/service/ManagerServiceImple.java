@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.skylibrary.dao.ManagerDAO;
 import com.skylibrary.vo.ManagerVO;
+import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
 @Service
@@ -20,7 +21,7 @@ public class ManagerServiceImple implements ManagerService {
 	}
 	
 	@Override
-	public ManagerVO mlogin(ManagerVO vo) throws Exception {
+	public SessionVO mlogin(SessionVO vo) throws Exception {
 		return dao.mlogin(vo);
 	}
 }

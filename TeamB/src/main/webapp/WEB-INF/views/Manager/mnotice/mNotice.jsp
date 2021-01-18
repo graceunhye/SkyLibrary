@@ -43,7 +43,7 @@
 							<tr class="mid_tr">
 								<td align="center">${list.noticeNo}</td>
 								<td><a href="noticeView.?no=">${list.noticeTitle}</a></td>
-								<td align="center"></td>
+								<td align="center">${sessionScope.user.userID}</td>
 								<td align="center">${list.noticeDate}</td>
 								<td align="center">${list.noticeHit}</td>
 							</tr>

@@ -39,6 +39,6 @@ public class NoticeDAO {
 	}
 	
 	public void NoticeWrite(NoticeVO vo) throws Exception{
-		sql.insert(namespace + "noticeWrite");
+		sql.insert(namespace + "noticeWrite", vo);
 	}
 }

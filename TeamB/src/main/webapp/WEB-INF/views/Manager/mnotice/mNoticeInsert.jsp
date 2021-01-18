@@ -32,18 +32,18 @@
 						<table width="1300">
 							<tr>
 								<td>力格</td>
-								<td><input type="text" size="128" id="title" name="title"></td>
+								<td><input type="text" size="128" id="title" name="noticeTitle"></td>
 							</tr>	
 							<tr>
 								<td>郴侩</td>
-								<td><textarea name="ir1" id="ir1" rows="30" cols="130"></textarea></td>
+								<td><textarea name="noticeBody" id="ir1" rows="30" cols="130"></textarea></td>
 							</tr>
 							<tr>
 								<td>梅何颇老</td>
 								<td>
 									<div id="pic">
 									</div> 									
-									<input type="file" id="fname" name="fname">
+									<input type="file" id="fname" name="noticeFile">
 								</td>
 							</tr>	
 						</table>

@@ -1,9 +1,8 @@
 package com.skylibrary.vo;
 
 
-public class NoticeVO {
+public class NoticeVO extends SessionVO {
 	private int noticeNo; //공지번호
-	private String managerID; //사서아이디
 	private String noticeTitle; //공지제목
 	private String noticeBody; //공지내용
 	private String noticeDate; //공지날짜
@@ -16,12 +15,6 @@ public class NoticeVO {
 	}
 	public void setNoticeNo(int noticeNo) {
 		this.noticeNo = noticeNo;
-	}
-	public String getManagerID() {
-		return managerID;
-	}
-	public void setManagerID(String managerID) {
-		this.managerID = managerID;
 	}
 	public String getNoticeTitle() {
 		return noticeTitle;

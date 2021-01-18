@@ -15,20 +15,24 @@
 	userEmail,
 	userEmailDomain
 </sql>
-<select id="login" parameterType="userVO" resultType="userVO">
+
+<select id="login" parameterType="userVO" resultType="sessionVO">
 	SELECT userID,userPW
 	FROM user 
 	WHERE userID = #{userID}
 	AND userPW = md5(#{userPW})
 </select>
+
 <!-- <select id="list" resultType="userVO">
 	select 
 	from user
 </select> -->
+
 <select id="userExist" resultType="int" parameterType="userVO">
 	SELECT COUNT(*) FROM user
 	WHERE userID = '#{userID}'
 </select>
+
 <insert id="join" parameterType="userVO">
 	INSERT INTO user
 	(<include refid="allColumns"/>) 

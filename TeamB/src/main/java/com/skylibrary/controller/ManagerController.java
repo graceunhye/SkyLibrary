@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skylibrary.service.ManagerService;
 import com.skylibrary.vo.ManagerVO;
+import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
 
@@ -38,18 +39,19 @@ public class ManagerController {
 	
 	//사서 로그인
 	@RequestMapping(value = "/loginout/mlogin", method = RequestMethod.POST) 
-	public String login(ManagerVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
+	public String login(SessionVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
 	{
 		HttpSession session = req.getSession(true);
 		
-		ManagerVO login = managerservice.mlogin(vo);
+		SessionVO login = managerservice.mlogin(vo);
 		
 		if(login == null ) {
 			session.setAttribute("user", null);
 			rttr.addFlashAttribute("msg", false);
 		} else {
+			login.setCheck("M");
 			session.setAttribute("user", login);
 		}
-		return "redirect:/";
+		return "Manager/muser/mUser";
 	}
 }

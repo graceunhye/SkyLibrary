@@ -18,11 +18,11 @@
 	)
 </insert>
 
-<select id="mlogin" resultType="com.skylibrary.vo.ManagerVO">
-	SELECT managerID, managerPW
+<select id="mlogin" resultType="sessionVO">
+	SELECT managerID as userID, managerPW as userPW
 	FROM manager
-	WHERE managerID = #{managerID}
-	AND managerPW = md5(#{managerPW})
+	WHERE managerID = #{userID}
+	AND managerPW = md5(#{userPW})
 </select>
 
 </mapper>
