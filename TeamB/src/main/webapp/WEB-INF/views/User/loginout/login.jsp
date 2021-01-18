@@ -41,7 +41,7 @@
 									<td colspan="2" align="center">
 										<a href="#">아이디/비밀번호찾기</a>
 										<font color="#2C78D7">&nbsp;|&nbsp;</font>
-										<a href="/join/join">회원가입</a>
+										<a href="/join">회원가입</a>
 										<font color="#2C78D7">&nbsp;|&nbsp;</font>
 										<a href="javascript:m_login()">사서 로그인</a>
 									</td>
