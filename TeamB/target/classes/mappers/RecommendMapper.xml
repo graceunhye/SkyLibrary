@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.skylibrary.mappers.recommendMapper">
+
+<!-- 통합검색 -->
+<select id="mRecommend" resultType="bookVO" parameterType="searchVO">
+		SELECT 
+			bookISBN,
+			bookSubject, 
+			bookStory, 
+			bookCount, 
+			bookCompany, 
+			bookWriter, 
+			bookPublicationDate, 
+			bookRent, 
+			bookCoverImg
+	FROM 	book
+	WHERE 1=1
+	<if test="searchText neq null">
+		<if test="searchType eq 'all'">
+			AND bookSubject  like CONCAT('%',#{searchText},'%')
+			OR  bookCompany   like CONCAT('%',#{searchText},'%')
+			OR  bookWriter like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookSubject'">
+			AND bookSubject like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookCompany'">
+			AND bookCompany like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookWriter'">
+			AND bookWriter like CONCAT('%',#{searchText},'%')
+		</if>
+	</if>
+	ORDER BY bookSubject
+	LIMIT #{start},#{end}
+</select>
+
+<select id="countList" parameterType="searchVO" resultType="int">
+	SELECT COUNT(*)
+	FROM book
+	WHERE 1=1
+	<if test="searchText neq null">
+		<if test="searchType eq 'all'">
+			AND bookSubject  like CONCAT('%',#{searchText},'%')
+			OR  bookCompany   like CONCAT('%',#{searchText},'%')
+			OR  bookWriter like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookSubject'">
+			AND bookSubject like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookCompany'">
+			AND bookCompany like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType eq 'bookWriter'">
+			AND bookWriter like CONCAT('%',#{searchText},'%')
+		</if>
+	</if>
+</select>
+
+<!-- 도서상세페이지 -->
+<select id="bookView" parameterType="String" resultType="bookVO">
+	SELECT 
+		bookSubject, bookStory, bookPublicationDate, bookCoverImg, bookCompany, bookWriter, bookISBN, bookCount, bookRent,
+	(select recommendWhy from rbook where bookISBN = book.bookISBN limit 0,1) as recommendWhy,
+	(select managerID as userID from rent where bookISBN = book.bookISBN limit 0,1) as userID
+	FROM book
+	WHERE bookISBN = #{bookISBN};	
+</select>
+
+<!-- 도서상세페이지 rbook 테이블 insert-->
+<insert id="insertRbook" parameterType="bookVO">
+	INSERT INTO rbook 
+		(bookISBN, managerID, recommendWhy)
+	values 
+		(#{bookISBN}, #{userID}, #{recommendWhy})	 
+</insert>
+
+<!-- 도서상세페이지 rbook 테이블 update-->
+<update id="updateRbook" parameterType="bookVO">
+	UPDATE rbook 
+		SET 
+	recommendWhy = #{recommendWhy}
+	WHERE bookISBN = #{bookISBN}	 
+</update>
+
+<!-- 도서상세페이지 rbook 테이블 delete-->
+<delete id="deleteRbook" parameterType="bookVO">
+	DELETE FROM rbook 
+	WHERE bookISBN = #{bookISBN}	 
+</delete>
+
+
+</mapper>

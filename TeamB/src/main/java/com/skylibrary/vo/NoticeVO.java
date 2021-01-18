@@ -28,6 +28,18 @@ public class NoticeVO extends SessionVO {
 	public void setNoticeBody(String noticeBody) {
 		this.noticeBody = noticeBody;
 	}
+	public int getNoticeHit() {
+		return noticeHit;
+	}
+	public void setNoticeHit(int noticeHit) {
+		this.noticeHit = noticeHit;
+	}
+	public String getNoticeFile() {
+		return noticeFile;
+	}
+	public void setNoticeFile(String noticeFile) {
+		this.noticeFile = noticeFile;
+	}
 	public String getNoticeDate() {
 		return noticeDate;
 	}
@@ -41,17 +53,15 @@ public class NoticeVO extends SessionVO {
 		String[] array = noticeDate.split(" ");
 		this.noticeDate = array[0];
 	}
-	public int getNoticeHit() {
-		return noticeHit;
-	}
-	public void setNoticeHit(int noticeHit) {
-		this.noticeHit = noticeHit;
-	}
-	public String getNoticeFile() {
-		return noticeFile;
-	}
-	public void setNoticeFile(String noticeFile) {
-		this.noticeFile = noticeFile;
+	@Override
+	public String toString() {
+		return "NoticeVO [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeBody=" + noticeBody
+				+ ", noticeDate=" + noticeDate + ", noticeHit=" + noticeHit + ", noticeFile=" + noticeFile
+				+ ", getNoticeNo()=" + getNoticeNo() + ", getNoticeTitle()=" + getNoticeTitle() + ", getNoticeBody()="
+				+ getNoticeBody() + ", getNoticeHit()=" + getNoticeHit() + ", getNoticeFile()=" + getNoticeFile()
+				+ ", getNoticeDate()=" + getNoticeDate() + ", getUserID()=" + getUserID() + ", getUserPW()="
+				+ getUserPW() + ", getCheck()=" + getCheck() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	
 	

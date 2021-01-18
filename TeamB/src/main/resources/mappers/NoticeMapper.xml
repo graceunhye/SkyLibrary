@@ -6,7 +6,7 @@
 <mapper namespace="com.skylibrary.mappers.noticeMapper">
 <sql id="*">
 	noticeNo,
-	managerID,
+	managerID as userID,
 	noticeTitle,
 	noticeBody,
 	noticeDate,
@@ -18,7 +18,7 @@
 <select id="listMain" resultType="noticeVO">
 	SELECT 
 			noticeNo,
-			managerID, 
+			managerID as userID, 
 			noticeTitle, 
 			noticeBody, 
 			noticeDate
@@ -32,7 +32,7 @@
 <select id="list" parameterType="searchVO" resultType="noticeVO">
 	SELECT 
 			noticeNo,
-			managerID,
+			managerID as userID,
 			noticeTitle,
 			noticeBody,
 			noticeDate,
@@ -89,10 +89,10 @@
 </select>
 
 <!-- 사서 공지사항 목록 -->
-<select id="noticeList" resultType="com.skylibrary.vo.NoticeVO">
+<select id="noticeList" resultType="noticeVO">
 	SELECT
 		noticeNo,
-		managerID,
+		managerID as userID,
 		noticeTitle,
 		noticeBody,
 		noticeDate,
@@ -103,12 +103,27 @@
 	limit 0,10	  
 </select>
 
-<!-- 공지사항 작성 -->
-<insert id="noticeWrite" parameterType="com.skylibrary.vo.NoticeVO">
+<!-- 사서 공지사항 작성 -->
+<insert id="noticeWrite" parameterType="noticeVO">
 	INSERT INTO 
 		notice (managerID, noticeTitle, noticeBody, noticeDate, noticeFile)
 	VALUES 
 		(#{userID}, #{noticeTitle}, #{noticeBody}, now(), #{noticeFile})
 </insert>
+
+
+<!-- 사서 공지사항 조회 -->
+<select id="noticeView" parameterType="int" resultType="noticeVO">
+	SELECT 	
+		noticeNo,
+		managerID as userID, 
+		noticeTitle,
+		noticeBody,
+		noticeDate,
+		noticeHit,
+		noticeFile
+	FROM notice
+	WHERE noticeNo = #{noticeNo}
+</select>
 
 </mapper>

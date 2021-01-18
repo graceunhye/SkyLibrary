@@ -18,4 +18,6 @@ public interface NoticeService {
 	public List<NoticeVO> NoticeList() throws Exception;
 	
 	public void NoticeWrite(NoticeVO vo) throws Exception;
+	
+	public NoticeVO NoticeView(int noticeNo) throws Exception;
  }

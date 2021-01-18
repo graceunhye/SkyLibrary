@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>	 
+<%@page import="java.net.URLEncoder"%>
 <%@ page session="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,52 +31,91 @@
 				<br>
 				<br>
 				<div class="rselect">
-					<form action="recommendSearch.jsp" name="frm" id="frm" method="post">					
-						<select id="select" name="select">
-							<option value="1" selected>전체</option>
-							<option value="2">제목</option>
-							<option value="3">저자</option>
+					<form action="/mrecommend/mRecommend" name="frm" id="frm" method="post">					
+						<select id="select" class="select" name="searchType">
+							<c:if test="${search.searchType eq 'all' }">
+								<option value="all" selected>전체</option>
+								<option value="bookSubject">도서명</option>
+								<option value="bookWriter">저자</option>
+								<option value="bookCompany">출판사</option>
+							</c:if>
+							<c:if test="${search.searchType eq 'bookSubject' }">
+								<option value="all">전체</option>
+								<option value="bookSubject" selected>도서명</option>
+								<option value="bookWriter">저자</option>
+								<option value="bookCompany">출판사</option>
+							</c:if>
+							<c:if test="${search.searchType eq 'bookWriter' }">
+								<option value="all">전체</option>
+								<option value="bookSubject">도서명</option>
+								<option value="bookWriter" selected>저자</option>
+								<option value="bookCompany">출판사</option>
+							</c:if>
+							<c:if test="${search.searchType eq 'bookCompany' }">
+								<option value="all">전체</option>
+								<option value="bookSubject">도서명</option>
+								<option value="bookWriter">저자</option>
+								<option value="bookCompany" selected>출판사</option>
+							</c:if>
+							<c:if test="${search.searchType eq null }">
+								<option value="all">전체</option>
+								<option value="bookSubject">도서명</option>
+								<option value="bookWriter">저자</option>
+								<option value="bookCompany">출판사</option>
+							</c:if>
 						</select>
-						<input type="text" name="keyword" id="keyword">
-						<input type="submit" value="검색"  class="optionBox_btn_free">
+						<input type="text" name="searchText" id="keyword" value="${search.searchText}">
+						<input type="submit" value="검색" class="optionBox_btn_free">
 					</form>	
 				</div>	
 				<div class="content">
 					<div class="booklist">	
 					<br>
-					<br>				
-						<div class="recommend">					
-							<table width="800px">
-								<tr>
-									<td rowspan="4" width="15%" align="center">
-										<a href="recommendView?isbn="><img src="" alt="" width="82px"></a>
-									</td>
-									<td colspan="2"><a href="recommendView?isbn="><b></b></a></td>
-								</tr>
-								<tr>
-									<td width="30%">저자 : </td>
-									<td width="30%">ISBN : </td>
-								</tr>
-								<tr>
-									<td width="30%">출판사 : </td>
-									<td width="30%">소장기관 : 하늘 도서관</td>
-								</tr>
-								<tr>
-									<td width="30%">발행일 : </td>
-									<td width="30%">자료실 : 일반자료실</td>
-								</tr>
-							</table>
-						</div>													
-							<div class="searchpage">	
-							<a href="recommend.jsp?page=1">맨앞으로</a>
-							<a href="recommend.jsp?page=">이전</a>
-							
-							<b><a href="recommend.jsp?page="></a></b>
-							<a href="recommend.jsp?page="></a>
-							
-							<a href="recommend.jsp?page=">다음</a>
-							<a href="recommend.jsp?page=">맨뒤로</a>		 
-							</div>	
+					<br>
+						<c:forEach items="${totallist}" var="list">
+							<div class="recommend">					
+								<table width="800px">
+									<tr>
+										<td rowspan="4" width="15%" align="center">
+											<a href="/recommendView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg}" alt="${list.bookSubject}" width="82px"></a>
+										</td>
+										<td colspan="2"><a href="/recommendView?isbn=${list.bookISBN}"><b>${list.bookSubject}</b></a></td>
+									</tr>
+									<tr>
+										<td width="30%">저자 : ${list.bookWriter}</td>
+										<td width="30%">ISBN : ${list.bookISBN}</td>
+									</tr>
+									<tr>
+										<td width="30%">출판사 : ${list.bookCompany}</td>
+										<td width="30%">소장기관 : 하늘 도서관</td>
+									</tr>
+									<tr>
+										<td width="30%">발행일 : ${list.bookPublicationDate}</td>
+										<td width="30%">자료실 : 일반자료실</td>
+									</tr>
+								</table>
+							</div>
+						</c:forEach>	
+						<br>							
+						<div class="searchpage">	
+							<c:if test="${paging.startPage != 1}">
+							<a href="/mrecommend/mRecommend?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+							</c:if>
+							<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+								<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
+								<c:choose>
+									<c:when test="${p eq paging.nowPage}">
+										<b>${p}</b>
+									</c:when>
+									<c:when test="${p != paging.nowPage}">
+										<a href="/mrecommend/mRecommend?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${paging.endPage != paging.lastPage}">
+								<a href="/mrecommend/mRecommend?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+							</c:if>
+						</div>	
 					</div>		
 				</div>	
 			</div>

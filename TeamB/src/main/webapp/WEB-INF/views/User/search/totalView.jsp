@@ -29,10 +29,10 @@
 			<nav class="left_menu">
 				<ul>
 					<li class="left_menu_title">도서검색</li>
-					<a href="/User/search/total"><li class="on left_menu_sub">통합검색</li></a>
-					<a href="/User/search/best"><li class="left_menu_sub">인기도서</li></a>
-					<a href="/User/search/new"><li class="left_menu_sub">신착도서</li></a>
-					<a href="/User/search/recommend"><li class="left_menu_sub last_sub">사서추천도서</li></a>
+					<a href="/search/total"><li class="on left_menu_sub">통합검색</li></a>
+					<a href="/search/best"><li class="left_menu_sub">인기도서</li></a>
+					<a href="/search/new"><li class="left_menu_sub">신착도서</li></a>
+					<a href="/search/recommend"><li class="left_menu_sub last_sub">사서추천도서</li></a>
 				</ul>
 			</nav>
 			<div class="section">

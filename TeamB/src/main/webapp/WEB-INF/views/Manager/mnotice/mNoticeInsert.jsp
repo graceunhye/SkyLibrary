@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page session="true" %>   
+<%@ page session="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,7 @@
 								<td>
 									<div id="pic">
 									</div> 									
-									<input type="file" id="fname" name="noticeFile">
+									<input type="file" id="fname" name="notice_file">
 								</td>
 							</tr>	
 						</table>

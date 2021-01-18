@@ -37,13 +37,20 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.view(vo);
 	}
 	
+	//사서 공지사항 목록
 	@Override
 	public List<NoticeVO> NoticeList() throws Exception{
 		return dao.NoticeList();
 	}
-	
+		
+	//사서 공지사항 작성
 	@Override
 	public void NoticeWrite(NoticeVO vo) throws Exception{
 		dao.NoticeWrite(vo);
+	}
+	
+	@Override
+	public NoticeVO NoticeView(int noticeNo) throws Exception{
+		return dao.NoticeView(noticeNo);
 	}
 }

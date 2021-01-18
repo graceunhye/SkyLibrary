@@ -34,11 +34,18 @@ public class NoticeDAO {
 		return sql.selectOne(namespace + ".view", vo);
 	}
 	
+	//사서 공지사항 목록
 	public List<NoticeVO> NoticeList() throws Exception{
 		return sql.selectList(namespace + ".noticeList");
 	}
 	
+	//사서 공지사항 작성
 	public void NoticeWrite(NoticeVO vo) throws Exception{
-		sql.insert(namespace + "noticeWrite", vo);
+		sql.insert(namespace + ".noticeWrite", vo);
 	}
+	
+	//사서 공지사항 조회
+	public NoticeVO NoticeView(int noticeNo) throws Exception{
+		return sql.selectOne(namespace + ".noticeView", noticeNo);
+	}	
 }

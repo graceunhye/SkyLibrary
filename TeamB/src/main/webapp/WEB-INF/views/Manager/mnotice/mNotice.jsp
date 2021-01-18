@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page session="true" %>    
+<%@ page session="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,11 +40,11 @@
 							<td>작성일</td>
 							<td>조회수</td>
 						</tr>
-						<c:forEach items="noticelist" var="list">
+						<c:forEach items="${noticelist}" var="list">
 							<tr class="mid_tr">
 								<td align="center">${list.noticeNo}</td>
-								<td><a href="noticeView.?no=">${list.noticeTitle}</a></td>
-								<td align="center">${sessionScope.user.userID}</td>
+								<td><a href="mNoticeView?noticeNo=${list.noticeNo}">${list.noticeTitle}</a></td>
+								<td align="center">${list.userID}</td>
 								<td align="center">${list.noticeDate}</td>
 								<td align="center">${list.noticeHit}</td>
 							</tr>
