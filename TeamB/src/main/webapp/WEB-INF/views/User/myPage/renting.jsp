@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -52,38 +53,27 @@
 									<th width="10%" class="top_td">도서연장</th>
 								</tr>
 								<tr id="rent_tr" align="center">
-									<td class="mid_td"></td>
-									<td class="mid_td"></td>
-									<td class="mid_td"></td>
-									<td class="mid_td" class="endd_td"></td>
-									<td class="mid_td"></td>
+									<td class="mid_td">${rentList.bookSubject}</td>
+									<td class="mid_td">${rentList.bookWriter}</td>
+									<td class="mid_td">${rentList.bookCompany}</td>
+									<td class="mid_td">${rentList.rentStartDate}</td>
+									<td class="mid_td" class="endd_td">${rentList.rentEndDate}</td>
 									<td class="mid_td">
-										<%-- <input type="button" value="반납" class="normalBtn" onclick="returnFn(this,'<%= id %>','<%= gisbn %>')"> --%>
+										<input type="button" value="반납" class="normalBtn" onclick="returnFn(this,'<c:out value="${sessionScope.user.userID}"/>','<c:out value="${rentList.bookISBN}"/>')"> 
 									</td>
-									<td></td>
-									<%-- <% 
-									if (compare > 0) {									
-									%> 
-										<td class="mid_td" id="extension_td">
-											<input type="button" value="연장불가" class="normalBtn" disabled>
-										</td>
-									<%
-									} else {
-									%>
-									<td id="extension_td" class="mid_td">
-										<input type="button" class="normalBtn" value="연장" onclick="extensionFn(this, '<%= gisbn %>')">
-									</td>
-								</tr>
-								<%
-									} 
-								%>
-							<%
-							}
-							
-							rs.close();
-							mstmt.close();	
-							%>	 --%>
-								</tr>
+									<c:choose>
+										<c:when test="${rentList.compare > 0}"> 									
+											<td class="mid_td" id="extension_td">
+												<input type="button" value="연장불가" class="normalBtn" disabled>
+											</td>
+										</c:when>	
+										<c:when test="${rentList.compare <= 0}">
+											<td id="extension_td" class="mid_td">
+												<input type="button" class="normalBtn" value="연장" onclick="extensionFn(this, '<c:out value="${rentList.bookISBN}"/>')">
+											</td>											
+										</c:when>
+									</c:choose>										
+								</tr>															
 							</table> 
 						</div>
 					</div>				

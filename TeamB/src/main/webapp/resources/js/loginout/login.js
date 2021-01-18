@@ -1,13 +1,13 @@
 
- 	//»∏ø¯ ∑Œ±◊¿Œ
+ 	//ÌöåÏõê Î°úÍ∑∏Ïù∏
  	function login(){
  		
  		if($("input:text").val() == ""){
-			alert("æ∆¿Ãµ∏¶ ¿‘∑¬«œººø‰.");
+			alert("ÏïÑÏù¥ÎîîÎ•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî.");
 			$("input:text").focus();
 			return false;
 		}else if($("input:password").val() == ""){
-			alert("∫Òπ–π¯»£∏¶ ¿‘∑¬«œººø‰.");
+			alert("ÎπÑÎ∞ÄÎ≤àÌò∏Î•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî.");
 			$("input:password").focus();
 			return false;
 		}else{
@@ -16,15 +16,15 @@
  		
  	}
  	
- 	//ªÁº≠ ∑Œ±◊¿Œ
+ 	//ÏÇ¨ÏÑú Î°úÍ∑∏Ïù∏
  	function login2(){
  		
  		if($("input:text").val() == ""){
-			alert("æ∆¿Ãµ∏¶ ¿‘∑¬«œººø‰.");
+			alert("ÏïÑÏù¥ÎîîÎ•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî.");
 			$("input:text").focus();
 			return false;
 		}else if($("input:password").val() == ""){
-			alert("∫Òπ–π¯»£∏¶ ¿‘∑¬«œººø‰.");
+			alert("ÎπÑÎ∞ÄÎ≤àÌò∏Î•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî.");
 			$("input:password").focus();
 			return false;
 		}else{
@@ -34,31 +34,31 @@
  	}
  
  	
- 	//ªÁº≠ ∑Œ±◊¿Œ »≠∏È¿∏∑Œ ¿¸»Ø
-	var m_LoginStr ='<h2 class="login_title">ªÁº≠ ∑Œ±◊¿Œ</h2>                                                                                         '
+ 	//ÏÇ¨ÏÑú Î°úÍ∑∏Ïù∏ ÌôîÎ©¥ÏúºÎ°ú Ï†ÑÌôò
+	var m_LoginStr ='<h2 class="login_title">ÏÇ¨ÏÑú Î°úÍ∑∏Ïù∏</h2>                                                                                         '
 		+'<div class="login_input_box">                                                                                                               '
-		+'	<form action="../../Manager/mloginout/loginProc.jsp" method="post" name="login_frm2">                                                      '
+		+'	<form action="/User/loginout/mlogin" method="post" name="login_frm2">                                                      '
 		+'		<table>                                                                                                                               '
 		+'			<tr height="50" class="login_txt">                                                                                                '
-		+'				<td width="100" align="right" class="login_input"><span class="point id">*</span><span class="id_title">æ∆¿Ãµ</span>:</td>     '
-		+'				<td width="300"><input type="text" class="input" name="id" size="38" placeholder=" æ∆¿Ãµ∏¶ ¿‘∑¬«ÿ¡÷ººø‰."></td>                    '
+		+'				<td width="100" align="right" class="login_input"><span class="point id">*</span><span class="id_title">ÏïÑÏù¥Îîî</span>:</td>     '
+		+'				<td width="300"><input type="text" class="input" name="managerID" size="38" placeholder=" ÏïÑÏù¥ÎîîÎ•º ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî."></td>                    '
 		+'			</tr>                                                                                                                             '
 		+'			<tr height="50" class="login_txt">                                                                                                '
-		+'				<td align="right" class="login_input"><span class="point">*</span>∫Òπ–π¯»£:</td>                                                '
-		+'				<td><input type="password" name="pw"  class="input" size="38" placeholder=" ∫Òπ–π¯»£∏¶ ¿‘∑¬«ÿ¡÷ººø‰."></td>                         '
+		+'				<td align="right" class="login_input"><span class="point">*</span>ÎπÑÎ∞ÄÎ≤àÌò∏:</td>                                                '
+		+'				<td><input type="password" name="managerPW" class="input" size="38" placeholder=" ÎπÑÎ∞ÄÎ≤àÌò∏Î•º ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî."></td>                         '
 		+'			</tr>                                                                                                                             '
 		+'			<tr class="login_option">                                                                                                         '
 		+'				<td colspan="2" align="center">                                                                                               '
-		+'					<a href="#">æ∆¿Ãµ/∫Òπ–π¯»£√£±‚</a>                                                                                       	  '
+		+'					<a href="#">ÏïÑÏù¥Îîî/ÎπÑÎ∞ÄÎ≤àÌò∏Ï∞æÍ∏∞</a>                                                                                       	  '
 		+'					<font color="#2C78D7">&nbsp;|&nbsp;</font>                                                                                '
-		+'					<a href="../join/join.jsp">»∏ø¯∞°¿‘</a>                                                                                      '
+		+'					<a href="/User/join/mjoin">ÌöåÏõêÍ∞ÄÏûÖ</a>                                                                                      '
 		+'					<font color="#2C78D7">&nbsp;|&nbsp;</font>                                                                                '
-		+'					<a href="javascript:u_login()">»∏ø¯ ∑Œ±◊¿Œ</a>                                                                               '
+		+'					<a href="javascript:u_login()">ÌöåÏõê Î°úÍ∑∏Ïù∏</a>                                                                               '
 		+'				</td>                                                                                                                         '
 		+'			</tr>                                                                                                                             '
 		+'			<tr height="70">                                                                                                                  '
 		+'				<td colspan="2" align="center">                                                                                               '
-		+'					<button type="button" class="login_btn" onclick="login2()" >∑Œ±◊¿Œ</button>                                                '
+		+'					<button type="button" class="login_btn" onclick="login2()" >Î°úÍ∑∏Ïù∏</button>                                                '
 		+'				</td>                                                                                                                         '
 		+'			</tr>                                                                                                                             '
 		+'		</table>                                                                                                                              '
@@ -70,31 +70,31 @@
 		}
 		
 		
-		//»∏ø¯ ∑Œ±◊¿Œ »≠∏È¿∏∑Œ ¿¸»Ø
-		var u_LoginStr ='<h2 class="login_title">∑Œ±◊¿Œ</h2>                                                                                         '
+		//ÌöåÏõê Î°úÍ∑∏Ïù∏ ÌôîÎ©¥ÏúºÎ°ú Ï†ÑÌôò
+		var u_LoginStr ='<h2 class="login_title">Î°úÍ∑∏Ïù∏</h2>                                                                                         '
 			+'<div class="login_input_box">                                                                                                               '
-			+'	<form action="loginProc.jsp" method="post" name="login_frm">                                                      '
+			+'	<form action="/loginout/loginOk" method="post" name="login_frm">                                                      '
 			+'		<table>                                                                                                                               '
 			+'			<tr height="50" class="login_txt">                                                                                                '
-			+'				<td width="100" align="right" class="login_input"><span class="point id">*</span><span class="id_title">æ∆¿Ãµ</span>:</td>     '
-			+'				<td width="300"><input type="text" class="input" name="id" size="38" placeholder=" æ∆¿Ãµ∏¶ ¿‘∑¬«ÿ¡÷ººø‰."></td>                    '
+			+'				<td width="100" align="right" class="login_input"><span class="point id">*</span><span class="id_title">ÏïÑÏù¥Îîî</span>:</td>     '
+			+'				<td width="300"><input type="text" class="input" name="id" size="38" placeholder=" ÏïÑÏù¥ÎîîÎ•º ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî."></td>                    '
 			+'			</tr>                                                                                                                             '
 			+'			<tr height="50" class="login_txt">                                                                                                '
-			+'				<td align="right" class="login_input"><span class="point">*</span>∫Òπ–π¯»£:</td>                                                '
-			+'				<td><input type="password" name="pw"  class="input" size="38" placeholder=" ∫Òπ–π¯»£∏¶ ¿‘∑¬«ÿ¡÷ººø‰."></td>                         '
+			+'				<td align="right" class="login_input"><span class="point">*</span>ÎπÑÎ∞ÄÎ≤àÌò∏:</td>                                                '
+			+'				<td><input type="password" name="pw"  class="input" size="38" placeholder=" ÎπÑÎ∞ÄÎ≤àÌò∏Î•º ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî."></td>                         '
 			+'			</tr>                                                                                                                             '
 			+'			<tr class="login_option">                                                                                                         '
 			+'				<td colspan="2" align="center">                                                                                               '
-			+'					<a href="#">æ∆¿Ãµ/∫Òπ–π¯»£√£±‚</a>                                                                                       	  '
+			+'					<a href="#">ÏïÑÏù¥Îîî/ÎπÑÎ∞ÄÎ≤àÌò∏Ï∞æÍ∏∞</a>                                                                                       	  '
 			+'					<font color="#2C78D7">&nbsp;|&nbsp;</font>                                                                                '
-			+'					<a href="../join/join.jsp">»∏ø¯∞°¿‘</a>                                                                                      '
+			+'					<a href="/User/join/join">ÌöåÏõêÍ∞ÄÏûÖ</a>                                                                                      '
 			+'					<font color="#2C78D7">&nbsp;|&nbsp;</font>                                                                                '
-			+'					<a href="javascript:m_login()">ªÁº≠ ∑Œ±◊¿Œ</a>                                                                                       '
+			+'					<a href="javascript:m_login()">ÏÇ¨ÏÑú Î°úÍ∑∏Ïù∏</a>                                                                                       '
 			+'				</td>                                                                                                                         '
 			+'			</tr>                                                                                                                             '
 			+'			<tr height="70">                                                                                                                  '
 			+'				<td colspan="2" align="center">                                                                                               '
-			+'					<button type="button" class="login_btn" onclick="login()" >∑Œ±◊¿Œ</button>                                                    '
+			+'					<button type="button" class="login_btn" onclick="login()" >Î°úÍ∑∏Ïù∏</button>                                                    '
 			+'				</td>                                                                                                                         '
 			+'			</tr>                                                                                                                             '
 			+'		</table>                                                                                                                              '

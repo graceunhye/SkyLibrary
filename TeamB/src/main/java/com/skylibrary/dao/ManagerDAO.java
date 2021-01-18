@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.skylibrary.vo.ManagerVO;
+import com.skylibrary.vo.UserVO;
 
 @Repository
 public class ManagerDAO {
@@ -17,5 +18,9 @@ public class ManagerDAO {
 	
 	public void mjoin(ManagerVO vo) throws Exception {
 		sql.insert(namespace + ".mjoin", vo);
+	}
+	
+	public ManagerVO mlogin(ManagerVO vo) throws Exception {
+		return sql.selectOne(namespace + ".mlogin", vo);
 	}
 }

@@ -18,8 +18,8 @@ public class RentDAO {
 	
 	private static final String namespace = "com.skylibrary.mappers.rentMapper";
 	
-	public List<RentVO> list(UserVO vo) throws Exception {
+	public List<RentVO> Rentlist(RentVO vo) throws Exception {
 
-		return sql.selectList(namespace + ".list", vo);
+		return sql.selectList(namespace + ".selectRent", vo);
 	}
 }

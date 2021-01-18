@@ -5,7 +5,7 @@
 	
 <mapper namespace="com.skylibrary.mappers.managerMapper">
 
-<insert id="mjoin" parameterType="managerVO">
+<insert id="mjoin" parameterType="com.skylibrary.vo.ManagerVO">
 	INSERT INTO manager
 	(managerID, managerPW, managerName, managerEmail, managerEmailDomain) 
 	VALUES
@@ -17,5 +17,12 @@
 	#{managerEmailDomain}
 	)
 </insert>
+
+<select id="mlogin" resultType="com.skylibrary.vo.ManagerVO">
+	SELECT managerID, managerPW
+	FROM manager
+	WHERE managerID = #{managerID}
+	AND managerPW = md5(#{managerPW})
+</select>
 
 </mapper>

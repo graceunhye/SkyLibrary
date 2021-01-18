@@ -3,13 +3,40 @@
 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.skylibrary.mappers.rentMapper">
+
 <select id="list" resultType="rentVO" parameterType="userVO">
-	SELECT * FROM rent WHERE userID = #{userID}
+	SELECT 
+		rentNO, userID, bookISBN, rentStartDate, rentEndDate
+	FROM rent 
+	WHERE userID = #{userID}
 </select>
+
 <insert id="insert" parameterType="rentVO">
 	insert into rent
 	(userID, bookISBN, rentEndDate, bookSubject, bookWriter)
 	value
 	(#{userID},#{bookISBN},now()+7,#{bookSubject},#{bookWriter})
 </insert>
+
+<select id="selectRent" resultType="rentVO" parameterType="userVO">
+	SELECT * FROM user u, rent r, book b
+	WHERE 
+		r.userID = u.userID
+	AND 
+		r.bookISBN = b.bookISBN
+	AND 
+		u.userID = #{userID}
+</select>
+
+<update id="updateBook" parameterType="com.skylibrary.vo.BookVO">
+	UPDATE book 
+	SET bookRent = 0 
+	WHERE bookISBN = #{bookISBN}
+</update>
+
+<delete id="deleteRent" parameterType="com.skylibrary.vo.RentVO">
+	DELETE FROM rent
+	WHERE bookISBN = #{bookISBN}
+</delete>
+
 </mapper>

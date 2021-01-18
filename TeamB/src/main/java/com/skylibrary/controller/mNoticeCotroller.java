@@ -33,7 +33,7 @@ public class mNoticeCotroller {
 	public void getNoticeWrite() throws Exception {		
 	}
 
-	@RequestMapping(value="/mNoticeInsert", method=RequestMethod.POST)
+	@RequestMapping(value="/mNoticeInsertOk", method=RequestMethod.POST)
 	public String postNoticeWrite(NoticeVO vo) throws Exception {	
 		noticeservice.NoticeWrite(vo);
 		

@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0/EN"
 	<typeAliases>
 	
 		<typeAlias type="com.skylibrary.vo.UserVO"   alias="userVO" />
+		<typeAlias type="com.skylibrary.vo.ManagerVO"   alias="managerVO" />
 		<typeAlias type="com.skylibrary.vo.BookVO"   alias="bookVO" />
 		<typeAlias type="com.skylibrary.vo.NoticeVO"   alias="noticeVO" />
 		<typeAlias type="com.skylibrary.vo.SearchVO"   alias="searchVO" />

@@ -23,11 +23,12 @@ public class RentVO {
 	public int getCompare() {
 		return compare;
 	}
-	public void setCompare(String startDate, String endDate) throws ParseException {
+	
+	public void setCompare(String rentStartDate, String rentEndDate) throws ParseException {
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date start_d = dateFormat.parse(startDate);
-		Date end_d = dateFormat.parse(endDate);
+		Date start_d = dateFormat.parse(rentStartDate);
+		Date end_d = dateFormat.parse(rentEndDate);
 		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(start_d);
@@ -38,6 +39,7 @@ public class RentVO {
 		
 		this.compare = end_d.compareTo(startadd_d);
 	}
+	
 	public String getBookSubject() {
 		return bookSubject;
 	}

@@ -17,9 +17,9 @@ public class RentServiceImpl implements RentService {
 	RentDAO dao;
 
 	@Override
-	public List<RentVO> list(UserVO vo) throws Exception {
-
-		return null;
+	public List<RentVO> Rentlist(RentVO vo) throws Exception {
+		
+		return dao.Rentlist(vo);
 	}
 
 }

@@ -7,5 +7,5 @@ import com.skylibrary.vo.UserVO;
 
 public interface RentService {
 
-	public List<RentVO> list(UserVO vo) throws Exception;
+	public List<RentVO> Rentlist(RentVO vo) throws Exception;
 }
