@@ -1,7 +1,7 @@
  function needLoginFn(id) {
 	 if(id==null || id==""){
 
-		if(confirm("·Î±×ÀÎÀÌ ÇÊ¿äÇÑ ¼­ºñ½ºÀÔ´Ï´Ù. ·Î±×ÀÎÃ¢À¸·Î ÀÌµ¿ÇÏ½Ã°Ú½À´Ï±î?") == true){
+		if(confirm("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½Î±ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?") == true){
 			location.href="../loginout/login.jsp";
 		}else{
 			return;
@@ -14,7 +14,7 @@
 
  
  function qnaInsertCancelFn() {
-	 if(confirm("Á¤¸» Ãë¼ÒÇÏ½Ã°Ú½À´Ï±î?") == true){
+	 if(confirm("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?") == true){
 			location.href="qna.jsp";
 		}else{
 			return;
@@ -23,41 +23,41 @@
  
 function qnaDeleteFn(no) {
 	
-	 if(confirm("Á¤¸» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?")) {
+	 if(confirm("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?")) {
 		 
-		 //È®ÀÎ ¹öÆ° Å¬¸¯ ½Ã µ¿ÀÛ
+		 //È®ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		 location.href="qnaDeleteOk.jsp?no="+no;
 		 
 	 } else {
 		 
-		 //Ãë¼Ò ¹öÆ° Å¬¸¯ ½Ã µ¿ÀÛ
-		 alert("Ãë¼ÒÇÏ¿´½À´Ï´Ù.");
+		 //ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		 alert("ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 	 }
 }
 
 function qnaNeedLogin(id) {
 	if(id == null || id == "")
 	{
-		if(confirm("·Î±×ÀÎÀÌ ÇÊ¿äÇÑ ¼­ºñ½ºÀÔ´Ï´Ù. ·Î±×ÀÎÃ¢À¸·Î ÀÌµ¿ÇÏ½Ã°Ú½À´Ï±î??") == true)
+		if(confirm("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½Î±ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½??") == true)
 		{
-			//È®ÀÎ
-			location.href="../loginout/login.jsp";
+			//È®ï¿½ï¿½
+			location.href="../loginout/login";
 		}else
 		{
-			//Ãë¼Ò
+			//ï¿½ï¿½ï¿½
 		}			
 	}else
 	{
-		location.href="qnaInsert.jsp";
+		location.href="qnaInsert";
 	}	
 }
 
 function wishCancelFn(){
-	if(confirm("Ãë¼ÒÇÏ½Ã°Ú½À´Ï±î?")){
-		// È®ÀÎ ¹öÆ° Å¬¸¯ ½Ã µ¿ÀÛ
-		location.href='wish.jsp';
+	if(confirm("ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?")){
+		// È®ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		location.href='wish';
 	}else {
-		//Ãë¼Ò ¹öÆ° Å¬¸¯ ½Ã µ¿ÀÛ
+		//ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 }
 
@@ -65,11 +65,11 @@ function wishCancelFn(){
 function wishNeedLoginFn(value){
 	if(value == "0" ){
 
-		location.href="wishApply.jsp";
+		location.href="wishApply";
 				
 	}else if(value == "1" )
 	{
-		location.href="wishCheck.jsp";		
+		location.href="wishCheck";		
 	}
 }
 

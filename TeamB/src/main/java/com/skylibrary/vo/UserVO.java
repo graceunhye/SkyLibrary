@@ -24,7 +24,7 @@ public class UserVO {
 	private String userEmailDomain; //이메일도메인
 	private boolean loginCon;       //로그인 성공여부 || 보류
 	
-	UserVO(){
+	public UserVO(){
 		setUserNum(userNumSplit1, userNumSplit2, userNumSplit3);
 	}
 	

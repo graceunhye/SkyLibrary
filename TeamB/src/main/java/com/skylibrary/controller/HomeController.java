@@ -39,20 +39,20 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
-<<<<<<< HEAD
+
 		
 		System.out.println("in controller");
-=======
+
 		System.out.println("In HomeController (value=/)");
 		
->>>>>>> 4b5536688b5328a91d17adefcd649f50aaf58ac2
+
 		List<BookVO> bookList = bookService.MainList();
 		List<NoticeVO> noticeList = noticeService.MainList();
 		
 		System.out.println("data load complete");
 		model.addAttribute("bookList",bookList);
 		model.addAttribute("noticeList",noticeList);
-<<<<<<< HEAD
+
 		/* logger.info("Welcome home! The client locale is {}.", locale); */
 		
 		
@@ -67,11 +67,10 @@ public class HomeController {
 		 * 
 		 * model.addAttribute("serverTime", formattedDate );
 		 */
-		
-=======
+
 		
 		System.out.println("Out HomeController (value=/)");
->>>>>>> 4b5536688b5328a91d17adefcd649f50aaf58ac2
+
 		return "home";
 	}
 	

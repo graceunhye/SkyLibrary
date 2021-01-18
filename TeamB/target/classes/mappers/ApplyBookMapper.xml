@@ -3,6 +3,18 @@
 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.skylibrary.mappers.applyBookMapper">
-<select id="list" parameterType="userVO" resultType="applyBookVO">
-</select>
+	<select id="list" parameterType="userVO" resultType="applyBookVO">
+	</select>
+
+	<!-- 신청도서 insert -->
+	<!-- parameterType은 데이터를 넣을때 -->
+	<insert id="insert" parameterType="applyBookVO">
+		insert into 
+			abook(userID, applyISBN, applySubject,applyCompany,
+					applyPublicationDate,applyDate,
+					applyWriter,applyPrice)
+			values(#{userID},#{applyISBN},#{applySubject},#{applyCompany},
+					#{applyPublicationDate},now(),
+					#{applyWriter},#{applyPrice})
+	</insert>
 </mapper>
