@@ -1,17 +1,21 @@
 function searchFn() {
+	
 		var selectType    = document.getElementById("selectType").value;
 		var startDate     = document.getElementById("startDate").value;
 		var endDate       = document.getElementById("endDate").value;
-		$.ajax({
-			url: "qnaSearchOk.jsp",
-			type: "post",
-			data: {
-				select : selectType,
+		
+		var form = {
+				selectType : selectType,
 				startDate : startDate,
 				endDate : endDate
-			},
+		}
+		
+		$.ajax({
+			url: "/mqna/ajax/searchOk",
+			type: "post",
+			data: form,
 			error: function(){
-				var str = "<h2><font color='orange'>¿À·ù</font></h2>";
+				var str = "<h2><font color='orange'>ì˜¤ë¥˜</font></h2>";
 				$("#result").html(str);
 			}
 			,
@@ -43,7 +47,7 @@ function searchFn() {
 				no : no,
 			},
 			error:function(){
-				var str = "¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.";
+				var str = "ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.";
 			},
 			success: function(data) {
 				var qnaInfo = JSON.parse(data);
@@ -51,53 +55,53 @@ function searchFn() {
 				var type = "";
 				
 				str += "<table border='1' width='1300' class='viewTable'>";
-				str += "	<thead><tr class='viewFixTable' height='40'><th colspan='8'>Áú¹®»ó¼¼Á¤º¸</th></tr></thead>";
+				str += "	<thead><tr class='viewFixTable' height='40'><th colspan='8'>ì§ˆë¬¸ìƒì„¸ì •ë³´</th></tr></thead>";
 				str += "	<tbody>";
 				str += "	<tr height='40px;'>";
-				str += "		<th style='background-color:#a8a8a8;'>Áú¹®¹øÈ£</th>";
+				str += "		<th style='background-color:#a8a8a8;'>ì§ˆë¬¸ë²ˆí˜¸</th>";
 				str += "		<td align='center'>"+qnaInfo[0].no+"</td>";
-				str += "		<th  style='background-color:#a8a8a8;'>Áú¹®ÀÚ</th>";
+				str += "		<th  style='background-color:#a8a8a8;'>ì§ˆë¬¸ì</th>";
 				str += "		<td align='center'>"+qnaInfo[0].id+"</td>";
-				str += "		<th  style='background-color:#a8a8a8;'>Áú¹®ÀÏ</th>";
+				str += "		<th  style='background-color:#a8a8a8;'>ì§ˆë¬¸ì¼</th>";
 				str += "		<td align='center'>"+qnaInfo[0].wdate+"</td>";
-				str += "		<th  style='background-color:#a8a8a8;'>´äº¯ÀÏ</th>";
+				str += "		<th  style='background-color:#a8a8a8;'>ë‹µë³€ì¼</th>";
 				str += "		<td align='center' id='okdate'>"+qnaInfo[0].okdate+"</td>";
 				str += "	</tr>";
 				str += "	<tr height='40px;'>";
-				str += "		<th style='background-color:#a8a8a8;'>Áú¹®Á¦¸ñ</th>";
+				str += "		<th style='background-color:#a8a8a8;'>ì§ˆë¬¸ì œëª©</th>";
 				str += "		<td colspan='5' align='center'>"+qnaInfo[0].title+"</td>";
-				str += "		<th style='background-color:#a8a8a8;'>Áú¹®»óÅÂ</th>";
+				str += "		<th style='background-color:#a8a8a8;'>ì§ˆë¬¸ìƒíƒœ</th>";
 				if(qnaInfo[0].atype == "0") { 
-					str += "		<td align='center' id='atype'><font color='blue'>´äº¯´ë±â</font></td>";
+					str += "		<td align='center' id='atype'><font color='blue'>ë‹µë³€ëŒ€ê¸°</font></td>";
 				}else{
-					str += "		<td align='center' id='atype'><font color='orange'>´äº¯¿Ï·á</font></td>";
+					str += "		<td align='center' id='atype'><font color='orange'>ë‹µë³€ì™„ë£Œ</font></td>";
 				}
 				str += "	</tr>";
 				str += "	<tr height='40px;'>";
-				str += "		<th colspan='8'>Áú¹®³»¿ë</th>";
+				str += "		<th colspan='8'>ì§ˆë¬¸ë‚´ìš©</th>";
 				str += "	</tr>";
 				str += "	<tr>";
 				str += "		<td colspan='8' align='left' style='padding:15px'>"+qnaInfo[0].body+"</td>";
 				str += "	</tr>";
-				str += "	<tr><th colspan='8' height='40px;'>´äº¯»ó¼¼Á¤º¸</th></tr>";
+				str += "	<tr><th colspan='8' height='40px;'>ë‹µë³€ìƒì„¸ì •ë³´</th></tr>";
 				if(qnaInfo[0].atype == "0") { 
 					str += "	<tr height='40px;'>";
-					str += "		<th width='150'>´äº¯Á¦¸ñ</th>";
-					str += "		<td colspan='7' id='a_title'><input type='text' size='50' id='title' class='input_text' placeholder='´äº¯ Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.'></td>";	
+					str += "		<th width='150'>ë‹µë³€ì œëª©</th>";
+					str += "		<td colspan='7' id='a_title'><input type='text' size='50' id='title' class='input_text' placeholder='ë‹µë³€ ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.'></td>";	
 					str += "	</tr>";
 					str += "	<tr height='40px;'>";
-					str += "		<th colspan='8' height='40px;'>´äº¯³»¿ë</th>";
+					str += "		<th colspan='8' height='40px;'>ë‹µë³€ë‚´ìš©</th>";
 					str += "	</tr>";
-					str += "	<tr><td colspan='8' id='a_body'><textarea id='body' placeholder='´äº¯ ³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.'  cols='190' rows='5' style='resize: none;'></textarea></td></tr>";
+					str += "	<tr><td colspan='8' id='a_body'><textarea id='body' placeholder='ë‹µë³€ ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.'  cols='190' rows='5' style='resize: none;'></textarea></td></tr>";
 				}else{
 					str += "	<tr height='40px;'>";
-					str += "		<th style='background-color:#a8a8a8;'>´äº¯Á¦¸ñ</th>";
+					str += "		<th style='background-color:#a8a8a8;'>ë‹µë³€ì œëª©</th>";
 					str += "		<td colspan='5' style='padding:15px' class='text' id='a_title'>"+qnaInfo[0].mtitle+"</td>";
-					str += "		<th style='background-color:#a8a8a8;'>ÀÛ¼ºÀÚ</th>";
+					str += "		<th style='background-color:#a8a8a8;'>ì‘ì„±ì</th>";
 					str += "		<td>"+qnaInfo[0].mid+"</td>";
 					str += "	</tr>";
 					str += "	<tr height='40px;'>";
-					str += "		<th colspan='8' height='40px;'>´äº¯³»¿ë</th>";
+					str += "		<th colspan='8' height='40px;'>ë‹µë³€ë‚´ìš©</th>";
 					str += "	</tr>";
 					str += "	<tr><td style='padding:15px' class='text' id='a_body' colspan='8'>"+qnaInfo[0].mbody+"</td></tr>";
 				}
@@ -105,13 +109,13 @@ function searchFn() {
 				if(qnaInfo[0].atype == "0") { 
 					str += "<tr>";
 					str += "	<td colspan='8' align='right' class='input_box' id='a_btn'>";
-					str += "		<input type='button' value='µî·Ï' class='a_button' onclick='aInsertFn("+qnaInfo[0].no+")'>";
+					str += "		<input type='button' value='ë“±ë¡' class='a_button' onclick='aInsertFn("+qnaInfo[0].no+")'>";
 					str += "	</td>";
 					str += "</tr>";
 				}else{
 					str += "<tr>";
 					str += "	<td colspan='8' align='right' class='input_box' id='a_btn'>";
-					str += "		<input type='button' value='¼öÁ¤' class='a_button' onclick='aModifyFn("+qnaInfo[0].no+")'>";
+					str += "		<input type='button' value='ìˆ˜ì •' class='a_button' onclick='aModifyFn("+qnaInfo[0].no+")'>";
 					str += "	</td>";
 					str += "</tr>";
 				}
@@ -136,18 +140,18 @@ function searchFn() {
 				no : no
 			},
 			error: function(){
-				alert("ajax ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");
+				alert("ajax ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");
 			},
 			success: function(data){
 				var data = JSON.parse(data);
 				document.getElementById("okdate").innerText      = data[0].mwdate;
 				document.getElementById("okdate_"+no).innerText  = data[0].mwdate;
-				document.getElementById("atype").innerHTML       = "<font color='orange'>´äº¯¿Ï·á</font>";
-				document.getElementById("atype_"+no).innerHTML   = "<font color='orange'>´äº¯¿Ï·á</font>";
+				document.getElementById("atype").innerHTML       = "<font color='orange'>ë‹µë³€ì™„ë£Œ</font>";
+				document.getElementById("atype_"+no).innerHTML   = "<font color='orange'>ë‹µë³€ì™„ë£Œ</font>";
 				document.getElementById("a_title").innerHTML     = data[0].mtitle;
 				document.getElementById("a_body").innerHTML      = data[0].mbody;
-				document.getElementById("a_btn").innerHTML       = "<input type='button' value='¼öÁ¤' class='a_button' onclick='aModifyFn("+no+")'>";
-				alert("µî·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+				document.getElementById("a_btn").innerHTML       = "<input type='button' value='ìˆ˜ì •' class='a_button' onclick='aModifyFn("+no+")'>";
+				alert("ë“±ë¡ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 		})
 		
@@ -160,7 +164,7 @@ function searchFn() {
 
 		document.getElementById("a_title").innerHTML     = "<input type='text' id='title' class='input_text' size='50' value='"+title+"'>";
 		document.getElementById("a_body").innerHTML      = "<textarea id='body' cols='190' rows='5' style='resize: none;'>"+body+"</textarea>"; 
-		document.getElementById("a_btn").innerHTML       = "<input type='button' value='µî·Ï' class='a_button' onclick='aUpdateFn("+no+")'>";
+		document.getElementById("a_btn").innerHTML       = "<input type='button' value='ë“±ë¡' class='a_button' onclick='aUpdateFn("+no+")'>";
 	}
 	
 	function aUpdateFn(no) {
@@ -177,15 +181,15 @@ function searchFn() {
 				body : body
 			},
 			error: function(){
-				alert("DB ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.");
+				alert("DB ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.");
 			},
 			success: function(data){
 				var data = JSON.parse(data);
 				document.getElementById("a_title").innerHTML = data[0].title;
 				document.getElementById("a_body").innerHTML  = data[0].body;
-				document.getElementById("a_btn").innerHTML   = "<input type='button' value='¼öÁ¤' class='a_button' onclick='aModifyFn("+no+")'>";
+				document.getElementById("a_btn").innerHTML   = "<input type='button' value='ìˆ˜ì •' class='a_button' onclick='aModifyFn("+no+")'>";
 				
-				alert("¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+				alert("ìˆ˜ì •ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 				
 			}
 		})

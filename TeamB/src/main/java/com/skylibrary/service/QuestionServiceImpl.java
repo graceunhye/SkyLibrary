@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.skylibrary.dao.QuestionDAO;
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.QuestionVO;
+import com.skylibrary.vo.SearchVO;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -36,13 +37,34 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 	
 	@Override
-	public List<QuestionVO> selectTypeList(QuestionVO vo) throws Exception {
+	public List<QuestionVO> selectTypeList(SearchVO vo) throws Exception {
 		return dao.selectTypeList(vo);
 	}
 
 	@Override
 	public void typeUpdate(QuestionVO vo) throws Exception {
 		dao.typeUpdate(vo);
+	}
+
+	@Override
+	public void questionAdd(QuestionVO vo) throws Exception {
+		
+	}
+
+	@Override
+	public void questionModify(QuestionVO vo) throws Exception {
+		
+	}
+
+
+	@Override
+	public void questionDelete(QuestionVO vo) throws Exception {
+		dao.questionDelete(vo);
+	}
+
+	@Override
+	public void questionOkDateUpdate(QuestionVO vo) throws Exception {
+		dao.questionOkDateUpdate(vo);	
 	}
 
 }

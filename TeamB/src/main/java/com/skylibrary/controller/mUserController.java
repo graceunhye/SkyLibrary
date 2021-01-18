@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class mUserController {
 
 	@RequestMapping(value="/mUser", method=RequestMethod.GET)
-	public void getUserList(Locale locale, Model model) throws Exception {
-		
+	public String getUserList(Locale locale, Model model) throws Exception {
+		return "/Manager/muser/muser";
 	}
 }

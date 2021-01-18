@@ -18,7 +18,10 @@
 		<div class="wrap">
 			<header>
 				<div class="header">
-					<div class="title_box"><span class="head_title">관리자 페이지 </span><span class="name">하늘도서관</span></div>
+					<div class="title_box">
+						<span class="head_title">관리자 페이지 </span>
+						<span class="name">하늘도서관</span>
+					</div>
 				</div>
 			</header>
 			<section>

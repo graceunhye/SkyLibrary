@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.QuestionVO;
+import com.skylibrary.vo.SearchVO;
 
 public interface QuestionService {
 	
@@ -20,8 +21,23 @@ public interface QuestionService {
 	public int typeCountList(QuestionVO vo) throws Exception;
 	
 	//관리자페이지 질문 목록 조회
-	public List<QuestionVO> selectTypeList(QuestionVO vo) throws Exception;
+	public List<QuestionVO> selectTypeList(SearchVO vo) throws Exception;
 	
 	//질문 상태 변경
 	public void typeUpdate(QuestionVO vo) throws Exception; 
+	
+	//질문 등록
+	public void questionAdd(QuestionVO vo) throws Exception;
+	
+	//질문 수정
+	public void questionModify(QuestionVO vo) throws Exception;
+	
+	//마지막 no
+	/* public int lastNo() throws Exception; */
+	
+	public void questionDelete(QuestionVO vo) throws Exception;
+	
+	public void questionOkDateUpdate(QuestionVO vo) throws Exception;
+	
+		
 }

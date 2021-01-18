@@ -15,7 +15,7 @@ import com.skylibrary.service.NoticeService;
 import com.skylibrary.vo.NoticeVO;
 
 @Controller
-@RequestMapping(value="/Manager/mnotice")
+@RequestMapping(value="/mnotice")
 public class mNoticeCotroller {
 	
 	@Inject
@@ -38,7 +38,7 @@ public class mNoticeCotroller {
 	public String postNoticeWrite(NoticeVO vo) throws Exception {	
 		noticeservice.NoticeWrite(vo);
 		
-		return "redirect:/Manager/mnotice/mNotice";
+		return "redirect:/mnotice/mNotice";
 		
 	}
 }

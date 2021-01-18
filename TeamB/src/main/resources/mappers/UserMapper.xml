@@ -15,7 +15,7 @@
 	userEmail,
 	userEmailDomain
 </sql>
-<select id="login" parameterType="userVO" resultType="userVO">
+<select id="login" parameterType="sessionVO" resultType="sessionVO">
 	SELECT <include refid="allColumns"/>
 	FROM user 
 	WHERE userID = #{userID}

@@ -18,4 +18,11 @@
 	)
 </insert>
 
+<select id="mlogin" resultType="sessionVO">
+	SELECT managerID as userID, managerPW as userPW
+	FROM manager
+	WHERE managerID = #{userID}
+	AND managerPW = md5(#{userPW})
+</select>
+
 </mapper>

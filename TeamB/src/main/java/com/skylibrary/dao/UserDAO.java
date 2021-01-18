@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
 @Repository
@@ -18,7 +19,7 @@ public class UserDAO {
 	private static final String namespace = "com.skylibrary.mappers.userMapper";
 	
 	//로그인
-	public UserVO login(UserVO vo) throws Exception {
+	public SessionVO login(SessionVO vo) throws Exception {
 		return sql.selectOne(namespace + ".login", vo);
 	}
 	

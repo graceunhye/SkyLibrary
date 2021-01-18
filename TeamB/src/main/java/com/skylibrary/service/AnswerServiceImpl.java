@@ -18,4 +18,9 @@ public class AnswerServiceImpl implements AnswerService {
 	public AnswerVO aView(QuestionVO vo) throws Exception {
 		return dao.aView(vo);
 	}
+
+	@Override
+	public int aViewCount(QuestionVO vo) throws Exception {
+		return dao.aViewCount(vo);
+	}
 }

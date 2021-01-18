@@ -8,4 +8,5 @@ public interface AnswerService {
 	//질문의 답변 조회
 	public AnswerVO aView(QuestionVO vo) throws Exception;
 	
+	public int aViewCount(QuestionVO vo) throws Exception;
 }

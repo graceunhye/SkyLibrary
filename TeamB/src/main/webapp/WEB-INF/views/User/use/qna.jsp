@@ -68,7 +68,12 @@
 							</table>
 							<br>
 							<span class="btns">
+								<c:if test="${sessionScope.user != null }">
+								<input class="btn" type="button" value="글쓰기" onclick="location.href='/use/qna/insert'">
+								</c:if>
+								<c:if test="${sessionScope.user == null }">
 								<input class="btn" type="button" value="글쓰기" onclick="qnaNeedLogin()">
+								</c:if>
 							</span>
 							<br>
 						</div>

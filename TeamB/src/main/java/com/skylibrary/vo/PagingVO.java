@@ -1,6 +1,12 @@
 package com.skylibrary.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Setter
+@Getter
+@ToString
 public class PagingVO {
 	private int nowPage;    //현재페이지 
 	private int startPage;  //시작페이지
@@ -70,69 +76,69 @@ public class PagingVO {
 		
 	}
 
-	public int getNowPage() {
-		return nowPage;
-	}
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-	public int getStartPage() {
-		return startPage;
-	}
-
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
-	}
-
-	public int getEndPage() {
-		return endPage;
-	}
-
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
-	}
-
-	public int getTotal() {
-		return total;
-	}
-
-	public void setTotal(int total) {
-		this.total = total;
-	}
-
-	public int getCntPerPage() {
-		return cntPerPage;
-	}
-
-	public void setCntPerPage(int cntPerPage) {
-		this.cntPerPage = cntPerPage;
-	}
-
-	public int getLastPage() {
-		return lastPage;
-	}
-
-	public void setLastPage(int lastPage) {
-		this.lastPage = lastPage;
-	}
-
-	public int getStart() {
-		return start;
-	}
-
-	public void setStart(int start) {
-		this.start = start;
-	}
-
-	public int getEnd() {
-		return end;
-	}
-
-	public void setEnd(int end) {
-		this.end = end;
-	}
+//	public int getNowPage() {
+//		return nowPage;
+//	}
+//
+//	public void setNowPage(int nowPage) {
+//		this.nowPage = nowPage;
+//	}
+//
+//	public int getStartPage() {
+//		return startPage;
+//	}
+//
+//	public void setStartPage(int startPage) {
+//		this.startPage = startPage;
+//	}
+//
+//	public int getEndPage() {
+//		return endPage;
+//	}
+//
+//	public void setEndPage(int endPage) {
+//		this.endPage = endPage;
+//	}
+//
+//	public int getTotal() {
+//		return total;
+//	}
+//
+//	public void setTotal(int total) {
+//		this.total = total;
+//	}
+//
+//	public int getCntPerPage() {
+//		return cntPerPage;
+//	}
+//
+//	public void setCntPerPage(int cntPerPage) {
+//		this.cntPerPage = cntPerPage;
+//	}
+//
+//	public int getLastPage() {
+//		return lastPage;
+//	}
+//
+//	public void setLastPage(int lastPage) {
+//		this.lastPage = lastPage;
+//	}
+//
+//	public int getStart() {
+//		return start;
+//	}
+//
+//	public void setStart(int start) {
+//		this.start = start;
+//	}
+//
+//	public int getEnd() {
+//		return end;
+//	}
+//
+//	public void setEnd(int end) {
+//		this.end = end;
+//	}
 	
 	
 	

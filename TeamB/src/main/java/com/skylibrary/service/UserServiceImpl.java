@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.skylibrary.dao.UserDAO;
+import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
 @Service
@@ -16,7 +17,7 @@ public class UserServiceImpl implements UserService {
 	UserDAO dao;
 	
 	@Override
-	public UserVO login(UserVO vo) throws Exception {
+	public SessionVO login(SessionVO vo) throws Exception {
 		return dao.login(vo);
 	}
 

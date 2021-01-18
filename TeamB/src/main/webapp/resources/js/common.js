@@ -1,7 +1,7 @@
  function needLoginFn(id) {
 	 if(id==null || id==""){
 
-		if(confirm("╥н╠вюнюл гй©Дгя ╪╜╨Я╫╨ют╢о╢ы. ╥н╠вюнц╒ю╦╥н юл╣©го╫ц╟з╫ю╢о╠Н?") == true){
+		if(confirm("О©╫н╠О©╫О©╫О©╫О©╫О©╫ О©╫й©О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫т╢о╢О©╫. О©╫н╠О©╫О©╫О©╫ц╒О©╫О©╫О©╫О©╫ О©╫л╣О©╫О©╫о╫ц╟з╫О©╫О©╫о╠О©╫?") == true){
 			location.href="../loginout/login.jsp";
 		}else{
 			return;
@@ -11,53 +11,38 @@
 	 }
 	 
  } 
+/*
+	function qnaDeleteFn(no) {
+		
+		 if(confirm("О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫о╫ц╟з╫О©╫О©╫о╠О©╫?")) {
+			 
+			 //х╝О©╫О©╫ О©╫О©╫ф╟ е╛О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫
+			 location.href="qnaDeleteOk.jsp?no="+no;
+			 
+		 } else {
+			 
+			 //О©╫О©╫О©╫ О©╫О©╫ф╟ е╛О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫
+			 alert("О©╫О©╫О©╫О©╫о©О©╫О©╫О©╫О©╫о╢О©╫.");
+		 }
+	}*/
 
- 
- function qnaInsertCancelFn() {
-	 if(confirm("а╓╦╩ цК╪рго╫ц╟з╫ю╢о╠Н?") == true){
-			location.href="qna.jsp";
-		}else{
-			return;
-		}			 
- }
- 
-function qnaDeleteFn(no) {
-	
-	 if(confirm("а╓╦╩ ╩Ха╕ го╫ц╟з╫ю╢о╠Н?")) {
-		 
-		 //х╝юн ╧Жф╟ е╛╦╞ ╫ц ╣©юш
-		 location.href="qnaDeleteOk.jsp?no="+no;
-		 
-	 } else {
-		 
-		 //цК╪р ╧Жф╟ е╛╦╞ ╫ц ╣©юш
-		 alert("цК╪рго©╢╫ю╢о╢ы.");
-	 }
-}
-
-function qnaNeedLogin(id) {
-	if(id == null || id == "")
-	{
-		if(confirm("╥н╠вюнюл гй©Дгя ╪╜╨Я╫╨ют╢о╢ы. ╥н╠вюнц╒ю╦╥н юл╣©го╫ц╟з╫ю╢о╠Н??") == true)
+	function qnaNeedLogin() {
+		if(confirm("К║°Й╥╦Л²╦Л²╢ М∙└Л ■М∙° Л└°К╧└Л┼╓Л·┘К▀┬К▀╓. К║°Й╥╦Л²╦ М∙≤Л▀°Й╡═Л┼╣К▀┬Й╧▄?") == true)
 		{
-			//х╝юн
-			location.href="../loginout/login.jsp";
+			//М≥∙Л²╦
+			location.href="/loginout/login";
 		}else
 		{
-			//цК╪р
+			//Л╥╗Л├▄
 		}			
-	}else
-	{
-		location.href="qnaInsert.jsp";
-	}	
-}
+	}
 
 function wishCancelFn(){
-	if(confirm("цК╪рго╫ц╟з╫ю╢о╠Н?")){
-		// х╝юн ╧Жф╟ е╛╦╞ ╫ц ╣©юш
+	if(confirm("О©╫О©╫О©╫О©╫о╫ц╟з╫О©╫О©╫о╠О©╫?")){
+		// х╝О©╫О©╫ О©╫О©╫ф╟ е╛О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫
 		location.href='wish.jsp';
 	}else {
-		//цК╪р ╧Жф╟ е╛╦╞ ╫ц ╣©юш
+		//О©╫О©╫О©╫ О©╫О©╫ф╟ е╛О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫
 	}
 }
 

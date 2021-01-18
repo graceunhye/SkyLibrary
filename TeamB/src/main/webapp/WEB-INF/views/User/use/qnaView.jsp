@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page session="true" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,6 +14,37 @@
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/common.js"></script>
+		<script>
+		
+		$(document).ready(function(){
+			
+			$("#modifyBtn").click(function(){
+				alert("답변이 등록된 글을 수정할 수 없습니다.");
+			});
+			
+			$("#deleteBtn").click(function(){
+				alert("답변이 등록된 글을 삭제할 수 없습니다.");
+			});
+			
+			/* $("#modifyOkBtn").onlick(function(){
+				location.href="/use/qna/modify";
+			}) */
+			
+		/* 	$("#deleteOkBtn").click(function(){
+				
+				if(confirm("삭제된 글은 복구할 수 없습니다. 정말 삭제하시겠습니까?") == true){
+					location.href="qna.jsp";
+				}else{
+					return;
+				}	
+			}); */
+			
+			$("#listBtn").click(function(){
+				location.href="/use/qna";
+			});
+			
+		});
+		</script>
 	</head>
 	<body style="margin:0px">
 		<div class="wrap"> 
@@ -29,7 +60,7 @@
 						<li class="left_menu_title">도서관 이용</li>
 						<a href="/use/useTime"><li class="left_menu_sub">이용시간</li></a>
 						<a href="/use/useGuide"><li class="left_menu_sub">대출/반납/예약/연장</li></a>
-						<a href="/use/qna/"><li class="on left_menu_sub last_sub">질의응답</li></a>
+						<a href="/use/qna"><li class="on left_menu_sub last_sub">질의응답</li></a>
 					</ul>
 				</nav>
 				<!-- nav end -->
@@ -59,12 +90,20 @@
 									<td colspan="6" class="body">${q.questionBody }</td>
 								</tr>
 							</table>
-							<input type="button" value="목록으로" onclick="location.href='/use/qna'" class="qna_btn gotolist">
+							<c:if test="${q.questionType eq 0 and q.userID eq sessionScope.user.userID}">
+							<input type="button" value="수정하기" onclick="location.href='/use/qna/modify?questionNo=<c:out value="${q.questionNo}"/>'" class="qna_btn gotolist">	
+							<input type="button" value="삭제하기" onclick="location.href='/use/qna/delete?questionNo=<c:out value="${q.questionNo}"/>'" class="qna_btn gotolist">						
+							</c:if>
+							<c:if test="${q.questionType eq 1 and q.userID eq sessionScope.user.userID }">
+							<input type="button" value="수정하기" id="modifyBtn" class="qna_btn gotolist">
+							<input type="button" value="삭제하기" id="deleteBtn" class="qna_btn gotolist">
+							</c:if>
+							<input type="button" value="목록으로" id="listBtn" class="qna_btn gotolist">
 						</div>
 						<div>
 							<hr class="hr">
 							<c:if test="${q.questionType eq 1 }">
-								<h2 class="subTitle"><span class="point">*</span>답변</h2>
+							<h2 class="subTitle"><span class="point">*</span>답변</h2>
 							<table border="1" class="aTable" width="1200px;" >
 								<tr height="40px">
 									<th>제목</th>
@@ -75,14 +114,12 @@
 									<td>${a.answerDate }</td>
 								</tr>
 								<tr>
-									<td colspan="6" class="body">
-									${a.answerBody }
-									</td>
+									<td colspan="6" class="body">${a.answerBody }</td>
 								</tr>
 							</table>
 							</c:if>
 							<c:if test="${q.questionType != 1 }">
-								<span class="aEmpty"><span class="point">*</span>등록된 답변이 없습니다.</span>
+							<span class="aEmpty"><span class="point">*</span>등록된 답변이 없습니다.</span>
 							</c:if>
 						</div>
 					</div>

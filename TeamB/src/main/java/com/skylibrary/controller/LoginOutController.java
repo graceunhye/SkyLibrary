@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skylibrary.service.UserService;
 import com.skylibrary.vo.UserVO;
+import com.skylibrary.vo.SessionVO;
 
 @Controller
 @RequestMapping(value = "/loginout")
@@ -29,17 +30,17 @@ public class LoginOutController {
 	
 	//로그인
 	@RequestMapping(value = "/loginOk", method = RequestMethod.POST) 
-	public String login(UserVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
+	public String login(SessionVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
 	{
 		System.out.println("In LoginoutController (value=/loginout/loginOk)");
 		HttpSession session = req.getSession(true);
 		
-		UserVO login = userService.login(vo);
-		
+		SessionVO login = userService.login(vo);
 		if(login == null ) {
 			session.setAttribute("user", null);
 			rttr.addFlashAttribute("msg", false);
 		} else {
+			login.setCheck("U");
 			session.setAttribute("user", login);
 		}
 		System.out.println("Out LoginoutController (value=/loginout/loginOk)");

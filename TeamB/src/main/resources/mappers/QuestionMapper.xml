@@ -20,21 +20,45 @@
 		SELECT COUNT(*) FROM q 
 		where questionType = #{questionType}
 	</select>
-	<select id="selectTypeList"  resultType="questionVO" parameterType="questionVO">
+	<select id="selectTypeList"  resultType="questionVO" parameterType="searchVO">
 		SELECT * FROM q
 		WHERE 1=1
-		<if test="#{questionType != null}">
-		AND questionType = #{questionType}
+		<if test="#{selectType != 2}">
+		AND questionType = #{selectType}
 		</if>
-		<if test="#{startDate != null and endDate != null}">
+		<if test="#{startDate != '' and endDate != ''
+			and startDate != null and endDate != null}">
 		AND questionDate 
 		BETWEEN '#{startDate}' AND '#{endDate}'
 		</if>
+		ORDER BY questionNo DESC
 	</select>
 	<update id="typeUpdate" parameterType="questionVO">
 		UPDATE q
-		SET questionType = 1
+		SET questionType = 1, questionOkDate=now()
 		WHERE questionNo = #{questionNo}
 	</update>
-
+	<update id="questionOkDateUpdate" parameterType="questionVO">
+		UPDATE q 
+		SET questionOkDate = now()
+		WHERE questionNo = #{questionNo}
+	</update>
+	<insert id="questionAdd" parameterType="questionVO">
+		insert into q 
+		(userID, questionTitle, questionBody)
+		value
+		(#{userID}, #{questionTitle}, #{questionBody})
+	</insert>
+	<update id="questionModify" parameterType="questionVO">
+		UPDATE q
+		SET  questionTitle = #{questionTitle}
+			,questionBody = #{questionBody}
+		WHERE questionNo = #{questionNo}
+	</update>
+	<delete id="questionDelete" parameterType="questionVO">
+		DELETE FROM q WHERE questionNo = #{questionNo}
+	</delete>
+	
+	
+	<!-- manager qna -->
 </mapper>

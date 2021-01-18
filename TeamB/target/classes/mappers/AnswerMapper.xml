@@ -3,7 +3,46 @@
 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.skylibrary.mappers.answerMapper">
+<sql id="allColumns">
+	questionNo
+	,managerID
+	,answerTitle
+	,answerBody
+	,answerDate
+</sql>
 <select id="aView" resultType="answerVO" parameterType="questionVO">
-	SELECT * FROM a WHERE questionNo = #{questionNo}
+	SELECT <include refid="allColumns"/> 
+	FROM a 
+	WHERE questionNo = #{questionNo}
 </select>
+<select id="aViewCount" resultType="int" parameterType="questionVO">
+	SELECT COUNT(<include refid="allColumns"/>) 
+	FROM a 
+	WHERE questionNo = #{questionNo}
+</select>
+
+<!-- MANAGER AREA -->
+
+<insert id="answerAdd" parameterType="answerVO">
+	INSERT INTO a
+	(
+	<include refid="allColumns"/>
+	)VALUE
+	(
+		#{questionNo}
+		, #{userID}
+		, #{answerTitle}
+		, #{answerBody}
+		, #{answerDate}
+	)
+</insert>
+<update id="answerUpdate" parameterType="answerVO">
+	UPDATE a 
+	SET answerTitle = #{answerTitle}
+		,answerBody = #{answerBody}
+		,managerID  = #{userID}
+		,answerDate = now()
+	WHERE questionNo = #{questionNo}		
+</update>
+
 </mapper>
