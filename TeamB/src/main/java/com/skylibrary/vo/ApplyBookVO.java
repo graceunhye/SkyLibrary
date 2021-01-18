@@ -88,5 +88,11 @@ public class ApplyBookVO {
 //		this.applyType = applyType;
 //	}
 //	
-	
+	@Override
+	public String toString() {
+		return "ApplyBookVO [applyNo=" + applyNo + ", userID=" + userID + ", applyISBN=" + applyISBN + ", applySubject="
+				+ applySubject + ", applyCompany=" + applyCompany + ", applyPublicationDate=" + applyPublicationDate
+				+ ", applyDate=" + applyDate + ", applyOkDate=" + applyOkDate + ", applyWriter=" + applyWriter
+				+ ", applyPrice=" + applyPrice + ", applyType=" + applyType + "]";
+	}
 }

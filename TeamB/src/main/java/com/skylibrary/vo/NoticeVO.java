@@ -4,12 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
-@Getter
-@ToString
-public class NoticeVO {
+public class NoticeVO extends SessionVO {
 	private int noticeNo; //������ȣ
-	private String managerID; //�缭���̵�
 	private String noticeTitle; //��������
 	private String noticeBody; //��������
 	private String noticeDate; //������¥

@@ -22,5 +22,9 @@ public class ApplyBookDAO {
 		return sql.selectList(namespace + ".list", vo);
 	}
 	
+	//신청 도서 작성
+	public void insert(ApplyBookVO vo) throws Exception{
+		sql.insert(namespace + ".insert",vo);
+	};
 	
 }

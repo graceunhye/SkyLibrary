@@ -23,4 +23,14 @@ public class AnswerServiceImpl implements AnswerService {
 	public int aViewCount(QuestionVO vo) throws Exception {
 		return dao.aViewCount(vo);
 	}
+
+	@Override
+	public void answerAdd(AnswerVO vo) throws Exception {
+		dao.answerAdd(vo);	
+	}
+
+	@Override
+	public void answerUpdate(AnswerVO vo) throws Exception {
+		dao.answerUpdate(vo);
+	}
 }

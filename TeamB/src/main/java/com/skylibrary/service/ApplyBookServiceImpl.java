@@ -20,4 +20,11 @@ public class ApplyBookServiceImpl implements ApplyBookService {
 		return null;
 	}
 
+	@Override
+	public void insert(ApplyBookVO vo) throws Exception {
+		dao.insert(vo);
+	}
+	
+
+
 }

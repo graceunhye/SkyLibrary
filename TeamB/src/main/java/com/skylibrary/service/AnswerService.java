@@ -9,4 +9,8 @@ public interface AnswerService {
 	public AnswerVO aView(QuestionVO vo) throws Exception;
 	
 	public int aViewCount(QuestionVO vo) throws Exception;
+	
+	public void answerAdd(AnswerVO vo) throws Exception;
+	
+	public void answerUpdate(AnswerVO vo) throws Exception;
 }
