@@ -14,24 +14,19 @@ import com.skylibrary.service.UserService;
 import com.skylibrary.vo.UserVO;
 
 @Controller
-@RequestMapping(value = "/loginout")
-public class LoginOutController {
+@RequestMapping(value = "/User")
+public class UserController {
 	
 	@Inject
 	UserService userService;
 	
-	@RequestMapping(value = "/login")
-	public String login() throws Exception {
-		System.out.println("In LoginoutController (value=/loginout/login)");
-		System.out.println("Out LoginoutController (value=/loginout/login)");
-		return "User/loginout/login";
-	}
+	
+	/** loginout **/
 	
 	//로그인
-	@RequestMapping(value = "/loginOk", method = RequestMethod.POST) 
+	@RequestMapping(value = "/loginout/login", method = RequestMethod.POST) 
 	public String login(UserVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
 	{
-		System.out.println("In LoginoutController (value=/loginout/loginOk)");
 		HttpSession session = req.getSession(true);
 		
 		UserVO login = userService.login(vo);
@@ -42,17 +37,57 @@ public class LoginOutController {
 		} else {
 			session.setAttribute("user", login);
 		}
-		System.out.println("Out LoginoutController (value=/loginout/loginOk)");
 		return "redirect:/";
 	}
 	
 	//로그아웃
-	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
+	@RequestMapping(value = "/loginout/logout", method = RequestMethod.GET) 
 	public String logout(HttpSession session) throws Exception {
-		System.out.println("In LoginoutController (value=/loginout/logout)");
+		
 		session.invalidate();
-		System.out.println("Out LoginoutController (value=/loginout/logout)");
+		
 		return "redirect:/";
 	}
+	
+	
+	/** join **/
+	
+	// 일반회원 회원가입 get
+	@RequestMapping(value = "/join/join", method = RequestMethod.GET)
+	public void getJoin() throws Exception {
 
+	}
+	
+	// 일반회원 회원가입 post
+	@RequestMapping(value = "/join/joinOk", method = RequestMethod.POST)
+	public String postJoin(UserVO vo, String num1, String num2, String num3) throws Exception {
+		
+		vo.setUserNum(num1+num2+num3);
+		userService.join(vo);
+		
+		return "redirect:/";
+	}
+	
+	
+	/** 데이터 값 받지 않고 단순히 이동용도의 메서드 **/
+	
+	
+	/** loginout **/
+	
+	@RequestMapping(value = "/loginout/moveLogin")
+	public String moveLogin() throws Exception {
+		return "User/loginout/login";
+	}
+	
+	
+	
+	/** join **/
+	
+	@RequestMapping(value = "/join/moveJoin")
+	public String moveJoin() throws Exception {
+		return "User/join/join";
+	}
+	
+	
+	
 }

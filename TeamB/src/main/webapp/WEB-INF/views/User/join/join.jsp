@@ -19,15 +19,7 @@
 	<body style="margin:0px">
 		<div class="wrap"> 
 			<header>
-				<div class="head_option">
-					<div class="rightnow">
-						<a href="#"><span class="rightnow_click">본문 바로가기</span></a>
-					</div>
-					<div class="head_btns">
-						<a href="../loginout/login.jsp"><input class="head_btn" type="button" value="로그인"></a>
-						<a href="../join/join.jsp"><input class="head_btn" type="button" value="회원가입"></a>
-					</div>
-				</div>
+				<jsp:include page="../include/head_option.jsp"/>
 				<jsp:include page="../include/head_banner.jsp"/>
 			</header>
 			<!-- header end -->
