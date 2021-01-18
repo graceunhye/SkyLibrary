@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,6 +14,11 @@
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/common.js"></script>
+		<script>
+			function userInfoModify{
+				
+			}
+		</script>
 	</head>
 	<body style="margin:0px">
 		<div class="wrap"> 
@@ -37,37 +44,50 @@
 					<div class="content">
 						<div>
 							<table class="content_table">
-									<tr class="top_tr">
-										<th style="width:25%;">ID</th>
-										<td class="top_td"></td>
-									</tr>
-									<tr class="mid_tr">
-										<th>이름</th>
-										<td class="mid_td"></td>
-									</tr>
-									<tr class="mid_tr">
-										<th>연락처</th>
-										<td class="mid_td"></td>
-									</tr>
-									<tr class="mid_tr">
-										<th>주소</th>
-										<td class="mid_td"></td>
-									</tr>
-									<tr class="mid_tr">
-										<th >이메일</th>
-										<td></td>
-									<%-- <%
-									  if(email2.equals("e1")){
-									%>
-										<td class="mid_td"><%= email1 %>@naver.com</td>
-									<%}else if(email2.equals("e2")){ %>
-										<td class="mid_td"><%= email1 %>@nate.com</td>
-									<%}else if(email2.equals("e3")){ %>
-										<td class="mid_td"><%= email1 %>@gamil.com</td>
-									<%
-										}
-									%> --%>
-									</tr>
+								<tr class="top_tr">
+									<th style="width:25%;">ID</th>
+									<td class="top_td">${user.userID }</td>
+								</tr>
+								<tr class="mid_tr">
+									<th>이름</th>
+									<td class="mid_td">${user.userName }</td>
+								</tr>
+								<tr class="mid_tr">
+									<th>연락처</th>
+									<td class="mid_td">
+										<c:if test="${user.userNum != null }">
+										${user.userNum }
+										</c:if>
+										<c:if test="${user.userNum == null }">
+										등록된 정보가 없습니다.
+										</c:if>
+									</td>
+								</tr>
+								<tr class="mid_tr">
+									<th>주소</th>
+									<td class="mid_td">
+										<c:if test="${user.userPostNum != null }">
+										[${user.userPostNum }]${user.userAddr }
+										<c:if test="${useruser.userAddrDetail != null}">
+										${user.userAddrDetail }
+										</c:if>
+										</c:if>
+										<c:if test="${user.userPostNum == null }">
+										등록된 정보가 없습니다.
+										</c:if>
+									</td>
+								</tr>
+								<tr class="mid_tr">
+									<th >이메일</th>
+									<td>
+										<c:if test="${user.userEmail != null }">
+										${user.userEmail }@${user.userEmailDomain }
+										</c:if>
+										<c:if test="${user.userEmail == null }">
+										등록된 정보가 없습니다.
+										</c:if>
+									</td>
+								</tr>
 							</table>
 							<button id="modify_b" type="button" onclick="location.href='/myPage/userInfoModify'">회원정보 수정</button>
 						</div>
@@ -76,6 +96,7 @@
 			</section>
 			<!-- section end -->
 			
+
 			<jsp:include page="../include/footer.jsp"/>
 			<!-- footer end -->
 		</div>

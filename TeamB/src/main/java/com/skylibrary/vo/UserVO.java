@@ -24,7 +24,35 @@ public class UserVO {
 	private String userEmailDomain; //이메일도메인
 	private boolean loginCon;       //로그인 성공여부 || 보류
 	
+	UserVO(){
+		setUserNum(userNumSplit1, userNumSplit2, userNumSplit3);
+	}
 	
+	public String getUserNumSplit1() {
+		return userNumSplit1;
+	}
+
+	public void setUserNumSplit1(String userNumSplit1) {
+		this.userNumSplit1 = userNumSplit1;
+	}
+
+	public String getUserNumSplit2() {
+		return userNumSplit2;
+	}
+
+	public void setUserNumSplit2(String userNumSplit2) {
+		this.userNumSplit2 = userNumSplit2;
+	}
+
+	public String getUserNumSplit3() {
+		return userNumSplit3;
+	}
+
+	public void setUserNumSplit3(String userNumSplit3) {
+		this.userNumSplit3 = userNumSplit3;
+	}
+
+
 	public String getUserID() {
 		return userID;
 	}
@@ -47,11 +75,12 @@ public class UserVO {
 	public String getUserNum() {
 		return userNum;
 	}
-	
-	public void setUserNum(String userNumSplit1,String userNumSplit2,String userNumSplit3) {
-		this.userNum = userNumSplit1 + "-" + userNumSplit2 + "-" + userNumSplit3;
-	}		
-	
+
+	public void setUserNum(String userNumSplit1, String userNumSplit2, String userNumSplit3) {
+		this.userNum = userNumSplit1+"-"+userNumSplit2+"-"+userNumSplit3;
+	}
+
+
 	public int getUserPostNum() {
 		return userPostNum;
 	}

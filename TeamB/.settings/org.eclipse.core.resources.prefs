@@ -6,4 +6,6 @@ encoding//src/main/resources/sql/create.sql=UTF-8
 encoding//src/main/webapp/WEB-INF/views/User/include/footer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/User/include/head_banner.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/User/intro/notice.jsp=UTF-8
+encoding//src/main/webapp/resources/js/join/join.js=UTF-8
+encoding//src/main/webapp/resources/js/myPage/userInfoModify.js=UTF-8
 encoding/<project>=UTF-8

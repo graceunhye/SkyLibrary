@@ -16,20 +16,15 @@
 	userEmailDomain
 </sql>
 <select id="login" parameterType="userVO" resultType="userVO">
-	SELECT userID,userPW
+	SELECT <include refid="allColumns"/>
 	FROM user 
 	WHERE userID = #{userID}
 	AND userPW = md5(#{userPW})
 </select>
-<!-- <select id="list" resultType="userVO">
-	select 
-	from user
-</select> -->
 <select id="userExist" resultType="int" parameterType="userVO">
 	SELECT COUNT(*) FROM user
 	WHERE userID = '#{userID}'
 </select>
-
 <insert id="join" parameterType="userVO">
 	INSERT INTO user
 	(<include refid="allColumns"/>) 
@@ -46,5 +41,34 @@
 	#{userEmailDomain}
 	)
 </insert>
-
+<select id="userList" resultType="userVO">
+	SELECT <include refid="allColumns"/>
+	FROM user
+</select>
+<update id="userModify" parameterType="userVO">
+	UPDATE user 
+	SET  userNum = #{userNum}
+		,userEmail = #{userEmail}
+		,userEmailDomain = #{userEmailDomain}
+		,userName = #{userName}
+		<if test="#{userPostNum != null}">
+		,userPostNum = #{userPostNum}
+		</if>
+		<if test="#{userAddr != null}">
+		,userAddr = #{userAddr}	
+		</if>
+		<if test="#{userAddrDetail != null}">
+		,userAddrDetail = #{userAddrDetail}
+		</if>
+	WHERE userID = #{userID}
+</update>
+<update id="userPWModify" parameterType="userVO">
+	UPDATE user
+	SET userPW = md5('#{userPW}')
+	WHERE userID = #{userID}
+</update>
+<delete id="userRemove" parameterType="userVO">
+	DELETE FROM user 
+	WHERE userID = #{userID}
+</delete>
 </mapper>

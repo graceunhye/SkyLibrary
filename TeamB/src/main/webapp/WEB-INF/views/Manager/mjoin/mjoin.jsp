@@ -19,8 +19,8 @@
 	<body style="margin:0px">
 		<div class="wrap"> 
 			<header>
-				<jsp:include page="../include/head_option.jsp"/>
-				<jsp:include page="../include/head_banner.jsp"/>
+				<jsp:include page="../../User/include/head_option.jsp"/>
+				<jsp:include page="../../User/include/head_banner.jsp"/>
 			</header>
 			<!-- header end -->
 			
@@ -73,7 +73,7 @@
 			</section>
 			<!-- section end -->
 			
-			<jsp:include page="../include/footer.jsp"/>
+			<jsp:include page="../../User/include/footer.jsp"/>
 			<!-- footer end -->
 			
 		</div>

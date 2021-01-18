@@ -17,7 +17,27 @@ public class QuestionVO {
 	private String questionDate;   //작성일
 	private int    questionHit;    //조회수
 	private int    questionType;   //답변여부
+	private String startDate;
+	private String endDate;
 	
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
 	//Override 하지 않아도 자동 대체
 	public void setQuestionOkDate(String questionOkDate) {
 		String[] array = questionOkDate.split(" ");

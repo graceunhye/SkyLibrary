@@ -1,76 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@page import="java.sql.*" %>
-<%
-
-	String id = (String)session.getAttribute("idKey");
-	if(id == null){ id = ""; }
-	
-	String     m_DBMS     = "jdbc:mysql://localhost:3306/skylibrary?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC";
-	String     m_UserID   = "root";
-	String     m_UserPass = "mySQL1234";
-	
-	try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-	} catch(Exception e) {
-		System.out.println("Error : µå¶óÀÌ¹ö ·Îµù ½ÇÆĞ");
-	}		
-
-
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-
-
-	conn = DriverManager.getConnection( m_DBMS, m_UserID ,m_UserPass );
-	String sql = "select name, num, postNum, addr1, addr2, email1, email2 from user where id ='" + id+"'";
-
-	pstmt = conn.prepareStatement(sql);	
-	rs = pstmt.executeQuery();		 
-	rs.next();
-   			
-	/** È¸¿ø Á¤º¸ **/
-	String	   name 		= rs.getString("name");     //ÀÌ¸§               
-	String	   num 			= rs.getString("num");      //¹øÈ£
-	String	   postNum 	   	= rs.getString("postNum");  //¿ìÆí¹øÈ£
-   	String	   addr1       	= rs.getString("addr1");    //ÁÖ¼Ò
-   	String	   addr2 	    = rs.getString("addr2");    //ÁÖ¼Ò2
-   	String	   email1 	    = rs.getString("email1");   //ÀÌ¸ŞÀÏ
-   	String	   email2 	    = rs.getString("email2");   //µµ¸ŞÀÎ
-
-	
-	String num1 ="";
-	String num2 ="" ;
-	String num3 ="";
-	
-	if(num!= null || num.equals("")){
-		//int num_idx = num.indexOf("-"); 
-		String[] numArr = num.split("-");
-		num1 = numArr[0];
-		num2 = numArr[1];
-		num3 = numArr[2];
-
-	}
-	
-	if(postNum.equals("0")){
-		postNum = "";
-	}
-	
-
-%>	
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="EUC-KR">
+		<meta charset="UTF-8">
 		
-		<title>È¸¿øÁ¤º¸</title>	
+		<title>íšŒì›ì •ë³´</title>	
 		
 		<link rel="stylesheet" href="/css/common.css" type="text/css"/>
 		<link rel="stylesheet" href="/css/myPage/userInfoModify.css" type="text/css"/>
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/common.js"></script>
-		<script src="/js/use/userInfoModify.js"></script>
+		<script src="/js/myPage/userInfoModify.js"></script>
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	</head>
 	<body style="margin:0px">
@@ -83,101 +27,96 @@
 			<section id="section">
 				<nav class="left_menu">
 					<ul>
-						<li class="left_menu_title">¸¶ÀÌÆäÀÌÁö</li>
-						<a href="userInfo.jsp"><li class="on left_menu_sub">È¸¿øÁ¤º¸</li></a>
-						<a href="wish.jsp"><li class="left_menu_sub">Èñ¸Áµµ¼­ ½ÅÃ»</li></a>
-						<a href="renting.jsp"><li class="left_menu_sub last_sub">´ëÃâµµ¼­ Á¶È¸</li></a>
+						<li class="left_menu_title">ë§ˆì´í˜ì´ì§€</li>
+						<a href="/myPage/userInfo"><li class="on left_menu_sub">íšŒì›ì •ë³´</li></a>
+						<a href="/myPage/wish"><li class="left_menu_sub">í¬ë§ë„ì„œ ì‹ ì²­</li></a>
+						<a href="/myPage/renting"><li class="left_menu_sub last_sub">ëŒ€ì¶œë„ì„œ ì¡°íšŒ</li></a>
 					</ul>
 				</nav>
 				<div class="section">
 					<div class="section_top">
-						<span class="top_title">È¸¿øÁ¤º¸</span>
-						<span class="page_map">¸¶ÀÌÆäÀÌÁö > È¸¿øÁ¤º¸ > È¸¿øÁ¤º¸ ¼öÁ¤</span>
+						<span class="top_title">íšŒì›ì •ë³´</span>
+						<span class="page_map">ë§ˆì´í˜ì´ì§€ > íšŒì›ì •ë³´ > íšŒì›ì •ë³´ ìˆ˜ì •</span>
 					</div>
-					<form method="post" class="modifyfrm" name="modifyfrm" action="userModifyOk.jsp">
+					<form method="post" class="modifyfrm" name="modifyfrm" action="/myPage/userModifyOk">
 						<div class="content">
 							<table class="content_table">
 								<tr class="top_tr">
 									<th style="width:25%;">ID</th>
-									<td class="top_td"><%= id%></td>
+									<td class="top_td">${userInfo.userID }</td>
 								</tr>
 								<tr class="mid_tr">
-									<th>ÀÌ¸§</th>
-									<td class="mid_td"><input type="text" value="<%= name %>" id="name" name="name"></td>
+									<th>ì´ë¦„</th>
+									<td class="mid_td"><input type="text" value="${userInfo.userName }" id="name" name="name"></td>
 								</tr>
 								<tr class="mid_tr">
-									<th>¿¬¶ôÃ³</th>
+									<th>ì—°ë½ì²˜</th>
 									<td class="mid_td">
-										<select name="num1">
-											<option value="010" <% if(num1.equals("010")){ %>selected<%} %>>010
-											<option value="011" <% if(num1.equals("011")){ %>selected<%} %>>011
-											<option value="016" <% if(num1.equals("016")){ %>selected<%} %>>016										
-										</select>-
-										<input type="text" value="<%= num2%>" id="num2" name="num2">-
-										<input type="text" value="<%= num3%>" id="num3" name="num3">
+										<select name="userNumSplit1">
+											<c:if test="${userInfo.userNumSplit1 eq '010'}">
+												<option value="010" selected>010</option>
+												<option value="011">011</option>
+												<option value="016">016</option>
+											</c:if>
+											<c:if test="${userInfo.userNumSplit1 eq '011'}">
+												<option value="010">010</option>
+												<option value="011" selected>011</option>
+												<option value="016">016</option>
+											</c:if>
+											<c:if test="${userInfo.userNumSplit1 eq '016'}">
+												<option value="010">010</option>
+												<option value="011">011</option>
+												<option value="016" selected>016</option>
+											</c:if>
+										</select>
+										<span>-</span>
+										<input type="text" value="${userInfo.userNumSplit2}" id="num2" name="userNumSplit2">
+										<span>-</span>
+										<input type="text" value="${userInfo.userNumSplit3}" id="num3" name="userNumSplit3">
 									</td>
 								</tr>
 								<tr class="mid_tr">
-									<th>ÁÖ¼Ò</th>
+									<th>ì£¼ì†Œ</th>
 									<td class="mid_td">
-										<input type="text" id="postnum" name="postnum" size="7" value=<%= postNum %>>&nbsp;
-										<input type="button" class="joinbtn1" value="¿ìÆí¹øÈ£ Ã£±â" onclick="PostOpen()"><br>
-										<input type="text" id="addr1" name="addr1" size="50" value="<%= addr1 %>"><br>
-										<input type="text" id="addr2" name="addr2" size="50" value="<%= addr2 %>">
+										<input type="text" id="postnum" name="userPostNum" size="7" value=${userInfo.userPostNum }>&nbsp;
+										<input type="button" class="joinbtn1" value="ìš°í¸ë²ˆí˜¸ ì°¾ê¸°" onclick="PostOpen()"><br />
+										<input type="text" id="addr1" name="userAddr" size="50" value="${userInfo.userAddr }"><br />
+										<input type="text" id="addr2" name="userAddrDetail" size="50" value="${userInfo.userAddrDetail }">
 									</td>
 								</tr>
 								<tr class="mid_tr">
-									<th>ÀÌ¸ŞÀÏ</th>
+									<th>ì´ë©”ì¼</th>
 									<td class="mid_td">
-										<input type="text" value="<%= email1%>" id="email1" name="email1">@
-										<select name="email2">
-											<option value="e1"  <% if(email2.equals("e1")){ %>selected<%} %>>naver.com
-											<option value="e2" <% if(email2.equals("e2")){ %>selected<%} %>>nate.com
-											<option value="e3" <% if(email2.equals("e3")){ %>selected<%} %>>gmail.com
+										<input type="text" value="${userInfo.userEmail }" id="email1" name="userEmail">@
+										<select name="userEmailDomain">
+											<c:if test="${userInfo.userEmail eq 'e1'}">
+												<option value="e1" selected>naver.com</option>
+												<option value="e2">nate.com</option>
+												<option value="e3">gmail.com</option>
+											</c:if>
+											<c:if test="${userInfo.userEmail eq 'e2'}">
+												<option value="e1">naver.com</option>
+												<option value="e2" selected>nate.com</option>
+												<option value="e3">gmail.com</option>
+											</c:if>
+											<c:if test="${userInfo.userEmail eq 'e3'}">
+												<option value="e1">naver.com</option>
+												<option value="e2">nate.com</option>
+												<option value="e3" selected>gmail.com</option>
+											</c:if>
 										</select>
 									</td>
 								</tr>
 							</table>
 							<div class="btns">
-								<button type="button"  class="modifyOk_b" onclick="Submit()">ÀúÀå</button>
-								<button type="button"  class="modifyOk_b" onclick="location.href='userInfo.jsp'">Ãë¼Ò</button>
+								<button type="button"  class="modifyOk_b" onclick="Submit()">ì €ì¥</button>
+								<button type="button"  class="modifyOk_b" onclick="cancleFn()'">ì·¨ì†Œ</button>
 							</div>
 							<br>
 							<br>
 							<div style="position:relative; left:30%;">
-								<a style="color:gray;">ÇÏ´Ãµµ¼­°üÀ» ´õ ÀÌ»ó ÀÌ¿ëÇÏÁö ¾Ê´Â´Ù¸é? </a>
-								<%
-									int rent_count		= 0; //·»Æ® Á¤º¸ ÃÑ °¹¼ö
-								
-									sql = "select count(*) as cnt from rent where id ='"+ id +"' ";
-									
-									pstmt  = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);	
-									rs = pstmt.executeQuery();	
-									rs.next();
-									
-									rent_count = Integer.parseInt(rs.getString("cnt"));
-									
-									rs.close();
-									pstmt.close();	
-									//rent °¹¼ö Á¶È¸ ¿Ï·á
-									
-
-									
-									/* 
-									pstmt  = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);	
-									rs = pstmt.executeQuery();	
-									rs.next();
-									
-									rent_count = Integer.parseInt(rs.getString("cnt"));
-									
-	
-									
-									rs.close();
-									pstmt.close();
-									conn.close();	 */
-								
-								%>
-								<a style="text-decoration:underline;"href="javascript:userDelete('<%= rent_count %>','<%= id %>')">È¸¿øÅ»Åğ ÇÏ±â</a>
+								<a style="color:gray;">í•˜ëŠ˜ë„ì„œê´€ì„ ë” ì´ìƒ ì´ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´? </a>
+								<a style="text-decoration:underline;"href="javascript:userDelete(<c:out value="${rentInfo.rentCount }" />,<c:out value="${user.userID }" />)">íšŒì›íƒˆí‡´ í•˜ê¸°</a>
 							</div>				
 						</div>
 					</form>
@@ -188,13 +127,13 @@
 			<footer>
 				<div class="footer">
 					<ul class="kind">
-						<li class="footer_title">&nbsp;»ç¼­</li>
+						<li class="footer_title">&nbsp;ì‚¬ì„œ</li>
 						<li>Song EunHye</li>
 						<li>Park Sujin</li>
 						<li>Kang GoEun</li>
 					</ul>
 					<ul class="kind">
-						<li class="footer_title">&nbsp;Á¦ÀÛ±â°£</li>
+						<li class="footer_title">&nbsp;ì œì‘ê¸°ê°„</li>
 						<li>2020.12.03~2020.12.31</li>
 					</ul>
 					<ul class="copy">
