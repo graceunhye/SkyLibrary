@@ -27,4 +27,11 @@ public class ApplyBookDAO {
 		sql.insert(namespace + ".insert",vo);
 	};
 	
+	//신청 도서 조회
+	public List<ApplyBookVO>  view(String userID)throws Exception{
+		
+		return sql.selectList(namespace+".view",userID);
+		
+	}
+	
 }

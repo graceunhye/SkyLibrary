@@ -84,12 +84,20 @@ public class MyPageController {
 
 	}
 	
+	//희망도서 신청 목록 조회
 	@RequestMapping(value = "/wishCheck") 
-	public String wishCheck(Model model, UserVO vo, HttpServletRequest req) throws Exception {
+	public String wishCheck(Model model, ApplyBookVO vo,  HttpServletRequest req) throws Exception {
 		System.out.println("In MyPageController (value=/wishCheck)");
 	
 		System.out.println("Out MyPageController (value=/wishCheck)");
-		//희망도서 신청 목록 조회
+		HttpSession session = req.getSession();
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		String userID sessionVO.getUserID();
+		
+		vo = service.view(userID);
+		
+		model.addAttribute("whishCheckData",vo);
+		
 		return "/User/myPage/wishCheck";
 	}
 	

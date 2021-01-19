@@ -3,6 +3,8 @@
 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.skylibrary.mappers.applyBookMapper">
+
+
 	<select id="list" parameterType="userVO" resultType="applyBookVO">
 	</select>
 
@@ -12,9 +14,18 @@
 		insert into 
 			abook(userID, applyISBN, applySubject,applyCompany,
 					applyPublicationDate,applyDate,
-					applyWriter,applyPrice)
+					applyWriter,applyPrice,applyWhy)
 			values(#{userID},#{applyISBN},#{applySubject},#{applyCompany},
 					#{applyPublicationDate},now(),
-					#{applyWriter},#{applyPrice})
+					#{applyWriter},#{applyPrice},#{applyWhy})
 	</insert>
+	
+	<!-- 신청 도서 조회 -->
+	<select id="view" parameterType="String" resultType="applyBookVO">
+		select
+			applyNo, applyISBN, applySubject, applyCompany, applyPublicationDate, applyDate,
+			applyWriter,applyPrice,applyWhy,applyType
+		from abook
+		where userID = #{userID}
+	</select>
 </mapper>
