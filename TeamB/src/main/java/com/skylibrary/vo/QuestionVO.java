@@ -20,7 +20,6 @@ public class QuestionVO {
 	private String startDate;
 	private String endDate;
 
-
 //	public String getStartDate() {
 //		return startDate;
 //	}
@@ -43,10 +42,10 @@ public class QuestionVO {
 		this.questionOkDate = array[0];
 	}
 	
-//	public void setQuestionDate(String questionDate) {
-//		String[] array = questionDate.split(" ");
-//		this.questionDate = array[0];
-//	}
+	public void setQuestionDate(String questionDate) {
+		String[] array = questionDate.split(" ");
+		this.questionDate = array[0];
+	}
 //
 //	public int getQuestionNo() {
 //		return questionNo;

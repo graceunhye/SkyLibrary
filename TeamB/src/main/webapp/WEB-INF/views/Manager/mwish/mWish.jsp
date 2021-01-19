@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="/css/mWish/mwish.css" type="text/css"/>
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
-		<script src="/js/mWish/mwish.js" charset="EUC-KR"></script>
+		<script src="/js/mWish/mwish.js" charset="UTF-8"></script>
 	</head>
 	<body style="margin: 0px;">
 		<div class="wrap">
@@ -49,7 +49,7 @@
 							<input type="checkbox"  id="checkAll">
 							<span class="slot">|</span>
 							선택된 글 처리:
-							<select name="TypeSaveSelect" id="TypeSaveSelect">
+							<select name="selectType" id="TypeSaveSelect">
 								<option value="0">신청중</option>
 								<option value="1">처리중</option>
 								<option value="2">취소됨</option>

@@ -2,6 +2,7 @@ package com.skylibrary.controller;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skylibrary.service.AnswerService;
 import com.skylibrary.service.QuestionService;
@@ -35,97 +37,63 @@ public class mQnaController {
 	}
 	
 	@RequestMapping(value="/ajax/aInsertOk")
-	public JSONArray ajaxAnswerInsert(AnswerVO avo) throws Exception {
+	@ResponseBody
+	public Map<String,String> ajaxAnswerInsert(AnswerVO avo) throws Exception {
+		//등록
 		answerService.answerAdd(avo);
+		
+		//업데이트
 		QuestionVO qvo = new QuestionVO();
 		qvo.setQuestionNo(avo.getQuestionNo());
 		questionService.typeUpdate(qvo);
-		answerService.aView(qvo);
+
+		//조회
+		Map<String,String> answerMap = answerService.aViewMap(avo);
+
 		
-		JSONArray  qnaArrList = new JSONArray(); 
-		JSONObject qnaObject    = new JSONObject(); 
-		
-		qnaObject.put("answerTitle",avo.getAnswerTitle());
-		qnaObject.put("answerBody",avo.getAnswerBody());
-		qnaObject.put("answerDate",avo.getAnswerDate());
-		qnaObject.put("managerID",avo.getManagerID());
-		
-		qnaArrList.add(qnaObject);
-		return qnaArrList;
+		System.out.println("map::"+answerMap);
+		return answerMap;
 	}
 	
 	
 	@RequestMapping(value="/ajax/searchOk")
-	public JSONArray ajaxSearch(SearchVO search) throws Exception {
-		
-		JSONArray qList = new JSONArray();
+	@ResponseBody
+	public List<QuestionVO> ajaxSearch(SearchVO search) throws Exception {
 		
 		List<QuestionVO> questionList = questionService.selectTypeList(search);
-		for(int i=0; i<questionList.size(); i++) {
-			JSONObject qObject = new JSONObject();
-			qObject.put("questionNo", questionList.get(i).getQuestionNo());
-			qObject.put("questionTitle", questionList.get(i).getQuestionTitle());
-			qObject.put("questionBody", questionList.get(i).getQuestionBody());
-			qObject.put("questionDate", questionList.get(i).getQuestionDate());
-			qObject.put("questionOkDate", questionList.get(i).getQuestionOkDate());
-			qObject.put("userID", questionList.get(i).getUserID());
-			qList.add(qObject);
-		}
-		
-		return qList;
+
+		System.out.println("questionList::"+questionList);
+		return questionList;
 	}
 	
-	
-	 @RequestMapping(value="/ajax/detailOk") 
-	 public JSONArray ajaxDetail(QuestionVO vo) throws Exception {
-		JSONObject qnaObject = new JSONObject();
-		//번호에 해당하는 질문정보 가져오기
-		QuestionVO qvo = questionService.qView(vo);
-		AnswerVO avo;
+
+	@RequestMapping(value="/ajax/detailOk", method=RequestMethod.POST)
+	@ResponseBody
+	 public Map<String,String> ajaxDetail(QuestionVO vo) throws Exception {
+
+		Map<String, String> map = questionService.qnaView(vo);
+
 		
-		qnaObject.put("questionNo", qvo.getQuestionNo());
-		qnaObject.put("questionTitle", qvo.getQuestionTitle());
-		qnaObject.put("questionBody", qvo.getQuestionBody());
-		qnaObject.put("userID", qvo.getUserID());
-		qnaObject.put("questionDate", qvo.getQuestionDate());
-		qnaObject.put("questionOkDate", qvo.getQuestionOkDate());
-		qnaObject.put("questionType", qvo.getQuestionType());
+		System.out.println("in detailOk map::"+map);
 		
-		if(qvo.getQuestionType() == 1) {
-			avo = answerService.aView(vo);
-			qnaObject.put("answerTitle",avo.getAnswerTitle());
-			qnaObject.put("answerBody",avo.getAnswerBody());
-			qnaObject.put("answerDate",avo.getAnswerDate());
-			qnaObject.put("managerID",avo.getManagerID());
-		}
-		
-		JSONArray qnaArrList = new JSONArray();
-		qnaArrList.add(qnaObject);
-		
-		 return qnaArrList;
+		 return map;
 	 }
 	 
+	 
+	 
 	 @RequestMapping(value="/ajax/aUpdateOk")
-	 public JSONArray ajaxAnswerUpdate(AnswerVO vo) throws Exception{
-		 JSONArray  jsonArrList = new JSONArray(); 
-		 JSONObject jsonList    = new JSONObject();
-		 
+	 @ResponseBody
+	 public Map<String,String> ajaxAnswerUpdate(AnswerVO vo) throws Exception{
+	
 		 answerService.answerUpdate(vo);
 		 
 		 QuestionVO qvo = new QuestionVO();
 		 qvo.setQuestionNo(vo.getQuestionNo());
 		 questionService.typeUpdate(qvo);
 		 
-		 vo = answerService.aView(qvo);
-		 
-		 jsonList.put("questionNo",vo.getQuestionNo());
-		 jsonList.put("managerID",vo.getManagerID());
-		 jsonList.put("answerBody",vo.getAnswerBody());
-		 jsonList.put("answerTitle",vo.getAnswerTitle());
-		 jsonList.put("answerDate",vo.getAnswerDate());
-		 jsonArrList.add(jsonList);
-		 
-		 return jsonArrList;
+		 Map<String,String> map = answerService.aViewMap(vo);
+		 System.out.println("aUpdateOk map::"+map);
+		 return map;
 	 }
 	 
 }

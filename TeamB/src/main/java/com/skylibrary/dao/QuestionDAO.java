@@ -1,6 +1,7 @@
 package com.skylibrary.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -66,5 +67,11 @@ public class QuestionDAO {
 	
 	public void questionOkDateUpdate(QuestionVO vo) throws Exception {
 		sql.update(namespace + ".questionOkDateUpdate", vo);
+		
+	}
+	
+	public Map<String,String> qnaView(QuestionVO vo) throws Exception {
+		return sql.selectOne(namespace + ".qnaView", vo);
+				
 	}
 }

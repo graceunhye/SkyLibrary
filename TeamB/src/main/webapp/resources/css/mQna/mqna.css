@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 /* .subject {
 	display: inline-block; 
 	width: 400px; 
@@ -92,15 +92,43 @@ select
 	border:1px solid #F5F5F5;
 }
 
-.viewTable {
-	border-collapse:collapse;
-}
+/* .viewTable { */
+/* 	border-collapse:collapse; */
+/* } */
 
-.viewTable th {
-	background-color: #4A90E2;
-	color: white;
-	border: 1px solid black;
-}
+/* .viewTable th { */
+/* 	background-color: #4A90E2; */
+/* 	color: white; */
+/* 	border: 1px solid black; */
+/* } */
+
+/* .qTalbeTr { */
+/* 	height:40px; */
+/* } */
+/* .qTalbeTr>th { */
+/* 	background-color: #a8a8a8; */
+/* } */
+/* .qTalbeTr>td { */
+/* 	text-align: center; */
+/* } */
+
+/* .viewFixTable { */
+/* 	height:40px; */
+/* } */
+
+/* .viewTable { */
+/* 	width:1300px; */
+/* } */
+
+/* .viewTable, */
+/* .viewTable>thead>tr, */
+/* .viewTable>thead>tr>th, */
+/* .viewTable>tbody>tr, */
+/* .viewTable>tbody>tr>td, */
+/* .viewTable>tbody>tr>th */
+/* { */
+/* 	border: 1px solid black; */
+/* } */
 
 
 .text {

@@ -1,5 +1,7 @@
 package com.skylibrary.dao;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -34,5 +36,9 @@ public class AnswerDAO {
 	//답변 수정
 	public void answerUpdate(AnswerVO vo) throws Exception {
 		sql.update(namespace + ".answerUpdate", vo);
+	}
+	
+	public Map<String,String> aViewMap(AnswerVO vo) throws Exception {
+		return sql.selectOne(namespace + ".aViewMap", vo);
 	}
 }

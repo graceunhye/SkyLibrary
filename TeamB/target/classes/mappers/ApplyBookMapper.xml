@@ -17,4 +17,24 @@
 					#{applyPublicationDate},now(),
 					#{applyWriter},#{applyPrice})
 	</insert>
+	
+	<!-- MANAGER AREA -->
+	<update id="checkedSave" parameterType="applyVO">
+		UPDATE abook 
+		SET applyType=#{applyType}, applyOkDate=now() 
+		WHERE applyNo=#{applyNo}
+	</update>
+	<select id="wishSearchOk" parameterType="searchVO" resultType="java.util.Map">
+		SELECT * FROM abook
+		WHERE 1=1
+		<if test="applyType != null and applyType != '' and applyType != 4">
+			AND applyType = #{selectType}
+		</if>
+		<if test="startDate != null and endDate != null 
+		and startDate != '' and endDate != ''">
+			AND applyOkDate BETWEEN #{startDate} AND #{endDate}
+		</if>
+		ORDER BY applyNo DESC
+	</select>
+	
 </mapper>

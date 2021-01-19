@@ -1,6 +1,7 @@
 package com.skylibrary.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -65,6 +66,12 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public void questionOkDateUpdate(QuestionVO vo) throws Exception {
 		dao.questionOkDateUpdate(vo);	
+	}
+
+	@Override
+	public Map<String,String> qnaView(QuestionVO vo) throws Exception {
+		
+		return dao.qnaView(vo);
 	}
 
 }

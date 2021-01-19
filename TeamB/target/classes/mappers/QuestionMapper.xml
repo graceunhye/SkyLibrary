@@ -23,13 +23,13 @@
 	<select id="selectTypeList"  resultType="questionVO" parameterType="searchVO">
 		SELECT * FROM q
 		WHERE 1=1
-		<if test="#{selectType != 2}">
+		<if test="selectType != 2">
 		AND questionType = #{selectType}
 		</if>
-		<if test="#{startDate != '' and endDate != ''
-			and startDate != null and endDate != null}">
+		<if test="startDate != '' and endDate != ''
+			and startDate != null and endDate != null">
 		AND questionDate 
-		BETWEEN '#{startDate}' AND '#{endDate}'
+		BETWEEN #{startDate} AND #{endDate}
 		</if>
 		ORDER BY questionNo DESC
 	</select>
@@ -58,7 +58,25 @@
 	<delete id="questionDelete" parameterType="questionVO">
 		DELETE FROM q WHERE questionNo = #{questionNo}
 	</delete>
-	
-	
+<!-- 	<select id="qnaView" parameterType="questionVO" resultType="map">
+		select *,(select * from a where a.questionNo = q.questionNo) from q where questionNo = #{qeustionNo}
+	</select>
+	 -->
+	<select id="qnaView" parameterType="questionVO" resultType="java.util.Map">
+	select questionNo
+	     , userID
+	     , questionTitle
+	     , questionBody
+	     , questionOkDate
+	     , questionDate
+	     , questionHit
+	     , questionType
+	     , (select managerID   from a where questionNo = q.questionNo) as managerID
+	     , (select answerTitle from a where questionNo = q.questionNo) as answerTitle
+	     , (select answerBody  from a where questionNo = q.questionNo) as answerBody
+	     , (select answerDate  from a where questionNo = q.questionNo) as answerDate
+	  from q
+	  where questionNo = #{questionNo}
+	</select>
 	<!-- manager qna -->
 </mapper>

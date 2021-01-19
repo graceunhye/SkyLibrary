@@ -15,6 +15,9 @@
 	FROM a 
 	WHERE questionNo = #{questionNo}
 </select>
+<select id="aViewMap" resultType="java.util.Map" parameterType="answerVO">
+	SELECT * FROM a WHERE questionNo=#{questionNo}
+</select>
 <select id="aViewCount" resultType="int" parameterType="questionVO">
 	SELECT COUNT(<include refid="allColumns"/>) 
 	FROM a 
@@ -30,17 +33,17 @@
 	)VALUE
 	(
 		#{questionNo}
-		, #{userID}
+		, 'testManager'
 		, #{answerTitle}
 		, #{answerBody}
-		, #{answerDate}
+		, now()
 	)
 </insert>
 <update id="answerUpdate" parameterType="answerVO">
 	UPDATE a 
 	SET answerTitle = #{answerTitle}
 		,answerBody = #{answerBody}
-		,managerID  = #{userID}
+		,managerID  = 'testManager'
 		,answerDate = now()
 	WHERE questionNo = #{questionNo}		
 </update>

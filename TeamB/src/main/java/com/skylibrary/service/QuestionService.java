@@ -1,6 +1,7 @@
 package com.skylibrary.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.QuestionVO;
@@ -32,12 +33,10 @@ public interface QuestionService {
 	//질문 수정
 	public void questionModify(QuestionVO vo) throws Exception;
 	
-	//마지막 no
-	/* public int lastNo() throws Exception; */
-	
 	public void questionDelete(QuestionVO vo) throws Exception;
 	
 	public void questionOkDateUpdate(QuestionVO vo) throws Exception;
 	
+	public Map<String, String> qnaView(QuestionVO vo) throws Exception;
 		
 }

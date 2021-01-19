@@ -2,70 +2,69 @@ var getData  ="";
 	
 	function checkedSaveFn() {
 
-		var TypeSaveSelect = document.getElementById("TypeSaveSelect").value;
-		var noValue = [];
-		var noCheckedValue = [];
+		var TypeSaveSelect = $("#TypeSaveSelect").val();
 
 		for(var i=0; i<getData.length ; i++) {
-			noValue[i] = getData[i].no;
-			if($("#checked_"+noValue[i]).prop("checked")){
-				noCheckedValue = noValue[i]
+			if($("#checked_"+getData[i].no).prop("checked")){ 
 				$.ajax({
-					url: "wishCheckedSave.jsp",
+					url: "/mwish/ajax/checkedSave",
 					type: "post",
-					data: {
-						checkNo : noCheckedValue ,
-						selectChange : TypeSaveSelect
-						},
+					data: 
+					{
+						applyNo : getData[i].no , //ì²´í¬ëœ ë²ˆí˜¸
+						applyType : $("#TypeSaveSelect").val() //ì„¤ì •í•œ ì†ì„±ê°’
+					},
 					success: function(data){
 						searchFn();
-					}
-					
+					}				 
 				}) 
 			}
 		}		
 	}
 	
+	
+	//ì²˜ìŒ ë°ì´í„° í‘œ ê°€ì ¸ì˜¬ ë•Œ
 	function searchFn() {
-		var selectType  = document.getElementById("selectType").value;
-		var startDate   = document.getElementById("startDate").value;
-		var endDate     = document.getElementById("endDate").value;
+		
+//		var selectType  = document.getElementById("selectType").value;
+//		var startDate   = document.getElementById("startDate").value;
+//		var endDate     = document.getElementById("endDate").value;
 		$.ajax({
-			url: "wishSearch.jsp",
+			url: "/mwish/ajax/searchOk",
 			type: "post",
 			data: {
-				select : selectType,
-				startDate : startDate,
-				endDate : endDate
+				selectType : $("#selectType").val(),
+				startDate : $("#startDate").val(),
+				endDate : $("#endDate").val()
 			},
 			error: function(){
-				var str = "<h2><font color='orange'>½ÅÃ»Áß</font></h2>";
+				var str = "<h2><font color='orange'>ì‹ ì²­ì¤‘</font></h2>";
 				$("#result").html(str);
 			}
 			,
 			success: function(data) {
 				var str = "";
-				getData = JSON.parse(data);
+//				getData = JSON.parse(data);
 
-				for(var i=0; i<getData.length; i++){
-					if(getData[i].okdate == null){ getData[i].okdate = ""; }
-					str += "<tr id='tr_"+getData[i].no+"' onclick='viewFn("+getData[i].no+")'>";
-					str += "<td  width='50px' align='center'>"+getData[i].no+"</td>";
-					str += "<td width='150px' align='center'>"+getData[i].id+"</td>";
-					str += "<td width='250px' align='center'>"+getData[i].isbn+"</td>";
-					str += "<td width='700px'><a href='javascript:viewFn("+getData[i].no+")'>"+getData[i].subject+"</a></td>";
-					str += "<td width='200px' align='center'>"+getData[i].wdate+"</td>";
-					str += "<td width='200px' align='center'>"+getData[i].okdate+"</td>";
-					if(getData[i].atype == "0"){
-						str += "<td width='100px' align='center'><font color='blue'>½ÅÃ»Áß</font></td>";
-					}else if(getData[i].atype == "1") {
-						str += "<td width='100px' align='center'><font color='orange'>Ã³¸®Áß</font></td>";
-					}else if(getData[i].atype == "2") {
-						str += "<td width='100px' align='center'><font color='gray'>Ãë¼ÒµÊ</font></td>";
-					}else if(getData[i].atype == "3") {
-						str += "<td width='100px' align='center'>¼ÒÀåÁß</td>";
+				for(var i=0; i<data.length; i++){
+					if(data[i].applyOkDate == null){ data[i].applyOkDate = ""; }
+					str += "<tr id='tr_"+data[i].applyNo+"' onclick='viewFn("+data[i].applyNo+")'>";
+					str += "<td  width='50px' align='center'>"+data[i].applyNo+"</td>";
+					str += "<td width='150px' align='center'>"+data[i].userID+"</td>";
+					str += "<td width='250px' align='center'>"+data[i].applyISBN+"</td>";
+					str += "<td width='700px'><a href='javascript:viewFn("+data[i].applyNo+")'>"+data[i].applySubject+"</a></td>";
+					str += "<td width='200px' align='center'>"+data[i].applyDate+"</td>";
+					str += "<td width='200px' align='center'>"+data[i].applyOkDate+"</td>";
+					if(data[i].atype == "0"){
+						str += "<td width='100px' align='center'><font color='blue'>ì‹ ì²­ì¤‘</font></td>";
+					}else if(data[i].applyType == "1") {
+						str += "<td width='100px' align='center'><font color='orange'>ì²˜ë¦¬ì¤‘</font></td>";
+					}else if(data[i].applyType == "2") {
+						str += "<td width='100px' align='center'><font color='gray'>ì·¨ì†Œë¨</font></td>";
+					}else if(data[i].applyType == "3") {
+						str += "<td width='100px' align='center'>ì†Œì¥ì¤‘</td>";
 					}
-					str += "<td width='50px' align='center'><input type='checkbox' name='check' id='checked_"+getData[i].no+"' value='1'></td>";
+					str += "<td width='50px' align='center'><input type='checkbox' name='check' id='checked_"+data[i].applyNo+"' value='1'></td>";
 					str += "</tr>";
 				}
 				$("#result").html(str);
@@ -87,7 +86,7 @@ var getData  ="";
 	})
 
 	
-
+	
 	function viewFn(no) {
 		$.ajax({
 			url: "wishDetailOk.jsp",
@@ -96,34 +95,34 @@ var getData  ="";
 				no : no,
 			},
 			error:function(){
-				var str = "¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.";
+				var str = "ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.";
 			},
 			success: function(data) {
 				var applyInfo = JSON.parse(data);
 				var str = "";
 				var type = "";
-				if(applyInfo[0].atype == "1"){ type="<font color='orange'>Ã³¸®Áß</font>";}
-				else if(applyInfo[0].atype == "2"){ type="<font color='gray'>Ãë¼ÒµÊ</font>";}
-				else if(applyInfo[0].atype == "3"){ type="¼ÒÀåÁß";}
-				else if(applyInfo[0].atype == "0"){ type="<font color='blue'>½ÅÃ»Áß</font>";}
+				if(applyInfo[0].atype == "1"){ type="<font color='orange'>ì²˜ë¦¬ì¤‘</font>";}
+				else if(applyInfo[0].atype == "2"){ type="<font color='gray'>ì·¨ì†Œë¨</font>";}
+				else if(applyInfo[0].atype == "3"){ type="ì†Œì¥ì¤‘";}
+				else if(applyInfo[0].atype == "0"){ type="<font color='blue'>ì‹ ì²­ì¤‘</font>";}
 				
 				str += "<table border='1' width='1300' height='300' class='viewTable'>";
 				str += "	<tr height='30'>";
-				str += "		<th width='100'>¹øÈ£</th>";
+				str += "		<th width='100'>ë²ˆí˜¸</th>";
 				str += "		<td width='100'>"+ applyInfo[0].no +"</td>";
 				str += "		<th width='100'>ISBN</th>";
-				str += "		<td width='150' ><span id='isbnValue'>"+ applyInfo[0].isbn +"</span><a href='javascript:copyToClipboard("+ applyInfo[0].isbn +")'>º¹»ç</a></td>";
-				str += "		<th width='100'>Á¦¸ñ</th>";
+				str += "		<td width='150' ><span id='isbnValue'>"+ applyInfo[0].isbn +"</span><a href='javascript:copyToClipboard("+ applyInfo[0].isbn +")'>ë³µì‚¬</a></td>";
+				str += "		<th width='100'>ì œëª©</th>";
 				str += "		<td colspan='5'>"+ applyInfo[0].subject +"</td>";
 				str += "	</tr>";
 				str += "	<tr height='30'>";
-				str += "		<th width='100'>ÀÛ°¡¸í</th>";
+				str += "		<th width='100'>ì‘ê°€ëª…</th>";
 				str += "		<td>"+ applyInfo[0].writer +"</td>";
-				str += "		<th width='100'>ÃâÆÇ»ç</th>";
+				str += "		<th width='100'>ì¶œíŒì‚¬</th>";
 				str += "		<td>"+ applyInfo[0].company +"</td>";
-				str += "		<th width='100'>ÃâÆÇÀÏ</th>";
+				str += "		<th width='100'>ì¶œíŒì¼</th>";
 				str += "		<td>"+ applyInfo[0].pdate +"</td>";
-				str += "		<th width='100'>Ã³¸®»óÅÂ</th>";
+				str += "		<th width='100'>ì²˜ë¦¬ìƒíƒœ</th>";
 				str += "		<td>"+ type +"</td>";
 			    str += "	</tr>";
 				str += "	<tr>";
@@ -145,7 +144,7 @@ var getData  ="";
 		  t.select();
 		  document.execCommand('copy');
 		  document.body.removeChild(t);
-		  alert("º¹»ç¿Ï·á!");
+		  alert("ë³µì‚¬ì™„ë£Œ!");
 	}
 	
 				

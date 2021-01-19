@@ -1,5 +1,7 @@
 package com.skylibrary.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -32,5 +34,10 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public void answerUpdate(AnswerVO vo) throws Exception {
 		dao.answerUpdate(vo);
+	}
+
+	@Override
+	public Map<String, String> aViewMap(AnswerVO vo) throws Exception {
+		return dao.aViewMap(vo);
 	}
 }
