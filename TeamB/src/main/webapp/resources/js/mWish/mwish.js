@@ -89,7 +89,7 @@ var getData  ="";
 	
 	function viewFn(no) {
 		$.ajax({
-			url: "wishDetailOk.jsp",
+			url: "/mwish/ajax/detailOk",
 			type: "post",
 			data: {
 				applyNo : no,
