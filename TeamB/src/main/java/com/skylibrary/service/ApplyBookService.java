@@ -17,4 +17,6 @@ public interface ApplyBookService {
 	public void checkedSave(ApplyBookVO vo) throws Exception;
 	
 	public List<Map<String,String>> wishSearchOk(SearchVO vo) throws Exception;
+	
+	public Map<String,String> wishDetailOk(ApplyBookVO vo) throws Exception;
 }

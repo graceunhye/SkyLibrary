@@ -36,5 +36,7 @@
 		</if>
 		ORDER BY applyNo DESC
 	</select>
-	
+	<select id="wishDetailOk" parameterType="applyVO" resultType="java.util.Map">
+		SELECT * FROM abook WHERE applyNo = #{applyNo}
+	</select>
 </mapper>

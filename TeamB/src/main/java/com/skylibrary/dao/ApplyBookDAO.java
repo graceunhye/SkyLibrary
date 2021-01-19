@@ -36,4 +36,8 @@ public class ApplyBookDAO {
 	public List<Map<String,String>> wishSearchOk(SearchVO vo) throws Exception {
 		return sql.selectList(namespace + ".wishSearchOk", vo);
 	}
+	
+	public Map<String,String> wishDetailOk(ApplyBookVO vo) throws Exception {
+		return sql.selectOne(namespace + ".wishDetailOk", vo);
+	}
 }

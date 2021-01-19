@@ -36,6 +36,11 @@ public class ApplyBookServiceImpl implements ApplyBookService {
 	public List<Map<String, String>> wishSearchOk(SearchVO vo) throws Exception {
 		return dao.wishSearchOk(vo);
 	}
+
+	@Override
+	public Map<String, String> wishDetailOk(ApplyBookVO vo) throws Exception {
+		return dao.wishDetailOk(vo);
+	}
 	
 
 

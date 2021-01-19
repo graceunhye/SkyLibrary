@@ -41,4 +41,11 @@ public class mWishController {
 		System.out.println("wishListMap::"+wishListMap);
 		return wishListMap;
 	}
+	
+	@RequestMapping(value="/ajax/detailOk")
+	@ResponseBody
+	public Map<String,String> wishDetailOk(ApplyBookVO vo) throws Exception{
+		Map<String,String> wishDetailMap = applyService.wishDetailOk(vo);
+		return wishDetailMap;
+	}
 }

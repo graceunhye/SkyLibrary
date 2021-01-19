@@ -92,41 +92,44 @@ var getData  ="";
 			url: "wishDetailOk.jsp",
 			type: "post",
 			data: {
-				no : no,
+				applyNo : no,
 			},
 			error:function(){
 				var str = "오류가 발생했습니다.";
 			},
 			success: function(data) {
-				var applyInfo = JSON.parse(data);
+//				var applyInfo = JSON.parse(data);
 				var str = "";
 				var type = "";
-				if(applyInfo[0].atype == "1"){ type="<font color='orange'>처리중</font>";}
-				else if(applyInfo[0].atype == "2"){ type="<font color='gray'>취소됨</font>";}
-				else if(applyInfo[0].atype == "3"){ type="소장중";}
-				else if(applyInfo[0].atype == "0"){ type="<font color='blue'>신청중</font>";}
+				if(data.applyType == "1"){ type="<font color='orange'>처리중</font>";}
+				if(data.applyType == "2"){ type="<font color='gray'>취소됨</font>";}
+				if(data.applyType == "3"){ type="소장중";}
+				if(data.applyType == "0"){ type="<font color='blue'>신청중</font>";}
 				
 				str += "<table border='1' width='1300' height='300' class='viewTable'>";
 				str += "	<tr height='30'>";
 				str += "		<th width='100'>번호</th>";
-				str += "		<td width='100'>"+ applyInfo[0].no +"</td>";
+				str += "		<td width='100'>"+ data.applyNo +"</td>";
 				str += "		<th width='100'>ISBN</th>";
-				str += "		<td width='150' ><span id='isbnValue'>"+ applyInfo[0].isbn +"</span><a href='javascript:copyToClipboard("+ applyInfo[0].isbn +")'>복사</a></td>";
+				str += "		<td width='150' >";
+				str += "			<span id='isbnValue'>"+ data.applyISBN +"</span>";
+				str += "			<a href='javascript:copyToClipboard("+ data.applyISBN +")'>복사</a>";
+				str += "		</td>";
 				str += "		<th width='100'>제목</th>";
-				str += "		<td colspan='5'>"+ applyInfo[0].subject +"</td>";
+				str += "		<td colspan='5'>"+ data.applySubject +"</td>";
 				str += "	</tr>";
 				str += "	<tr height='30'>";
 				str += "		<th width='100'>작가명</th>";
-				str += "		<td>"+ applyInfo[0].writer +"</td>";
+				str += "		<td>"+ data.applyWriter +"</td>";
 				str += "		<th width='100'>출판사</th>";
-				str += "		<td>"+ applyInfo[0].company +"</td>";
+				str += "		<td>"+ data.applyCompany +"</td>";
 				str += "		<th width='100'>출판일</th>";
-				str += "		<td>"+ applyInfo[0].pdate +"</td>";
+				str += "		<td>"+ data.applyPublicationDate +"</td>";
 				str += "		<th width='100'>처리상태</th>";
 				str += "		<td>"+ type +"</td>";
 			    str += "	</tr>";
 				str += "	<tr>";
-				str += "		<td colspan='8'>"+ applyInfo[0].why +"</td>";
+				str += "		<td colspan='8'>"+ data.applyWhy +"</td>";
 				str += "	</tr>";
 				str += "</table>";
 				
