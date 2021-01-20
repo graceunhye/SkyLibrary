@@ -10,7 +10,7 @@
 		<title>사서추천도서</title>
 		
 		<link rel="stylesheet" href="/css/common.css" type="text/css"/>
-		<link rel="stylesheet" href="/css/recommend.css" type="text/css"/>
+		<link rel="stylesheet" href="/css/search/recommend.css" type="text/css"/>
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/common.js"></script>
@@ -41,35 +41,46 @@
 					<div class="content">
 						<div class="booklist">	
 						<br>
-						<br>							
-							<div class="recommend">					
-								<table width="800px">
-									<tr>
-										<td rowspan="3" width="20%" align="center">
-											<a href="recommendView.jsp?isbn="><img src="" alt=""></a>
-										</td>
-										<td colspan="2"><a href="/search/recommendView?isbn="><b></b></a></td>
-									</tr>
-									<tr>
-										<td colspan="2"></td>
-									</tr>
-									<tr>
-										<td width="40%">저자 : </td>
-										<td>출판사 : </td>
-									</tr>
-								</table>
-							</div>							
+						<br>
+							<c:forEach items="${recommendlist}" var="list">							
+								<div class="recommend">					
+									<table width="800px">
+										<tr>
+											<td rowspan="3" width="20%" align="center">
+												<a href="/search/recommendView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg}" alt="${list.bookSubject}"></a>
+											</td>
+											<td colspan="2"><a href="/search/recommendView?isbn=${list.bookISBN}"><b>${list.bookSubject}</b></a></td>
+										</tr>
+										<tr>
+											<td colspan="2">${list.bookStory}</td>
+										</tr>
+										<tr>
+											<td width="40%">저자 : ${list.bookWriter}</td>
+											<td>출판사 : ${list.bookCompany}</td>
+										</tr>
+									</table>
+								</div>
+							</c:forEach>								
 							<br>
 							<br>
 							<div class="searchpage">	
-								<a href="recommend.jsp?page=1">맨앞으로</a> 
-								<a href="recommend.jsp?page=">이전</a>
-
-								<b><a href="recommend.jsp?page="></a></b>
-								   <a href="recommend.jsp?page="></a> 
-
-									<a href="recommend.jsp?page=">다음</a>
-									<a href="recommend.jsp?page=">맨뒤로</a>	
+								<c:if test="${paging.startPage != 1}">
+								<a href="/search/recommend?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+								</c:if>
+								<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+									<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
+									<c:choose>
+										<c:when test="${p eq paging.nowPage}">
+											<b>${p}</b>
+										</c:when>
+										<c:when test="${p != paging.nowPage}">
+											<a href="/search/recommend?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${paging.endPage != paging.lastPage}">
+								<a href="/search/recommend?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+								</c:if>
 							</div>
 						</div>		
 					</div>	

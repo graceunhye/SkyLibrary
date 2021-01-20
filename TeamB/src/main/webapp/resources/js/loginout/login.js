@@ -1,4 +1,5 @@
-//회원 로그인
+
+	//회원 로그인
  	function login(){
  		
  		if($("input:text").val() == ""){

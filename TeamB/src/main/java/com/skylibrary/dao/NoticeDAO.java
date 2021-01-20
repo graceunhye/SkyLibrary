@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.skylibrary.vo.NoticeVO;
+import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.SearchVO;
 
 @Repository
@@ -34,11 +35,38 @@ public class NoticeDAO {
 		return sql.selectOne(namespace + ".view", vo);
 	}
 	
-	public List<NoticeVO> NoticeList() throws Exception{
-		return sql.selectList(namespace + ".noticeList");
+	//사서 공지사항 목록
+	public List<NoticeVO> NoticeList(PagingVO vo) throws Exception{
+		return sql.selectList(namespace + ".noticeList", vo);
 	}
 	
+	//사서 공지사항 작성
 	public void NoticeWrite(NoticeVO vo) throws Exception{
-		sql.insert(namespace + "noticeWrite");
+		sql.insert(namespace + ".noticeWrite", vo);
 	}
+	
+	//사서 공지사항 조회
+	public NoticeVO NoticeView(int noticeNo) throws Exception{
+		return sql.selectOne(namespace + ".noticeView", noticeNo);
+	}
+	
+	//사서 공지사항 수정
+	public void NoticeModify(NoticeVO vo) throws Exception{
+		sql.update(namespace + ".noticeModify", vo);
+	}
+	
+	//사서 공지사항 삭제
+	public void NoticeDelete(int noticeNo) throws Exception{
+		sql.delete(namespace + ".noticeDelete", noticeNo);
+	}
+	
+	//사서 공지사항 페이징
+	public int noticeCountList() throws Exception {
+		return sql.selectOne(namespace + ".noticeCountList");
+	}
+	
+	public void updateHit(int noticeNo) throws Exception { 
+		sql.update(namespace + ".updateHit", noticeNo);
+	}
+
 }

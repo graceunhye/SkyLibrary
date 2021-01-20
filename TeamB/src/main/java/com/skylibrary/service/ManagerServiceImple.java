@@ -21,7 +21,6 @@ public class ManagerServiceImple implements ManagerService {
 		dao.mjoin(vo);
 	}
 
-	
 	@Override
 	public SessionVO mlogin(SessionVO vo) throws Exception {
 		return dao.mlogin(vo);

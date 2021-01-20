@@ -1,9 +1,11 @@
 package com.skylibrary.service;
 
+
 import java.util.List;
 import java.util.Map;
 
 import com.skylibrary.vo.SearchVO;
+
 import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
@@ -11,7 +13,7 @@ public interface UserService {
 	
 	//로그인하기
 	public SessionVO login(SessionVO vo) throws Exception;
-	
+
 	//회원가입
 	public void join(UserVO vo) throws Exception;
 	

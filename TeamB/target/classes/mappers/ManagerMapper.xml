@@ -5,7 +5,7 @@
 	
 <mapper namespace="com.skylibrary.mappers.managerMapper">
 
-<insert id="mjoin" parameterType="managerVO">
+<insert id="mjoin" parameterType="com.skylibrary.vo.ManagerVO">
 	INSERT INTO manager
 	(managerID, managerPW, managerName, managerEmail, managerEmailDomain) 
 	VALUES

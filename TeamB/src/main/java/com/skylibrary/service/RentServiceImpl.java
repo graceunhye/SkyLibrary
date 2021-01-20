@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.skylibrary.dao.RentDAO;
+import com.skylibrary.vo.BookVO;
 import com.skylibrary.vo.RentVO;
 import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
@@ -19,9 +20,18 @@ public class RentServiceImpl implements RentService {
 	RentDAO dao;
 
 	@Override
-	public List<RentVO> list(UserVO vo) throws Exception {
+	public List<RentVO> Rentlist(RentVO vo) throws Exception {	
+		return dao.Rentlist(vo);
+	}
 
-		return null;
+	@Override
+	public int extensionBook(RentVO vo) throws Exception{
+		return dao.extensionBook(vo);
+	}
+	
+	@Override
+	public RentVO extenstionSelect(RentVO vo) throws Exception{
+		return dao.extenstionSelect(vo);
 	}
 	
 	@Override
@@ -29,4 +39,19 @@ public class RentServiceImpl implements RentService {
 		return dao.userRentInfoOk(vo);
 	}
 
+	@Override
+	public int updateBook(BookVO vo) throws Exception {
+		return dao.updateBook(vo);
+	}
+
+	@Override
+	public int deleteRent(RentVO vo) throws Exception {
+		return dao.deleteRent(vo);
+	}
+
+	@Override
+	public List<RentVO> list(UserVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

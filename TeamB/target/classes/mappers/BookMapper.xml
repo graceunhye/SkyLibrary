@@ -18,6 +18,7 @@
 			
 	FROM 	book
 </sql>
+
 <!-- 메인 -->
 <select id="listMain" resultType="bookVO">
 	SELECT 
@@ -63,6 +64,7 @@
 	ORDER BY bookSubject
 	LIMIT #{start},#{end}
 </select>
+
 <select id="countList" parameterType="searchVO" resultType="int">
 	SELECT COUNT(*)
 	FROM book
@@ -84,6 +86,7 @@
 		</if>
 	</if>
 </select>
+
 <!-- 인기도서 -->
 <select id="best" resultType="bookVO" parameterType="pagingVO">
 		SELECT 
@@ -106,7 +109,10 @@
 	SELECT 
 		bookSubject, bookStory, bookPublicationDate, bookCoverImg, bookCompany, bookWriter, bookISBN, bookCount, bookRent,
 	(select rentEndDate from rent where bookISBN = book.bookISBN and bookRent = 1 order by rentEndDate desc limit 0,1) as rentEndDate,
-	(select userID from rent where bookISBN = book.bookISBN and bookRent = 1 order by rentEndDate desc limit 0,1) as userID
+	(select userID from rent where bookISBN = book.bookISBN and bookRent = 1 order by rentEndDate desc limit 0,1) as userID,
+	(select recommendNo from rbook where bookISBN = book.bookISBN limit 0,1) as recommendNo,
+	(select recommendWhy from rbook where bookISBN = book.bookISBN limit 0,1) as recommendWhy,
+	(select managerID as userID from rbook where bookISBN = book.bookISBN limit 0,1) as managerID
 	FROM book
 	WHERE bookISBN = #{bookISBN};	
 </select>
@@ -161,14 +167,41 @@
 	ORDER BY bookPublicationDate DESC
 	LIMIT #{start},#{end}
 </select>
+
+
+<!-- 사서 추천 도서 -->
+<select id="recommend" resultType="bookVO" parameterType="pagingVO">
+	SELECT 
+			bookISBN,
+			bookSubject, 
+			bookStory, 
+			bookCount, 
+			bookCompany, 
+			bookWriter, 
+			bookPublicationDate, 
+			bookRent, 
+			bookCoverImg
+	FROM 	book 
+	WHERE bookISBN in (SELECT bookISBN from rbook)
+	LIMIT #{start},#{end}
+</select>
+
 <select id="newCountList" resultType="int">
 	SELECT COUNT(*)
 	FROM book
 	ORDER BY bookPublicationDate DESC
 </select>
+
 <select id="bestCountList" resultType="int">
 	SELECT COUNT(*)
 	FROM book
 	ORDER BY bookCount DESC
 </select>
+
+<select id="recommendCountList" resultType="int">
+	SELECT COUNT(*)
+	FROM book
+	ORDER BY bookCount DESC
+</select>
+
 </mapper>

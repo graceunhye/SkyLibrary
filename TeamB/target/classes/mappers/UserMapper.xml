@@ -15,12 +15,14 @@
 	userEmail,
 	userEmailDomain
 </sql>
+
 <select id="login" parameterType="sessionVO" resultType="sessionVO">
 	SELECT <include refid="allColumns"/>
 	FROM user 
 	WHERE userID = #{userID}
 	AND userPW = md5(#{userPW})
 </select>
+
 <select id="userExist" resultType="int" parameterType="userVO">
 	SELECT COUNT(*) FROM user
 	WHERE userID = '#{userID}'

@@ -59,12 +59,20 @@ public class BookDAO {
 		return sql.selectList(namespace + ".new", vo); 
 	}
 	
+	public List<BookVO> RecommendList(PagingVO vo) throws Exception {
+		return sql.selectList(namespace + ".recommend", vo); 
+	}
+	
 	public int newCountList() throws Exception {
 		return sql.selectOne(namespace + ".newCountList");
 	}
 	
 	public int bestCountList() throws Exception {
 		return sql.selectOne(namespace + ".bestCountList");
+	}
+	
+	public int recommendCountList() throws Exception {
+		return sql.selectOne(namespace + ".recommendCountList");
 	}
 	
 }

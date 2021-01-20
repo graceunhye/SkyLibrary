@@ -1,7 +1,6 @@
 var getData  ="";
 	
 	function checkedSaveFn() {
-		
 		for(var i=0; i<getData.length ; i++) {
 			if($("#checked_"+getData[i].applyNo).prop("checked")){ 
 				$.ajax({

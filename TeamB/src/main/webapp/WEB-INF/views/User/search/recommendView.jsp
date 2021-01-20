@@ -10,7 +10,7 @@
 		<title>사서추천도서 상세정보</title>
 		
 		<link rel="stylesheet" href="/css/common.css" type="text/css"/>
-		<link rel="stylesheet" href="/css/bookView.css" type="text/css"/>
+		<link rel="stylesheet" href="/css/search/bookView.css" type="text/css"/>
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/common.js"></script>
@@ -27,10 +27,10 @@
 				<nav class="left_menu">
 					<ul>
 						<li class="left_menu_title">도서검색</li>
-						<a href="/User/search/total"><li class="left_menu_sub">통합검색</li></a>
-						<a href="/User/search/best"><li class="left_menu_sub">인기도서</li></a>
-						<a href="/User/search/new"><li class="left_menu_sub">신착도서</li></a>
-						<a href="/User/search/recommend"><li class="on left_menu_sub last_sub">사서추천도서</li></a>
+						<a href="/search/total"><li class="left_menu_sub">통합검색</li></a>
+						<a href="/search/best"><li class="left_menu_sub">인기도서</li></a>
+						<a href="/search/new"><li class="left_menu_sub">신착도서</li></a>
+						<a href="/search/recommend"><li class="on left_menu_sub last_sub">사서추천도서</li></a>
 					</ul>
 				</nav>
 				<div class="section">
@@ -46,27 +46,27 @@
 								<table width="800px" class="viewTable" >
 									<tr height="80px;">
 										<td colspan="3" align="center" height="50" class="view_td">
-											<h2>&lt;&lt;&nbsp;&nbsp;  책 제목  &nbsp;&nbsp;&gt;&gt;</h2>
+											<h2>&lt;&lt;&nbsp;&nbsp; <c:out value="${bookView.bookSubject}" /> &nbsp;&nbsp;&gt;&gt;</h2>
 										</td>
 									</tr>
 									<tr class="tr">
 										<td rowspan="6" width="15%" align="center" class="imgtd">
-											<img src="" alt="" width="82px">
+											<img src="<c:out value="${bookView.bookCoverImg}" />" alt="<c:out value="${bestView.bookSubject}" />" width="82px">
 										</td>
 										<th>저자</th>
-										<td></td>
+										<td><c:out value="${bookView.bookWriter}" /></td>
 									</tr>
 									<tr class="tr">
 										<th>출판사</th>
-										<td></td>							
+										<td><c:out value="${bookView.bookCompany}" /></td>							
 									</tr>
 									<tr class="tr">
 										<th>발행일</th>
-										<td></td>							
+										<td><c:out value="${bookView.bookPublicationDate}" /></td>							
 									</tr>
 									<tr class="tr">
 										<th>ISBN</th>
-										<td></td>							
+										<td><c:out value="${bookView.bookISBN}"/></td>							
 									</tr>
 									<tr class="tr lasttd">
 										<th>소장기관</th>
@@ -78,14 +78,14 @@
 							<div class="searchview2">
 								<h3><font color="orange">*</font>책 내용</h3>
 								<div class="storyDiv">
-									
+									<c:out value="${bookView.bookStory}"/>
 								</div>
 							</div>
 							<br>
 							<div class="searchview3">
 								<h3><font color="orange">*</font>추천 이유</h3>
 								<div class="storyDiv">
-									
+									${bookView.recommendWhy}
 								</div>
 							</div>					
 							<br>

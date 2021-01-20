@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skylibrary.service.UserService;
+import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 import com.skylibrary.vo.SessionVO;
 
@@ -33,8 +34,9 @@ public class LoginOutController {
 	public String login(SessionVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
 	{
 		System.out.println("In LoginoutController (value=/loginout/loginOk)");
+
 		HttpSession session = req.getSession(true);
-		
+
 		SessionVO login = userService.login(vo);
 		if(login == null ) {
 			session.setAttribute("user", null);

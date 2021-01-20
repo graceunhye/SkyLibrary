@@ -3,7 +3,7 @@ function rentFn(isbn, cnt){
 		if(cnt < 10 ) {
 			if(confirm("대출 하시겠습니까?")){	
 				$.ajax({
-					url  : "/User/search/bookViewAjax", 
+					url  : "/search/bookViewAjax", 
 					type : "post",
 					data : "isbn=" + isbn,
 					success : function(data){

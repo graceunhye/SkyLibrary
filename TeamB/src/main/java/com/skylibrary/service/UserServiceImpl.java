@@ -2,11 +2,8 @@ package com.skylibrary.service;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
-
 import com.skylibrary.dao.UserDAO;
 import com.skylibrary.vo.SearchVO;
 import com.skylibrary.vo.SessionVO;
@@ -62,7 +59,6 @@ public class UserServiceImpl implements UserService {
 	public Map<String, String> userInfoOk(SessionVO vo) throws Exception {
 		return dao.userInfoOk(vo);
 	}
-
 
 	
 

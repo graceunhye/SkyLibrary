@@ -9,11 +9,11 @@
 	<!-- 신청도서 insert -->
 	<!-- parameterType은 데이터를 넣을때 -->
 	<insert id="insert" parameterType="applyBookVO">
-		insert into 
+		INSERT INTO 
 			abook(userID, applyISBN, applySubject,applyCompany,
 					applyPublicationDate,applyDate,
 					applyWriter,applyPrice)
-			values(#{userID},#{applyISBN},#{applySubject},#{applyCompany},
+			VALUES(#{userID},#{applyISBN},#{applySubject},#{applyCompany},
 					#{applyPublicationDate},now(),
 					#{applyWriter},#{applyPrice})
 	</insert>

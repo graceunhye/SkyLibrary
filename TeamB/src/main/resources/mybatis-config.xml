@@ -4,10 +4,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0/EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<typeAliases>
-	
+	<typeAliases>	
 		<typeAlias type="com.skylibrary.vo.UserVO"   alias="userVO" />
+		<typeAlias type="com.skylibrary.vo.ManagerVO"   alias="managerVO" />
+		<typeAlias type="com.skylibrary.vo.SessionVO"   alias="sessionVO" />
 		<typeAlias type="com.skylibrary.vo.BookVO"   alias="bookVO" />
+		<typeAlias type="com.skylibrary.vo.RecommendVO"   alias="recommendVO" />
 		<typeAlias type="com.skylibrary.vo.NoticeVO"   alias="noticeVO" />
 		<typeAlias type="com.skylibrary.vo.SearchVO"   alias="searchVO" />
 		<typeAlias type="com.skylibrary.vo.PagingVO"   alias="pagingVO" />
