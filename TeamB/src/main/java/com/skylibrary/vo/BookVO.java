@@ -2,6 +2,7 @@ package com.skylibrary.vo;
 
 public class BookVO {
 	
+	//book 테이블
 	private int no;
 	private String bookISBN;            //isbn
 	private String bookSubject;         //책제목
@@ -13,13 +14,29 @@ public class BookVO {
 	private int    bookRent;            //대여여부
 	private String bookCoverImg;        //책커버이미지
 	
+	//rent 테이블
 	private String userID;        //회원 아이디
 	private String rentStartDate; //책 대여시작일
 	private String rentEndDate;   //책 반납예정일
 	private int rentNo;
 	
+	//rbook 테이블
+	private int recommendNo;
+	private String recommendWhy;
 	
+	public int getRecommendNo() {
+		return recommendNo;
+	}
+	public void setRecommendNo(int recommendNo) {
+		this.recommendNo = recommendNo;
+	}
 	
+	public String getRecommendWhy() {
+		return recommendWhy;
+	}
+	public void setRecommendWhy(String recommendWhy) {
+		this.recommendWhy = recommendWhy;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -36,13 +53,15 @@ public class BookVO {
 		return rentStartDate;
 	}
 	public void setRentStartDate(String rentStartDate) {
-		this.rentStartDate = rentStartDate;
+		String[] array = rentStartDate.split(" ");
+		this.rentStartDate = array[0];
 	}
 	public String getRentEndDate() {
 		return rentEndDate;
 	}
 	public void setRentEndDate(String rentEndDate) {
-		this.rentEndDate = rentEndDate;
+		String[] array = rentEndDate.split(" ");
+		this.rentEndDate = array[0];
 	}
 	public int getRentNo() {
 		return rentNo;

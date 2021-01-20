@@ -62,13 +62,14 @@
 </select>
 
 <!-- 도서상세페이지 -->
-<select id="bookView" parameterType="String" resultType="bookVO">
+<select id="recommendView" parameterType="String" resultType="bookVO">
 	SELECT 
 		bookSubject, bookStory, bookPublicationDate, bookCoverImg, bookCompany, bookWriter, bookISBN, bookCount, bookRent,
+	(select recommendNo from rbook where bookISBN = book.bookISBN limit 0,1) as recommendNo,
 	(select recommendWhy from rbook where bookISBN = book.bookISBN limit 0,1) as recommendWhy,
-	(select managerID as userID from rent where bookISBN = book.bookISBN limit 0,1) as userID
+	(select managerID as userID from rbook where bookISBN = book.bookISBN limit 0,1) as managerID
 	FROM book
-	WHERE bookISBN = #{bookISBN};	
+	WHERE bookISBN = #{bookISBN};
 </select>
 
 <!-- 도서상세페이지 rbook 테이블 insert-->
@@ -84,14 +85,13 @@
 	UPDATE rbook 
 		SET 
 	recommendWhy = #{recommendWhy}
-	WHERE bookISBN = #{bookISBN}	 
+	WHERE recommendNo = #{recommendNo}	 
 </update>
 
 <!-- 도서상세페이지 rbook 테이블 delete-->
 <delete id="deleteRbook" parameterType="bookVO">
-	DELETE FROM rbook 
-	WHERE bookISBN = #{bookISBN}	 
+	DELETE FROM rbook
+	WHERE recommendNo = #{recommendNo}	 
 </delete>
-
 
 </mapper>

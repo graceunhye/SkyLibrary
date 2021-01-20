@@ -77,9 +77,9 @@
 								<table width="800px">
 									<tr>
 										<td rowspan="4" width="15%" align="center">
-											<a href="/recommendView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg}" alt="${list.bookSubject}" width="82px"></a>
+											<a href="/Manager/mrecommend/mRecommendView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg}" alt="${list.bookSubject}" width="82px"></a>
 										</td>
-										<td colspan="2"><a href="/recommendView?isbn=${list.bookISBN}"><b>${list.bookSubject}</b></a></td>
+										<td colspan="2"><a href="/Manager/mrecommend/mRecommendView?isbn=${list.bookISBN}"><b>${list.bookSubject}</b></a></td>
 									</tr>
 									<tr>
 										<td width="30%">저자 : ${list.bookWriter}</td>

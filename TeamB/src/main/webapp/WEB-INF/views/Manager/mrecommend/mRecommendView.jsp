@@ -1,78 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>»ç¼­ ÃßÃµ µµ¼­°ü¸®</title>
-<link rel="stylesheet" href="../../../css/mCommon.css" type="text/css"/>
-<link rel="stylesheet" href="../../../css/mrecommendView.css" type="text/css"/>
-<script src="../../../js/jquery-3.5.1.min.js"></script>
+<meta charset="UTF-8">
+<title>ì‚¬ì„œ ì¶”ì²œ ë„ì„œê´€ë¦¬</title>
+<link rel="stylesheet" href="/css/mCommon.css" type="text/css"/>
+<link rel="stylesheet" href="/css/mRecommend/mrecommendView.css" type="text/css"/>
+<script src="/js/jquery-3.5.1.min.js"></script>
 <script>
-	function InsertFn(){	
-		var textVal = $("#recommend").val();
-		var data = {
-				recommend : textVal
-		}
-		
+	function InsertFn(){			
 		$.ajax({
-			url : "recommendInsert?isbn="+${bookView.bookISBN}+"",
+			url : "/Manager/mrecommend/insertAjax",
 			type : "post",
-			data : $.param(data),
-			success : function(result){
-				var json = JSON.parse(result);
+			data : "recommend="+$("#recommend").val()+"&isbn="+$("#bookISBN").val(),
+			success : function(data){				
 				var str = "";
-				str += "<span id='titleSp_"+json[0]["no"]+"' style='display:inline-block;width:90%;'>" + json[0]["why"] + "</span><br><br>"
-				str += "<span id='btnSp_"+json[0]["no"]+"'><button type='button' class='optionBox_btn_free'  onclick='modifyFn("+json[0]["no"]+")'>¼öÁ¤</button> <button type='button' onclick='deleteFn("+json[0]["no"]+")'>»èÁ¦</button></span>"
+				str += "<span id='titleSp_"+data.recommendNo+"' style='display:inline-block;width:90%;'>" + data.recommendWhy + "</span><br><br>"
+				str += "<span id='btnSp_"+data.recommendNo+"'><button type='button' class='optionBox_btn_free' onclick='modifyFn("+data.recommendNo+")'>ìˆ˜ì •</button> <button type='button' class='optionBox_btn_free' onclick='deleteFn("+data.recommendNo+")'>ì‚­ì œ</button></span>"
 				$("#recommend_box").html(str);
 			}
 		});	
 	}
 	
-	
 	function modifyFn(no){
 		var titleVal = $("#titleSp_"+no).text();
 		var str1 = "<textarea id='text_"+no+"' cols='100' rows='15'></textarea>";
-		var str2 = "<button type='button' onclick='saveFn("+no+")'>ÀúÀå</button> <button  class='optionBox_btn_free' type='button' onclick='deleteFn("+no+")'>»èÁ¦</button>";
+		var str2 = "<button type='button' class='optionBox_btn_free' onclick='saveFn("+no+")'>ì €ì¥</button> <button class='optionBox_btn_free' type='button' onclick='deleteFn("+no+")'>ì‚­ì œ</button>";
 		$("#titleSp_"+no).html(str1);
 		$("#btnSp_"+no).html(str2);
 		$("#text_"+no).val(titleVal);
 	}
 	
 	
-	function saveFn(num){
-		var textVal = $("#text_"+num).val();
-		alert("!"+textVal);
-		var data = {
-				recommend : textVal,
-				no    : num
-		}
+	function saveFn(no){
 		$.ajax({
-			url : "recommendUpdate?isbn="+${bookView.bookISBN}+"",
+			url : "/Manager/mrecommend/updateAjax",
 			type : "get",
-			data : $.param(data), //"title=tttt&no=17"Ã³·³ ÆÄ¶ó¹ÌÅÍ ¹®ÀÚ¿­·Î º¯°æÇØÁÜ, $("form").serialize() Æû¿¡ ÀÖ´Â µ¥ÀÌÅÍ ¹®ÀÚ¿­·Î, $("form").serializeArray()
-			success : function(result){
-				var json = JSON.parse(result); //json °´Ã¼ µ¥ÀÌÅÍ¸¦ ÀÚ¹Ù½ºÅ©¸³Æ® °´Ã¼·Î º¯°æÇØÁÖ´Â ¼ø°£
-				$("#titleSp_"+num).html(json[0]["why"]);
+			data : "recommend="+$("#text_"+no).val()+"&no="+no, //"title=tttt&no=17"ì²˜ëŸ¼ íŒŒë¼ë¯¸í„° ë¬¸ìì—´ë¡œ ë³€ê²½í•´ì¤Œ
+			success : function(data){
+				$("#titleSp_"+no).html(data.recommendWhy);
 				
-				var str = "<button type='button'  class='optionBox_btn_free' onclick='modifyFn("+num+")'>¼öÁ¤</button>";
-				$("#btnSp_"+num).html(str);
+				var str = "<button type='button' class='optionBox_btn_free' onclick='modifyFn("+no+")'>ìˆ˜ì •</button> <button class='optionBox_btn_free' type='button' onclick='deleteFn("+no+")'>ì‚­ì œ</button>";
+				$("#btnSp_"+no).html(str);
 			}
 		});
 	}
 	
-	function deleteFn(num){
-		if(confirm("ÃßÃµÀÌÀ¯¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?") == true) {
+	function deleteFn(no){
+		if(confirm("ì¶”ì²œ ì´ìœ ë¥¼ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?") == true) {
 			$.ajax({
-				url : "recommendDelete.jsp?isbn="+${bookView.bookISBN}+"",
+				url : "/Manager/mrecommend/deleteAjax",
 				type : "get",
-				data : "no="+num,
-				success : function(result){
-					alert("µ¥ÀÌÅÍ°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.");
-					location.href = "recommendView.jsp?isbn="+${bookView.bookISBN}+"";
+				data : "no="+no, //"title=tttt&no=17"ì²˜ëŸ¼ íŒŒë¼ë¯¸í„° ë¬¸ìì—´ë¡œ ë³€ê²½í•´ì¤Œ
+				success : function(data){
+					alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
+					location.href = "mRecommendView?isbn="+$("#bookISBN").val();
 				}
 			});
 		}	
@@ -83,90 +69,92 @@
 	<div class="wrap">
 		<header>
 			<div class="header">
-				<div class="title_box"><span class="head_title">°ü¸®ÀÚ ÆäÀÌÁö </span><span class="name">ÇÏ´Ãµµ¼­°ü</span></div>
+				<div class="title_box"><span class="head_title">ê´€ë¦¬ì í˜ì´ì§€ </span><span class="name">í•˜ëŠ˜ë„ì„œê´€</span></div>
 			</div>
 		</header>
 		<section>
 			<jsp:include page="../include/nav.jsp" />
 			<div class="section">
 				<div class="user_info">
-				<span class="info_title"><span class="point">*</span>»ç¼­ ÃßÃµ µµ¼­</span>				
+				<span class="info_title"><span class="point">*</span>ì‚¬ì„œ ì¶”ì²œ ë„ì„œ</span>				
 				</div>
 				<br>
 				<br>	
 				<div class="content">		
 				<div class="searchview">
+					<input type="hidden" id="bookISBN" value="${bookView.bookISBN}">
 					<div class="searchview1">
 						<table border="1" width="800px" style="border-collapse:collapse">
 							<tr>
-								<td colspan="3" align="center" height="50"><b><c:out value="${bookView.bookSubject}" /></b></td>
+								<td colspan="3" align="center" height="50"><b>${bookView.bookSubject}"</b></td>
 							</tr>
 							<tr>
 								<td rowspan="6" width="15%" align="center">
-									<img src="<c:out value="${bookView.bookCoverImg}" />" alt="<c:out value="${bestView.bookSubject}" />" width="82px">
+									<img src="${bookView.bookCoverImg}" alt="${bestView.bookSubject}" width="82px">
 								</td>
-								<th>ÀúÀÚ</th>
-								<td><c:out value="${bookView.bookWriter}" /></td>
+								<th>ì €ì</th>
+								<td>${bookView.bookWriter}</td>
 							</tr>
 							<tr>
-								<th>ÃâÆÇ»ç</th>
-								<td><c:out value="${bookView.bookCompany}" /></td>							
+								<th>ì¶œíŒì‚¬</th>
+								<td>${bookView.bookCompany}</td>							
 							</tr>
 							<tr>
-								<th>¹ßÇàÀÏ</th>
-								<td><c:out value="${bookView.bookPublicationDate}" /></td>							
+								<th>ë°œí–‰ì¼</th>
+								<td>${bookView.bookPublicationDate}</td>							
 							</tr>
 							<tr>
 								<th>ISBN</th>
-								<td><c:out value="${bookView.bookISBN}"/></td>							
+								<td>${bookView.bookISBN}</td>							
 							</tr>
 							<tr>
-								<th>¼ÒÀå±â°ü</th>
-								<td>ÇÏ´Ã µµ¼­°ü</td>							
+								<th>ì†Œì¥ê¸°ê´€</th>
+								<td>í•˜ëŠ˜ ë„ì„œê´€</td>							
 							</tr>
 						</table>
 					</div>
 					<br>
 					<div class="searchview2">
-					| »ó¼¼Á¤º¸
+					| ìƒì„¸ì •ë³´
 					<br>
 					<br>
 						<table border="1" width="800px" style="border-collapse:collapse">
 							<tr>
-								<td><c:out value="${bookView.bookStory}"/>
+								<td>${bookView.bookStory}
 								</td>
 							</tr>
 						</table>
 					</div>
 					<br>
 					<div class="searchview3">
-					| ÃßÃµÀÌÀ¯
+					| ì¶”ì²œì´ìœ 
 					<br>
 					<br>
-					<table border="1" width="800px" style="border-collapse:collapse">
+			
+					<table border="1" width="800px" style="border-collapse:collapse">  
 						<c:choose>  
-						    <c:when test="${recommendWhy != null}">  
+						    <c:when test="${bookView.recommendWhy != null}">  
 								<tr>
 									<td>
-										<span id="titleSp_${recommendNo}">${recommendWhy}</span>
+										<span id="titleSp_${bookView.recommendNo}">${bookView.recommendWhy}</span>
 										<br>
 										<br>
-										<span id="btnSp_${recommendNo}"><input type="button"  class="optionBox_btn_free" id="modify_btn" name="modify_btn" value="¼öÁ¤" onclick="modifyFn(${recommendNo})">	
-										<input type="button" id="delete_btn" name="delete_btn" value="»èÁ¦"  class="optionBox_btn_free" onclick="deleteFn(${recommendNo})"></span>	
+										<span id="btnSp_${bookView.recommendNo}"><input type="button" class="optionBox_btn_free" id="modify_btn" name="modify_btn" value="ìˆ˜ì •" onclick="modifyFn(${bookView.recommendNo})">	
+										<input type="button" id="delete_btn" name="delete_btn" value="ì‚­ì œ" class="optionBox_btn_free" onclick="deleteFn(${bookView.recommendNo})"></span>	
 									</td>
 								</tr>  
 						    </c:when>   
 						    <c:otherwise>  
 								<tr>
 									<td id="recommend_box">
-										<textarea id="recommend" name="recommend" cols="100" rows="15"></textarea>
+										<textarea id="recommend" name="recommendWhy" cols="100" rows="15"></textarea>
 										<input type="hidden" id="recommend_num" name="recommend_num" value="">
-										<input type="button" id="insert_btn" name="insert_btn" value="µî·Ï"  class="optionBox_btn_free" onclick="InsertFn()">
+										<input type="button" id="insert_btn" name="insert_btn" value="ë“±ë¡"  class="optionBox_btn_free" onclick="InsertFn()">
 									</td>
 								</tr>
 						    </c:otherwise>  
-						</c:choose> 													
-					</table>
+						</c:choose>  												
+					</table> 
 					</div>
 				</div>
 			</div>

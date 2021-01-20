@@ -1,5 +1,6 @@
 package com.skylibrary.vo;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class NoticeVO extends SessionVO {
 	private int noticeNo; //공지번호
@@ -9,7 +10,24 @@ public class NoticeVO extends SessionVO {
 	private int noticeHit; //공지 조회수
 	private String noticeFile; //첨부파일
 	
+	private String userID;        //회원 아이디
 	
+	//파일 업로드
+	private String fileName;
+	private MultipartFile uploadFile;
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 	public int getNoticeNo() {
 		return noticeNo;
 	}
@@ -53,6 +71,13 @@ public class NoticeVO extends SessionVO {
 		String[] array = noticeDate.split(" ");
 		this.noticeDate = array[0];
 	}
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeBody=" + noticeBody

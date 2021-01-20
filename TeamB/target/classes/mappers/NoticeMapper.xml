@@ -13,7 +13,6 @@
 	noticeHit,
 	noticeFile   
 </sql>
-
 <!-- 메인 -->
 <select id="listMain" resultType="noticeVO">
 	SELECT 
@@ -89,7 +88,7 @@
 </select>
 
 <!-- 사서 공지사항 목록 -->
-<select id="noticeList" resultType="noticeVO">
+<select id="noticeList" resultType="noticeVO" parameterType="pagingVO">
 	SELECT
 		noticeNo,
 		managerID as userID,
@@ -99,8 +98,8 @@
 		noticeHit,
 		noticeFile 
 	FROM notice
-	order by noticeNo desc
-	limit 0,10	  
+	ORDER BY noticeNo desc
+	LIMIT #{start},#{end}	  
 </select>
 
 <!-- 사서 공지사항 작성 -->
@@ -108,7 +107,7 @@
 	INSERT INTO 
 		notice (managerID, noticeTitle, noticeBody, noticeDate, noticeFile)
 	VALUES 
-		(#{userID}, #{noticeTitle}, #{noticeBody}, now(), #{noticeFile})
+		(#{userID}, #{noticeTitle}, #{noticeBody}, now(), #{fileName})
 </insert>
 
 
@@ -125,5 +124,31 @@
 	FROM notice
 	WHERE noticeNo = #{noticeNo}
 </select>
+
+<update id="noticeModify" parameterType="noticeVO">
+	UPDATE notice
+	SET 
+		noticeTitle = #{noticeTitle},
+		noticeBody = #{noticeBody},
+		noticeFile = #{fileName}
+	WHERE noticeNo = #{noticeNo}
+</update>
+
+<delete id="noticeDelete" parameterType="noticeVO">
+	DELETE FROM notice
+	WHERE noticeNo = #{noticeNo}
+</delete>
+
+<select id="noticeCountList" resultType="int">
+	SELECT COUNT(*)
+	FROM notice
+	ORDER BY noticeNo DESC
+</select>
+
+<update id="updateHit">
+	UPDATE notice
+	SET noticeHit = IFNULL(noticeHit, 0) + 1
+	WHERE noticeNo = #{noticeNo}
+</update>
 
 </mapper>

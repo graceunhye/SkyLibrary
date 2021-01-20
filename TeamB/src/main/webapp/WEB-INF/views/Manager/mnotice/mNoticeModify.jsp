@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 작성</title>
+<title>공지사항 수정</title>
 
 	<link rel="stylesheet" href="/css/mCommon.css" type="text/css"/>
 	<link rel="stylesheet" href="/css/mNotice/mnoticeInsert.css" type="text/css"/>
@@ -28,15 +28,16 @@
 					<span class="info_title"><span class="point">*</span>공지사항 등록</span>
 					<br>
 					<br>
-					<form name="frm" id="frm" method="post" action="mNoticeInsertOk" enctype="multipart/form-data">
+					<form name="frm" id="frm" method="post" action="mNoticeModifyOk" enctype="multipart/form-data">
+						<input type="hidden" name="noticeNo" value="${noticeView.noticeNo}">
 						<table width="1300">
 							<tr>
 								<td>제목</td>
-								<td><input type="text" size="128" id="title" name="noticeTitle"></td>
+								<td><input type="text" size="128" id="title" name="noticeTitle" value="${noticeView.noticeTitle}"></td>
 							</tr>	
 							<tr>
 								<td>내용</td>
-								<td><textarea name="noticeBody" id="ir1" rows="30" cols="130"></textarea></td>
+								<td><textarea name="noticeBody" id="ir1" rows="30" cols="130"><c:out value="${noticeView.noticeBody}"/></textarea></td>
 							</tr>
 							<tr>
 								<td>첨부파일</td>

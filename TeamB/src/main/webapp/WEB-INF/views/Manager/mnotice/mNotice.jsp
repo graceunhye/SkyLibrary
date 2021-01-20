@@ -53,17 +53,24 @@
 						</div>
 						<br>
 						<div class="notice_page">	
-						
-						<a href="notice.jsp?page=1">맨앞으로</a> 
-						<a href="notice.jsp?page=">이전</a>
-						 
-						<b><a href="notice.jsp?page="></a></b>
-						<a href="notice.jsp?page="></a>
-						
-						<a href="notice.jsp?page=">다음</a>
-						<a href="notice.jsp?page=">맨뒤로</a>		
-
-						</div>													
+						<c:if test="${paging.startPage != 1}">
+						<a href="/Manager/mnotice/mNotice?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+						</c:if>
+						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+							<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
+							<c:choose>
+								<c:when test="${p eq paging.nowPage}">
+									<b>${p}</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage}">
+									<a href="/Manager/mnotice/mNotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a href="/Manager/mnotice/mNotice?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+						</c:if>
+						</div>														
 					</div>
 				</div>	
 		</section>

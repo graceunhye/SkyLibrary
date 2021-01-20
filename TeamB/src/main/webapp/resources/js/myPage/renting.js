@@ -1,7 +1,7 @@
 function returnFn(node, id, isbn){
 			if(confirm("반납하시겠습니까?")){
 				$.ajax({
-					url  : "/User/myPage/bookReturnAjax",
+					url  : "/myPage/bookReturnAjax",
 					type : "post",
 					data : "isbn="+isbn+"&id="+id,
 					success : function(data){
@@ -14,15 +14,15 @@ function returnFn(node, id, isbn){
 		function extensionFn(node, isbn){
 			if(confirm("연장하시겠습니까?")){
 				$.ajax({
-					url : "/User/myPage/bookExtensionAjax",
+					url : "/myPage/bookExtensionAjax",
 					type : "post",
 					data : "isbn="+isbn,
 					success : function(data){
-						
+						alert(data.rentEndDate);
 						var str1 = data.rentEndDate
 						var str2 = "<input type='button' class='normalBtn' value='연장불가' disabled>";
 						
-						$(node).parent().find(".endd_td").html();
+						$(node).parent().prev().prev(".endd_td").html(str1);
 						$(node).parent().html(str2);
 					}
 				});

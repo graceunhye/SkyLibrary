@@ -18,6 +18,7 @@ import com.skylibrary.service.BookService;
 import com.skylibrary.vo.BookVO;
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
 @Controller
@@ -61,17 +62,17 @@ public class SearchController {
 	public String getTotalView(@RequestParam("isbn") String isbn, Model model, HttpServletRequest request) throws Exception {
 		
 		BookVO vo = bookService.bookView(isbn);
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 		
-		UserVO user = (UserVO) session.getAttribute("user");
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
 		int result = 0;
 		
-		if(user != null) {
-			result = bookService.bookViewCnt(user.getUserID());	
+		if(sessionVO != null) {
+			result = bookService.bookViewCnt(sessionVO.getUserID());	
 		}
 		
 		model.addAttribute("bookView", vo);
-		model.addAttribute("user", user);
+		model.addAttribute("user", sessionVO);
 		model.addAttribute("cnt", result);
 		
 		return "/User/search/totalView";
@@ -108,15 +109,15 @@ public class SearchController {
 		BookVO vo = bookService.bookView(isbn);
 		HttpSession session = request.getSession();
 		
-		UserVO user = (UserVO) session.getAttribute("user");
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
 		int result = 0;
 		
-		if(user != null) {
-			result = bookService.bookViewCnt(user.getUserID());	
+		if(sessionVO != null) {
+			result = bookService.bookViewCnt(sessionVO.getUserID());	
 		}
 		
 		model.addAttribute("bookView", vo);
-		model.addAttribute("user", user);
+		model.addAttribute("user", sessionVO);
 		model.addAttribute("cnt", result);
 		
 		return "/User/search/bestView";
@@ -125,13 +126,17 @@ public class SearchController {
 	@RequestMapping(value="/bookViewAjax", method=RequestMethod.POST)
 	@ResponseBody
 	public BookVO AjaxUpdate(@RequestParam("isbn") String isbn,HttpServletRequest request) throws Exception {
+		
 		BookVO bookVO = new BookVO();
 		bookVO.setBookISBN(isbn);
+		
 		HttpSession session = request.getSession();
-		UserVO vo = (UserVO)session.getAttribute("user");
+		SessionVO vo = (SessionVO)session.getAttribute("user");
+		
 		if(vo != null) {
 			bookVO.setUserID(vo.getUserID());
 		}
+		
 		bookService.updateBook(bookVO);
 		bookService.insertRent(bookVO);
 		bookVO = bookService.selectRent(bookVO.getNo());
@@ -170,17 +175,53 @@ public class SearchController {
 		BookVO vo = bookService.bookView(isbn);
 		HttpSession session = request.getSession();
 		
-		UserVO user = (UserVO) session.getAttribute("user");
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
 		int result = 0;
 		
-		if(user != null) {
-			result = bookService.bookViewCnt(user.getUserID());	
+		if(sessionVO != null) {
+			result = bookService.bookViewCnt(sessionVO.getUserID());	
 		}
 		
 		model.addAttribute("bookView", vo);
-		model.addAttribute("user", user);
+		model.addAttribute("user", sessionVO);
 		model.addAttribute("cnt", result);
 		
 		return "/User/search/newView";
+	}
+	
+	@RequestMapping(value="/recommend", method=RequestMethod.GET)
+	public String getRecommend(Locale locale, Model model, PagingVO paging) throws Exception {
+		
+		int total = bookService.recommendCountList();
+
+		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
+			paging.setNowPage(1);
+			paging.setCntPerPage(5); 
+			
+		}else if(paging.getNowPage() == 0){
+			paging.setNowPage(1);
+			
+		}else if(paging.getCntPerPage() == 0){
+			paging.setCntPerPage(5);
+		}
+		
+		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
+
+		List<BookVO> recommendlist = bookService.RecommendList(paging);
+		
+		model.addAttribute("recommendlist", recommendlist);
+		model.addAttribute("paging", paging);
+		
+		return "/User/search/recommend"; 
+	}
+	
+	@RequestMapping(value="/recommendView", method=RequestMethod.GET)
+	public String getRecommendView(@RequestParam("isbn") String isbn, Model model) throws Exception {
+		
+		BookVO vo = bookService.bookView(isbn);
+		
+		model.addAttribute("bookView", vo);
+		
+		return "/User/search/recommendView";
 	}
 }

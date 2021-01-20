@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>°øÁö»çÇ× »ó¼¼º¸±â</title>
+<meta charset="UTF-8">
+<title>ê³µì§€ì‚¬í•­ ìƒì„¸ë³´ê¸°</title>
 <link rel="stylesheet" href="/css/mCommon.css" type="text/css"/>
 <link rel="stylesheet" href="/css/mNotice/mnoticeView.css" type="text/css"/>
 
 <script>
 	function deleteFn(){
-		if(confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
-			location.href = "noticeDelete?no=${list.noticeNo}";
+		if(confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?") == true){
+			location.href = "/Manager/mnotice/mNoticeDelete?noticeNo=${noticeView.noticeNo}";
 		}
 	}
 </script>
@@ -22,39 +22,39 @@
 	<div class="wrap">
 		<header>
 			<div class="header">
-				<div class="title_box"><span class="head_title">°ü¸®ÀÚ ÆäÀÌÁö </span><span class="name">ÇÏ´Ãµµ¼­°ü</span></div>
+				<div class="title_box"><span class="head_title">ê´€ë¦¬ìž íŽ˜ì´ì§€ </span><span class="name">í•˜ëŠ˜ë„ì„œê´€</span></div>
 			</div>
 		</header>
 		<section>
 			<jsp:include page="../include/nav.jsp" />
 			<div class="section">
 				<div class="user_info">
-					<span class="info_title"><span class="point">*</span>°øÁö»çÇ× </span>
+					<span class="info_title"><span class="point">*</span>ê³µì§€ì‚¬í•­ </span>
 					<br>
 					<br>
 					<table border="1" style="border-collapse:collapse" width="1000">
 						<tr>
-							<td align="center" width="7%" class="view_td">±Û¹øÈ£</td>
+							<td align="center" width="7%" class="view_td">ê¸€ë²ˆí˜¸</td>
 							<td align="center" width="10%">${noticeView.noticeNo}</td>
-							<td align="center" width="7%" class="view_td">ÀÛ¼ºÀÚ</td>
+							<td align="center" width="7%" class="view_td">ìž‘ì„±ìž</td>
 							<td align="center" width="10%">${noticeView.userID}</td>
 						</tr>		
 						<tr class="mid_tr">
-							<td align="center" width="7%" class="view_td">ÀÛ¼ºÀÏ</td>
+							<td align="center" width="7%" class="view_td">ìž‘ì„±ì¼</td>
 							<td align="center" width="10%">${noticeView.noticeDate}</td>
-							<td align="center" width="7%" class="view_td">Á¶È¸¼ö</td>
+							<td align="center" width="7%" class="view_td">ì¡°íšŒìˆ˜</td>
 							<td align="center" width="10%">${noticeView.noticeHit}</td>
 						</tr>
 						<tr>
-							<td align="center" height="40px" class="view_td" width="7%">Á¦¸ñ</td>
+							<td align="center" height="40px" class="view_td" width="7%">ì œëª©</td>
 							<td colspan="3"><c:out value="${noticeView.noticeTitle}"/></td>	
 						</tr>
 						<tr>
-							<td align="center" height="400px" class="view_td" width="7%">³»¿ë</td>
+							<td align="center" height="400px" class="view_td" width="7%">ë‚´ìš©</td>
 							<td colspan="3">
 							<c:choose>  
 							    <c:when test="${noticeView.noticeFile != null}">  
-									<img src="noticeFileDown?type=img&nfile=${noticeView.noticeFile}">
+									<img src="/upload/${noticeView.noticeFile}">
 									<c:out value="${noticeView.noticeBody}"/>
 							    </c:when>  
 							    <c:otherwise>  
@@ -64,11 +64,11 @@
 							</td>	
 						</tr>
 						<tr>
-							<td align="center" height="50px" class="view_td" width="7%">Ã·ºÎÆÄÀÏ</td>
+							<td align="center" height="50px" class="view_td" width="7%">ì²¨ë¶€íŒŒì¼</td>
 							<td colspan="3">
 								<c:choose>  
 								    <c:when test="${noticeView.noticeFile != null}">  
-										<a href="noticeFileDown.jsp?nfile=${noticeView.noticeFile}"><c:out value="${noticeView.noticeFile}"/></a>
+										<a href="/Manager/mnotice/noticeFileDown?fileName=${noticeView.noticeFile}"><c:out value="${noticeView.noticeFile}"/></a>
 								    </c:when>  
 								    <c:otherwise>  
 								    </c:otherwise>   
@@ -79,9 +79,9 @@
 					<br>
 					<br>
 					<div class="view_btn">
-						<input type="button" value="¼öÁ¤" id="nmodify" class="optionBox_btn_free" onclick="location.href='noticeModify?no=${list.noticeNo}'">
-						<input type="button" value="»èÁ¦" id="ndelete"  class="optionBox_btn_free" onclick="deleteFn()">
-						<input type="button" value="¸ñ·Ï"  class="optionBox_btn_free" onclick="location.href='mNotice'">
+						<input type="button" value="ìˆ˜ì •" id="nmodify" class="optionBox_btn_free" onclick="location.href='/Manager/mnotice/mNoticeModify?noticeNo=${noticeView.noticeNo}'">
+						<input type="button" value="ì‚­ì œ" id="ndelete"  class="optionBox_btn_free" onclick="deleteFn();">
+						<input type="button" value="ëª©ë¡"  class="optionBox_btn_free" onclick="location.href='mNotice'">
 					</div>	
 				</div>
 			</div>

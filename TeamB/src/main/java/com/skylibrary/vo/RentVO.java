@@ -12,46 +12,35 @@ public class RentVO {
 	private String bookISBN; //isbn
 	private String bookSubject; //책제목
 	private String bookWriter; //작가명
+	private String bookCompany;
 	private String rentStartDate; //대출시작일
 	private String rentEndDate; //반납예정일
 	private int    compare; //연장 기준값
-	
-	public RentVO() throws ParseException {
-		setCompare(this.rentStartDate, this.rentEndDate);
-	}
+
 	
 	public int getCompare() {
 		return compare;
 	}
-	
-	public void setCompare(String rentStartDate, String rentEndDate) throws ParseException {
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date start_d = dateFormat.parse(rentStartDate);
-		Date end_d = dateFormat.parse(rentEndDate);
-		
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(start_d);
-		cal.add(Calendar.DATE,14);
-		
-		String startd_add = dateFormat.format(cal.getTime());
-		Date startadd_d = dateFormat.parse(startd_add);
-		
-		this.compare = end_d.compareTo(startadd_d);
+	public void setCompare(int compare) {
+		this.compare = compare;
 	}
-	
 	public String getBookSubject() {
 		return bookSubject;
 	}
 	public void setBookSubject(String bookSubject) {
 		this.bookSubject = bookSubject;
 	}
-
 	public String getBookWriter() {
 		return bookWriter;
 	}
 	public void setBookWriter(String bookWriter) {
 		this.bookWriter = bookWriter;
+	}
+	public String getBookCompany() {
+		return bookCompany;
+	}
+	public void setBookCompany(String bookCompany) {
+		this.bookCompany = bookCompany;
 	}
 	public int getRentNo() {
 		return rentNo;

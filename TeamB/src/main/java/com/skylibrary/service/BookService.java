@@ -27,7 +27,11 @@ public interface BookService {
 	
 	public List<BookVO> NewList(PagingVO vo) throws Exception;
 	
+	public List<BookVO> RecommendList(PagingVO vo) throws Exception;
+	
 	public int newCountList() throws Exception;
 	
 	public int bestCountList() throws Exception;
+	
+	public int recommendCountList() throws Exception;
 }

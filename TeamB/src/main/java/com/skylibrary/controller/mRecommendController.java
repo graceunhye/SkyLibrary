@@ -12,11 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skylibrary.service.BookService;
+import com.skylibrary.service.RecommendService;
 import com.skylibrary.vo.BookVO;
 import com.skylibrary.vo.PagingVO;
+import com.skylibrary.vo.RecommendVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
 @Controller
@@ -25,6 +29,9 @@ public class mRecommendController {
 	
 	@Inject
 	BookService bookService;
+	
+	@Inject
+	RecommendService recommendService;
 	
 	@RequestMapping(value="/mRecommend", method=RequestMethod.GET)
 	public String getRecommendList(Locale locale, Model model, SearchVO search, PagingVO paging) throws Exception {
@@ -57,22 +64,66 @@ public class mRecommendController {
 	}
 	
 	@RequestMapping(value="/mRecommendView", method=RequestMethod.GET)
-	public String getTotalView(@RequestParam("isbn") String isbn, Model model, HttpServletRequest request) throws Exception {
+	public String getRecommendView(@RequestParam("isbn") String isbn, Model model) throws Exception {
 		
 		BookVO vo = bookService.bookView(isbn);
-		HttpSession session = request.getSession();
-		
-		UserVO user = (UserVO) session.getAttribute("user");
-		int result = 0;
-		
-		if(user != null) {
-			result = bookService.bookViewCnt(user.getUserID());	
-		}
 		
 		model.addAttribute("bookView", vo);
-		model.addAttribute("user", user);
-		model.addAttribute("cnt", result);
 		
 		return "/Manager/mrecommend/mRecommendView";
 	}
+	
+	@RequestMapping(value="/insertAjax", method=RequestMethod.POST)
+	@ResponseBody
+	public BookVO AjaxInsert(@RequestParam("recommend") String recommendWhy, @RequestParam("isbn") String bookISBN, HttpServletRequest request) throws Exception {
+		
+		BookVO bookVO = new BookVO();
+		bookVO.setRecommendWhy(recommendWhy);
+		bookVO.setBookISBN(bookISBN);
+		
+		HttpSession session = request.getSession(true);
+		
+		SessionVO vo = (SessionVO)session.getAttribute("user");
+		bookVO.setUserID(vo.getUserID());
+
+		recommendService.insertRbook(bookVO);
+		
+		return bookVO;
+	}
+	
+	@RequestMapping(value="/updateAjax", method=RequestMethod.GET)
+	@ResponseBody
+	public RecommendVO AjaxUpdate(@RequestParam("recommend") String recommendWhy, @RequestParam("no") int recommendNo, HttpServletRequest request) throws Exception {
+		
+		RecommendVO recommendVO = new RecommendVO();
+		recommendVO.setRecommendWhy(recommendWhy);
+		recommendVO.setRecommendNo(recommendNo);
+		
+		HttpSession session = request.getSession(true);
+		
+		SessionVO vo = (SessionVO)session.getAttribute("user");
+		recommendVO.setManagerID(vo.getUserID());
+
+		recommendService.updateRbook(recommendVO);
+		
+		return recommendVO;
+	}
+	
+	@RequestMapping(value="/deleteAjax", method=RequestMethod.GET)
+	@ResponseBody
+	public RecommendVO AjaxDelete(@RequestParam("no") int recommendNo, HttpServletRequest request) throws Exception {
+		
+		RecommendVO recommendVO = new RecommendVO();
+		recommendVO.setRecommendNo(recommendNo);
+		
+		HttpSession session = request.getSession(true);
+		
+		SessionVO vo = (SessionVO)session.getAttribute("user");
+		recommendVO.setManagerID(vo.getUserID());
+
+		recommendService.deleteRbook(recommendVO);
+		
+		return recommendVO;
+	}	
+	
 }

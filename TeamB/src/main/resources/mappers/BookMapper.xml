@@ -109,7 +109,10 @@
 	SELECT 
 		bookSubject, bookStory, bookPublicationDate, bookCoverImg, bookCompany, bookWriter, bookISBN, bookCount, bookRent,
 	(select rentEndDate from rent where bookISBN = book.bookISBN and bookRent = 1 order by rentEndDate desc limit 0,1) as rentEndDate,
-	(select userID from rent where bookISBN = book.bookISBN and bookRent = 1 order by rentEndDate desc limit 0,1) as userID
+	(select userID from rent where bookISBN = book.bookISBN and bookRent = 1 order by rentEndDate desc limit 0,1) as userID,
+	(select recommendNo from rbook where bookISBN = book.bookISBN limit 0,1) as recommendNo,
+	(select recommendWhy from rbook where bookISBN = book.bookISBN limit 0,1) as recommendWhy,
+	(select managerID as userID from rbook where bookISBN = book.bookISBN limit 0,1) as managerID
 	FROM book
 	WHERE bookISBN = #{bookISBN};	
 </select>
@@ -165,6 +168,24 @@
 	LIMIT #{start},#{end}
 </select>
 
+
+<!-- 사서 추천 도서 -->
+<select id="recommend" resultType="bookVO" parameterType="pagingVO">
+	SELECT 
+			bookISBN,
+			bookSubject, 
+			bookStory, 
+			bookCount, 
+			bookCompany, 
+			bookWriter, 
+			bookPublicationDate, 
+			bookRent, 
+			bookCoverImg
+	FROM 	book 
+	WHERE bookISBN in (SELECT bookISBN from rbook)
+	LIMIT #{start},#{end}
+</select>
+
 <select id="newCountList" resultType="int">
 	SELECT COUNT(*)
 	FROM book
@@ -172,6 +193,12 @@
 </select>
 
 <select id="bestCountList" resultType="int">
+	SELECT COUNT(*)
+	FROM book
+	ORDER BY bookCount DESC
+</select>
+
+<select id="recommendCountList" resultType="int">
 	SELECT COUNT(*)
 	FROM book
 	ORDER BY bookCount DESC

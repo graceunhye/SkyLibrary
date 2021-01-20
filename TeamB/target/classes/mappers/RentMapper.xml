@@ -19,13 +19,48 @@
 </insert>
 
 <select id="selectRent" resultType="rentVO" parameterType="userVO">
-	SELECT * FROM user u, rent r, book b
+		SELECT  u.userID
+			,   u.userPW
+			,	u.userName
+			,	u.userNum
+			,	u.userPostNum
+			,	u.userAddr
+			,	u.userAddrDetail
+			,	u.userEmail
+			,	u.userEmailDomain
+			,	r.rentNo
+			,	r.bookISBN
+			,	r.rentStartDate
+			,	r.rentEndDate
+			,	b.bookSubject
+			,	b.bookStory
+			,	b.bookCount
+			,	b.bookCompany
+			,	b.bookWriter
+			,	b.bookPublicationDate
+			,	b.bookRent
+			,	b.bookCoverImg
+			,   DATEDIFF(r.rentEndDate, r.rentStartDate) as compare
+		FROM user u, rent r, book b
 	WHERE 
 		r.userID = u.userID
 	AND 
 		r.bookISBN = b.bookISBN
 	AND 
 		u.userID = #{userID}
+</select>
+
+<update id="extensionBook" parameterType="com.skylibrary.vo.BookVO">
+	UPDATE rent 
+	SET rentEndDate = DATE_ADD(rentEndDate, INTERVAL 7 DAY)
+	WHERE bookISBN = #{bookISBN}
+</update>
+
+<select id="extenstionSelect" resultType="rentVO" parameterType="rentVO">
+	SELECT 
+		rentEndDate
+	FROM rent
+	WHERE bookISBN = #{bookISBN}
 </select>
 
 <update id="updateBook" parameterType="com.skylibrary.vo.BookVO">

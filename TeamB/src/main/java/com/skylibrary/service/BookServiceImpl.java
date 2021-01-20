@@ -61,6 +61,11 @@ public class BookServiceImpl implements BookService {
 	public List<BookVO> NewList(PagingVO vo) throws Exception{
 		return dao.NewList(vo);
 	}
+	
+	@Override
+	public List<BookVO> RecommendList(PagingVO vo) throws Exception{
+		return dao.RecommendList(vo);
+	}
 
 	@Override
 	public int countList(SearchVO vo) throws Exception {
@@ -75,6 +80,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public int bestCountList() throws Exception {
 		return dao.bestCountList();
+	}
+	
+	@Override
+	public int recommendCountList() throws Exception {
+		return dao.recommendCountList();
 	}
 
 }
