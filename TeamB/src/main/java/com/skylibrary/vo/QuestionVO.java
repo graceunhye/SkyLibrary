@@ -7,7 +7,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class QuestionVO {
+public class QuestionVO extends SessionVO {
 	
 	private int    questionNo;     //글번호
 	private String userID;         //회원아이디
@@ -20,6 +20,12 @@ public class QuestionVO {
 	private String startDate;
 	private String endDate;
 
+	
+	public QuestionVO()
+	{
+		setQuestionDate(this.questionDate);
+		setQuestionOkDate(this.questionOkDate);
+	}
 //	public String getStartDate() {
 //		return startDate;
 //	}

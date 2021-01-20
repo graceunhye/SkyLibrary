@@ -22,7 +22,8 @@ public class UserVO {
 	private String userAddrDetail;  //상세주소
 	private String userEmail;       //이메일아이디
 	private String userEmailDomain; //이메일도메인
-	private boolean loginCon;       //로그인 성공여부 || 보류
+	private int    userType;
+	private String userJoinDate;
 	
 	UserVO(){
 		setUserNum(userNumSplit1, userNumSplit2, userNumSplit3);

@@ -4,13 +4,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+@Setter
+@Getter
+@ToString
 public class NoticeVO extends SessionVO {
-	private int noticeNo; //������ȣ
-	private String noticeTitle; //��������
-	private String noticeBody; //��������
-	private String noticeDate; //������¥
-	private int noticeHit; //���� ��ȸ��
-	private String noticeFile; //÷������
+	private int noticeNo; 
+	private String userID;
+	private String noticeTitle; 
+	private String noticeBody; 
+	private String noticeDate;
+	private int noticeHit;
+	private String noticeFile;
 	
 //	
 //	public int getNoticeNo() {

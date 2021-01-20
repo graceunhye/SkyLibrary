@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.skylibrary.vo.ApplyBookVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.SessionVO;
 
 public interface ApplyBookService {
 	
@@ -19,4 +20,6 @@ public interface ApplyBookService {
 	public List<Map<String,String>> wishSearchOk(SearchVO vo) throws Exception;
 	
 	public Map<String,String> wishDetailOk(ApplyBookVO vo) throws Exception;
+	
+	public List<Map<String,String>> userWishInfoOk(SessionVO vo) throws Exception;
 }

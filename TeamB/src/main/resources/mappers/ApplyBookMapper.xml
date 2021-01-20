@@ -19,7 +19,7 @@
 	</insert>
 	
 	<!-- MANAGER AREA -->
-	<update id="checkedSave" parameterType="applyVO">
+	<update id="checkedSave" parameterType="applyBookVO">
 		UPDATE abook 
 		SET applyType=#{applyType}, applyOkDate=now() 
 		WHERE applyNo=#{applyNo}
@@ -27,7 +27,7 @@
 	<select id="wishSearchOk" parameterType="searchVO" resultType="java.util.Map">
 		SELECT * FROM abook
 		WHERE 1=1
-		<if test="applyType != null and applyType != '' and applyType != 4">
+		<if test="selectType != null and selectType != '' and selectType != 4">
 			AND applyType = #{selectType}
 		</if>
 		<if test="startDate != null and endDate != null 
@@ -36,7 +36,10 @@
 		</if>
 		ORDER BY applyNo DESC
 	</select>
-	<select id="wishDetailOk" parameterType="applyVO" resultType="java.util.Map">
+	<select id="wishDetailOk" parameterType="applyBookVO" resultType="java.util.Map">
 		SELECT * FROM abook WHERE applyNo = #{applyNo}
+	</select>
+	<select id="userWishInfoOk" parameterType="sessionVO" resultType="java.util.Map">
+		SELECT * FROM abook WHERE userID=#{userID}
 	</select>
 </mapper>

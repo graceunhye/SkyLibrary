@@ -10,6 +10,17 @@
 	insert into rent
 	(userID, bookISBN, rentEndDate, bookSubject, bookWriter)
 	value
-	(#{userID},#{bookISBN},now()+7,#{bookSubject},#{bookWriter})
+	(#{userID},#{bookISBN},date_add(now(), interval 14 day),#{bookSubject},#{bookWriter})
 </insert>
+<select id="userRentInfoOk" resultType="java.util.Map" parameterType="rentVO">
+	SELECT rentNo,
+			userID,
+			rentStartDate,
+			rentEndDate,
+			(select bookSubject from book where bookISBN=rent.bookISBN) as bookSubject,
+			(select bookCompany from book where bookISBN=rent.bookISBN) as bookCompany
+
+	FROM rent 
+	WHERE userID=#{userID}
+</select>
 </mapper>

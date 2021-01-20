@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.skylibrary.dao.ApplyBookDAO;
 import com.skylibrary.vo.ApplyBookVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.SessionVO;
 
 @Service
 public class ApplyBookServiceImpl implements ApplyBookService {
@@ -40,6 +41,11 @@ public class ApplyBookServiceImpl implements ApplyBookService {
 	@Override
 	public Map<String, String> wishDetailOk(ApplyBookVO vo) throws Exception {
 		return dao.wishDetailOk(vo);
+	}
+
+	@Override
+	public List<Map<String, String>> userWishInfoOk(SessionVO vo) throws Exception {
+		return dao.userWishInfoOk(vo);
 	}
 	
 

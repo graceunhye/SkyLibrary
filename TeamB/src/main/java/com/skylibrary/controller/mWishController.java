@@ -25,18 +25,19 @@ public class mWishController {
 	
 	@RequestMapping(value="/mWish", method=RequestMethod.GET)
 	public String getWishList(Locale locale, Model model) throws Exception {
-		return "/Manager/mwish/mwish";
+		return "/Manager/mwish/mWish";
 	}
 	
 	@RequestMapping(value="/ajax/checkedSave")
-	public void wishCheckedSave(ApplyBookVO vo) throws Exception {
+	public String wishCheckedSave(ApplyBookVO vo) throws Exception {
 		applyService.checkedSave(vo);
+		return "redirect:/mwish/ajax/searchOk";
 	}
 	
 	@RequestMapping(value="/ajax/searchOk")
 	@ResponseBody
 	public List<Map<String,String>> wishSearchOk(SearchVO vo) throws Exception {
-		
+		System.out.println("vo::"+vo);
 		List<Map<String,String>> wishListMap = applyService.wishSearchOk(vo);
 		System.out.println("wishListMap::"+wishListMap);
 		return wishListMap;
@@ -45,7 +46,9 @@ public class mWishController {
 	@RequestMapping(value="/ajax/detailOk")
 	@ResponseBody
 	public Map<String,String> wishDetailOk(ApplyBookVO vo) throws Exception{
+		System.out.println("voDate::"+vo.getApplyDate()+",vo::"+vo);
 		Map<String,String> wishDetailMap = applyService.wishDetailOk(vo);
+		System.out.println("wishDetailMap::"+wishDetailMap);
 		return wishDetailMap;
 	}
 }

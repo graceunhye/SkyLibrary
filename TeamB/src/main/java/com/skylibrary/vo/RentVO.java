@@ -11,13 +11,11 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class RentVO {
+public class RentVO extends SessionVO{
 	
 	private int    rentNo; //대출번호
-	private String userID; //사용자아이디
+    private String userID; //사용자아이디
 	private String bookISBN; //isbn
-	private String bookSubject; //책제목
-	private String bookWriter; //작가명
 	private String rentStartDate; //대출시작일
 	private String rentEndDate; //반납예정일
 	private int    compare; //연장 기준값

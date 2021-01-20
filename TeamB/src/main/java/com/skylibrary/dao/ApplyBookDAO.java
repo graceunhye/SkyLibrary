@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.skylibrary.vo.ApplyBookVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
 @Repository
@@ -39,5 +40,9 @@ public class ApplyBookDAO {
 	
 	public Map<String,String> wishDetailOk(ApplyBookVO vo) throws Exception {
 		return sql.selectOne(namespace + ".wishDetailOk", vo);
+	}
+	
+	public List<Map<String,String>> userWishInfoOk(SessionVO vo) throws Exception {
+		return sql.selectList(namespace + ".userWishInfoOk", vo);
 	}
 }

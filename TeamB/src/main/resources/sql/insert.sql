@@ -56,3 +56,27 @@ insert into notice
 ('testManager', 'noticeTest 20', 'notice body 20');
 
 
+insert into abook
+(
+ userID
+ ,applyISBN
+ ,applySubject
+ ,applyCompany
+ ,applyPublicationDate
+ ,applyWriter
+ ,applyPrice
+ ,applyWhy
+)
+values
+('testUser','123456789101','책 제목 subject 1','출판사 company 1', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 2','출판사 company 2', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 3','출판사 company 3', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 4','출판사 company 4', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 5','출판사 company 5', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 6','출판사 company 6', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 7','출판사 company 7', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 8','출판사 company 8', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 9','출판사 company 9', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 10','출판사 company 10', '2021','송은혜', '15000','도서관에 없습니다.'),
+('testUser','123456789101','책 제목 subject 11','출판사 company 11', '2021','송은혜', '15000','도서관에 없습니다.');
+

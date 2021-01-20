@@ -1,12 +1,14 @@
 package com.skylibrary.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.skylibrary.vo.SearchVO;
 import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
@@ -49,8 +51,23 @@ public class UserDAO {
 	}
 	
 	//유저 삭제
-	public void userRemove(UserVO vo) throws Exception {
+	public void userRemove(SessionVO vo) throws Exception {
 		sql.delete(namespace + ".userRemove", vo);
+	}
+	
+	//상제정보 조회
+	public Map<String,String> userInfoOk(SessionVO vo)  throws Exception {
+		return sql.selectOne(namespace + ".userInfoOk", vo);
+	}
+	
+	//검색
+	public List<Map<String,String>> userSearchOk(SearchVO vo) throws Exception {
+		return sql.selectList(namespace + ".userSearchOk", vo);
+	}
+	
+	//조회
+	public List<Map<String,String>> userSelectOk(SearchVO vo) throws Exception {
+		return sql.selectList(namespace + ".userSelectOk", vo);
 	}
 
 	

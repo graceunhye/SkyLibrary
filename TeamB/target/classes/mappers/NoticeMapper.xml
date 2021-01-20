@@ -32,7 +32,7 @@
 <select id="list" parameterType="searchVO" resultType="noticeVO">
 	SELECT 
 			noticeNo,
-			managerID,
+			managerID as userID,
 			noticeTitle,
 			noticeBody,
 			noticeDate,
@@ -89,26 +89,26 @@
 </select>
 
 <!-- 사서 공지사항 목록 -->
-<select id="noticeList" resultType="com.skylibrary.vo.NoticeVO">
+<select id="noticeList" resultType="noticeVO">
 	SELECT
 		noticeNo,
-		managerID,
+		managerID as userID,
 		noticeTitle,
 		noticeBody,
 		noticeDate,
 		noticeHit,
 		noticeFile 
 	FROM notice
-	order by noticeNo desc
-	limit 0,10	  
+	ORDER BY noticeNo DESC
+	LIMIT 0,10	  
 </select>
 
 <!-- 공지사항 작성 -->
-<insert id="noticeWrite" parameterType="com.skylibrary.vo.NoticeVO">
+<insert id="noticeWrite" parameterType="noticeVO">
 	INSERT INTO 
 		notice (managerID, noticeTitle, noticeBody, noticeDate, noticeFile)
 	VALUES 
-		(#{managerID}, #{title}, #{ir1}, now(), #{fname})
+		(#{userID}, #{noticeTitle}, #{noticeBody}, now(), #{fname})
 </insert>
 
 </mapper>

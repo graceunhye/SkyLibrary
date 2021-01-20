@@ -7,9 +7,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class BookVO {
+public class BookVO extends SessionVO {
 	
-	private int no;
 	private String bookISBN;            //isbn
 	private String bookSubject;         //책제목
 	private String bookStory;           //줄거리

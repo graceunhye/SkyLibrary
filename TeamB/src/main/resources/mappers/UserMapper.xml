@@ -25,6 +25,36 @@
 	SELECT COUNT(*) FROM user
 	WHERE userID = '#{userID}'
 </select>
+
+<select id="userInfoOk" resultType="java.util.Map"  parameterType="sessionVO">
+	SELECT <include refid="allColumns"/>
+	FROM user
+	WHERE userID=#{userID}
+</select>
+<select id="userSelectOk" resultType="java.util.Map" parameterType="searchVO">
+	SELECT <include refid="allColumns"/>
+	FROM user
+	WHERE 1=1
+	<if test="selectType != null and selectType != ''">
+	AND	userType=#{userType}
+	</if>
+	<if test="startDate != null and endDate != null
+	and startDate != '' and endDate != ''">
+	AND userJoinDate BETWEEN #{startDate} AND #{endDate}
+	</if>
+	ORDER BY userName ASC
+</select>
+<select id="userSearchOk" resultType="java.util.Map" parameterType="searchVO">
+	SELECT <include refid="allColumns" />
+	FROM user
+	WHERE 1=1
+	<if test="searchType != null">
+	AND #{searchType}
+	</if>
+	<if test="searchText != null">
+	LIKE CONCAT('%',#{searchText},'%')
+	</if>
+</select>
 <insert id="join" parameterType="userVO">
 	INSERT INTO user
 	(<include refid="allColumns"/>) 
@@ -67,7 +97,7 @@
 	SET userPW = md5('#{userPW}')
 	WHERE userID = #{userID}
 </update>
-<delete id="userRemove" parameterType="userVO">
+<delete id="userRemove" parameterType="sessionVO">
 	DELETE FROM user 
 	WHERE userID = #{userID}
 </delete>

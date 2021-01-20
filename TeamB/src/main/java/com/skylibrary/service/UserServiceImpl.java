@@ -1,12 +1,14 @@
 package com.skylibrary.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.skylibrary.dao.UserDAO;
+import com.skylibrary.vo.SearchVO;
 import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
@@ -42,9 +44,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void userRemove(UserVO vo) throws Exception {
+	public void userRemove(SessionVO vo) throws Exception {
 		dao.userRemove(vo);
 	}
+
+	@Override
+	public List<Map<String, String>> userSelectOk(SearchVO vo) throws Exception {
+		return dao.userSelectOk(vo);
+	}
+
+	@Override
+	public List<Map<String, String>> userSearchOk(SearchVO vo) throws Exception {
+		return dao.userSearchOk(vo);
+	}
+
+	@Override
+	public Map<String, String> userInfoOk(SessionVO vo) throws Exception {
+		return dao.userInfoOk(vo);
+	}
+
 
 	
 

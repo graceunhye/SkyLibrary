@@ -14,6 +14,9 @@ create table user
 	userAddrDetail  varchar(100)           comment '상세주소',
 	userEmail       varchar(20)            comment '이메일아이디',
 	userEmailDomain varchar(100)           comment '이메일도메인', 
+	userType        int          default 0 comment '회원구분',
+	userJoinDate  timestamp default now() comment '회원가입일',
+	-- 0:일반,1:회원탈퇴,2:강제탈퇴
 	primary key (userID)
 );
 
@@ -73,7 +76,7 @@ create table notice
 -- 도서정보
 create table book
 (
-	bookISBN            bigint         comment 'ISBN',
+	bookISBN            varchar(20)          comment 'ISBN',
 	bookSubject         varchar(100)   comment '제목',
 	bookStory           text           comment '줄거리', 
 	bookCount           int default 0  comment '대출횟수',
@@ -103,7 +106,7 @@ create table abook
 (
 	applyNo     	     int auto_increment       comment '신청번호', 
 	userID    	         varchar(20)	          comment '회원 아이디',  
-	applyISBN            bigint     		      comment 'ISBN',
+	applyISBN            varchar(15)     		  comment 'ISBN',
 	applySubject         varchar(100)     	      comment '제목',
 	applyCompany	     varchar(50)      	      comment '출판사',
 	applyPublicationDate varchar(20) 		      comment '발행일', 
@@ -123,7 +126,7 @@ create table rent
 (
 	rentNo        int  auto_increment     comment '대여번호',
 	userID    	  varchar(20)	 		  comment '회원 아이디',
-	bookISBN      bigint			      comment 'ISBN',
+	bookISBN      bigint  			      comment 'ISBN',
 	rentStartDate timestamp default now() comment '대여시작일',
 	rentEndDate	  timestamp               comment '반납예정일',	
 	primary key (rentNo),

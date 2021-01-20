@@ -2,12 +2,10 @@ package com.skylibrary.vo;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
-public class ApplyBookVO {
+public class ApplyBookVO extends SessionVO {
 	private int    applyNo; //신청도서번호
 	private String userID; //유저아이디
 	private String applyISBN; //isbn
@@ -66,9 +64,10 @@ public class ApplyBookVO {
 //	public String getApplyOkDate() {
 //		return applyOkDate;
 //	}
-//	public void setApplyOkDate(String applyOkDate) {
-//		this.applyOkDate = applyOkDate;
-//	}
+	public void setApplyOkDate(String applyOkDate) {
+		String array[] = applyOkDate.split(" ");
+		this.applyOkDate = array[0];;
+	}
 //	public String getApplyWriter() {
 //		return applyWriter;
 //	}
