@@ -53,8 +53,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public BookVO selectRent(int no) throws Exception {
-		return dao.selectRent(no); 
+	public BookVO selectRent(int rentNo) throws Exception {
+		return dao.selectRent(rentNo); 
 	}
 	
 	@Override

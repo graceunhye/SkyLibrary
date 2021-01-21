@@ -47,6 +47,12 @@ public class ApplyBookServiceImpl implements ApplyBookService {
 	public List<Map<String, String>> userWishInfoOk(SessionVO vo) throws Exception {
 		return dao.userWishInfoOk(vo);
 	}
+
+	@Override
+	public List<ApplyBookVO> view(String userID) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 

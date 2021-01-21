@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -56,7 +57,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="" var="">
+								<c:forEach items="whishCheckData" var="list">
 								<c:if test="">
 								<tr height="40px;">
 									<td class="mid"></td>
@@ -70,13 +71,13 @@
 								</c:if>
 								<c:if test="">
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td>${whishCheckData.applyNo}</td>
+									<td>${whishCheckData.applySubject}</td>
+									<td>${whishCheckData.applyISBN}</td>
+									<td>${whishCheckData.applyWriter}</td>
+									<td>${whishCheckData.applyCompany}</td>
+									<td>${whishCheckData.applyDate}</td>
+									<td>${whishCheckData.applyType}</td>
 								</tr>
 								</c:if>
 								</c:forEach>

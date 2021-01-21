@@ -23,7 +23,7 @@ public interface BookService {
 	
 	public int insertRent(BookVO vo) throws Exception;
 	
-	public BookVO selectRent(int no) throws Exception;
+	public BookVO selectRent(int rentNo) throws Exception;
 	
 	public List<BookVO> NewList(PagingVO vo) throws Exception;
 	

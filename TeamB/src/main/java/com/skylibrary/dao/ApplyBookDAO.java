@@ -28,6 +28,7 @@ public class ApplyBookDAO {
 	//신청 도서 작성
 	public void insert(ApplyBookVO vo) throws Exception{
 		sql.insert(namespace + ".insert",vo);
+
 	}
 	
 	public void checkedSave(ApplyBookVO vo) throws Exception {
@@ -36,7 +37,15 @@ public class ApplyBookDAO {
 	
 	public List<Map<String,String>> wishSearchOk(SearchVO vo) throws Exception {
 		return sql.selectList(namespace + ".wishSearchOk", vo);
+
+	};
+	
+	//신청 도서 조회
+	public List<ApplyBookVO>  view(String userID)throws Exception {
+		
+		return sql.selectList(namespace+".view",userID);	
 	}
+	
 	
 	public Map<String,String> wishDetailOk(ApplyBookVO vo) throws Exception {
 		return sql.selectOne(namespace + ".wishDetailOk", vo);

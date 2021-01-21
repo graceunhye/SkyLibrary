@@ -139,7 +139,7 @@ public class SearchController {
 		
 		bookService.updateBook(bookVO);
 		bookService.insertRent(bookVO);
-		bookVO = bookService.selectRent(bookVO.getNo());
+		bookVO = bookService.selectRent(bookVO.getRentNo());
 		
 		return bookVO;
 	}

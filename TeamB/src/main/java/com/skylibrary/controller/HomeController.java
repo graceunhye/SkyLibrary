@@ -31,18 +31,46 @@ public class HomeController {
 	@Inject
 	BookService bookService;
 	
+	/*
+	 * private static final Logger logger =
+	 * LoggerFactory.getLogger(HomeController.class);
+	 */
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
+
+		
+		System.out.println("in controller");
+
 		System.out.println("In HomeController (value=/)");
 		
+
 		List<BookVO> bookList = bookService.MainList();
 		List<NoticeVO> noticeList = noticeService.MainList();
 		
+		System.out.println("data load complete");
 		model.addAttribute("bookList",bookList);
 		model.addAttribute("noticeList",noticeList);
+
+		/* logger.info("Welcome home! The client locale is {}.", locale); */
+		
+		
+		
+		/*
+		 * Date date = new Date(); DateFormat dateFormat =
+		 * DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		 */
+		
+		/*
+		 * String formattedDate = dateFormat.format(date);
+		 * 
+		 * model.addAttribute("serverTime", formattedDate );
+		 */
+
 		
 		System.out.println("Out HomeController (value=/)");
+
 		return "home";
 	}
 	

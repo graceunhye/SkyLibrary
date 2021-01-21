@@ -51,8 +51,8 @@ public class BookDAO {
 		return sql.insert(namespace + ".insertRent", vo);
 	}
 	
-	public BookVO selectRent(int no) {
-		return sql.selectOne(namespace + ".selectRent", no);
+	public BookVO selectRent(int rentNo) {
+		return sql.selectOne(namespace + ".selectRent", rentNo);
 	}
 	
 	public List<BookVO> NewList(PagingVO vo) throws Exception {

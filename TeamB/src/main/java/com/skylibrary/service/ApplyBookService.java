@@ -6,6 +6,8 @@ import java.util.Map;
 import com.skylibrary.vo.ApplyBookVO;
 import com.skylibrary.vo.SearchVO;
 import com.skylibrary.vo.SessionVO;
+import com.skylibrary.vo.UserVO;
+
 
 public interface ApplyBookService {
 	
@@ -14,7 +16,7 @@ public interface ApplyBookService {
 	
 	//신청 도서 작성
 	public void insert(ApplyBookVO vo)throws Exception;
-	
+
 	public void checkedSave(ApplyBookVO vo) throws Exception;
 	
 	public List<Map<String,String>> wishSearchOk(SearchVO vo) throws Exception;
@@ -22,4 +24,9 @@ public interface ApplyBookService {
 	public Map<String,String> wishDetailOk(ApplyBookVO vo) throws Exception;
 	
 	public List<Map<String,String>> userWishInfoOk(SessionVO vo) throws Exception;
+
+	//신청 도서 조회
+	public List<ApplyBookVO> view(String userID) throws Exception;
+	
+
 }
