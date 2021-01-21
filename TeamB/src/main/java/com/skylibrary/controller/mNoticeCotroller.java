@@ -2,14 +2,10 @@ package com.skylibrary.controller;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
->>>>>>> da08ed998bdb39dcf4778bf7528d74a6046dfc40
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -17,12 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
-
-
-=======
 import org.apache.commons.io.FilenameUtils;
->>>>>>> da08ed998bdb39dcf4778bf7528d74a6046dfc40
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
