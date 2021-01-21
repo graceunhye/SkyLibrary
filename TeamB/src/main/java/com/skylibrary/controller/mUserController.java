@@ -20,6 +20,7 @@ import com.skylibrary.service.UserService;
 import com.skylibrary.vo.RentVO;
 import com.skylibrary.vo.SearchVO;
 import com.skylibrary.vo.SessionVO;
+import com.skylibrary.vo.UserVO;
 
 @Controller
 @RequestMapping(value="/muser")
@@ -87,8 +88,8 @@ public class mUserController {
 	//회원 상세정보 조회
 	@RequestMapping(value="/ajax/userInfoOk", method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,String> userInfoOk(SessionVO vo) throws Exception {
-		Map<String,String> Result = userService.userInfoOk(vo);
+	public UserVO userInfoOk(SessionVO vo) throws Exception {
+		UserVO Result = userService.userInfoOk(vo);
 		System.out.println("userInfoOk::"+Result);
 		return Result;
 	}
