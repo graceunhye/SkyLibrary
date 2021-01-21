@@ -14,12 +14,31 @@
 	
 	<script src="../mnotice/js/jquery-3.5.1.min.js"></script>
 	
+	<style>
+		.m_logout{
+			position : relative;
+			margin-top : 20px;
+			margin-left : 950px;
+			border-radius : 7px;
+			width : 150px;
+			height: 40px;
+			border : 1px solid #4A90E2;
+			background-color : #4A90E2;
+			color : white;
+			font-size : 15px;
+			font-weight : bold;
+		}
+	</style>
+	
 </head>
 <body style="margin: 0px;">
 	<div class="wrap">
 		<header>
 			<div class="header">
 				<div class="title_box"><span class="head_title">관리자 페이지 </span><span class="name">하늘도서관</span></div>
+				<div>
+					<button type="button" class="m_logout" onclick="location.href='/loginout/logout'">로그아웃</button>
+				</div>
 			</div>
 		</header>
 		<section>
@@ -53,23 +72,23 @@
 						</div>
 						<br>
 						<div class="notice_page">	
-						<c:if test="${paging.startPage != 1}">
-						<a href="/Manager/mnotice/mNotice?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
-						</c:if>
-						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
-							<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
-							<c:choose>
-								<c:when test="${p eq paging.nowPage}">
-									<b>${p}</b>
-								</c:when>
-								<c:when test="${p != paging.nowPage}">
-									<a href="/Manager/mnotice/mNotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
-								</c:when>
-							</c:choose>
-						</c:forEach>
-						<c:if test="${paging.endPage != paging.lastPage}">
-							<a href="/Manager/mnotice/mNotice?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
-						</c:if>
+							<c:if test="${paging.startPage != 1}">
+							<a href="/Manager/mnotice/mNotice?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+							</c:if>
+							<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+								<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
+								<c:choose>
+									<c:when test="${p eq paging.nowPage}">
+										<b>${p}</b>
+									</c:when>
+									<c:when test="${p != paging.nowPage}">
+										<a href="/Manager/mnotice/mNotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${paging.endPage != paging.lastPage}">
+								<a href="/Manager/mnotice/mNotice?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+							</c:if>
 						</div>														
 					</div>
 				</div>	

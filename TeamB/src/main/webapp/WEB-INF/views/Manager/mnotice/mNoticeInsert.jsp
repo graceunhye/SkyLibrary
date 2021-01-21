@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="/css/mCommon.css" type="text/css"/>
 	<link rel="stylesheet" href="/css/mNotice/mnoticeInsert.css" type="text/css"/>
 	
-	<script type="text/javascript" src="../mnotice/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/mnotice/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 	<script src="/js/jquery-3.5.1.min.js"></script>
 </head>
 <body style="margin: 0px;">
