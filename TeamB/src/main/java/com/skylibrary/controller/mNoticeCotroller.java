@@ -138,8 +138,9 @@ public class mNoticeCotroller {
 		
 		NoticeVO vo = noticeservice.NoticeView(noticeNo);
 		model.addAttribute("noticeView", vo);
+		model.addAttribute("noticeNo", vo.getNoticeNo());
 		
-		return "/Manager/mnotice/mNoticeView?noticeNo=" + vo.getNoticeNo();
+		return "Manager/mnotice/mNoticeView";
 
 	}
 	
