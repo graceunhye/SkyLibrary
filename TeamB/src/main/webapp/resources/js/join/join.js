@@ -1,18 +1,21 @@
 		var idCheck = "false";
 
 		function idCheck(){				
-			var id = document.joinfrm.id.value;
+			var userID = $("input[name='userID']").val();
+			alert("userID::"+userID);
 			
 			$.ajax({
-				url: "/IDcheck?id=" + id,
-				type:"get",
-				success: function(data)
+				url: "/join/ajax/idCheckOk?userID="+userID,
+				type: "GET",
+				error: function(){
+					alert("idCheck function error");
+				}, success: function(data)
 				{
 					if(data.trim() == "idEmpty") {
 					
 						$("#idCheckResult").css("color", "red");
 						$("#idCheckResult").html("아이디를 입력해주세요.");
-						$("#userID").focus();
+						$("input[name='userID']").focus();
 						
 					}else if(data.trim() == "mismatch") {
 					
@@ -37,7 +40,7 @@
 
 		function PW_check(){
 		
-		     var userPW = $("#userPW").val().trim();
+		     var userPW = $("input[name='userPW']").val().trim();
 		     
 			 var pattern1 = /[0-9]/;
 	         var pattern2 = /[a-zA-Z]/;
@@ -45,7 +48,7 @@
 			 
 			if(!userPW){
 				 
-				 $("#userPW").val("");	//비밀번호 초기값으로 초기화
+				 $("input[name='userPW']").val("");	//비밀번호 초기값으로 초기화
 				 $("#passwordCheckResult").html("비밀번호를 입력해주세요.");
 				 return false;
 			 
@@ -53,16 +56,16 @@
 			 
 				 $("#passwordCheckResult").css("color","red");
 				 $("#passwordCheckResult").html("비밀번호는 8자리 이상 20자리 이하입니다.");
-				 $("#userPW").val("");
-				 $("#userPW").focus();
+				 $("input[name='userPW']").val("");
+				 $("input[name='userPW']").focus();
 				 return false;
 			 
 			 }else if(userPW.search(/\s/) != -1){
 			 
 				  $("#passwordCheckResult").css("color","red");
 				  $("#passwordCheckResult").html("비밀번호엔 공백을 쓰실 수 없습니다.");
-				  $("#userPW").val("");
-				   $("#userPW").focus();
+				  $("input[name='userPW']").val("");
+				  $("input[name='userPW']").focus();
 				   
 				  return false;
 				  
@@ -71,8 +74,8 @@
 				 $("#passwordCheckResult").css("color","red");
 				 $("#passwordCheckResult").html("비밀번호는 영어, 숫자, 특수문자 1개씩은 포함하여야 합니다.");
 				 
-				 $("#userPW").val("");
-				 $("#userPW").focus();
+				 $("input[name='userPW']").val("");
+				 $("input[name='userPW']").focus();
 				 return false;
 				 
 			 }else{
@@ -85,12 +88,12 @@
 		
 		
 		function RPW_check(){
-			 var userPW  = $("#userPW").val().trim();
-			 var userRPW = $("#userRPW").val().trim();
+			 var userPW  = $("input[name='userPW']").val().trim();
+			 var userRPW = $("input[name='userRPW']").val().trim();
 			 
 			 if(userPW != userRPW) {
 				 
-				 $("#userRPW").val("");	//비밀번호 초기값으로 초기화
+				 $("input[name='userRPW']").val("");	//비밀번호 초기값으로 초기화
 				 $("#rePasswordCheckResult").css("color","red");
 				 $("#rePasswordCheckResult").html("비밀번호가 일치하지 않습니다.");
 
@@ -108,8 +111,8 @@
 				new daum.Postcode({
 				    oncomplete: function(data) {
 				        //data는 사용자가 선택한 주소 정보를 담고 있는 객체
-				    	$("#userPostNum").val(data.zonecode);
-						$("#userAddr").val(data.address);
+				    	$("input[name='userPostNum']").val(data.zonecode);
+				    	$("input[name='userAddr']").val(data.address);
 				    }
 				}).open();
 				
@@ -119,20 +122,20 @@
 		
 		function Submit(){
 		
-			var userIDValue        = $("#userID").val();
-			var userNameValue      = $("#userName").val();
-			var userPWValue        = $("#userPW").val();
-			var userRPWValue       = $("#userRPW").val();
-			var userEmailValue     = $("#userEmail").val();
-			var userNumSplit2Value = $("#userNumSplit2").val();
-			var userNumSplit3Value = $("#userNumSplit3").val();
-			var userPostNumValue   = $("#userPostNum").val();
+			var userIDValue        = $("input[name='userID']").val();
+			var userNameValue      = $("input[name='userName']").val();
+			var userPWValue        = $("input[name='userPW']").val();
+			var userRPWValue       = $("input[name='userRPW']").val();
+			var userEmailValue     = $("input[name='userEmail']").val();
+			var userNumSplit2Value = $("input[name='userNumSplit2']").val();
+			var userNumSplit3Value = $("input[name='userNumSplit3']").val();
+			var userPostNumValue   = $("input[name='userPostNum']").val();
 			
 			
 			if(userIDValue == "")
 			{
 				alert("아이디는 필수 항목입니다.");
-				$("#userID").focus();
+				$("input[name='userID']").focus();
 				
 			}else if(idCheck == "false")
 			{
@@ -141,60 +144,59 @@
 			else if(userPWValue == "") 
 			{
 				alert("비밀번호는 필수 항목입니다.");
-				$("#userPW").focus();
+				$("input[name='userPW']").focus();
 				
 			}else if(userRPWValue == "") 
 			{
 				alert("비밀번호 확인은 필수 항목입니다.");
-				$("#userRPW").focus();
+				$("input[name='userRPW']").focus();
 			}
 			else if(userNameValue == "") 
 			{
 				alert("이름은 필수 항목입니다.");
-				$("#userName").focus();
+				$("input[name='userName']").focus();
 				
 			}else if(userEmailValue == "") 
 			{
 				alert("이메일은 필수 항목입니다.");
-				$("#userEmail").focus();
+				$("input[name='userEmail']").focus();
 				
 			}else if(userEmailValue.trim() == "") 
 			{
-			
 				alert("이메일에 공백은 넣을 수 없습니다. 다시 시도해주세요.");
 				userEmailValue = "";
-				$("#userEmail").focus();
+				$("input[name='userEmail']").focus();
 				
 			}else if(userNumSplit2Value == "" && userNumSplit3Value == "")
 			{
 				alert("연락처는 필수 항목 입니다.");
 				if(userNumSplit2Value == ""){
-					$("#userNumSplit2").focus();
+					$("input[name='userNumSplit2']").focus();
 				}
 				if(userNumSplit3Value == ""){
-					$("#userNumSplit3").focus();
+					$("input[name='userNumSplit3']").focus();
 				}
 			}
 			else if(isNaN(userNumSplit2Value)) //isNaN() true==숫자 아니다. false== 숫자다.
 			{ 
 				alert("올바른 형식의 전화번호를 입력해주세요");
 				userNumSplit2Value = "";
-				$("#userNumSplit2").focus();
+				$("input[name='userNumSplit2']").focus();
 			}
 			else if(isNaN(userNumSplit3Value))
 			{
 				alert("올바른 형식의 전화번호를 입력해주세요");
 				userNumSplit3Value = "";
-				$("#userNumSplit3").focus();
+				$("input[name='userNumSplit3']").focus();
 			}
 			else if(userNumSplit2Value == "" || userNumSplit3Value == "")
 			{
 				alert("올바른 형식의 전화번호를 입력해주세요");
 				if(userNumSplit2Value == "") {
-					$("#userNumSplit2").focus();
+					$("input[name='userNumSplit2']").focus();
 				}
 				if(userNumSplit3Value == "") {
-					$("#userNumSplit3").focus();
+					$("input[name='userNumSplit3']").focus();
 				}
 			}
 			else if(userPostNumValue != "" && isNaN(userPostNumValue))

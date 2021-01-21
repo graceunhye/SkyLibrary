@@ -35,7 +35,7 @@ public interface UserService {
 	public List<Map<String,String>>  userSearchOk(SearchVO vo) throws Exception;
 	
 	//상제정보 조회
-	public Map<String,String> userInfoOk(SessionVO vo) throws Exception;
+	public UserVO userInfoOk(SessionVO vo) throws Exception;
 	
 	//유저 삭제 & 유저 탈퇴
 	public void userRemove(SessionVO vo) throws Exception;

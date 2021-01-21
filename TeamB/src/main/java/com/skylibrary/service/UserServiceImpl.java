@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Map<String, String> userInfoOk(SessionVO vo) throws Exception {
+	public UserVO userInfoOk(SessionVO vo) throws Exception {
 		return dao.userInfoOk(vo);
 	}
 

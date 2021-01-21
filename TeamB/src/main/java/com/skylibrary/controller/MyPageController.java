@@ -110,6 +110,12 @@ public class MyPageController {
 	public String userInfo(Model model, HttpServletRequest req) throws Exception {
 		System.out.println("In MyPageController (value=/userInfo)");
 		
+		HttpSession session = req.getSession(true);
+		
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		UserVO vo = userService.userInfoOk(sessionVO);
+		model.addAttribute("userInfo",vo);
+			
 		System.out.println("Out MyPageController (value=/userInfo)");
 		return "/User/myPage/userInfo";
 	}

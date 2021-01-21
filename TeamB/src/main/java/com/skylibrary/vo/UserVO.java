@@ -26,7 +26,7 @@ public class UserVO {
 	private String userJoinDate;    //가입일
 	
 
-	UserVO(){
+	public UserVO(){
 		setUserNum(this.userNumSplit1, this.userNumSplit2, this.userNumSplit3);
 	}
 	

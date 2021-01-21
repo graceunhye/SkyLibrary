@@ -12,13 +12,10 @@
 		<link rel="stylesheet" href="/css/common.css" type="text/css"/>
 		<link rel="stylesheet" href="/css/myPage/userInfo.css" type="text/css"/>
 		
+		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="/js/jquery-3.5.1.min.js"></script>
+		<script src="/js/use/userInfo.js"></script>
 		<script src="/js/common.js"></script>
-		<script>
-			function userInfoModify{
-				
-			}
-		</script>
 	</head>
 	<body style="margin:0px">
 		<div class="wrap"> 
@@ -46,50 +43,50 @@
 							<table class="content_table">
 								<tr class="top_tr">
 									<th style="width:25%;">ID</th>
-									<td class="top_td">${user.userID }</td>
+									<td class="top_td">${userInfo.userID }</td>
 								</tr>
 								<tr class="mid_tr">
 									<th>이름</th>
-									<td class="mid_td">${user.userName }</td>
+									<td class="mid_td" id="userName">${userInfo.userName }</td>
 								</tr>
 								<tr class="mid_tr">
 									<th>연락처</th>
-									<td class="mid_td">
-										<c:if test="${user.userNum != null }">
-										${user.userNum }
+									<td class="mid_td" id="userNum">
+										<c:if test="${userInfo.userNum != null }">
+										${userInfo.userNum }
 										</c:if>
-										<c:if test="${user.userNum == null }">
+										<c:if test="${userInfo.userNum == null }">
 										등록된 정보가 없습니다.
 										</c:if>
 									</td>
 								</tr>
 								<tr class="mid_tr">
 									<th>주소</th>
-									<td class="mid_td">
-										<c:if test="${user.userPostNum != null }">
-										[${user.userPostNum }]${user.userAddr }
-										<c:if test="${useruser.userAddrDetail != null}">
-										${user.userAddrDetail }
+									<td class="mid_td" id="userPostNum">
+										<c:if test="${userInfo.userPostNum != null }">
+										[${userInfo.userPostNum }] ${userInfo.userAddr }
+										<c:if test="${userInfo.userAddrDetail != null}">
+										${userInfo.userAddrDetail }
 										</c:if>
 										</c:if>
-										<c:if test="${user.userPostNum == null }">
+										<c:if test="${userInfo.userPostNum == null }">
 										등록된 정보가 없습니다.
 										</c:if>
 									</td>
 								</tr>
-								<tr class="mid_tr">
-									<th >이메일</th>
-									<td>
-										<c:if test="${user.userEmail != null }">
-										${user.userEmail }@${user.userEmailDomain }
+								<tr class="mid_tr">	
+									<th>이메일</th>
+									<td id="userEmail">
+										<c:if test="${userInfo.userEmail != null }">
+										${userInfo.userEmail }@${userInfo.userEmailDomain }
 										</c:if>
-										<c:if test="${user.userEmail == null }">
+										<c:if test="${userInfo.userEmail == null }">
 										등록된 정보가 없습니다.
 										</c:if>
 									</td>
 								</tr>
 							</table>
-							<button id="modify_b" type="button" onclick="location.href='/myPage/userInfoModify'">회원정보 수정</button>
+							<button id="modify_b" type="button" onclick="userModify()">회원정보 수정</button>
 						</div>
 					</div>
 				</div>

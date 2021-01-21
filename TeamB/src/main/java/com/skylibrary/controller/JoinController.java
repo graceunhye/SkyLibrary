@@ -47,33 +47,34 @@ public class JoinController {
 		return "/User/loginout/login";
 	}
 	
-	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "/join/ajax/idCheckOk", method = RequestMethod.GET)
 	public String idCheck(Model model, UserVO vo) throws Exception {
 		
 		String userID = vo.getUserID();
-		
+		String checkResult = null;
 		int ExistResult = userService.userExist(vo);
 		if(ExistResult == 1) 
 		{
-			model.addAttribute("idCheckResult", "alreadyUse");
+			checkResult="alreadyUse";
 		}
 		
 		if(ExistResult == 0) 
 		{
 			if(Pattern.matches("^[a-zA-Z0-9]*$", userID) == false) 
 			{
-				model.addAttribute("idCheckResult", "mismatch");
+				checkResult="mismatch";
 			}
 			else if(userID == "") 
 			{
-				model.addAttribute("idCheckResult", "idEmpty");
+				checkResult="idEmpty";
 			}else 
 			{
-				model.addAttribute("idCheckResult","pass");
+				checkResult="pass";
 			}
 		}
+		System.out.println("checkResult::"+checkResult);
 
-		return "/User/join/join";
+		return checkResult;
 	}
 	
 	

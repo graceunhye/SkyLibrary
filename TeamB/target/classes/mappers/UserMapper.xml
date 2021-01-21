@@ -28,7 +28,7 @@
 	WHERE userID = '#{userID}'
 </select>
 
-<select id="userInfoOk" resultType="java.util.Map"  parameterType="sessionVO">
+<select id="userInfoOk" resultType="userVO"  parameterType="sessionVO">
 	SELECT <include refid="allColumns"/>
 	FROM user
 	WHERE userID=#{userID}

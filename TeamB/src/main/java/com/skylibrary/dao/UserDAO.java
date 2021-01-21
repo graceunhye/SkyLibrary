@@ -63,7 +63,7 @@ public class UserDAO {
 	}
 	
 	//상제정보 조회
-	public Map<String,String> userInfoOk(SessionVO vo)  throws Exception {
+	public UserVO userInfoOk(SessionVO vo)  throws Exception {
 		return sql.selectOne(namespace + ".userInfoOk", vo);
 	}
 	
