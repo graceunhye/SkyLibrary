@@ -13,18 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skylibrary.service.ApplyBookService;
 import com.skylibrary.service.RentService;
-
 import com.skylibrary.service.UserService;
 
 import com.skylibrary.vo.ApplyBookVO;
-
 import com.skylibrary.vo.BookVO;
-
 import com.skylibrary.vo.RentVO;
 import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
@@ -39,8 +37,6 @@ public class MyPageController {
 	UserService userService;
 	@Inject
 	ApplyBookService applyBookService;
-
-	
 	
 	@RequestMapping(value = "/renting")
 	public String renting(Model model, RentVO vo, HttpServletRequest req) throws Exception {
@@ -64,6 +60,8 @@ public class MyPageController {
 		return "/User/myPage/wish";
 	}
 	
+	
+	//url타고 넘어왔을 때 보여주는 페이지
 	@RequestMapping(value = "/wishApply")
 	public String wishApply(Model model, HttpServletRequest req) throws Exception {
 		System.out.println("In MyPageController (value=/wishApply)");
@@ -72,12 +70,38 @@ public class MyPageController {
 		return "/User/myPage/wishApply";
 	}
 	
+	//wish데이터 저장
+	@RequestMapping(value="/wishOk", method = RequestMethod.POST)
+	public String wisthApplied(ApplyBookVO vo,HttpServletRequest request, HttpServletResponse response)throws Exception{
+		
+		System.out.println("boardVO:"+ vo.toString());
+
+		applyBookService.insert(vo);	
+		
+		 response.setContentType("text/html; charset=UTF-8");
+         PrintWriter out = response.getWriter();
+         out.println("<script>alert('신청이 완료되었습니다.'); history.go(-1);</script>");
+         out.flush();
+		
+		 return "/User/myPage/wishApply";
+		
+
+	}
+	
+	//희망도서 신청 목록 조회
 	@RequestMapping(value = "/wishCheck") 
-	public String wishCheck(Model model, UserVO vo, HttpServletRequest req) throws Exception {
+	public String wishCheck(Model model,  HttpServletRequest req) throws Exception {
 		System.out.println("In MyPageController (value=/wishCheck)");
 	
 		System.out.println("Out MyPageController (value=/wishCheck)");
-		//희망도서 신청 목록 조회
+		HttpSession session = req.getSession();
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+//		STRING USERID = SESSIONVO.GETUSERID();
+		
+		List<ApplyBookVO> vo = applyBookService.view(sessionVO.getUserID());
+		
+		model.addAttribute("whishCheckData",vo);
+		
 		return "/User/myPage/wishCheck";
 	}
 	
