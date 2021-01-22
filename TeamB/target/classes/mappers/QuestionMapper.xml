@@ -11,7 +11,8 @@
 		LIMIT #{start}, #{end}
 	</select>
 	<select id="qView" resultType="questionVO" parameterType="questionVO">
-		SELECT * FROM q WHERE questionNo = #{questionNo}
+		SELECT * FROM q 
+		WHERE questionNo = #{questionNo}
 	</select>
 	<select id="countList" resultType="int">
 		SELECT COUNT(*) FROM q
@@ -44,15 +45,15 @@
 		WHERE questionNo = #{questionNo}
 	</update>
 	<insert id="questionAdd" parameterType="questionVO">
-		insert into q 
+		INSERT INTO q 
 		(userID, questionTitle, questionBody)
-		value
+		VALUE
 		(#{userID}, #{questionTitle}, #{questionBody})
 	</insert>
 	<update id="questionModify" parameterType="questionVO">
 		UPDATE q
 		SET  questionTitle = #{questionTitle}
-			,questionBody = #{questionBody}
+			 ,questionBody = #{questionBody}
 		WHERE questionNo = #{questionNo}
 	</update>
 	<delete id="questionDelete" parameterType="questionVO">

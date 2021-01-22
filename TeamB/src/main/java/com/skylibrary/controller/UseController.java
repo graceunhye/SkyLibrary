@@ -66,16 +66,12 @@ public class UseController {
 		return "/User/use/qna";
 	}
 	
-	@RequestMapping(value="/qna/view")
+	@RequestMapping(value="/qna/qnaView")
 	public String qView(Model model, QuestionVO vo) throws Exception {
 		System.out.println("In UseController (value=/qna/view)");
 		QuestionVO q = questionService.qView(vo);
-		/*
-		 * if(q.getQuestionType() == 1) {
-		 * 
-		 * AnswerVO a = answerService.aView(vo); model.addAttribute("a",a); }
-		 */
-		
+		System.out.println(vo);
+		try {
 		int aCount = answerService.aViewCount(vo);
 		if(aCount == 0) {
 			model.addAttribute("a", null);
@@ -83,39 +79,29 @@ public class UseController {
 			AnswerVO a = answerService.aView(vo);
 			model.addAttribute("a",a);
 		}		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("q",q);
 		System.out.println("Out UseController (value=/qna/view)");
 		return "/User/use/qnaView";
 	}
 	
 	
-	  @RequestMapping(value="/qna/insert") public String qInsert(Model model,
-	  QuestionVO vo) throws Exception {
+	  @RequestMapping(value="/qna/qnaInsert") 
+	  public String qInsert() throws Exception {
 	  
 	  return "/User/use/qnaInsert"; }
 	 
 	
-	@RequestMapping(value="/qna/insertOk")
-	public String qInsertOk(Model model,
-			QuestionVO qvo/* , HttpServletRequest request, RedirectAttributes rttr */) throws Exception {
-		
-		/*
-		 * HttpSession session = request.getSession(); SessionVO vo = (SessionVO)
-		 * session.getAttribute("user");
-		 * 
-		 * String userID = vo.getUserID(); qvo.setUserID(userID);
-		 */
+	@RequestMapping(value="/qna/qnaInsertOk")
+	public String qInsertOk(Model model, QuestionVO qvo) throws Exception {
+
 		System.out.println("qvo::"+ qvo.getUserID() + "," + qvo.getQuestionTitle() + "," + qvo.getQuestionBody());
-		questionService.questionAdd(qvo); //userID, questionBody, questionTitle
-		
+		questionService.questionAdd(qvo);
+		model.addAttribute("msg","qnaInsertOk");
 		System.out.println("Out UseController (value=/qna/insertOk)");
 		
-		/*
-		 * //마지막으로 등록된 no값 반환 int lastNo = questionService.lastNo();
-		 * null 에러
-		 */
-		
-		//qView에 no값 전달
 		return "redirect:/use/qna";
 	}
 	
@@ -129,14 +115,10 @@ public class UseController {
 	
 	@RequestMapping(value="/qna/modifyOk")
 	public String qModifyOk(Model model, QuestionVO qvo) throws Exception {
-		System.out.println("qvo-questionNo::"+qvo.getQuestionNo());
-		System.out.println("body::"+qvo.getQuestionBody());
-		System.out.println("title::"+qvo.getQuestionTitle());
-		//qvo를 업데이트하고
-		//qna/view로 연결
+
 		questionService.questionModify(qvo);
 		
-		return "redirect:/use/qna/view?questionNo="+qvo.getQuestionNo()+"";
+		return "redirect:/use/qna/qnaView?questionNo="+qvo.getQuestionNo();
 	}
 	
 	@RequestMapping(value="/qna/delete")

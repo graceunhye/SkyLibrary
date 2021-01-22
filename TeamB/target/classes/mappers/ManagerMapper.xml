@@ -4,21 +4,31 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.skylibrary.mappers.managerMapper">
-
 <insert id="mjoin" parameterType="managerVO">
 	INSERT INTO manager
-	(managerID, managerPW, managerName, managerEmail, managerEmailDomain) 
-	VALUES
 	(
-	#{managerID},
+		managerID
+		,managerPW
+		,managerName
+		,managerNum
+		,managerEmail
+		,managerPostNum
+		,managerAddr
+		,managerAddrDetail
+	) 
+	VALUE
+	(
+	#{userID},
 	md5(#{managerPW}),
 	#{managerName},
+	#{managerNum},
 	#{managerEmail},
-	#{managerEmailDomain}
+	#{managerPostNum},
+	#{managerAddr},
+	#{managerAddrDetail}
 	)
 </insert>
-
-<select id="mlogin" resultType="sessionVO">
+<select id="mlogin" resultType="sessionVO" parameterType="sessionVO">
 	SELECT managerID as userID, managerPW as userPW
 	FROM manager
 	WHERE managerID = #{userID}

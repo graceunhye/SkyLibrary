@@ -1,3 +1,12 @@
+$(document).ready(function(){
+	if($("#msg").val() != null){
+		
+		if($("#msg").val() == "qnaInsertOk"){
+			alert("등록이 완료되었습니다.");
+		}
+	}
+});
+
 function qnaNeedLogin() {
 	if(confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?") == true)
 	{

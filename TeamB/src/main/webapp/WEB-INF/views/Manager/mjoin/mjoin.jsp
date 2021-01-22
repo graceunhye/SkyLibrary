@@ -29,38 +29,71 @@
 					<span class="top_title">사서 회원가입</span>
 					<br>
 					<br>
-					<form method="post" class="joinfrm" name="joinfrm" action="/User/join/mjoinOk">
+					<form method="post" class="joinfrm" name="joinfrm" action="/mjoinOk">
 						<div class="joinbox">
 							<table style="width:550px; height:700px; border-collapse:collapse; margin-left:25px;" >
 								<tr>
 									<td>아이디<span class="star">*</span></td>
 									<td>
-										<input type="text" id="id" name="managerID">&nbsp;
-										<input type="button" class="joinbtn1" onclick="ID_check()" value="중복확인">
-										<a id="id_message"></a>
+										<input type="text" id="id" name="userID">&nbsp;
+										<input type="button" class="joinbtn1" onclick="idCheck()" value="중복확인">
+										<br /><a id="idCheckResult"></a>
 									</td>
 								</tr>
 								<tr>
 									<td>비밀번호<span class="star">*</span></td>
-									<td><input type="password" id="pw1" name="managerPW" onblur="Password_check()"><p/><a id="password_message"></a></td>
+									<td>
+										<input type="password" id="managerPW" name="managerPW" onblur="PW_check()"><br />
+										<span id="passwordCheckResult"></span>
+									</td>
 								</tr>
 								<tr>
 									<td>비밀번호 확인<span class="star">*</span></td>
-									<td><input type="password" id="pw2" name="pw2" onblur="Password_check2()"><p/><a id="password_message2"></a></td>
+									<td><input type="password" id="managerRPW" name="managerRPW" onblur="RPW_check()">
+									<br /><a id="rePasswordCheckResult"></a></td>
 								</tr>
 								<tr>
 									<td>이름<span class="star">*</span></td>
-									<td><input type="text" id="name" name="managerName"></td>
+									<td>
+										<input type="text" id="managerName" name="managerName">
+										<br /><span id="nameCheckResult"></span>
+									</td>
 								</tr>
 								<tr>
 									<td>이메일<span class="star">*</span></td>
 									<td>
-										<input type="text" id="email1" name="managerEmail"> @
+										<input type="text" id="managerEmailID" name="managerEmailID" onblur="Email_Check()"> @
 										<select name="managerEmailDomain">
-											<option value="e1">naver.com
-											<option value="e2">nate.com
-											<option value="e3">gmail.com
+											<option value="naver.com">naver.com
+											<option value="nate.com">nate.com
+											<option value="gmail.com">gmail.com
 										</select>
+										<br /><span id="emailCheckResult"></span>
+									</td>
+								</tr>
+								<tr>
+									<td>연락처<span class="star">*</span></td>
+									<td>
+										<select name="managerNumSplit1">
+											<option value="010">010
+											<option value="011">011
+											<option value="016">016										
+										</select>
+										 -
+										<input type="text" id="managerNumSplit2" name="managerNumSplit2" maxlength="4" onblur="Num_Check()">
+										 - 
+										<input type="text" id="managerNumSplit3" name="managerNumSplit3" maxlength="4" onblur="Num_Check()">
+										<br /><span id="numCheckResult"></span>	
+									</td>
+								</tr>
+								<tr>
+									<td>주소<span class="star">*</span></td>
+									<td>
+										<input type="text" id="managerPostNum" name="managerPostNum" size="7" onblur="Addr_Check()">&nbsp;
+										<input type="button" class="joinbtn1" value="우편번호 찾기" onclick="PostOpen()"><br />
+										<input type="text" id="managerAddr" name="managerAddr" size="50" placeholder="주소"><br />
+										<input type="text" id="managerAddrDetail" name="managerAddrDetail" size="50" placeholder="상세주소"><br />
+										<span id="postCheckResult"></span>
 									</td>
 								</tr>
 							</table>

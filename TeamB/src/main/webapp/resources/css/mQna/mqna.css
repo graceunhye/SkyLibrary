@@ -1,12 +1,49 @@
 @charset "UTF-8";
-/* .subject {
-	display: inline-block; 
-	width: 400px; 
-	white-space: nowrap; 
-	overflow: hidden; 
-	text-overflow: ellipsis;
+
+.viewTable {
+	border-collapse: collapse;
+	margin-left: 2px;
 }
- */
+
+.viewTable>thead>tr:nth-child(1)>th,
+.viewTable>tbody>tr:nth-child(5)>th{
+	background-color: #4A90E2;
+	color: #FFF8F7;
+	font-size: 14px;
+}
+
+.viewTable>tbody>tr:nth-child(3)>th,
+.viewTable>tbody>tr:nth-child(7)>th{
+	text-align: left;
+	padding-left: 55px;
+}
+
+.viewTable>thead>tr:nth-child(1),
+.viewTable>tbody>tr:nth-child(5)
+{
+	height: 30px;
+}
+
+.viewTable>tbody>tr:nth-child(4){ 
+	height: 50px;
+}
+
+.viewTable>tbody>tr:nth-child(4)>td{ 
+	padding: 10px;
+}
+
+.viewTable>tbody>tr:nth-child(9)>td>input[type="button"]{
+	width: 80px;
+	height: 30px;
+	color: #FFF8F7;
+	background-color: #E2AA4A;
+	border: none;
+	border-radius: 5px;
+	float: right;
+	margin-right: 10px;
+}
+
+
 .table tbody {
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -63,7 +100,7 @@
 	background-color: #F5F5F5;
 	width: 1300px;
 	border-radius: 5px;
-	padding: 10px 0 0 30px;
+	padding-left: 30px;
 }
 
 .slot {
@@ -81,55 +118,15 @@ select
 }
 
 .userInfoView {
-	width: 1300px;
+	width: 1320px;
 	background-color: #F5F5F5;
 	border: 1px solid #F5F5F5;
-	border-radius: 5px;
-	margin: 50px 0 0 50px;
+	margin-left: 50px;
 }
 
 .table tbody td {
 	border:1px solid #F5F5F5;
 }
-
-/* .viewTable { */
-/* 	border-collapse:collapse; */
-/* } */
-
-/* .viewTable th { */
-/* 	background-color: #4A90E2; */
-/* 	color: white; */
-/* 	border: 1px solid black; */
-/* } */
-
-/* .qTalbeTr { */
-/* 	height:40px; */
-/* } */
-/* .qTalbeTr>th { */
-/* 	background-color: #a8a8a8; */
-/* } */
-/* .qTalbeTr>td { */
-/* 	text-align: center; */
-/* } */
-
-/* .viewFixTable { */
-/* 	height:40px; */
-/* } */
-
-/* .viewTable { */
-/* 	width:1300px; */
-/* } */
-
-/* .viewTable, */
-/* .viewTable>thead>tr, */
-/* .viewTable>thead>tr>th, */
-/* .viewTable>tbody>tr, */
-/* .viewTable>tbody>tr>td, */
-/* .viewTable>tbody>tr>th */
-/* { */
-/* 	border: 1px solid black; */
-/* } */
-
 
 .text {
 	text-align: left;

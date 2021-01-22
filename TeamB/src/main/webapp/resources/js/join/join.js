@@ -2,8 +2,7 @@
 
 		function idCheck(){
 			var userID = $("input[name='userID']").val();
-			alert("userID::"+userID);
-			
+		
 			if(userID != null && userID != ""){
 				
 				$.ajax({
@@ -19,23 +18,30 @@
 							$("#idCheckResult").css("color", "red");
 							$("#idCheckResult").html("아이디를 입력해주세요.");
 							$("input[name='userID']").focus();
+							isCheck="false";
+							alert("아이디를 입력해주세요.");
 							
 						}else if(data == "mismatch") {
 						
 							$("#idCheckResult").css("color", "red");
 							$("#idCheckResult").html("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
 							$("input[name='userID']").val("");
+							isCheck="false";
+							alert("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
 								
 						}else if(data == "alreadyUse") {
 						
 							$("#idCheckResult").css("color", "red");
 							$("#idCheckResult").html("이미 사용중인 아이디 입니다.");
+							isCheck="false";
+							alert("이미 사용중인 아이디 입니다.");
 							
 						}else{
 						
 							$("#idCheckResult").css("color", "blue");
 							$("#idCheckResult").html("사용 가능한 아이디입니다.");
-							isCheck = "true";
+							alert("사용 가능한 아이디입니다.");
+							isCheck="true";
 							
 						}
 				}
@@ -64,18 +70,18 @@
 				 
 				 return false;
 			 
-			 }else if(pw.length < 8 || pw.length > 20){
+			 }else if(userPW.length < 8 || userPW.length > 20){
 			 
-				 $("#passwordCheckResult").css("color","red");
 				 $("#passwordCheckResult").html("비밀번호는 8자리 이상 20자리 이하입니다.");
+				 $("#passwordCheckResult").css("color","red");
 				 $("input[name='userPW']").val("");
 				 $("input[name='userPW']").focus();
 				 return false;
 			 
 			 }else if(userPW.search(/\s/) != -1){
 			 
-				  $("#passwordCheckResult").css("color","red");
 				  $("#passwordCheckResult").html("비밀번호엔 공백을 쓰실 수 없습니다.");
+				  $("#passwordCheckResult").css("color","red");
 				  $("input[name='userPW']").val("");
 				  $("input[name='userPW']").focus();
 				   
@@ -83,8 +89,8 @@
 				  
 			}else if(!pattern1.test(userPW) || !pattern2.test(userPW) || !pattern3.test(userPW)){
 				 
-				 $("#passwordCheckResult").css("color","red");
 				 $("#passwordCheckResult").html("비밀번호는 영어, 숫자, 특수문자 1개씩은 포함하여야 합니다.");
+				 $("#passwordCheckResult").css("color","red");
 				 
 				 $("input[name='userPW']").val("");
 				 $("input[name='userPW']").focus();
@@ -92,8 +98,8 @@
 				 
 			 }else{
 				 
-				 $("#passwordCheckResult").css("color","blue");
 				 $("#passwordCheckResult").html("사용 가능한 비밀번호 입니다.");
+				 $("#passwordCheckResult").css("color","blue");
 				 return true;
 			 }
 		}
@@ -250,7 +256,6 @@
 			}
 			else
 			{
-				alert("가입이 완료되었습니다. 로그인 해주세요.")
 				document.joinfrm.submit();
 			}
 			

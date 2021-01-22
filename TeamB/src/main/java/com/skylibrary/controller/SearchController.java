@@ -30,23 +30,27 @@ public class SearchController {
 	
 	@RequestMapping(value="/total", method=RequestMethod.GET)
 	public String getTotal(Locale locale, Model model, SearchVO search, PagingVO paging) throws Exception {
-		
-		int total = bookService.countList(search); 
+		//keyWord '공'
+		//현재 페이지 1
+		//total = 14
+		int total = bookService.countList(search); //14
 
 		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
-			paging.setNowPage(1);
-			paging.setCntPerPage(5); 
+			paging.setNowPage(1); //현재 페이지
+			paging.setCntPerPage(5); //몇개씩 보일지
 			
 		}else if(paging.getNowPage() == 0){
 			paging.setNowPage(1);
 			
 		}else if(paging.getCntPerPage() == 0){
-			paging.setCntPerPage(5);
+			paging.setCntPerPage(5); //몇개씩 보일지
 		}
 		
 		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
 		search.setStart(paging.getStart());
+		System.out.println("StartValue"+paging.getStart());
 		search.setEnd(5);
+		//시작점으로부터 5개 보여줌.
 		
 		List<BookVO> totallist = bookService.TotalList(search);
 		
@@ -54,7 +58,8 @@ public class SearchController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("search", search);
 		model.addAttribute("totalCount",total);
-		
+		System.out.println(search);
+		System.out.println(paging);
 		return "/User/search/total"; 
 	}	
 		

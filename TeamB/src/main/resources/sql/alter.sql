@@ -11,3 +11,13 @@ ALTER TABLE book CHANGE COLUMN pubdate bookPublicationDate datetime comment '발
 
 ALTER TABLE book ADD COLUMN bookRent int default 0 comment '대여구분';
 ALTER TABLE book ADD COLUMN bookCount int default 0  comment '대출횟수';
+
+
+
+
+-- manager add 
+
+alter table manager add managerAddr varchar(50);
+alter table manager add managerAddrDetail varchar(50);
+alter table manager add managerPostNum varchar(10);
+alter table manager add managerNum varchar(20);

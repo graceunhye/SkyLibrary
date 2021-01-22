@@ -113,7 +113,7 @@
 							<br>
 							<div class="searchpage">	
 								<c:if test="${paging.startPage != 1}">
-								<a href="/search/total?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+								<a href="/search/total?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}&searchText=${search.searchText}&searchType=${search.searchType}">&lt;</a>
 								</c:if>
 								<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
 									<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
@@ -122,12 +122,12 @@
 											<b>${p}</b>
 										</c:when>
 										<c:when test="${p != paging.nowPage}">
-											<a href="/search/total?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+											<a href="/search/total?nowPage=${p }&cntPerPage=${paging.cntPerPage}&searchText=${search.searchText}&searchType=${search.searchType}">${p }</a>
 										</c:when>
 									</c:choose>
 								</c:forEach>
 								<c:if test="${paging.endPage != paging.lastPage}">
-									<a href="/search/total?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+									<a href="/search/total?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}&searchText=${search.searchText}&searchType=${search.searchType}">&gt;</a>
 								</c:if>
 							</div>	
 						</div>	

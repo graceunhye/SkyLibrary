@@ -5,7 +5,7 @@
 <mapper namespace="com.skylibrary.mappers.answerMapper">
 <sql id="allColumns">
 	questionNo
-	,managerID
+	,managerID as userID
 	,answerTitle
 	,answerBody
 	,answerDate
@@ -29,11 +29,11 @@
 <insert id="answerAdd" parameterType="answerVO">
 	INSERT INTO a
 	(
-	<include refid="allColumns"/>
+		<include refid="allColumns"/>
 	)VALUE
 	(
 		#{questionNo}
-		, 'testManager'
+		, #{userID}
 		, #{answerTitle}
 		, #{answerBody}
 		, now()
@@ -43,7 +43,7 @@
 	UPDATE a 
 	SET answerTitle = #{answerTitle}
 		,answerBody = #{answerBody}
-		,managerID  = 'testManager'
+		,managerID  = #{userID}
 		,answerDate = now()
 	WHERE questionNo = #{questionNo}		
 </update>

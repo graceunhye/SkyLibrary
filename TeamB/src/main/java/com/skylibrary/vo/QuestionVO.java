@@ -21,11 +21,6 @@ public class QuestionVO extends SessionVO {
 	private String endDate;
 
 	
-	public QuestionVO()
-	{
-		setQuestionDate(this.questionDate);
-		setQuestionOkDate(this.questionOkDate);
-	}
 //	public String getStartDate() {
 //		return startDate;
 //	}

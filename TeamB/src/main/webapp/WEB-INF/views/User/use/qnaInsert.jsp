@@ -39,12 +39,12 @@
 				</nav>
 				<div class="section">
 					<div class="section_top">
-						<span class="top_title">질의응답</span>
-						<span class="page_map">도서관 이용 > 질의응답 > 질문하기</span>
+						<span>질의응답</span>
+						<span>도서관 이용 > 질의응답 > 질문하기</span>
 					</div>
 					<div class="content">
 						<div class="qInsertTableWrap">
-							<form action="/use/qna/insertOk" method="post">
+							<form action="/use/qna/qnaInsertOk" method="post">
 								<table class="qInsertTable">
 									<tr>
 										<th align="center" width="100">제목</th>

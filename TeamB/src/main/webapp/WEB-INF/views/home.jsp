@@ -30,10 +30,10 @@
 								<c:forEach items="${bookList}" var="list">
 								<li>
 									<div class="book_cover">
-										<img src="${list.bookCoverImg }" class="books" alt="${list.bookSubject }" />
+										<a href="/search/totalView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg }" class="books" alt="${list.bookSubject }" /></a>
 									</div>
 									<div class="book_title">
-										<a href="#">${list.bookSubject }</a>
+										<a href="/search/totalView?isbn=${list.bookISBN}">${list.bookSubject }</a>
 									</div>
 								</li>
 								</c:forEach>
@@ -55,7 +55,7 @@
 									<tr height="25px">
 										<td align="center">${list.noticeNo }</td>
 										<td class="table_move">
-											<a href="#" ><span class="point"></span>${list.noticeTitle }</a>
+											<a href="/intro/notice/view?noticeNo=<c:out value="${list.noticeNo }" />" ><span class="point"></span>${list.noticeTitle }</a>
 										</td>
 										<td>${list.noticeDate }</td>
 									</tr>
@@ -63,7 +63,7 @@
 								</tbody>
 								<tr height="20px">
 									<td colspan="4" align="right">
-										<a class="more" href="/User/intro/notice/">
+										<a class="more" href="/intro/notice">
 											<span class="notice_more">더보기</span>
 										</a>
 									</td>
@@ -83,7 +83,7 @@
 										<span class="point2">평일</span> 오전 09:00 ~ 오후 18:00<br />
 										<span class="point2">주말</span> 오전 10:00 ~ 오후 18:00<br />
 										<font color="orange">*</font><font class="font">위 사항은 사정에 따라 변경 될 수 있습니다.</font><br>
-										<a href="/notice"><span class="more use_time_more">더보기</span></a>
+										<a href="/use/useTime"><span class="more use_time_more">더보기</span></a>
 									</td>
 									<td>
 										<img class="sub_banner" src="/image/homePage/sub_banner1.jpg" width="300px"/>

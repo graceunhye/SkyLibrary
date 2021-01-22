@@ -49,12 +49,12 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public void questionAdd(QuestionVO vo) throws Exception {
-		
+		dao.questionAdd(vo);
 	}
 
 	@Override
 	public void questionModify(QuestionVO vo) throws Exception {
-		
+		dao.questionModify(vo);
 	}
 
 

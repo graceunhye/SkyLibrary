@@ -16,6 +16,7 @@
 		<script src="/js/use/qna.js"></script>
 	</head>
 	<body style="margin:0px">
+		<input type="hidden" id="msg" value="${msg }">
 		<div class="wrap"> 
 			<header>
 				<jsp:include page="../include/head_option.jsp" />
@@ -51,7 +52,7 @@
 								<tr>
 									<td>${status.count + paging.start}</td>
 									<td>
-										<a href="/use/qna/view?questionNo=${list.questionNo }">${list.questionTitle }</a>
+										<a href="/use/qna/qnaView?questionNo=${list.questionNo }">${list.questionTitle }</a>
 									</td>
 									<td>${list.userID }</td>
 									<td>${list.questionDate }</td>
@@ -69,7 +70,7 @@
 							<br>
 							<span class="btns">
 								<c:if test="${sessionScope.user != null }">
-								<input class="btn" type="button" value="글쓰기" onclick="location.href='/use/qna/insert'">
+								<input class="btn" type="button" value="글쓰기" onclick="location.href='/use/qna/qnaInsert'">
 								</c:if>
 								<c:if test="${sessionScope.user == null }">
 								<input class="btn" type="button" value="글쓰기" onclick="qnaNeedLogin()">

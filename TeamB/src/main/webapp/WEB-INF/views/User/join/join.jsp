@@ -29,7 +29,7 @@
 					<span class="top_title">회원가입</span>
 					<br>
 					<br>
-					<form method="post" class="joinfrm" name="joinfrm" action="/joinOk">
+					<form method="POST" class="joinfrm" name="joinfrm" action="/joinOk">
 						<div class="joinbox">
 							<table style="width:550px; height:700px; border-collapse:collapse; margin-left:25px;" >
 								<tr>
