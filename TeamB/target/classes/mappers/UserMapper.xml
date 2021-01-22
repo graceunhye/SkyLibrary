@@ -25,7 +25,7 @@
 
 <select id="userExist" resultType="int" parameterType="userVO">
 	SELECT COUNT(*) FROM user
-	WHERE userID = '#{userID}'
+	WHERE userID = #{userID}
 </select>
 
 <select id="userInfoOk" resultType="userVO"  parameterType="sessionVO">
@@ -59,16 +59,37 @@
 </select>
 <insert id="join" parameterType="userVO">
 	INSERT INTO user
-	(<include refid="allColumns"/>) 
+	(
+	userID,
+	userPW,
+	userName,
+	userNum,
+	<if test="userPostNum != null or userPostNum =='' ">
+	userPostNum,
+	</if> 
+	<if test="userAddr != null or userAddr =='' ">
+	userAddr,
+	</if>
+	<if test="userAddrDetail != null or userAddrDetail =='' ">
+	userAddrDetail,
+	</if>
+	userEmail,
+	userEmailDomain) 
 	VALUE
 	(
 	#{userID},
 	md5(#{userPW}),
 	#{userName},
 	#{userNum},
+	<if test="userPostNum != null or userPostNum =='' ">
 	#{userPostNum},
+	</if>
+	<if test="userAddr != null or userAddr =='' ">
 	#{userAddr},
+	</if>
+	<if test="userAddrDetail != null or userAddrDetail =='' ">
 	#{userAddrDetail},
+	</if>
 	#{userEmail},
 	#{userEmailDomain}
 	)

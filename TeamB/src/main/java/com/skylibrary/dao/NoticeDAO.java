@@ -35,32 +35,32 @@ public class NoticeDAO {
 		return sql.selectOne(namespace + ".view", vo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× ¸ñ·Ï
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ëª©ë¡
 	public List<NoticeVO> NoticeList(PagingVO vo) throws Exception{
 		return sql.selectList(namespace + ".noticeList", vo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× ÀÛ¼º
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ì‘ì„±
 	public void NoticeWrite(NoticeVO vo) throws Exception{
 		sql.insert(namespace + ".noticeWrite", vo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× Á¶È¸
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ì¡°íšŒ
 	public NoticeVO NoticeView(int noticeNo) throws Exception{
 		return sql.selectOne(namespace + ".noticeView", noticeNo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× ¼öÁ¤
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ìˆ˜ì •
 	public void NoticeModify(NoticeVO vo) throws Exception{
 		sql.update(namespace + ".noticeModify", vo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× »èÁ¦
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ì‚­ì œ
 	public void NoticeDelete(int noticeNo) throws Exception{
 		sql.delete(namespace + ".noticeDelete", noticeNo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× ÆäÀÌÂ¡
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ í˜ì´ì§•
 	public int noticeCountList() throws Exception {
 		return sql.selectOne(namespace + ".noticeCountList");
 	}

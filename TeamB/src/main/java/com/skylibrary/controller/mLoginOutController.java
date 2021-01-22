@@ -1,5 +1,6 @@
 package com.skylibrary.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,24 +16,24 @@ import com.skylibrary.vo.SessionVO;
 @RequestMapping(value = "/mloginout")
 public class mLoginOutController {
 
+		@Inject
 		ManagerService managerService;
 	
-		//로그인
+		//사서 로그인
 		@RequestMapping(value = "/loginOk", method = RequestMethod.POST) 
 		public String login(SessionVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
 		{
-			System.out.println("In LoginoutController (value=/loginout/loginOk)");
 			HttpSession session = req.getSession(true);
 			
 			SessionVO login = managerService.mlogin(vo);
+			
 			if(login == null ) {
 				session.setAttribute("user", null);
 				rttr.addFlashAttribute("msg", false);
 			} else {
-				login.setCheck("U");
+				login.setCheck("M");
 				session.setAttribute("user", login);
 			}
-			System.out.println("Out LoginoutController (value=/loginout/loginOk)");
-			return "/Manager/mnotice/mNotice";
-		} 
+			return "/Manager/muser/mUser";
+		}
 }

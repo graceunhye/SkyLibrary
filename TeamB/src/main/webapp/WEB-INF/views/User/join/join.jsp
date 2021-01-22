@@ -37,7 +37,7 @@
 									<td>
 										<input type="text" id="userID" name="userID">&nbsp;
 										<input type="button" class="joinbtn1" onclick="idCheck()" value="중복확인">
-										<a id="idCheckResult"></a>
+										<br /><a id="idCheckResult"></a>
 									</td>
 								</tr>
 								<tr>
@@ -56,17 +56,21 @@
 								</tr>
 								<tr>
 									<td>이름<span class="star">*</span></td>
-									<td><input type="text" id="userName" name="userName"></td>
+									<td>
+										<input type="text" id="userName" name="userName" onblur="Name_Check()">
+										<br /><span id="nameCheckResult"></span>
+									</td>
 								</tr>
 								<tr>
 									<td>이메일<span class="star">*</span></td>
 									<td>
-										<input type="text" id="userEmail" name="userEmail"> @
+										<input type="text" id="userEmail" name="userEmail" onblur="Email_Check()"> @
 										<select name="userEmailDomain">
 											<option value="naver.com">naver.com
 											<option value="nate.com">nate.com
 											<option value="gmail.com">gmail.com
 										</select>
+										<br /><span id="emailCheckResult"></span>
 									</td>
 								</tr>
 								<tr>
@@ -78,9 +82,10 @@
 											<option value="016">016										
 										</select>
 										 -
-										<input type="text" id="userNumSplit2" name="userNumSplit2" maxlength="4">
+										<input type="text" id="userNumSplit2" name="userNumSplit2" maxlength="4" onblur="Num_Check()">
 										 - 
-										<input type="text" id="userNumSplit3" name="userNumSplit3" maxlength="4">	
+										<input type="text" id="userNumSplit3" name="userNumSplit3" maxlength="4" onblur="Num_Check()">
+										<br /><span id="numCheckResult"></span>	
 									</td>
 								</tr>
 								<tr>

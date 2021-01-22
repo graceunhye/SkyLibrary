@@ -36,7 +36,7 @@ public class ManagerController {
 		return "redirect:/";
 	}
 	
-	//사서 로그인
+
 	@RequestMapping(value = "/loginout/mlogin", method = RequestMethod.POST) 
 	public String login(SessionVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception
 	{

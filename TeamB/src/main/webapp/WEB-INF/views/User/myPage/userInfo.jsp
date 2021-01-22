@@ -35,59 +35,60 @@
 				</nav>
 				<div class="section">
 					<div class="section_top">
-						<span class="top_title">회원정보</span>
-						<span class="page_map">마이페이지 > 회원정보</span>
+						<span>회원정보</span>
+						<span>마이페이지 > 회원정보</span>
 					</div>
 					<div class="content">
-						<div>
-							<table class="content_table">
-								<tr class="top_tr">
-									<th style="width:25%;">ID</th>
-									<td class="top_td">${userInfo.userID }</td>
-								</tr>
-								<tr class="mid_tr">
-									<th>이름</th>
-									<td class="mid_td" id="userName">${userInfo.userName }</td>
-								</tr>
-								<tr class="mid_tr">
-									<th>연락처</th>
-									<td class="mid_td" id="userNum">
-										<c:if test="${userInfo.userNum != null }">
-										${userInfo.userNum }
-										</c:if>
-										<c:if test="${userInfo.userNum == null }">
-										등록된 정보가 없습니다.
-										</c:if>
-									</td>
-								</tr>
-								<tr class="mid_tr">
-									<th>주소</th>
-									<td class="mid_td" id="userPostNum">
-										<c:if test="${userInfo.userPostNum != null }">
-										[${userInfo.userPostNum }] ${userInfo.userAddr }
-										<c:if test="${userInfo.userAddrDetail != null}">
-										${userInfo.userAddrDetail }
-										</c:if>
-										</c:if>
-										<c:if test="${userInfo.userPostNum == null }">
-										등록된 정보가 없습니다.
-										</c:if>
-									</td>
-								</tr>
-								<tr class="mid_tr">	
-									<th>이메일</th>
-									<td id="userEmail">
-										<c:if test="${userInfo.userEmail != null }">
-										${userInfo.userEmail }@${userInfo.userEmailDomain }
-										</c:if>
-										<c:if test="${userInfo.userEmail == null }">
-										등록된 정보가 없습니다.
-										</c:if>
-									</td>
-								</tr>
-							</table>
-							<button id="modify_b" type="button" onclick="userModify()">회원정보 수정</button>
-						</div>
+						<table class="userInfoTable">
+							<tr>
+								<th>ID</th>
+								<td id="userID">${userInfo.userID }</td>
+							</tr>
+							<tr>
+								<th>이름</th>
+								<td id="userName">${userInfo.userName }</td>
+							</tr>
+							<tr>
+								<th>연락처</th>
+								<td id="userNum">
+									<c:if test="${userInfo.userNum != null }">
+									${userInfo.userNum }
+									</c:if>
+									<c:if test="${userInfo.userNum == null }">
+									등록된 정보가 없습니다.
+									</c:if>
+								</td>
+							</tr>
+							<tr>
+								<th>주소</th>
+								<td id="userAddressInfo">
+									<c:if test="${userInfo.userPostNum != null }">
+									[<font id="userPostNum">${userInfo.userPostNum }</font>]&nbsp; 
+									<font id="userAddr">${userInfo.userAddr }</font>&nbsp;
+									<c:if test="${userInfo.userAddrDetail != null}">
+									<font id="userAddrDetail">${userInfo.userAddrDetail }</font>
+									</c:if>
+									</c:if>
+									<c:if test="${userInfo.userPostNum == null }">
+									등록된 정보가 없습니다.
+									</c:if>
+								</td>
+							</tr>
+							<tr>	
+								<th>이메일</th>
+								<td id="userEmail">
+									<c:if test="${userInfo.userEmail != null }">
+									${userInfo.userEmail }@${userInfo.userEmailDomain }
+									</c:if>
+									<c:if test="${userInfo.userEmail == null }">
+									등록된 정보가 없습니다.
+									</c:if>
+								</td>
+							</tr>
+						</table>
+						<span id="buttonArea">
+							<button type="button" onclick="userModify()">회원정보 수정</button>
+						</span>
 					</div>
 				</div>
 			</section>

@@ -38,43 +38,43 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.view(vo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× ¸ñ·Ï
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ëª©ë¡
 	@Override
 	public List<NoticeVO> NoticeList(PagingVO vo) throws Exception{
 		return dao.NoticeList(vo);
 	}
 		
-	//»ç¼­ °øÁö»çÇ× ÀÛ¼º
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ì‘ì„±
 	@Override
 	public void NoticeWrite(NoticeVO vo) throws Exception{
 		dao.NoticeWrite(vo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× Á¶È¸
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ì¡°íšŒ
 	@Override
 	public NoticeVO NoticeView(int noticeNo) throws Exception{
 		return dao.NoticeView(noticeNo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× ¼öÁ¤
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ìˆ˜ì •
 	@Override
 	public void NoticeModify(NoticeVO vo) throws Exception {
 		dao.NoticeModify(vo);
 	}
 
-	//»ç¼­ °øÁö»çÇ× »èÁ¦
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ì‚­ì œ
 	@Override
 	public void NoticeDelete(int noticeNo) throws Exception {
 		dao.NoticeDelete(noticeNo);
 	}
 	
-	//»ç¼­ °øÁö»çÇ× ÆäÀÌÂ¡
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ í˜ì´ì§•
 	@Override
 	public int noticeCountList() throws Exception {
 		return dao.noticeCountList();
 	}
 
-	//»ç¼­ °øÁö»çÇ× Á¶È¸¼ö
+	//ì‚¬ì„œ ê³µì§€ì‚¬í•­ ì¡°íšŒìˆ˜
 	@Override
 	public void updateHit(int noticeNo) throws Exception {
 		dao.updateHit(noticeNo);	

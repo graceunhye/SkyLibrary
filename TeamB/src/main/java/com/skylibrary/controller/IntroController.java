@@ -39,11 +39,9 @@ public class IntroController {
 	
 	
 	@RequestMapping(value = "/notice")
-	public String list(Model model, SearchVO search, PagingVO paging) throws Exception {
-		
+	public String noticeList(Model model, SearchVO search, PagingVO paging) throws Exception {
 		System.out.println("In IntroController (value=/notice)");
 		int total = noticeService.countList(search); //10
-		
 		//nowPage 현재페이지 //0
 		//cntPerpage 페이지당 글 갯수 
 		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
@@ -72,7 +70,7 @@ public class IntroController {
 	
 	
 	@RequestMapping(value = "/notice/view")
-	public String view(Model model, NoticeVO noticeVO) throws Exception {
+	public String noticeView(Model model, NoticeVO noticeVO) throws Exception {
 		System.out.println("In IntroController (value=/notice/view)");
 		NoticeVO resultVO = noticeService.view(noticeVO);
 		model.addAttribute("noticeVO",resultVO);

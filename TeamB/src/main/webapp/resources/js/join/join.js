@@ -1,43 +1,53 @@
-		var idCheck = "false";
+		var isCheck = "false";
 
-		function idCheck(){				
+		function idCheck(){
 			var userID = $("input[name='userID']").val();
 			alert("userID::"+userID);
 			
-			$.ajax({
-				url: "/join/ajax/idCheckOk?userID="+userID,
-				type: "GET",
-				error: function(){
-					alert("idCheck function error");
-				}, success: function(data)
-				{
-					if(data.trim() == "idEmpty") {
-					
-						$("#idCheckResult").css("color", "red");
-						$("#idCheckResult").html("아이디를 입력해주세요.");
-						$("input[name='userID']").focus();
+			if(userID != null && userID != ""){
+				
+				$.ajax({
+					url: "/join/ajax/idCheckOk?",
+					type: "GET",
+					data: {userID:userID},
+					error: function(){
+						alert("idCheck function error");
+					}, success: function(data)
+					{
+						if(data == "idEmpty") {
 						
-					}else if(data.trim() == "mismatch") {
-					
-						$("#idCheckResult").css("color", "red");
-						$("#idCheckResult").html("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
+							$("#idCheckResult").css("color", "red");
+							$("#idCheckResult").html("아이디를 입력해주세요.");
+							$("input[name='userID']").focus();
 							
-					}else if(data.trim() == "alreadyUse") {
-					
-						$("#idCheckResult").css("color", "red");
-						$("#idCheckResult").html("이미 사용중인 아이디 입니다.");
+						}else if(data == "mismatch") {
 						
-					}else{
-					
-						$("#idCheckResult").css("color", "blue");
-						$("#idCheckResult").html("사용 가능한 아이디입니다.");
-						idCheck = "true";
+							$("#idCheckResult").css("color", "red");
+							$("#idCheckResult").html("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
+							$("input[name='userID']").val("");
+								
+						}else if(data == "alreadyUse") {
 						
-					}
+							$("#idCheckResult").css("color", "red");
+							$("#idCheckResult").html("이미 사용중인 아이디 입니다.");
+							
+						}else{
+						
+							$("#idCheckResult").css("color", "blue");
+							$("#idCheckResult").html("사용 가능한 아이디입니다.");
+							isCheck = "true";
+							
+						}
 				}
 			});	
-		} 
-
+			}else {
+				
+				$("#idCheckResult").html("아이디를 입력해주세요.");
+				$("#idCheckResult").css("color", "red");
+				$("input[name='userID']").focus();
+			}
+		}
+		
 		function PW_check(){
 		
 		     var userPW = $("input[name='userPW']").val().trim();
@@ -50,6 +60,8 @@
 				 
 				 $("input[name='userPW']").val("");	//비밀번호 초기값으로 초기화
 				 $("#passwordCheckResult").html("비밀번호를 입력해주세요.");
+				 $("#passwordCheckResult").css("color", "red");
+				 
 				 return false;
 			 
 			 }else if(pw.length < 8 || pw.length > 20){
@@ -91,7 +103,7 @@
 			 var userPW  = $("input[name='userPW']").val().trim();
 			 var userRPW = $("input[name='userRPW']").val().trim();
 			 
-			 if(userPW != userRPW) {
+			if(userPW != userRPW || userRPW == "") {
 				 
 				 $("input[name='userRPW']").val("");	//비밀번호 초기값으로 초기화
 				 $("#rePasswordCheckResult").css("color","red");
@@ -100,8 +112,8 @@
 				 return false;
 				 
 			}else {
-				
-				 $("#rePasswordCheckResult").html(" ");
+				 $("#rePasswordCheckResult").css("color","blue");
+				 $("#rePasswordCheckResult").html("비밀번호가 일치합니다.");
 				 return true;
 			}
 		}
@@ -118,7 +130,40 @@
 				
 		}
 		
+		function Email_Check(){
+			var Email = $("input[name='userEmail']").val();
+			
+			if(Email == ""){
+				$("#emailCheckResult").html("이메일을 입력해주세요.");
+				$("#emailCheckResult").css("color","red");
+			}else {
+				$("#emailCheckResult").html("");
+			}
+			
+		}
 		
+		function Num_Check(){
+			var split2 = $("input[name='userNumSplit2']").val();
+			var split3 = $("input[name='userNumSplit3']").val();
+			if(split2 == "" || split3 == ""){
+				$("#numCheckResult").html("번호를 입력해주세요.");
+				$("#numCheckResult").css("color","red");
+			}else {
+				$("#numCheckResult").html("");
+			}
+			
+		}
+		
+		function Name_Check(){
+			var Name = $("input[name='userName']").val();
+
+			if(Name == ""){
+				$("#nameCheckResult").html("이름을 입력해주세요.");
+				$("#nameCheckResult").css("color","red");
+				$("#nameCheckResult").html("");
+			}
+			
+		}
 		
 		function Submit(){
 		
@@ -137,7 +182,7 @@
 				alert("아이디는 필수 항목입니다.");
 				$("input[name='userID']").focus();
 				
-			}else if(idCheck == "false")
+			}else if(isCheck == "false")
 			{
 				alert("아이디 중복체크를 해주세요.");
 			}
@@ -205,9 +250,10 @@
 			}
 			else
 			{
+				alert("가입이 완료되었습니다. 로그인 해주세요.")
 				document.joinfrm.submit();
 			}
 			
-			idCheck = "false";
+			isCheck = "false";
 	
 		}

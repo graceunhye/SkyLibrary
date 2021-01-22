@@ -33,7 +33,7 @@
 				<span class="page_map">도서관 소개 > 공지사항</span>
 				<div class="content">
 					<div class="selectBox">
-						<form id="frm" name="frm" method="get" action="/notice/list">
+						<form id="frm" name="frm" method="get" action="/intro/notice">
 							<select class="select" name="searchType">
 								<option value="all">전체</option>
 								<option value="title">제목</option>
@@ -57,8 +57,12 @@
 						<c:forEach var="list" items="${noticeList}" varStatus="status">
 						<tr class="mid_tr">
 							<th align="center" class="mid_td">${status.count + paging.start}</th>
-							<td><a href="/intro/notice/view?noticeNo=${list.noticeNo }" class="mid_td">${list.noticeTitle }</a></td>
-							<td align="center" class="mid_td">${list.managerID }</td>
+							<td>
+								<a href="/intro/notice/view?noticeNo=${list.noticeNo }" class="mid_td">
+								${list.noticeTitle }
+								</a>
+							</td>
+							<td align="center" class="mid_td">${list.userID }</td>
 							<td align="center" class="mid_td">${list.noticeDate }</td>
 							<td align="center" class="mid_td">${list.noticeHit }</td>
 						</tr>												

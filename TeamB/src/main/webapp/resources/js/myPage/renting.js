@@ -18,7 +18,6 @@ function returnFn(node, id, isbn){
 					type : "post",
 					data : "isbn="+isbn,
 					success : function(data){
-						alert(data.rentEndDate);
 						var str1 = data.rentEndDate
 						var str2 = "<input type='button' class='normalBtn' value='연장불가' disabled>";
 						

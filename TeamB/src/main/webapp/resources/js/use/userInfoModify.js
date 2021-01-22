@@ -1,49 +1,61 @@
 
-	function PostOpen(){
-		new daum.Postcode({
-		    oncomplete: function(data) {
-		        //data´Â »ç¿ëÀÚ°¡ ¼±ÅÃÇÑ ÁÖ¼Ò Á¤º¸¸¦ ´ã°í ÀÖ´Â °´Ã¼
-		    	$("#postnum").val(data.zonecode);
-				$("#addr1").val(data.address);
-		    }
-		}).open();
-	}
-	
 	function Submit(){
 
-		if($("#name").val()==""){
-			alert("ÀÌ¸§Àº ÇÊ¼ö Ç×¸ñÀÔ´Ï´Ù.");
-		}else if($("#email1").val()==""){
-			alert("ÀÌ¸ŞÀÏÀº ÇÊ¼ö Ç×¸ñÀÔ´Ï´Ù.");
-		}else if($("#num2").val()=="" && $("#num3").val()==""){
-			alert("¿¬¶ôÃ³´Â ÇÊ¼ö Ç×¸ñ ÀÔ´Ï´Ù.");
-		}else if($("#num2").val()==""){
-			alert("¿Ã¹Ù¸¥ Çü½ÄÀÇ ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");		
-		}else if($("#num3").val()==""){
-			alert("¿Ã¹Ù¸¥ Çü½ÄÀÇ ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+		var userID			= $("#userID").val();
+		var userName        = $("input[name='userName']").val();
+		var userEmail       = $("input[name='userEmail']").val();
+		var userEmailDomain = $("input[name='userEmailDomain']").val();
+		var userNumSplit1   = $("input[name='userNumSplit1']").val();
+		var userNumSplit2   = $("input[name='userNumSplit2']").val();
+		var userNumSplit3   = $("input[name='userNumSplit3']").val();
+		
+		if(userName == ""){
+			alert("ì´ë¦„ì„ ê¸°ì…í•´ì£¼ì„¸ìš”.");
+		}else if(userEmail == "" || userEmailDomain == ""){
+			
+			alert("ì´ë©”ì¼ì„ ê¸°ì…í•´ì£¼ì„¸ìš”.");
+		}else if(userNumSplit2 == "" || userNumSplit3 == "" || userNumSplit1 == ""){
+		 	
+			alert("ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		}else{
-			document.modifyfrm.submit();
+
+				$.ajax({
+					url: "/myPage/ajax/userInfoModifyOk",
+					type: "GET",
+					data: {
+						userID: userID,
+						userName: userName,
+						userEmail: userEmail,
+						userEmailDomain: userEmailDomain,
+						userNumSplit1: userNumSplit1,
+						userNumSplit2: userNumSplit2,
+						userNumSplit2: userNumSplit3
+					},error: function(){
+						alert("submit function error");
+					},success: function(data){
+						
+					}
+					
+				})
 		}
  
 	}
 	
 	function userDelete(rentcount,id){
 			var Rentcount  = rentcount;
-			
 			if(Rentcount >0){
 				
-				alert("´ë¿©ÁßÀÎ µµ¼­°¡ ÀÖ½À´Ï´Ù. Ã¥À» ¹İ³³ÇØÁÖ¼¼¿ä.");
+				alert("ë°˜ë‚©ë˜ì§€ ì•Šì€ ë„ì„œê°€ ìˆìŠµë‹ˆë‹¤. ë°˜ë‚© í›„ íƒˆí‡´í•´ì£¼ì„¸ìš”.");
 				return false;
 				
 			}
 		
 		
 			 var seletedId = id; 
-			 var text = 	'Å»ÅğÇÏ½Ã°Ú½À´Ï±î?';
+			 var text = "ì •ë§ íƒˆí‡´í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 			 var result = confirm(text);
 				if(result){ 
 					userDeleteOk(seletedId); 
-					//confirm ¿¡¼­ È®ÀÎÀ» ´©¸£¸éture¸¦  ¹İÈ¯ÇÕ´Ï´Ù.
 				} 
 		
 	}
@@ -64,7 +76,7 @@
 				window.location.href = "userDeleted.jsp";
 			},
 			error:function(xhr, status, error){
-				alert("Åë½Å½ÇÆĞ!");
+				alert("ï¿½ï¿½Å½ï¿½ï¿½ï¿½!");
 			}
 		});	
 				

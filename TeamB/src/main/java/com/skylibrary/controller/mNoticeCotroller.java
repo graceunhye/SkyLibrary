@@ -61,11 +61,6 @@ public class mNoticeCotroller {
 		return "/Manager/mnotice/mNotice";
 	}
 	
-	@RequestMapping(value="/mNoticeInsert", method=RequestMethod.GET)
-	public void getNoticeWrite() throws Exception {		
-	}
-
-	
 	@RequestMapping(value="/mNoticeInsertOk", method=RequestMethod.POST)
 	public String postNoticeWrite(NoticeVO vo, HttpServletRequest req) throws Exception {	
 		
@@ -74,6 +69,7 @@ public class mNoticeCotroller {
 		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
 		
 	
+		// 파일 업로드 처리
 		String fileName=null;
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) req;
@@ -83,9 +79,9 @@ public class mNoticeCotroller {
 		if (!uploadFile.isEmpty()) {
 			
 			String originalFileName = uploadFile.getOriginalFilename();
-			String ext = FilenameUtils.getExtension(originalFileName);	//Ȯ���� ���ϱ�
+			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
 			
-			UUID uuid = UUID.randomUUID();	//UUID ���ϱ�
+			UUID uuid = UUID.randomUUID();	//UUID 구하기
 			
 			fileName = uuid + "." + ext;
 			
@@ -98,14 +94,14 @@ public class mNoticeCotroller {
 		noticeservice.NoticeWrite(vo);
 					
 		
-		return "redirect:/mnotice/mNotice";
+		return "redirect:/Manager/mnotice/mNotice";
 		
 	}
 
 	@RequestMapping(value="/mNoticeView", method=RequestMethod.GET)
 	public String getNoticeView(@RequestParam("noticeNo") int noticeNo, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {		
 		
-		// ����� ��Ű �ҷ����� 
+		// 저장된 쿠키 불러오기 
 		Cookie cookies[] = request.getCookies(); 
 		Map mapCookie = new HashMap(); 
 		if(request.getCookies() != null){ 
@@ -115,22 +111,22 @@ public class mNoticeCotroller {
 			} 
 		}
 		
-		// ����� ��Ű�߿� read_count �� �ҷ����� 
+		// 저장된 쿠키중에 read_count 만 불러오기 
 		String cookie_read_count = (String) mapCookie.get("noticeHit"); 
 		
-		// ����� ���ο� ��Ű�� ���� 
+		// 저장될 새로운 쿠키값 생성 
 		String new_cookie_read_count = "|" + noticeNo;
 		
-		// ����� ��Ű�� ���ο� ��Ű���� �����ϴ� �� �˻� 
+		// 저장된 쿠키에 새로운 쿠키값이 존재하는 지 검사 
 		if ( StringUtils.indexOfIgnoreCase(cookie_read_count, new_cookie_read_count) == -1 ) { 
 		
-			// ���� ��� ��Ű ���� 
+			// 없을 경우 쿠키 생성 
 			Cookie cookie = new Cookie("noticeHit", cookie_read_count + new_cookie_read_count); 
 		
-			//cookie.setMaxAge(1000); // �ʴ��� 
+			//cookie.setMaxAge(1000); // 초단위 
 			response.addCookie(cookie); 
 		
-			// ��ȸ�� ������Ʈ 
+			// 조회수 업데이트 
 			noticeservice.updateHit(noticeNo); 
 		}
 		
@@ -156,7 +152,7 @@ public class mNoticeCotroller {
 		
 		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
 		
-		// ���� ���ε� ó��
+		// 파일 업로드 처리
 		String fileName=null;
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) req;
@@ -166,9 +162,9 @@ public class mNoticeCotroller {
 		if (!uploadFile.isEmpty()) {
 			
 			String originalFileName = uploadFile.getOriginalFilename();
-			String ext = FilenameUtils.getExtension(originalFileName);	//Ȯ���� ���ϱ�
+			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
 			
-			UUID uuid = UUID.randomUUID();	//UUID ���ϱ�
+			UUID uuid = UUID.randomUUID();	//UUID 구하기
 			
 			fileName = uuid + "." + ext;
 			

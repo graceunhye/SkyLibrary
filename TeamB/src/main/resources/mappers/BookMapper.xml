@@ -147,7 +147,7 @@
 	SELECT 
 		rentNo, userID, bookISBN, rentStartDate, rentEndDate
 	FROM rent
-	WHERE rentNo = #{no}
+	WHERE rentNo = #{rentNo}
 </select>
 
 <!-- 신착도서 -->

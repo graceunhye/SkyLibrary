@@ -42,7 +42,6 @@ public class UseController {
 	
 	@RequestMapping(value = "/qna")
 	public String qnaList(Model model, PagingVO paging) throws Exception {
-		System.out.println("In UseController (value=/qna)");
 		int total = questionService.countList();
 		
 		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
@@ -58,9 +57,11 @@ public class UseController {
 		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
 		paging.setStart(paging.getStart());
 		paging.setEnd(15);
+		
 		List<QuestionVO> qList = questionService.list(paging);
 		model.addAttribute("paging", paging);
-		model.addAttribute("qList",qList);
+		model.addAttribute("questionList",qList);
+		
 		System.out.println("Out UseController (value=/qna)");
 		return "/User/use/qna";
 	}

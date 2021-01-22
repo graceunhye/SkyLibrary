@@ -51,6 +51,47 @@ public class MyPageController {
 		
 		return "/User/myPage/renting";
 	}
+
+	@RequestMapping(value = "/bookExtensionAjax")
+	@ResponseBody
+	public RentVO extensionBook(@RequestParam("isbn") String bookISBN, Model model, HttpServletRequest req) throws Exception {
+		
+		RentVO rentVO = new RentVO();
+		rentVO.setBookISBN(bookISBN);
+		
+		HttpSession session = req.getSession(true);
+			
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		rentVO.setUserID(sessionVO.getUserID());
+		
+		rentService.extensionBook(rentVO);
+		rentVO = rentService.extenstionSelect(rentVO);
+		return rentVO;
+
+	}
+		
+	@RequestMapping(value = "/bookReturnAjax")
+	@ResponseBody
+	public RentVO returnBook(@RequestParam("isbn") String bookISBN, Model model, HttpServletRequest req) throws Exception {
+
+		System.out.println("Out MyPageController (value=/wishApply)");
+
+		RentVO rentVO = new RentVO();
+		rentVO.setBookISBN(bookISBN);
+		
+		BookVO bookVO = new BookVO();
+		bookVO.setBookISBN(bookISBN);
+		
+		HttpSession session = req.getSession(true);
+			
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		rentVO.setUserID(sessionVO.getUserID());
+		
+		rentService.updateBook(bookVO);
+		rentService.deleteRent(rentVO);
+		
+		return rentVO;
+	}
 	
 	@RequestMapping(value = "/wish")
 	public String wish(Model model, HttpServletRequest req) throws Exception {
@@ -120,46 +161,6 @@ public class MyPageController {
 		return "/User/myPage/userInfo";
 	}
 
-	@RequestMapping(value = "/bookExtensionAjax")
-	@ResponseBody
-	public RentVO extensionBook(@RequestParam("isbn") String bookISBN, Model model, HttpServletRequest req) throws Exception {
-		
-		RentVO rentVO = new RentVO();
-		rentVO.setBookISBN(bookISBN);
-		
-		HttpSession session = req.getSession(true);
-			
-		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
-		rentVO.setUserID(sessionVO.getUserID());
-		
-		rentService.extensionBook(rentVO);
-		rentVO = rentService.extenstionSelect(rentVO);
-		return rentVO;
-
-	}
-		
-	@RequestMapping(value = "/bookReturnAjax")
-	@ResponseBody
-	public RentVO returnBook(@RequestParam("isbn") String bookISBN, Model model, HttpServletRequest req) throws Exception {
-
-		System.out.println("Out MyPageController (value=/wishApply)");
-
-		RentVO rentVO = new RentVO();
-		rentVO.setBookISBN(bookISBN);
-		
-		BookVO bookVO = new BookVO();
-		bookVO.setBookISBN(bookISBN);
-		
-		HttpSession session = req.getSession(true);
-			
-		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
-		rentVO.setUserID(sessionVO.getUserID());
-		
-		rentService.updateBook(bookVO);
-		rentService.deleteRent(rentVO);
-		
-		return rentVO;
-	}
 	
 	@RequestMapping(value = "/userInfoModify")
 	public String userInfoModify(Model model) throws Exception {

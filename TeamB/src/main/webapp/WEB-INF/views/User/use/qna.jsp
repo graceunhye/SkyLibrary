@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="/css/use/qna.css" type="text/css"/>
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
-		<script src="/js/common.js"></script>
+		<script src="/js/use/qna.js"></script>
 	</head>
 	<body style="margin:0px">
 		<div class="wrap"> 
@@ -34,8 +34,8 @@
 				</nav>
 				<div class="section">
 					<div class="section_top">
-						<span class="top_title">질의응답</span>
-						<span class="page_map">도서관 이용 > 질의응답</span>
+						<span>질의응답</span>
+						<span>도서관 이용 > 질의응답</span>
 					</div>
 					<div class="content">
 						<div align="center">	
@@ -47,19 +47,19 @@
 									<th align="center" class="top_td">작성일</th>
 									<th align="center" class="top_td">상태</th>
 								</tr>
-								<c:forEach items="${qList }" var="qList" varStatus="status">
+								<c:forEach items="${questionList }" var="list" varStatus="status">
 								<tr>
 									<td>${status.count + paging.start}</td>
 									<td>
-										<a href="/use/qna/view?questionNo=${qList.questionNo }">${qList.questionTitle }</a>
+										<a href="/use/qna/view?questionNo=${list.questionNo }">${list.questionTitle }</a>
 									</td>
-									<td>${qList.userID }</td>
-									<td>${qList.questionDate }</td>
+									<td>${list.userID }</td>
+									<td>${list.questionDate }</td>
 									<td>
-										<c:if test="${qList.questionType eq 1 }">
+										<c:if test="${list.questionType eq 1 }">
 											<font color="orange">답변완료</font>
 										</c:if>
-										<c:if test="${qList.questionType eq 0 }">
+										<c:if test="${list.questionType eq 0 }">
 											<font color="blue">답변대기</font>
 										</c:if>
 									</td>

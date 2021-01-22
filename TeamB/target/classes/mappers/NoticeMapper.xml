@@ -36,29 +36,28 @@
 			noticeBody,
 			noticeDate,
 			noticeHit,
-			noticeFile   
-			
+			noticeFile   			
 	FROM notice
 	WHERE 1=1
-	<if test="searchText neq null">
-		<if test="searchType eq 'all'">
+	<if test="searchText != null">
+		<if test="searchType == 'all'">
 			AND noticeBody  like CONCAT('%',#{searchText},'%')
 			OR  managerID   like CONCAT('%',#{searchText},'%')
 			OR  noticeTitle like CONCAT('%',#{searchText},'%')
 		</if>
-		<if test="searchType eq 'body'">
+		<if test="searchType == 'body'">
 			AND noticeBody like CONCAT('%',#{searchText},'%')
 		</if>
-		<if test="searchType eq 'writer'">
+		<if test="searchType == 'writer'">
 			AND managerID like CONCAT('%',#{searchText},'%')
 		</if>
-		<if test="searchType eq 'title'">
+		<if test="searchType == 'title'">
 			AND noticeTitle like CONCAT('%',#{searchText},'%')
 		</if>
 	</if>
+	ORDER BY noticeDate DESC
 	LIMIT #{start},#{end}
 </select>
-
 <select id="countList" parameterType="searchVO" resultType="int">
 	SELECT COUNT(*)
 	FROM notice
@@ -98,7 +97,7 @@
 		noticeHit,
 		noticeFile 
 	FROM notice
-	ORDER BY noticeNo desc
+	ORDER BY noticeDate DESC
 	LIMIT #{start},#{end}	  
 </select>
 

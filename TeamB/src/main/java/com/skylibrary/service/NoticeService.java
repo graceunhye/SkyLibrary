@@ -7,13 +7,13 @@ import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.SearchVO;
 
 public interface NoticeService {
-	//main¿¡  °øÁö»çÇ× ¸®½ºÆ® ±¸ÇÏ´Â ¸Ş¼­µå
+	//mainì—  ê³µì§€ì‚¬í•­ ë¦¬ìŠ¤íŠ¸ êµ¬í•˜ëŠ” ë©”ì„œë“œ
 	public List<NoticeVO> MainList() throws Exception;
 	
-	//°Ë»ö¾î ¹Ş¾Æ °Ô½Ã¹° Á¶È¸ÇÏ´Â ¸Ş¼­µå
+	//ê²€ìƒ‰ì–´ ë°›ì•„ ê²Œì‹œë¬¼ ì¡°íšŒí•˜ëŠ” ë©”ì„œë“œ
 	public List<NoticeVO> search(SearchVO vo) throws Exception;
 	
-	//¸®½ºÆ® °¹¼ö ±¸ÇÏ´Â ¸Ş¼­µå
+	//ë¦¬ìŠ¤íŠ¸ ê°¯ìˆ˜ êµ¬í•˜ëŠ” ë©”ì„œë“œ
 	public int countList(SearchVO vo) throws Exception;
 	
 	public NoticeVO view(NoticeVO vo) throws Exception;
