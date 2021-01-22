@@ -15,6 +15,7 @@
 		<script src="/js/mQna/mqna.js" charset="UTF-8"></script>
 	</head>
 	<body style="margin: 0px;">
+		<input type="hidden" value="${sessionScope.user.userID }" id="userID">
 		<div class="wrap">
 			<header>
 				<div class="header">

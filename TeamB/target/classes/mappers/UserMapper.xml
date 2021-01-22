@@ -13,7 +13,8 @@
 	userAddr,
 	userAddrDetail,
 	userEmail,
-	userEmailDomain
+	userType,
+	userJoinDate
 </sql>
 
 <select id="login" parameterType="sessionVO" resultType="sessionVO">
@@ -33,29 +34,27 @@
 	FROM user
 	WHERE userID=#{userID}
 </select>
-<select id="userSelectOk" resultType="java.util.Map" parameterType="searchVO">
-	SELECT <include refid="allColumns"/>
+<select id="userSearchOk" resultType="java.util.Map" parameterType="searchVO">
+	SELECT <include refid="allColumns" />,
+			(select count(bookISBN) from rent where userID=user.userID) as rentCount 
 	FROM user
 	WHERE 1=1
 	<if test="selectType != null and selectType != ''">
-	AND	userType=#{userType}
+	AND userType=#{selectType}
 	</if>
-	<if test="startDate != null and endDate != null
-	and startDate != '' and endDate != ''">
+	<if test="startDate != null and endDate != null 
+	and startDate != '' and endDate !=''">
 	AND userJoinDate BETWEEN #{startDate} AND #{endDate}
 	</if>
+	<if test="searchText != null and searchText != ''">
+		<if test="searchType == 'userID' ">
+		AND userID LIKE CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType == 'userName' ">
+		AND userName LIKE CONCAT('%',#{searchText},'%')
+		</if>
+	</if>
 	ORDER BY userName ASC
-</select>
-<select id="userSearchOk" resultType="java.util.Map" parameterType="searchVO">
-	SELECT <include refid="allColumns" />
-	FROM user
-	WHERE 1=1
-	<if test="searchType != null">
-	AND #{searchType}
-	</if>
-	<if test="searchText != null">
-	LIKE CONCAT('%',#{searchText},'%')
-	</if>
 </select>
 <insert id="join" parameterType="userVO">
 	INSERT INTO user
@@ -102,7 +101,6 @@
 	UPDATE user 
 	SET  userNum = #{userNum}
 		,userEmail = #{userEmail}
-		,userEmailDomain = #{userEmailDomain}
 		,userName = #{userName}
 		<if test="#{userPostNum != null}">
 		,userPostNum = #{userPostNum}
@@ -120,8 +118,8 @@
 	SET userPW = md5('#{userPW}')
 	WHERE userID = #{userID}
 </update>
-<delete id="userRemove" parameterType="sessionVO">
-	DELETE FROM user 
-	WHERE userID = #{userID}
-</delete>
+<update id="userRemove" parameterType="sessionVO">
+	update user 
+	WHERE userType=2
+</update>
 </mapper>

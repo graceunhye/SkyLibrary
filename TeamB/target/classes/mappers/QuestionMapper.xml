@@ -36,8 +36,8 @@
 	</select>
 	<update id="typeUpdate" parameterType="questionVO">
 		UPDATE q
-		SET questionType = 1, questionOkDate=now()
-		WHERE questionNo = #{questionNo}
+		SET questionType=1, questionOkDate=now()
+		WHERE questionNo=#{questionNo}
 	</update>
 	<update id="questionOkDateUpdate" parameterType="questionVO">
 		UPDATE q 

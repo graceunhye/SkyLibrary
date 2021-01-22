@@ -54,12 +54,12 @@ select
 }
 
 .userInfoView {
-	width: 1300px;
+	width: 1320px;
 	background-color: #F5F5F5;
 	border: 1px solid #F5F5F5;
 	border-radius: 5px;
 	height: 300px;
-	margin: 50px 0 0 50px;
+	margin-left: 50px;
 }
 
 .table tbody td {
@@ -68,23 +68,23 @@ select
 
 .viewTable {
 	border-collapse:collapse;
-	width: 1300px;
+	width: 1320px;
 	height: 300px;
 }
 
-.viewTable>tr:nth-child(1),
-.viewTable>tr:nth-child(2){
+.viewTable tr:nth-child(1),
+.viewTable tr:nth-child(2){
 	height: 30px;
 }
 
-.viewTable>tr:nth-child(1)>td:nth-child(2),
-.viewTable>tr:nth-child(2)>td:nth-child(2),
-.viewTable>tr:nth-child(2)>td:nth-child(4),
-.viewTable>tr:nth-child(2)>td:nth-child(6),
-.viewTable>tr:nth-child(2)>td:nth-child(8)
+.viewTable tr:nth-child(1)>td:nth-child(2),
+.viewTable tr:nth-child(2)>td:nth-child(2),
+.viewTable tr:nth-child(2)>td:nth-child(4),
+.viewTable tr:nth-child(2)>td:nth-child(6),
+.viewTable tr:nth-child(2)>td:nth-child(8)
 {
-	width: 100px;
-	text-align:center;
+	width: 150px;
+	text-align: center;
 }
 
 /*th*/
@@ -98,31 +98,42 @@ select
 	font-weight: bold;
 }
 
-.viewTable>tr:nth-child(1)>td:nth-child(1),
-.viewTable>tr:nth-child(1)>td:nth-child(3),
-.viewTable>tr:nth-child(1)>td:nth-child(5)
-{
-	width: 100px;
-	text-align:center;
-}
-
-.viewTable>tr:nth-child(1)>td:nth-child(4)
+.viewTable tr:nth-child(1)>td:nth-child(1),
+.viewTable tr:nth-child(1)>td:nth-child(3),
+.viewTable tr:nth-child(1)>td:nth-child(5)
 {
 	width: 150px;
 	text-align:center;
+	color: #F5F5F5;
+	background-color:#4A90E2;
 }
 
-.viewTable>tr:nth-child(1)>td:nth-child(6)
+.viewTable tr:nth-child(2)>td:nth-child(1),
+.viewTable tr:nth-child(2)>td:nth-child(3),
+.viewTable tr:nth-child(2)>td:nth-child(5),
+.viewTable tr:nth-child(2)>td:nth-child(7)
 {
-	width: 750px;
+	text-align:center;
+	color: #F5F5F5;
+	background-color:#4A90E2;
+}
+
+.viewTable tr:nth-child(1)>td:nth-child(4)
+{
+	width: 200px;
+	text-align:center;
+}
+
+.viewTable tr:nth-child(1)>td:nth-child(6)
+{
+	width: 500px;
 	text-align: left;
 	padding-left: 5px;
 }
 
-.viewTable>tr:nth-child(3) 
+.viewTable tr:nth-child(1) 
 {
-	height: 240px;
-	padding: 5px;
+	height: 30px;
 }
 
 .fixTable>td:nth-child(1) {

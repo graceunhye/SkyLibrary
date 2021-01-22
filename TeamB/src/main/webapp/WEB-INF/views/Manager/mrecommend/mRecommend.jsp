@@ -13,6 +13,29 @@
 	<link rel="stylesheet" href="/css/mCommon.css" type="text/css"/>
 	<link rel="stylesheet" href="/css/mRecommend/mrecommend.css" type="text/css"/>
 	
+	<style>
+		.logoicon{
+			width : 300px;
+			position : relative;
+			padding-top : 20px;
+			margin-right : 0px;
+			margin-left : 1600px;
+		}
+		.icona{
+			float : left;
+		}
+		.logout{
+			width : 150px;
+			height : 40px;
+			background-color : #2C78D7;
+			border : 1px solid #2C78D7;
+			border-radius : 3px;
+			color : white;
+			font-size : 15px;
+			margin-left : 10px;
+		}
+	</style>
+	
 	<script src="/js/jquery-3.5.1.min.js"></script>
 </head>
 <body style="margin: 0px;">
@@ -20,6 +43,10 @@
 		<header>
 			<div class="header">
 				<div class="title_box"><span class="head_title">관리자 페이지 </span><span class="name">하늘도서관</span></div>
+				<div class="logoicon">
+					<a href="/" class="icona"><img src="/image/homePage/logoicon.png" alt="하늘도서관아이콘" width="45px"></a>
+					<button type="button" class="logout" onclick="location.href='/loginout/logout'"> 로그아웃 </button>
+				</div>
 			</div>
 		</header>
 		<section>
@@ -31,7 +58,7 @@
 				<br>
 				<br>
 				<div class="rselect">
-					<form action="/mrecommend/mRecommend" name="frm" id="frm" method="post">					
+					<form action="/mrecommend/mRecommend" name="frm" id="frm" method="get">					
 						<select id="select" class="select" name="searchType">
 							<c:if test="${search.searchType eq 'all' }">
 								<option value="all" selected>전체</option>
@@ -79,7 +106,7 @@
 										<td rowspan="4" width="15%" align="center">
 											<a href="/Manager/mrecommend/mRecommendView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg}" alt="${list.bookSubject}" width="82px"></a>
 										</td>
-										<td colspan="2"><a href="/Manager/mrecommend/mRecommendView?isbn=${list.bookISBN}"><b>${list.bookSubject}</b></a></td>
+										<td colspan="2"><a href="/mrecommend/mRecommendView?isbn=${list.bookISBN}"><b>${list.bookSubject}</b></a></td>
 									</tr>
 									<tr>
 										<td width="30%">저자 : ${list.bookWriter}</td>

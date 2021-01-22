@@ -197,7 +197,7 @@ public class SearchController {
 	@RequestMapping(value="/recommend", method=RequestMethod.GET)
 	public String getRecommend(Locale locale, Model model, PagingVO paging) throws Exception {
 		
-		int total = bookService.recommendCountList();
+		int total = bookService.recommendCountList(); //0
 
 		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
 			paging.setNowPage(1);
@@ -211,7 +211,6 @@ public class SearchController {
 		}
 		
 		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
-
 		List<BookVO> recommendlist = bookService.RecommendList(paging);
 		
 		model.addAttribute("recommendlist", recommendlist);

@@ -181,7 +181,7 @@
 			bookRent, 
 			bookCoverImg
 	FROM 	book 
-	WHERE bookISBN in (SELECT bookISBN from rbook)
+	WHERE bookISBN IN (SELECT bookISBN from rbook)
 	LIMIT #{start},#{end}
 </select>
 
@@ -196,11 +196,19 @@
 	FROM book
 	ORDER BY bookCount DESC
 </select>
-
 <select id="recommendCountList" resultType="int">
-	SELECT COUNT(*)
-	FROM book
-	ORDER BY bookCount DESC
+	SELECT 
+			bookISBN,
+			bookSubject, 
+			bookStory, 
+			bookCount, 
+			bookCompany, 
+			bookWriter, 
+			bookPublicationDate, 
+			bookRent, 
+			bookCoverImg
+	FROM 	book 
+	where bookISBN IN (SELECT bookISBN from rbook)
 </select>
 
 </mapper>

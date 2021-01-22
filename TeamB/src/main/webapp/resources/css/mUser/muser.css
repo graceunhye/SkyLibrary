@@ -4,13 +4,13 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 	float: left;
-	width: 1020px;
+	width: 1220px;
 	height: 400px;
 }
 
 .table tbody tr {
 	display: table;
-	width: 1000px;
+	width: 1200px;
 }
 
 .fixTable {
@@ -21,19 +21,19 @@
 
 .table{
 	font-size: 14px;
-	width: 1000px;
+	width: 1200px;
 	border-collapse:collapse;
 	margin: 30px 0 0 0;
 }
 
 .table thead {
 	float:left;
-	width: 1000px;
+	width: 1200px;
 }
 
 .optionBox {
 	background-color: #F5F5F5;
-	width: 1000px;
+	width: 1200px;
 	border-radius: 5px;
 	padding: 10px 0 0 30px;
 }
@@ -53,12 +53,12 @@ select
 }
 
 .userInfoView {
-	width: 1000px;
+	width: 1220px;
 	background-color: #F5F5F5;
 	border: 1px solid #F5F5F5;
 	border-radius: 5px;
 	height: 300px;
-	margin: 50px 0 0 50px;
+	margin-left:50px;
 }
 
 .table tbody td {
@@ -91,17 +91,27 @@ select
 }
 
 .fixTable>td:nth-child(4) {
-	width: 250px;
+	width: 150px;
 	text-align: center;
 }
 
 .fixTable>td:nth-child(5) {
-	width: 350px;
+	width: 200px;
 	text-align: center;
 }
 
 .fixTable>td:nth-child(6) {
-	width: 50px;
+	width: 250px;
+	text-align: center;
+}
+
+.fixTable>td:nth-child(7) {
+	width: 100px;
+	text-align: center;
+}
+
+.fixTable>td:nth-child(8) {
+	width: 120px;
 	text-align: center;
 }
 
@@ -109,7 +119,8 @@ select
 	color: red;
 	font-weight: bold;
 	cursor: pointer;	
-	margin-left: 450px;
+	font-size: 12px;
+	margin-left: 10px;
 }
 
 input[type="button"]{
@@ -138,17 +149,26 @@ input[type="button"]{
 }
 
 .resultTable>td:nth-child(4) {
-	width: 250px;
+	width: 150px;
 	text-align: center;
 }
 
 .resultTable>td:nth-child(5) {
-	width: 350px;
+	width: 200px;
 	text-align: center;
 }
 
 .resultTable>td:nth-child(6) {
-	width: 50px;
+	width: 250px;
+	text-align: center;
+}
+
+.resultTable>td:nth-child(7) {
+	width: 100px;
+	text-align: center;
+}
+
+.resultTable>td:nth-child(8) {
 	text-align: center;
 }
 

@@ -1,9 +1,5 @@
 function searchFn() {
-
-//		var selectType    = document.getElementById("selectType").value;
-//		var startDate     = document.getElementById("startDate").value;
-//		var endDate       = document.getElementById("endDate").value;
-			
+		
 		$.ajax({
 			url: "/mqna/ajax/searchOk",
 			type: "post",
@@ -34,6 +30,7 @@ function searchFn() {
 					str += "	<td align='center' width='200' id='atype_"+data[i].questionNo+"'>"+data[i].questionType+"</td>";
 					str += "</tr>";
 				}
+					alert(data.length+"건이 검색 되었습니다.");
 					$("#result").html(str);
 			}
 		})
@@ -108,7 +105,7 @@ function searchFn() {
 					str += "	</tr>";
 					str += "	<tr>";
 					str += "		<td colspan='8' id='a_body'>";
-					str += "			<textarea id='body' placeholder='답변 내용을 입력해주세요.' cols='184' rows='10' style='resize: none;'></textarea>";
+					str += "			<textarea id='body' placeholder='답변 내용을 입력해주세요.' cols='170' rows='10' style='resize: none;'></textarea>";
 					str += " 		</td>";
 					str += "	</tr>";
 				}else{
@@ -139,14 +136,14 @@ function searchFn() {
 				}
 				str += "	</tbody>";
 				str += "</table>";
-				
+	
 				$("#userInfoView").html(str);
 			}
 		})
 	}
 	
 	function aInsertFn(no) {
-
+		
 		$.ajax({
 			url: "/mqna/ajax/aInsertOk",
 			type: "post",
@@ -154,12 +151,13 @@ function searchFn() {
 				answerTitle: $("#title").val(),
 				answerBody : $("#body").val(),
 				questionNo : no,
-				managerID : "testManager"
+				userID : $("#userID").val()
 			},
 			error: function(){
 				alert("ajax 오류가 발생하였습니다.");
 			},
 			success: function(data){
+				
 				$("#okdate").text(data.answerDate);
 				$("#okdate_"+no).text(data.answerDate);
 				$("#atype_"+no).html("<font color='orange'>답변완료</font>");
@@ -178,7 +176,7 @@ function searchFn() {
 		var body  = $("#a_body").text();
 
 		$("#a_title").html("<input type='text' id='title' class='input_text' size='50' value='"+title+"'>");
-		$("#a_body").html("<textarea id='body' cols='190' rows='5' style='resize: none;'>"+body+"</textarea>"); 
+		$("#a_body").html("<textarea id='body' cols='170' rows='5' style='resize: none;'>"+body+"</textarea>"); 
 		$("#a_btn").html("<input type='button' value='등록' class='a_button' onclick='aUpdateFn("+no+")'>");
 
 	}

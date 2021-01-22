@@ -2,51 +2,25 @@ var getData  ="";
 	
 	function checkedSaveFn() {
 		for(var i=0; i<getData.length ; i++) {
-			if($("#checked_"+getData[i].applyNo).prop("checked")){ 
+			if($("#checked_"+getData[i].applyNo).prop("checked")){
+				var no = getData[i].applyNo;
 				$.ajax({
 					url: "/mwish/ajax/checkedSave",
 					type: "get",
 					data: 
 					{
-						applyNo : getData[i].applyNo ,
-						applyType : $("input[name='selectType']").val()
-					},
-					success: function(data){
-						
-						var str = "";
-						var type = "";
-						var color = "";
-						
-						for(var i=0; i<data.length; i++){
-							
-							if(data[i].applyOkDate == null){ data[i].applyOkDate = ""; }
-							
-							str += "<tr class='resultTable' onclick='viewFn("+data[i].applyNo+")'>";
-							str += "	<td>"+data[i].applyNo+"</td>";
-							str += "    <td>"+data[i].userID+"</td>";
-							str += "    <td>"+data[i].applyISBN+"</td>";
-							str += "    <td>"+data[i].applySubject+"</td>";
-							str += "    <td>"+data[i].applyDate+"</td>";
-							str += "    <td>"+data[i].applyOkDate+"</td>";
-							
-							if(data[i].applyType == "0"){ type="신청중"; color="blue"; }
-							if(data[i].applyType == "1"){ type="처리중"; color="orange";}
-							if(data[i].applyType == "2"){ type="취소됨"; color="gray";}
-							if(data[i].applyType == "3"){ type="소장중"; color="green";}
-							
-							str += "    <td><font color='"+color+"'>"+type+"</font></td>";
-							str += "    <td>";
-							str += "		<input type='checkbox' id='checked_"+data[i].applyNo+"'>";
-							str += "	</td>";
-							str += "</tr>";
-						}
-						$("#result").html(str);
+						applyNo : no,
+						applyType : $("select[name='selectType']").val()
+					},error: function(){
+						alert("checked save function error");
+					},success: function(data){
+						searchFn();
 					}				 
 				})
 			}
 		}
-		alert("적용이 되었습니다.");
 	}
+	
 	
 	
 	//처음 데이터 표 가져올 때
@@ -56,7 +30,7 @@ var getData  ="";
 			url: "/mwish/ajax/searchOk",
 			type: "post",
 			data: {
-				selectType : $("input[name='selectType']").val(),
+				searchType : $("select[name='searchType']").val(),
 				startDate : $("input[name='startDate']").val(),
 				endDate : $("input[name='endDate']").val()
 			},
@@ -69,8 +43,8 @@ var getData  ="";
 				var type = "";
 				var color = "";
 				getData = data;
+	
 				for(var i=0; i<data.length; i++){
-					
 					if(data[i].applyOkDate == null){ data[i].applyOkDate = ""; }
 					
 					str += "<tr class='resultTable' onclick='viewFn("+data[i].applyNo+")'>";
@@ -93,7 +67,6 @@ var getData  ="";
 					str += "</tr>";
 				}
 				$("#result").html(str);
-				alert("총 "+data.length+"건이 조회 되었습니다.");
 			}
 		})
 	}
@@ -140,7 +113,7 @@ var getData  ="";
 				str += "		<td>ISBN</td>";
 				str += "		<td>";
 				str += "			<span id='isbnValue'>"+data.applyISBN+"</span>";
-				str += "			<a href='javascript:copyToClipboard("+data.applyISBN+")'>복사</a>";
+				str += "			<a href='javascript:copyToClipboard("+data.applyISBN+")'><img src='/image/homePage/copy.png' alt='복사' width='20'></a>";
 				str += "		</td>";
 				str += "		<td>제목</td>";
 				str += "		<td colspan='3'>"+data.applySubject+"</td>";

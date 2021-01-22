@@ -37,34 +37,37 @@
 						회원 정보</span>
 						<div class="optionBox">
 						조회:: 
-							 회원구분
+							  회원구분::
 							 <select name="selectType">
 							 	<option value="0">일반회원</option>
 							 	<option value="1">탈퇴회원</option>
 							 	<option value="2">강제탈퇴회원</option>
-							 </select> 
-							   가입일 
+							 </select>
+							&nbsp;
+							   가입일:: 
 							 <input type="date" name="startDate"> - 
 							 <input type="date" name="endDate">
-						     <input type="button" value="조회" onclick="userSelectFn()">
-						<br />
-						검색::	
-							<select name="searchType">
+						    &nbsp;
+						          키워드::
+						     <select name="searchType">
 								<option value="userID">아이디</option>
 								<option value="userName">이름</option>
 							</select>
 							<input type="text" name="searchText">
-							<input type="button" value="검색" onclick="userSearchFn()">
-							<span id="userRemove">선택한 회원 강제탈퇴</span>
+							&nbsp;
+							<input type="button" value="조회" onclick="userSearchFn()">
+							<a id="userRemove" href="javascript:userRemoveFn()">선택한 회원 강제탈퇴</a>
 						</div>
 						<table class="table" border="1">	
 							<thead>
 								<tr class="fixTable">
 									<td>번호</td>
+									<td>회원구분</td>
 									<td>아이디</td>
 									<td>이름</td>
 									<td>연락처</td>
 									<td>이메일</td>
+									<td>대출중(권)</td>
 									<td>선택</td>
 								</tr>
 							</thead>

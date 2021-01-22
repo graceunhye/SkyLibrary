@@ -19,7 +19,7 @@ function userModify() {
 
 	var userEmailStr;
 	var array3 = ($("#userEmail").text().trim()).split("@");
-	userEmailStr = "<input type='text' name='userEmail' value='"+array3[0]+"'> @";
+	userEmailStr = "<input type='text' name='userEmailID' value='"+array3[0]+"'> @";
 	userEmailStr += "<input type='text' name='userEmailDomain' value='"+array3[1]+"'>";
 	$("#userEmail").html(userEmailStr);
 	
@@ -42,41 +42,58 @@ function PostOpen(){
 }
 
 function userInfoSaveFn(){
-
-	var userID			= $("#userID").val();
+	var userID			= $("#userID").text();
 	var userName        = $("input[name='userName']").val();
-	var userEmail       = $("input[name='userEmail']").val();
+	var userEmailID     = $("input[name='userEmailID']").val();
 	var userEmailDomain = $("input[name='userEmailDomain']").val();
 	var userNumSplit1   = $("input[name='userNumSplit1']").val();
 	var userNumSplit2   = $("input[name='userNumSplit2']").val();
 	var userNumSplit3   = $("input[name='userNumSplit3']").val();
+	var userAddr        = $("input[name='userAddr']").val();
+	var userAddrDetail  = $("input[name='userAddrDetail']").val();
+	var userPostNum     = $("input[name='userPostNum']").val();
+	
 	
 	if(userName == ""){
 		alert("이름을 기입해주세요.");
-	}else if(userEmail == "" || userEmailDomain == ""){
+		("input[name='userName']").focus();
+		
+	}else if(userEmailID == "" || userEmailDomain == ""){
 		
 		alert("이메일을 기입해주세요.");
+		$("input[name='userEmailID']").focus();
+		
 	}else if(userNumSplit2 == "" || userNumSplit3 == "" || userNumSplit1 == ""){
 	 	
 		alert("번호를 입력해주세요.");
+		$("input[name='userNumSplit1']").focus();
+		
 	}else{
 
 			$.ajax({
 				url: "/myPage/ajax/userInfoModifyOk",
-				type: "GET",
+				type: "POST",
 				data: {
 					userID: userID,
 					userName: userName,
-					userEmail: userEmail,
+					userAddr: userAddr,
+					userPostNum: userPostNum,
+					userAddrDetail: userAddrDetail,
+					userEmailID: userEmailID,
 					userEmailDomain: userEmailDomain,
 					userNumSplit1: userNumSplit1,
 					userNumSplit2: userNumSplit2,
-					userNumSplit2: userNumSplit3
+					userNumSplit3: userNumSplit3
 				},error: function(){
 					alert("submit function error");
 				},success: function(data){
-					
-					alert("변경되었습니다.")
+
+					if(data == 1){
+						alert("변경되었습니다.")
+						location.href="/myPage/userInfo";
+					}else {
+						alert("오류가 발생했습니다.");
+					}
 				}
 				
 			})

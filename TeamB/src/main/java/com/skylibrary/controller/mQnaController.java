@@ -41,7 +41,7 @@ public class mQnaController {
 	public Map<String,String> ajaxAnswerInsert(AnswerVO avo) throws Exception {
 		//등록
 		answerService.answerAdd(avo);
-		
+		System.out.println("answervo::"+avo);
 		//업데이트
 		QuestionVO qvo = new QuestionVO();
 		qvo.setQuestionNo(avo.getQuestionNo());

@@ -12,8 +12,7 @@ create table user
 	userPostNum     varchar(10) 		   comment '우편번호', 
 	userAddr        varchar(100)           comment '주소',
 	userAddrDetail  varchar(100)           comment '상세주소',
-	userEmail       varchar(20)            comment '이메일아이디',
-	userEmailDomain varchar(100)           comment '이메일도메인', 
+	userEmail       varchar(30)            comment '이메일아이디',
 	userType        int          default 0 comment '회원구분',
 	userJoinDate  timestamp default now() comment '회원가입일',
 	-- 0:일반,1:회원탈퇴,2:강제탈퇴
@@ -31,7 +30,6 @@ create table manager
 	managerAddr         varchar(100)   comment '주소',
 	managerAddrDetail   varchar(100)   comment '상세주소',
 	managerEmail        varchar(20)    comment '이메일아이디',
-	managerEmailDomain  varchar(100)   comment '이메일도메인', 
 	primary key (managerID)
 );
 

@@ -29,7 +29,11 @@
 <insert id="answerAdd" parameterType="answerVO">
 	INSERT INTO a
 	(
-		<include refid="allColumns"/>
+		questionNo
+		,managerID
+		,answerTitle
+		,answerBody
+		,answerDate
 	)VALUE
 	(
 		#{questionNo}

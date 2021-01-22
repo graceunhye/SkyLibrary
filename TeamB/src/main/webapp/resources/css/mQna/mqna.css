@@ -32,6 +32,11 @@
 	padding: 10px;
 }
 
+.viewTable>tbody>tr:nth-child(8)>td {
+	width: 1320px;
+	padding: 10px;
+}
+
 .viewTable>tbody>tr:nth-child(9)>td>input[type="button"]{
 	width: 80px;
 	height: 30px;

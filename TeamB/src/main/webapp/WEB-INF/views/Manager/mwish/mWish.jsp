@@ -34,7 +34,7 @@
 						<div class="optionBox">	
 							조회::
 							타입구분:
-							<select name="selectType">
+							<select name="searchType">
 								<option value="4">전체</option>
 								<option value="0">신청중</option>
 								<option value="1">처리중</option>

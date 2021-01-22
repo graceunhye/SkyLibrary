@@ -14,7 +14,7 @@
 		
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="/js/jquery-3.5.1.min.js"></script>
-		<script src="/js/use/userInfo.js"></script>
+		<script src="/js/myPage/userInfo.js"></script>
 		<script src="/js/common.js"></script>
 	</head>
 	<body style="margin:0px">
@@ -78,7 +78,7 @@
 								<th>이메일</th>
 								<td id="userEmail">
 									<c:if test="${userInfo.userEmail != null }">
-									${userInfo.userEmail }@${userInfo.userEmailDomain }
+									${userInfo.userEmail }
 									</c:if>
 									<c:if test="${userInfo.userEmail == null }">
 									등록된 정보가 없습니다.

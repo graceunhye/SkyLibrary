@@ -47,33 +47,26 @@ public class mUserController {
 		return "/Manager/muser/mUser";
 	}
 	
-	//조회
-	@RequestMapping(value="/ajax/selectOk", method=RequestMethod.GET)
-	@ResponseBody
-	public List<Map<String,String>> selectOk(SearchVO vo) throws Exception {
-		List<Map<String,String>> Result = userService.userSelectOk(vo);
-		System.out.println("selectOk::"+Result);
-		return Result;
-	}
 	
 	//검색
 	@RequestMapping(value="/ajax/searchOk", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Map<String,String>> searchOk(SearchVO vo) throws Exception {
+		System.out.println("searchOption::"+vo);
 		List<Map<String,String>> Result = userService.userSearchOk(vo);
 		System.out.println("searchOk::"+Result);
 		return Result;
 	}
 	
 	
-	//대출도서목록
-	@RequestMapping(value="/ajax/userRentInfoOk", method=RequestMethod.GET)
-	@ResponseBody
-	public List<Map<String,String>> userRentInfoOk(RentVO vo) throws Exception {
-		List<Map<String,String>> Result = rentService.userRentInfoOk(vo);
-		System.out.println("userRentInfoOk::"+Result);
-		return Result;
-	}
+//	//대출도서목록
+//	@RequestMapping(value="/ajax/userRentInfoOk", method=RequestMethod.GET)
+//	@ResponseBody
+//	public List<Map<String,String>> userRentInfoOk(RentVO vo) throws Exception {
+//		List<Map<String,String>> Result = rentService.userRentInfoOk(vo);
+//		System.out.println("userRentInfoOk::"+Result);
+//		return Result;
+//	}
 	
 	//희망도서목록
 	@RequestMapping(value="/ajax/userWishInfoOk", method=RequestMethod.GET)
