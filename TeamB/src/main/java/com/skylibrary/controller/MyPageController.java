@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skylibrary.service.ApplyBookService;
+import com.skylibrary.service.ManagerService;
 import com.skylibrary.service.RentService;
 import com.skylibrary.service.UserService;
 import com.skylibrary.vo.ApplyBookVO;
@@ -34,143 +35,243 @@ public class MyPageController {
 	UserService userService;
 	@Inject
 	ApplyBookService applyBookService;
+	@Inject
+	ManagerService managerService;
 	
-	@RequestMapping(value = "/renting")
-	public String renting(Model model, RentVO vo, HttpServletRequest req) throws Exception {
-		
-		HttpSession session = req.getSession(true);
+	
+		//사용자정보
+		@RequestMapping(value = "/userInfo")
+		public String userInfo(Model model, HttpServletRequest req, HttpServletResponse response) throws Exception {
+	
+			HttpSession session = req.getSession(true);
+			SessionVO sessionVO = (SessionVO)session.getAttribute("user");
 			
-		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
-		vo.setUserID(sessionVO.getUserID());
+			response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = response.getWriter();
 			
-		List<RentVO> rvo = rentService.Rentlist(vo);
-		model.addAttribute("rentList", rvo);
-		
-		return "/User/myPage/renting";
-	}
+			//비회원
+	        if(sessionVO == null) {
+	        	
+	        	out.println( "<script>"
+	           		 		+"alert('로그인이 필요한 서비스입니다. 로그인 화면으로 이동합니다.');"
+	           		 		+"location.href='/loginout/login';"
+	           		 		+"</script>");
+	            out.flush();
+	        }
+	        
+	        //관리자
+	        if(managerService.isManager(sessionVO) == 1){
+	        	
+	        	out.println( "<script>"
+	     					+"alert('관리자페이지로 이동합니다.');"
+	        				+"location.href='/muser/mUser';"
+	        				+"</script>");
+	            out.flush();
+	        }
+	        
+	        UserVO vo = userService.userInfoOk(sessionVO);
+	        model.addAttribute("userInfo",vo);	
+	        
+	        return "/User/myPage/userInfo";
+		}
 
-	@RequestMapping(value = "/bookExtensionAjax")
-	@ResponseBody
-	public RentVO extensionBook(@RequestParam("isbn") String bookISBN, Model model, HttpServletRequest req) throws Exception {
-		
-		RentVO rentVO = new RentVO();
-		rentVO.setBookISBN(bookISBN);
-		
-		HttpSession session = req.getSession(true);
+
+		//도서대여 목록
+		@RequestMapping(value = "/renting")
+		public String renting(Model model, RentVO vo, HttpServletRequest req) throws Exception {
+
+			HttpSession session = req.getSession(true);
+				
+			SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+			vo.setUserID(sessionVO.getUserID());
+				
+			List<RentVO> rvo = rentService.Rentlist(vo);
+			model.addAttribute("rentList", rvo);
 			
-		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
-		rentVO.setUserID(sessionVO.getUserID());
-		
-		rentService.extensionBook(rentVO);
-		rentVO = rentService.extenstionSelect(rentVO);
-		return rentVO;
+			return "/User/myPage/renting";
+		}
 
-	}
 		
-	@RequestMapping(value = "/bookReturnAjax")
-	@ResponseBody
-	public RentVO returnBook(@RequestParam("isbn") String bookISBN, Model model, HttpServletRequest req) throws Exception {
-
-		System.out.println("Out MyPageController (value=/wishApply)");
-
-		RentVO rentVO = new RentVO();
-		rentVO.setBookISBN(bookISBN);
-		
-		BookVO bookVO = new BookVO();
-		bookVO.setBookISBN(bookISBN);
-		
-		HttpSession session = req.getSession(true);
+		//희망도서
+		@RequestMapping(value = "/wish")
+		public String wish(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
-		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
-		rentVO.setUserID(sessionVO.getUserID());
-		
-		rentService.updateBook(bookVO);
-		rentService.deleteRent(rentVO);
-		
-		return rentVO;
-	}
-	
-	@RequestMapping(value = "/wish")
-	public String wish(Model model, HttpServletRequest req) throws Exception {
-		System.out.println("In MyPageController (value=/wish)");
-
-		System.out.println("Out MyPageController (value=/wish)");
-		return "/User/myPage/wish";
-	}
-	
-	
-	//url타고 넘어왔을 때 보여주는 페이지
-	@RequestMapping(value = "/wishApply")
-	public String wishApply(Model model, HttpServletRequest req) throws Exception {
-		System.out.println("In MyPageController (value=/wishApply)");
-		
-		System.out.println("Out MyPageController (value=/wishApply)");
-		return "/User/myPage/wishApply";
-	}
-	
-	//wish데이터 저장
-	@RequestMapping(value="/wishOk", method = RequestMethod.POST)
-	public String wisthApplied(ApplyBookVO vo,HttpServletRequest request, HttpServletResponse response)throws Exception{
-		
-		System.out.println("boardVO:"+ vo.toString());
-
-		applyBookService.insert(vo);	
-		
-		 response.setContentType("text/html; charset=UTF-8");
-         PrintWriter out = response.getWriter();
-         out.println("<script>alert('신청이 완료되었습니다.'); history.go(-1);</script>");
-         out.flush();
-		
-		 return "/User/myPage/wishApply";
-		
-
-	}
-	
-	//희망도서 신청 목록 조회
-	@RequestMapping(value = "/wishCheck") 
-	public String wishCheck(Model model,  HttpServletRequest req) throws Exception {
-		System.out.println("In MyPageController (value=/wishCheck)");
-	
-		System.out.println("Out MyPageController (value=/wishCheck)");
-		HttpSession session = req.getSession();
-		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
-//		STRING USERID = SESSIONVO.GETUSERID();
-		
-		List<ApplyBookVO> vo = applyBookService.view(sessionVO.getUserID());
-		
-		model.addAttribute("whishCheckData",vo);
-		
-		return "/User/myPage/wishCheck";
-	}
-	
-	
-	@RequestMapping(value = "/userInfo")
-	public String userInfo(Model model, HttpServletRequest req) throws Exception {
-		System.out.println("In MyPageController (value=/userInfo)");
-		
-		HttpSession session = req.getSession(true);
-		
-		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
-		UserVO vo = userService.userInfoOk(sessionVO);
-		model.addAttribute("userInfo",vo);
+			HttpSession session = request.getSession();
+			SessionVO sessionVO = (SessionVO)session.getAttribute("user");
 			
-		System.out.println("Out MyPageController (value=/userInfo)");
-		return "/User/myPage/userInfo";
-	}
+			
+			response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+			
+			//비회원
+	        if(sessionVO == null) {
+	        	
+	        	out.println("<script>"
+	           		 		+"alert('로그인이 필요한 서비스입니다. 로그인 화면으로 이동합니다.');"
+	           		 		+"location.href='/loginout/login';"
+	           		 		+"</script>");
+	            out.flush();
+	        
+	        //관리자
+	        }
+	        if(managerService.isManager(sessionVO) == 1){
+	        	
+	        	out.println("<script>"
+	        				+"alert('관리자페이지로 이동합니다.');"
+	        				+"location.href='/muser/mUser';"
+	        				+"</script>");
+	            out.flush();
+	            
+	        }
+			return "/User/myPage/wish";
+		}
+		
+		
+		//희망도서 신청
+		@RequestMapping(value = "/wishApply")
+		public String wishApply(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-
-	@RequestMapping(value = "/ajax/userInfoModifyOk")
-	@ResponseBody
-	public int userInfoModifyOk(Model model, UserVO vo) throws Exception {
-		System.out.println("In MyPageController (value=/userInfoModifyOk)");
-
-		vo.setUserEmail(vo.getUserEmailID(),vo.getUserEmailDomain());
-		vo.setUserNum(vo.getUserNumSplit1(), vo.getUserNumSplit2(), vo.getUserNumSplit3());
-		userService.userModify(vo);
-		System.out.println("userInfoVO::"+vo);
-		System.out.println("Out MyPageController (value=/userInfoModifyOk)");
-		return 1;
-	}
-
+			HttpSession session = request.getSession();
+			SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+			
+			
+			response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+			
+			//비회원
+	        if(sessionVO == null) {
+	        	
+	        	out.println("<script>"
+	           		 		+"alert('로그인이 필요한 서비스입니다. 로그인 화면으로 이동합니다.');"
+	           		 		+"location.href='/loginout/login';"
+	           		 		+"</script>");
+	            out.flush();
+	        
+	        //관리자
+	        }
+	        if(managerService.isManager(sessionVO) == 1){
+	        	
+	        	out.println("<script>"
+	        				+"alert('관리자페이지로 이동합니다.');"
+	        				+"location.href='/muser/mUser';"
+	        				+"</script>");
+	            out.flush();
+	            
+	        }
+			
+			return "/User/myPage/wishApply";
+		}
+		
+		//희망도서 신청처리
+		@RequestMapping(value="/wishOk", method = RequestMethod.POST)
+		public String wisthApplied(ApplyBookVO vo,HttpServletRequest request, HttpServletResponse response)throws Exception{
+			
+			HttpSession session = request.getSession();
+			SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+			
+			
+			vo.setUserID(sessionVO.getUserID());
+			System.out.println("boardVO:"+ vo.toString());
+			applyBookService.insert(vo);	
+			
+			 response.setContentType("text/html; charset=UTF-8");
+	         PrintWriter out = response.getWriter();
+	         out.println("<script>"
+	        		 	+"alert('신청이 완료되었습니다.');"
+	        		 	+"location.href='/myPage/wishCheck';"
+	        		 	+"</script>");
+	         out.flush();
+			
+			 return "/User/myPage/wishApplyOk";
+		}
+		
+		
+		//희망도서 신청 목록
+		@RequestMapping(value = "/wishCheck") 
+		public String wishCheck(Model model,  HttpServletRequest req, HttpServletResponse response) throws Exception {
+			
+			HttpSession session = req.getSession();
+			SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+			
+			response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+			
+			//비회원
+	        if(sessionVO == null) {
+	        	
+	        	out.println("<script>"
+	           		 		+"alert('로그인이 필요한 서비스입니다. 로그인 화면으로 이동합니다.');"
+	           		 		+"location.href='/loginout/login';"
+	           		 		+"</script>");
+	            out.flush();
+	        
+	        //관리자
+	        }
+	        if(managerService.isManager(sessionVO) == 1){
+	        	
+	        	out.println("<script>"
+	     					+"alert('관리자페이지로 이동합니다.');"
+	        				+"location.href='/muser/mUser';"
+	        				+"</script>");
+	            out.flush();
+	            
+	        }
+	        
+	        List<ApplyBookVO> vo = applyBookService.view(sessionVO.getUserID());
+			model.addAttribute("wishCheckData",vo);
+			
+			return "/User/myPage/wishCheck";
+		}
+		
+	
+		@RequestMapping(value = "/ajax/userInfoModifyOk")
+		@ResponseBody
+		public int userInfoModifyOk(Model model, UserVO vo) throws Exception {
+	
+			vo.setUserEmail(vo.getUserEmailID(),vo.getUserEmailDomain());
+			vo.setUserNum(vo.getUserNumSplit1(), vo.getUserNumSplit2(), vo.getUserNumSplit3());
+			userService.userModify(vo);
+	
+			return 1;
+		}
+	
+		@RequestMapping(value = "/bookExtensionAjax")
+		@ResponseBody
+		public RentVO extensionBook(@RequestParam("isbn") String bookISBN, Model model, HttpServletRequest req) throws Exception {
+			
+			RentVO rentVO = new RentVO();
+			rentVO.setBookISBN(bookISBN);
+			
+			HttpSession session = req.getSession(true);
+				
+			SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+			rentVO.setUserID(sessionVO.getUserID());
+			
+			rentService.extensionBook(rentVO);
+			rentVO = rentService.extenstionSelect(rentVO);
+			return rentVO;
+	
+		}
+			
+		@RequestMapping(value = "/bookReturnAjax")
+		@ResponseBody
+		public RentVO returnBook(@RequestParam("isbn") String bookISBN, Model model, HttpServletRequest req) throws Exception {
+	
+			RentVO rentVO = new RentVO();
+			rentVO.setBookISBN(bookISBN);
+			
+			BookVO bookVO = new BookVO();
+			bookVO.setBookISBN(bookISBN);
+			
+			HttpSession session = req.getSession(true);
+				
+			SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+			rentVO.setUserID(sessionVO.getUserID());
+			
+			rentService.updateBook(bookVO);
+			rentService.deleteRent(rentVO);
+			
+			return rentVO;
+		}
 	
 }

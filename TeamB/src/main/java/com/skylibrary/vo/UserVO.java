@@ -17,11 +17,11 @@ public class UserVO {
 	private String userNumSplit2;   //전화번호2 (두번째 박스)
 	private String userNumSplit3;   //전화번호3 (세번째 박스)
 	private String userNum;
-	private int    userPostNum;     //우편번호
+	private String userPostNum;     //우편번호
 	private String userAddr;        //주소
 	private String userAddrDetail;  //상세주소
 	private String userEmail;
-	private String userEmailID;       //이메일아이디
+	private String userEmailID;     //이메일아이디
 	private String userEmailDomain; //이메일도메인
 	private int    userType;        //유저타입 {0:일반회원,1:탈퇴회원,2:강퇴회원}
 	private String userJoinDate;    //가입일

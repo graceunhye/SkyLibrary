@@ -57,9 +57,9 @@ public class UserDAO {
 		sql.update(namespace + ".userModify", vo);
 	}
 	
-	//유저 삭제
+	//유저 삭제:: 사용자 타입 2로 변경
 	public void userRemove(SessionVO vo) throws Exception {
-		sql.delete(namespace + ".userRemove", vo);
+		sql.update(namespace + ".userRemove", vo);
 	}
 	
 	//상제정보 조회
@@ -77,11 +77,11 @@ public class UserDAO {
 		return sql.selectList(namespace + ".userSelectOk", vo);
 	}
 
-
-	public void userRemove(UserVO vo) throws Exception {
-		sql.delete(namespace + ".userRemove", vo);
-	}
-
+	//아이디 찾기
+	public String FindId(String userNum) throws Exception{
+		return sql.selectOne(namespace + ".findId", userNum);
+	}	
+	
 
 	
 }

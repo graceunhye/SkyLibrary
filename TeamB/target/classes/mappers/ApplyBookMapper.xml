@@ -51,7 +51,17 @@
 	WHERE  applyNo=#{applyNo}
 </update>
 <select id="wishSearchOk" parameterType="searchVO" resultType="java.util.Map">
-	SELECT * 
+	SELECT applyNo
+		,userID
+		,applyISBN
+		,applySubject
+		,applyCompany
+		,applyPublicationDate
+		,DATE_FORMAT(applyDate, '%Y-%m-%d') as applyDate
+		,applyWriter
+		,applyPrice
+		,applyWhy
+		,applyType
 	FROM abook
 	WHERE 1=1
 	<if test="searchType != null and searchType !='' and searchType != 4">
@@ -73,4 +83,7 @@
 	FROM  abook 
 	WHERE userID=#{userID}
 </select>	
+<delete id="applyRemove" parameterType="sessionVO">
+	DELETE FROM abook WHERE userID=#{userID}
+</delete>
 </mapper>

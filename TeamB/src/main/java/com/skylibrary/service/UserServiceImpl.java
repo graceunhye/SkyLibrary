@@ -60,6 +60,10 @@ public class UserServiceImpl implements UserService {
 		return dao.userInfoOk(vo);
 	}
 
+	@Override
+	public String FindId(String userNum) throws Exception {
+		return dao.FindId(userNum);
+	}
 	
 
 

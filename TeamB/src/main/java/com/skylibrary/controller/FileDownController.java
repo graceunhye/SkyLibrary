@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class FileDownController {
 	   
-	@RequestMapping(value="/Manager/mnotice/noticeFileDown")
+	@RequestMapping(value="/mnotice/noticeFileDown")
 		public void fileDownload4(HttpServletRequest request,HttpServletResponse response) throws Exception {
-	        //String path =  request.getSession().getServletContext().getRealPath("저장경로");
 	        
 	        String filename =request.getParameter("fileName");
 	        String realFilename="";
@@ -26,7 +25,6 @@ public class FileDownController {
 	        try {
 	            String browser = request.getHeader("User-Agent"); 
 	            
-	            //파일 인코딩 
 	            if (browser.contains("MSIE") || browser.contains("Trident")
 	                    || browser.contains("Chrome")) {
 	                filename = URLEncoder.encode(filename, "UTF-8").replaceAll("\\+",
@@ -38,14 +36,15 @@ public class FileDownController {
 	            System.out.println("UnsupportedEncodingException");
 	        }
 	        
-	        realFilename = "D:\\gitgit\\TeamB\\src\\main\\webapp\\resources\\upload\\" + filename;
+	        realFilename = "C:\\Users\\Administrator\\git\\SkyLibrary\\TeamB\\src\\main\\webapp\\resources\\upload\\" + filename;
 	        System.out.println(realFilename);
 	        File file1 = new File(realFilename);
 	        if (!file1.exists()) {
+	        	
 	            return ;
 	        }
 	         
-	        // 파일명 지정        
+	        
 	        response.setContentType("application/octer-stream");
 	        response.setHeader("Content-Transfer-Encoding", "binary;");
 	        response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");

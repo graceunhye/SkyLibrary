@@ -40,4 +40,9 @@ public class AnswerServiceImpl implements AnswerService {
 	public Map<String, String> aViewMap(AnswerVO vo) throws Exception {
 		return dao.aViewMap(vo);
 	}
+
+	@Override
+	public void answerRemove(int questionNo) throws Exception {
+		dao.answerRemove(questionNo);
+	}
 }

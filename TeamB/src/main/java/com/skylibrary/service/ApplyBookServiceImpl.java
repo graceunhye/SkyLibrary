@@ -50,8 +50,12 @@ public class ApplyBookServiceImpl implements ApplyBookService {
 
 	@Override
 	public List<ApplyBookVO> view(String userID) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		 return dao.view(userID);
+	}
+
+	@Override
+	public void applyRemove(SessionVO vo) throws Exception {
+		dao.applyRemove(vo);
 	}
 	
 

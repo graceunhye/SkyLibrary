@@ -1,15 +1,17 @@
 package com.skylibrary.controller;
 
+import java.io.PrintWriter;
 import java.util.regex.Pattern;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skylibrary.service.ManagerService;
 import com.skylibrary.service.UserService;
@@ -24,22 +26,57 @@ public class JoinController {
 	@Inject
 	ManagerService managerService;
 	
-	//회원가입 get
+	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public String getJoin() throws Exception {
+	public String join() throws Exception {
 		return "/User/join/join";
 	}
 	
-	//회원가입 post
+	
+	@RequestMapping(value = "/mjoin", method = RequestMethod.GET)
+	public String mjoin() throws Exception {
+		return "/Manager/mjoin/mjoin";
+	}
+	
+	
+	//회원가입
 	@RequestMapping(value = "/joinOk", method = RequestMethod.POST)
-	public String postJoin(Model model, UserVO vo, HttpServletRequest request) throws Exception {
-		System.out.println(vo);
+	public void postJoin(Model model, UserVO vo, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
+
 		vo.setUserNum(vo.getUserNumSplit1(),vo.getUserNumSplit2(),vo.getUserNumSplit3());
+		vo.setUserEmail(vo.getUserEmailID(), vo.getUserEmailDomain());
 		userService.join(vo);
 		
-		//mailsender.mailSendWithUserKey(vo.getUserEmail(), vo.getUserID(), request);
+		 response.setContentType("text/html; charset=UTF-8");
+         PrintWriter out = response.getWriter();
+         out.println( "<script>"
+        		 	+ "alert('회원가입에 성공하였습니다. 로그인을 해주세요!');"
+        		 	+ "location.href='/loginout/login';"
+        		 	+ "</script>");
+         out.flush();
+	}
+	
+
+	//사서 회원가입
+	@RequestMapping(value = "/mjoinOk", method = RequestMethod.POST)
+	public String postMjoin(Model model, ManagerVO vo, HttpServletResponse response) throws Exception {
+		
+		vo.setManagerEmail(vo.getManagerEmailID(),vo.getManagerEmailDomain());
+		vo.setManagerNum(vo.getManagerNumSplit1(),vo.getManagerNumSplit2(),vo.getManagerNumSplit3());
+
+		managerService.mjoin(vo);	
+		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>"
+       		 		+"alert('회원가입에 성공하였습니다. 로그인을 해주세요!');"
+       		 		+"loation.href='/loginout/login';"
+       		 		+"</script>");
+        out.flush();
+		
 		return "/User/loginout/login";
 	}
+	
 	
 	@RequestMapping(value = "/join/ajax/idCheckOk", method = RequestMethod.GET)
 	@ResponseBody
@@ -62,29 +99,9 @@ public class JoinController {
 				checkResult="pass";
 			}
 		}
-		System.out.println("checkResult::"+checkResult);
 
 		return checkResult;
 	}
 	
-	
-		// 사서 회원가입 get
-		@RequestMapping(value = "/mjoin", method = RequestMethod.GET)
-		public String getMjoin() throws Exception {
-			return "/Manager/mjoin/mjoin";
-		}
-		
-		// 사서 회원가입 post
-		@RequestMapping(value = "/mjoinOk", method = RequestMethod.POST)
-		public String postMjoin(ManagerVO vo) throws Exception {
-			vo.setManagerEmail(vo.getManagerEmailID(),vo.getManagerEmailDomain());
-			vo.setManagerNum(vo.getManagerNumSplit1(),vo.getManagerNumSplit2(),vo.getManagerNumSplit3());
-			System.out.println("managerVO::"+vo);
-			managerService.mjoin(vo);	
-			return "redirect:/";
-		}
-		
-
-
 
 }

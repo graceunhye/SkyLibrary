@@ -134,9 +134,9 @@
 <!-- 도서상세페이지 rent 테이블 insert -->
 <insert id="insertRent" parameterType="bookVO">
 	INSERT INTO rent 
-		(userID, bookISBN,<!--  bookSubejct, bookCompany, bookWriter, --> rentStartDate, rentEndDate)
+		(userID, bookISBN, rentStartDate, rentEndDate)
 	values 
-		(#{userID}, #{bookISBN},<!-- #{bookSubejct},#{bookCompany},#{bookWriter}, --> now(), date_add(now(), interval 14 day))
+		(#{userID}, #{bookISBN}, now(), date_add(now(), interval 14 day))
 	<selectKey resultType="integer" keyProperty="no" order="AFTER">
 		SELECT MAX(rentNo) FROM rent
 	</selectKey>	 
@@ -152,7 +152,7 @@
 
 <!-- 신착도서 -->
 <select id="new" resultType="bookVO" parameterType="pagingVO">
-		SELECT 
+	SELECT 
 			bookISBN,
 			bookSubject, 
 			bookStory, 
@@ -197,18 +197,8 @@
 	ORDER BY bookCount DESC
 </select>
 <select id="recommendCountList" resultType="int">
-	SELECT 
-			bookISBN,
-			bookSubject, 
-			bookStory, 
-			bookCount, 
-			bookCompany, 
-			bookWriter, 
-			bookPublicationDate, 
-			bookRent, 
-			bookCoverImg
-	FROM 	book 
-	where bookISBN IN (SELECT bookISBN from rbook)
+	SELECT COUNT(*)
+	FROM rbook
 </select>
 
 </mapper>

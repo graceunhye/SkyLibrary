@@ -34,5 +34,7 @@
 	WHERE managerID = #{userID}
 	AND managerPW = md5(#{userPW})
 </select>
-
+<select id="isManager" resultType="int" parameterType="sessionVO">
+	SELECT count(*) FROM manager WHERE managerID=#{userID}
+</select> 
 </mapper>

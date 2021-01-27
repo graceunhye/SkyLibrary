@@ -68,14 +68,14 @@
 										<option value="bookWriter">저자</option>
 										<option value="bookCompany" selected>출판사</option>
 									</c:if>
-									<c:if test="${search.searchType eq null }">
-										<option value="all">전체</option>
+									<c:if test="${search.searchType eq null or search.searchType eq ''}">
+										<option value="all" selected>전체</option>
 										<option value="bookSubject">도서명</option>
 										<option value="bookWriter">저자</option>
 										<option value="bookCompany">출판사</option>
 									</c:if>
 								</select>
-								<input type="text" size="60" id="keyword" class="keyword" name="searchText" value="${ search.searchText}">
+								<input type="text" size="60" id="keyword" class="keyword" name="searchText" value="${search.searchText}">
 								<input type="submit" value="검색" class="searchBtn">
 								</span>
 							</form>		
@@ -127,7 +127,7 @@
 									</c:choose>
 								</c:forEach>
 								<c:if test="${paging.endPage != paging.lastPage}">
-									<a href="/search/total?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}&searchText=${search.searchText}&searchType=${search.searchType}">&gt;</a>
+									<a href="/search/total?nowPage=${paging.nowPage + 1}&cntPerPage=${paging.cntPerPage}&searchText=${search.searchText}&searchType=${search.searchType}">&gt;</a>
 								</c:if>
 							</div>	
 						</div>	

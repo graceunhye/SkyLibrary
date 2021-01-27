@@ -28,41 +28,40 @@ public class SearchController {
 	@Inject
 	BookService bookService;
 	
+	
+	//통합검색
 	@RequestMapping(value="/total", method=RequestMethod.GET)
 	public String getTotal(Locale locale, Model model, SearchVO search, PagingVO paging) throws Exception {
-		//keyWord '공'
-		//현재 페이지 1
-		//total = 14
-		int total = bookService.countList(search); //14
+
+		int total = bookService.countList(search); 
 
 		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
-			paging.setNowPage(1); //현재 페이지
-			paging.setCntPerPage(5); //몇개씩 보일지
+			paging.setNowPage(1); 
+			paging.setCntPerPage(5); 
 			
 		}else if(paging.getNowPage() == 0){
 			paging.setNowPage(1);
 			
 		}else if(paging.getCntPerPage() == 0){
-			paging.setCntPerPage(5); //몇개씩 보일지
+			paging.setCntPerPage(5); 
 		}
 		
 		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
 		search.setStart(paging.getStart());
-		System.out.println("StartValue"+paging.getStart());
 		search.setEnd(5);
-		//시작점으로부터 5개 보여줌.
-		
+
 		List<BookVO> totallist = bookService.TotalList(search);
 		
 		model.addAttribute("totallist", totallist);
 		model.addAttribute("paging", paging);
 		model.addAttribute("search", search);
 		model.addAttribute("totalCount",total);
-		System.out.println(search);
-		System.out.println(paging);
+
 		return "/User/search/total"; 
 	}	
 		
+	
+	//통합검색 상세
 	@RequestMapping(value="/totalView", method=RequestMethod.GET)
 	public String getTotalView(@RequestParam("isbn") String isbn, Model model, HttpServletRequest request) throws Exception {
 		
@@ -89,15 +88,16 @@ public class SearchController {
 		int total = bookService.bestCountList();
 
 		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
-			paging.setNowPage(1);
+			paging.setNowPage(1); 
 			paging.setCntPerPage(5); 
 			
 		}else if(paging.getNowPage() == 0){
 			paging.setNowPage(1);
 			
 		}else if(paging.getCntPerPage() == 0){
-			paging.setCntPerPage(5);
+			paging.setCntPerPage(5); 
 		}
+			
 		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
 
 		List<BookVO> bestlist = bookService.BestList(paging);
@@ -128,26 +128,6 @@ public class SearchController {
 		return "/User/search/bestView";
 	}
 	
-	@RequestMapping(value="/bookViewAjax", method=RequestMethod.POST)
-	@ResponseBody
-	public BookVO AjaxUpdate(@RequestParam("isbn") String isbn,HttpServletRequest request) throws Exception {
-		
-		BookVO bookVO = new BookVO();
-		bookVO.setBookISBN(isbn);
-		
-		HttpSession session = request.getSession();
-		SessionVO vo = (SessionVO)session.getAttribute("user");
-		
-		if(vo != null) {
-			bookVO.setUserID(vo.getUserID());
-		}
-		
-		bookService.updateBook(bookVO);
-		bookService.insertRent(bookVO);
-		bookVO = bookService.selectRent(bookVO.getRentNo());
-		
-		return bookVO;
-	}
 
 	@RequestMapping(value="/new", method=RequestMethod.GET)
 	public String getNew(Locale locale, Model model, PagingVO paging) throws Exception {
@@ -155,14 +135,14 @@ public class SearchController {
 		int total = bookService.newCountList();
 
 		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
-			paging.setNowPage(1);
+			paging.setNowPage(1); 
 			paging.setCntPerPage(5); 
 			
 		}else if(paging.getNowPage() == 0){
 			paging.setNowPage(1);
 			
 		}else if(paging.getCntPerPage() == 0){
-			paging.setCntPerPage(5);
+			paging.setCntPerPage(5); 
 		}
 		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
 
@@ -173,6 +153,7 @@ public class SearchController {
 		
 		return "/User/search/new"; 
 	}
+	
 	
 	@RequestMapping(value="/newView", method=RequestMethod.GET)
 	public String getNewView(@RequestParam("isbn") String isbn, Model model, HttpServletRequest request) throws Exception {
@@ -194,23 +175,25 @@ public class SearchController {
 		return "/User/search/newView";
 	}
 	
+	
 	@RequestMapping(value="/recommend", method=RequestMethod.GET)
 	public String getRecommend(Locale locale, Model model, PagingVO paging) throws Exception {
 		
-		int total = bookService.recommendCountList(); //0
+		int total = bookService.recommendCountList();
 
 		if(paging.getNowPage() == 0 && paging.getCntPerPage() == 0) {
-			paging.setNowPage(1);
+			paging.setNowPage(1); 
 			paging.setCntPerPage(5); 
 			
 		}else if(paging.getNowPage() == 0){
 			paging.setNowPage(1);
 			
 		}else if(paging.getCntPerPage() == 0){
-			paging.setCntPerPage(5);
+			paging.setCntPerPage(5); 
 		}
 		
 		paging = new PagingVO(total, paging.getNowPage(), paging.getCntPerPage());
+		
 		List<BookVO> recommendlist = bookService.RecommendList(paging);
 		
 		model.addAttribute("recommendlist", recommendlist);
@@ -218,6 +201,7 @@ public class SearchController {
 		
 		return "/User/search/recommend"; 
 	}
+	
 	
 	@RequestMapping(value="/recommendView", method=RequestMethod.GET)
 	public String getRecommendView(@RequestParam("isbn") String isbn, Model model) throws Exception {
@@ -227,5 +211,27 @@ public class SearchController {
 		model.addAttribute("bookView", vo);
 		
 		return "/User/search/recommendView";
+	}
+	
+	
+	@RequestMapping(value="/bookViewAjax", method=RequestMethod.POST)
+	@ResponseBody
+	public BookVO AjaxUpdate(@RequestParam("isbn") String isbn,HttpServletRequest request) throws Exception {
+		
+		BookVO bookVO = new BookVO();
+		bookVO.setBookISBN(isbn);
+		
+		HttpSession session = request.getSession();
+		SessionVO vo = (SessionVO)session.getAttribute("user");
+		
+		if(vo != null) {
+			bookVO.setUserID(vo.getUserID());
+		}
+		
+		bookService.updateBook(bookVO);
+		bookService.insertRent(bookVO);
+		bookVO = bookService.selectRent(bookVO.getNo());
+		
+		return bookVO;
 	}
 }

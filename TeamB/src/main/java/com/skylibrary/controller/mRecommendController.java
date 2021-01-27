@@ -75,8 +75,7 @@ public class mRecommendController {
 	
 	@RequestMapping(value="/insertAjax", method=RequestMethod.POST)
 	@ResponseBody
-	public BookVO AjaxInsert(@RequestParam("recommend") String recommendWhy, 
-				@RequestParam("isbn") String bookISBN, HttpServletRequest request) throws Exception {
+	public BookVO AjaxInsert(@RequestParam("recommend") String recommendWhy, @RequestParam("isbn") String bookISBN, HttpServletRequest request) throws Exception {
 		
 		BookVO bookVO = new BookVO();
 		bookVO.setRecommendWhy(recommendWhy);
@@ -94,8 +93,7 @@ public class mRecommendController {
 	
 	@RequestMapping(value="/updateAjax", method=RequestMethod.GET)
 	@ResponseBody
-	public RecommendVO AjaxUpdate(@RequestParam("recommend") String recommendWhy, 
-				@RequestParam("no") int recommendNo, HttpServletRequest request) throws Exception {
+	public RecommendVO AjaxUpdate(@RequestParam("recommend") String recommendWhy, @RequestParam("no") int recommendNo, HttpServletRequest request) throws Exception {
 		
 		RecommendVO recommendVO = new RecommendVO();
 		recommendVO.setRecommendWhy(recommendWhy);
@@ -113,8 +111,7 @@ public class mRecommendController {
 	
 	@RequestMapping(value="/deleteAjax", method=RequestMethod.GET)
 	@ResponseBody
-	public RecommendVO AjaxDelete(@RequestParam("no") int recommendNo,
-				HttpServletRequest request) throws Exception {
+	public RecommendVO AjaxDelete(@RequestParam("no") int recommendNo, HttpServletRequest request) throws Exception {
 		
 		RecommendVO recommendVO = new RecommendVO();
 		recommendVO.setRecommendNo(recommendNo);

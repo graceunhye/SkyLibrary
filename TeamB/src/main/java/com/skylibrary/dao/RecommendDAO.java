@@ -18,27 +18,27 @@ public class RecommendDAO {
 	
 	private static String namespace = "com.skylibrary.mappers.recommendMapper";
 	
-	//µµ¼­ ÅëÇÕ ¸ñ·Ï
+	//ë„ì„œ í†µí•© ëª©ë¡
 	public List<BookVO> list() throws Exception {
 		return sql.selectList(namespace + ".mRecommend");
 	}
 	
-	//µµ¼­ »ó¼¼ÆäÀÌÁö
+	//ë„ì„œ ìƒì„¸í˜ì´ì§€
 	public BookVO bookView(String isbn) throws Exception{
 		return sql.selectOne(namespace + ".recommendView", isbn); 
 	}
 	
-	//ÃßÃµ µî·Ï
+	//ì¶”ì²œ ë“±ë¡
 	public int insertRbook(BookVO vo) {
 		return sql.insert(namespace + ".insertRbook", vo);
 	}
 	
-	//ÃßÃµ ¼öÁ¤
+	//ì¶”ì²œ ìˆ˜ì •
 	public int updateRbook(RecommendVO vo) {
 		return sql.update(namespace + ".updateRbook", vo);
 	}
 	
-	//ÃßÃµ »èÁ¦
+	//ì¶”ì²œ ì‚­ì œ
 	public int deleteRbook(RecommendVO vo) {
 		return sql.delete(namespace + ".deleteRbook", vo);
 	}

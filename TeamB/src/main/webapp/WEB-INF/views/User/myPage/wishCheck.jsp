@@ -57,30 +57,58 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="whishCheckData" var="list">
-								<c:if test="">
-								<tr height="40px;">
-									<td class="mid"></td>
-									<td></td>
-									<td class="mid"></td>
-									<td class="mid"></td>
-									<td class="mid"></td>
-									<td class="mid"></td>
-									<td class="mid"></td>
-								</tr>
+								<!-- data가 한 행이라도 있을 경우 -->
+								<c:if test = "${wishCheckData.size() ne 0}">	
+									<c:set var="mcnt" value="${10-wishCheckData.size()}" />		
+									<c:forEach var="wishData" items="${wishCheckData}" varStatus="status">
+										<tr height="40px">
+											<td class="mid">${status.count }</td>
+											<td class="mid">${wishData.applySubject}</td>
+											<td class="mid">${wishData.applyISBN}</td>
+											<td class="mid">${wishData.applyWriter}</td>
+											<td class="mid">${wishData.applyCompany}</td>
+											<td class="mid">${wishData.applyDate}</td>
+											<c:if test="${wishData.applyType eq '0' }">
+											<td class="mid"><font color='blue'>신청중</font></td>
+											</c:if>
+											<c:if test="${wishData.applyType eq '1' }">
+											<td class="mid"><font color='orange'>처리중</font></td>
+											</c:if>
+											<c:if test="${wishData.applyType eq '2' }">
+											<td class="mid"><font color='gray'>취소됨</font></td>
+											</c:if>
+											<c:if test="${wishData.applyType eq '3' }">
+											<td class="mid"><font color='green'>소장중</font></td>
+											</c:if>
+										</tr>
+									</c:forEach>
+									<c:forEach begin="0" end="${mcnt}">
+										<tr height="40px">	
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+										</tr>
+									</c:forEach>
 								</c:if>
-								<c:if test="">
-								<tr>
-									<td>${whishCheckData.applyNo}</td>
-									<td>${whishCheckData.applySubject}</td>
-									<td>${whishCheckData.applyISBN}</td>
-									<td>${whishCheckData.applyWriter}</td>
-									<td>${whishCheckData.applyCompany}</td>
-									<td>${whishCheckData.applyDate}</td>
-									<td>${whishCheckData.applyType}</td>
-								</tr>
+								<!-- data가 null일 경우 -->
+								<c:if test="${wishCheckData.size() eq 0 }">
+									<c:forEach var="test" begin="0" end="10">
+										<tr height="40px">	
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+											<td class="mid"></td>
+										</tr>
+									</c:forEach>
 								</c:if>
-								</c:forEach>
+									
 							</tbody>
 						</table>
 					</div>

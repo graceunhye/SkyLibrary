@@ -24,4 +24,8 @@ public class ManagerDAO {
 	public SessionVO mlogin(SessionVO vo) throws Exception {
 		return sql.selectOne(namespace + ".mlogin", vo);
 	}
+	
+	public int isManager(SessionVO vo) throws Exception {
+		return sql.selectOne(namespace + ".isManager", vo);
+	}
 }

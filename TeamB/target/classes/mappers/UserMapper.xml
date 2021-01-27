@@ -16,30 +16,37 @@
 	userType,
 	userJoinDate
 </sql>
-
 <select id="login" parameterType="sessionVO" resultType="sessionVO">
 	SELECT <include refid="allColumns"/>
 	FROM user 
 	WHERE userID = #{userID}
 	AND userPW = md5(#{userPW})
 </select>
-
 <select id="userExist" resultType="int" parameterType="userVO">
 	SELECT COUNT(*) FROM user
 	WHERE userID = #{userID}
 </select>
-
 <select id="userInfoOk" resultType="userVO"  parameterType="sessionVO">
 	SELECT <include refid="allColumns"/>
 	FROM user
-	WHERE userID=#{userID}
+	WHERE userID = #{userID}
 </select>
 <select id="userSearchOk" resultType="java.util.Map" parameterType="searchVO">
-	SELECT <include refid="allColumns" />,
-			(select count(bookISBN) from rent where userID=user.userID) as rentCount 
+	SELECT  userID,
+			userPW,
+			userName,
+			userNum,
+			userPostNum, 
+			userAddr,
+			userAddrDetail,
+			userEmail,
+			userType,
+			DATE_FORMAT(userJoinDate, '%Y-%m-%d') as userJoinDate,
+			(select count(bookISBN) from rent where userID=user.userID) as rentCount,
+			<![CDATA[(select count(rentEndDate) from rent where userID=user.userID and rentEndDate < curdate()) as lateRentCount]]>
 	FROM user
 	WHERE 1=1
-	<if test="selectType != null and selectType != ''">
+	<if test="selectType != null and selectType !='' and selectType != 3">
 	AND userType=#{selectType}
 	</if>
 	<if test="startDate != null and endDate != null 
@@ -72,8 +79,7 @@
 	<if test="userAddrDetail != null or userAddrDetail =='' ">
 	userAddrDetail,
 	</if>
-	userEmail,
-	userEmailDomain) 
+	userEmail) 
 	VALUE
 	(
 	#{userID},
@@ -89,8 +95,7 @@
 	<if test="userAddrDetail != null or userAddrDetail =='' ">
 	#{userAddrDetail},
 	</if>
-	#{userEmail},
-	#{userEmailDomain}
+	#{userEmail}
 	)
 </insert>
 <select id="userList" resultType="userVO">
@@ -99,9 +104,9 @@
 </select>
 <update id="userModify" parameterType="userVO">
 	UPDATE user 
-	SET  userNum = #{userNum}
+	SET  userNum   = #{userNum}
 		,userEmail = #{userEmail}
-		,userName = #{userName}
+		,userName  = #{userName}
 		<if test="#{userPostNum != null}">
 		,userPostNum = #{userPostNum}
 		</if>
@@ -119,7 +124,13 @@
 	WHERE userID = #{userID}
 </update>
 <update id="userRemove" parameterType="sessionVO">
-	update user 
-	WHERE userType=2
+	UPDATE user 
+	SET userType=2 
+	WHERE userID=#{userID}
 </update>
+<select id="findId" parameterType="String" resultType="String">
+	SELECT userID
+	From user
+	WHERE userNum = #{userNum}
+</select>
 </mapper>

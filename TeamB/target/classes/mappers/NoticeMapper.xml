@@ -55,7 +55,7 @@
 			AND noticeTitle like CONCAT('%',#{searchText},'%')
 		</if>
 	</if>
-	ORDER BY noticeDate DESC
+	ORDER BY noticeNo DESC
 	LIMIT #{start},#{end}
 </select>
 <select id="countList" parameterType="searchVO" resultType="int">
@@ -98,7 +98,7 @@
 		noticeFile 
 	FROM notice
 	ORDER BY noticeDate DESC
-	LIMIT #{start},#{end}	  
+	LIMIT #{start}, 10	  
 </select>
 
 <!-- 사서 공지사항 작성 -->

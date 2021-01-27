@@ -11,7 +11,6 @@
 		
 		<link rel="stylesheet" href="/css/mCommon.css" type="text/css"/>
 		<link rel="stylesheet" href="/css/mUser/muser.css" type="text/css"/>
-
 		
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/mUser/muser.js"></script>
@@ -39,6 +38,7 @@
 						조회:: 
 							  회원구분::
 							 <select name="selectType">
+							 	<option value="3">전체</option>
 							 	<option value="0">일반회원</option>
 							 	<option value="1">탈퇴회원</option>
 							 	<option value="2">강제탈퇴회원</option>
@@ -68,6 +68,7 @@
 									<td>연락처</td>
 									<td>이메일</td>
 									<td>대출중(권)</td>
+									<td>연체여부</td>
 									<td>선택</td>
 								</tr>
 							</thead>
@@ -75,9 +76,9 @@
 							</tbody>
 						</table>
 					</div>
-					<div id="userInfoView" class="userInfoView">
-					
+					<div id="userInfoView" class="userInfoView">				
 					</div>
+					<div id="userInfoView2"></div>
 				</div>
 			</section>
 		</div>

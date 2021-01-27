@@ -83,7 +83,7 @@
 								</c:choose>
 							</c:forEach>
 							<c:if test="${paging.endPage != paging.lastPage}">
-								<a href="/search/best?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+								<a href="/search/best?nowPage=${paging.nowPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
 							</c:if>
 						</div>	
 					</div>		

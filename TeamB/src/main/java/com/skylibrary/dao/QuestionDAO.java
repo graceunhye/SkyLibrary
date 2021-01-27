@@ -8,9 +8,11 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.skylibrary.vo.AnswerVO;
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.QuestionVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.SessionVO;
 
 @Repository
 public class QuestionDAO {
@@ -61,17 +63,29 @@ public class QuestionDAO {
 	}
 	
 	
+	//질문삭제
 	public void questionDelete(QuestionVO vo) throws Exception {
 		sql.delete(namespace + ".questionDelete" , vo);	
 	}
 	
+	//답변 날짜 변경
 	public void questionOkDateUpdate(QuestionVO vo) throws Exception {
-		sql.update(namespace + ".questionOkDateUpdate", vo);
-		
+		sql.update(namespace + ".questionOkDateUpdate", vo);	
 	}
 	
+	//질문/답변 상세보기
 	public Map<String,String> qnaView(QuestionVO vo) throws Exception {
 		return sql.selectOne(namespace + ".qnaView", vo);
 				
+	}
+	
+	//유저가 등록한 모든 질문 삭제
+	public void questionRemove(SessionVO vo) throws Exception {
+		sql.delete(namespace + ".questionRemove", vo);
+	}
+	
+	//유저가 질문한 질문들의 번호
+	public List<AnswerVO> userQuestionList(SessionVO vo) throws Exception {
+		return sql.selectList(namespace + ".userQuestionList" ,vo);
 	}
 }

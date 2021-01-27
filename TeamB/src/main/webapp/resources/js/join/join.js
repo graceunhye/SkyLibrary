@@ -256,9 +256,8 @@
 			}
 			else
 			{
+				isCheck = "false";
 				document.joinfrm.submit();
 			}
-			
-			isCheck = "false";
-	
+
 		}

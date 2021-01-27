@@ -1,7 +1,9 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=da08ed998bdb39dcf4778bf7528d74a6046dfc40
 eclipse.preferences.version=1
 encoding//src/main/java/com/skylibrary/controller/IntroController.java=UTF-8
 encoding//src/main/java/com/skylibrary/controller/JoinController.java=UTF-8
-<<<<<<< HEAD
 encoding//src/main/java/com/skylibrary/controller/LoginOutController.java=UTF-8
 encoding//src/main/java/com/skylibrary/controller/MyPageController.java=UTF-8
 encoding//src/main/java/com/skylibrary/dao/UserDAO.java=UTF-8
@@ -12,25 +14,13 @@ encoding//src/main/java/com/skylibrary/vo/ManagerVO.java=UTF-8
 encoding//src/main/java/com/skylibrary/vo/PagingVO.java=UTF-8
 encoding//src/main/java/com/skylibrary/vo/RentVO.java=UTF-8
 encoding//src/main/java/com/skylibrary/vo/UserVO.java=UTF-8
-=======
-encoding//src/main/java/com/skylibrary/controller/MyPageController.java=UTF-8
-encoding//src/main/java/com/skylibrary/vo=UTF-8
 encoding//src/main/resources/mappers/ApplyBookMapper.xml=UTF-8
->>>>>>> ff19b0dcae1be458f83207b0328192992719cbed
 encoding//src/main/resources/sql=UTF-8
 encoding//src/main/resources/sql/create.sql=UTF-8
 encoding//src/main/webapp/WEB-INF/views/User/include/footer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/User/include/head_banner.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/User/intro/notice.jsp=UTF-8
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ff19b0dcae1be458f83207b0328192992719cbed
-encoding//src/main/webapp/resources/js/common.js=UTF-8
 encoding//src/main/webapp/resources/js/join/join.js=UTF-8
 encoding//src/main/webapp/resources/js/loginout/login.js=UTF-8
 encoding//src/main/webapp/resources/js/myPage/userInfoModify.js=UTF-8
-=======
-encoding//src/main/webapp/resources/js/loginout/login.js=UTF-8
->>>>>>> da08ed998bdb39dcf4778bf7528d74a6046dfc40
 encoding/<project>=UTF-8

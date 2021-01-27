@@ -40,4 +40,8 @@ public interface UserService {
 	//유저 삭제 & 유저 탈퇴
 	public void userRemove(SessionVO vo) throws Exception;
 	
+	//아이디 찾기
+	public String FindId(String userNum) throws Exception;
+	
+	
 }

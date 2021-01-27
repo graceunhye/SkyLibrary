@@ -14,6 +14,38 @@
 	<script src="/js/jquery-3.5.1.min.js"></script>
 	<script src="/js/common.js"></script>
 	<script src="/js/search/bookView.js"></script>
+	<!-- <script>
+	function rentFn(isbn, cnt){
+		alert("search임");
+		if($("#session_id").val() != null) {
+			if(cnt < 10 ) {
+				if(confirm("대출 하시겠습니까?")){	
+					$.ajax({
+						url  : "/search/bookViewAjax", 
+						type : "post",
+						data : "isbn=" + isbn,
+						success : function(data){
+							var str1 = "대출불가 (대출중)";
+							var str2 = data.rentEndDate;
+							alert("!!!"+str2);
+							var str3 = "";
+		
+							$("#rent1").html(str1);
+							$("#rent2").html(str2);
+							$(".rentbtn").attr("disabled", true);
+							$(".rentbtn").val("대출완료");
+							alert("대출이 완료 되었습니다.");
+						}	
+					});
+				}
+			} else {
+				alert("10권 이상 대여할 수 없습니다.");
+			}	
+		} else { 
+			alert("로그인 후 이용 가능한 서비스 입니다.");
+		}	
+	}
+	</script> -->
 </head>
 <body style="margin:0px">
 	<div class="wrap"> 
@@ -99,10 +131,10 @@
 										<td class="lasttd" align="center" id="rent3">
 											<c:choose>							
 												<c:when test="${user.userID == null}">
-													<input type="button" value="대출하기" class="rentbtn" onclick="alert('로그인 후 이용 가능한 서비스 입니다.')">
+													<input type="button" value="대출하기ssss" class="rentbtn" onclick="alert('로그인 후 이용 가능한 서비스 입니다.')">
 												</c:when>
 												<c:when test="${user.userID != null}">
-													<input type="button" value="대출하기" class="rentbtn" onclick="rentFn('<c:out value="${bookView.bookISBN}"/>', <c:out value="${cnt}" />)">
+													<input type="button" value="대출하기sss" class="rentbtn" onclick="rentFn('<c:out value="${bookView.bookISBN}"/>', <c:out value="${cnt}" />)">
 												</c:when>
 											</c:choose>	
 										</td>

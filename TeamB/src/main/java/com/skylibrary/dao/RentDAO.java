@@ -1,6 +1,7 @@
 package com.skylibrary.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.skylibrary.vo.BookVO;
 import com.skylibrary.vo.RentVO;
-import com.skylibrary.vo.UserVO;
+import com.skylibrary.vo.SessionVO;
 
 @Repository
 public class RentDAO {
@@ -37,5 +38,9 @@ public class RentDAO {
 	
 	public int deleteRent(RentVO vo) {
 		return sql.delete(namespace + ".deleteRent", vo);
+	}
+	
+	public List<Map<String, String>> userRentInfo(SessionVO vo) throws Exception {
+		return sql.selectList(namespace + ".userRentInfo", vo);
 	}
 }

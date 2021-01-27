@@ -3,9 +3,11 @@ package com.skylibrary.service;
 import java.util.List;
 import java.util.Map;
 
+import com.skylibrary.vo.AnswerVO;
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.QuestionVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.SessionVO;
 
 public interface QuestionService {
 	
@@ -38,5 +40,9 @@ public interface QuestionService {
 	public void questionOkDateUpdate(QuestionVO vo) throws Exception;
 	
 	public Map<String, String> qnaView(QuestionVO vo) throws Exception;
+	
+	public List<AnswerVO> userQuestionList(SessionVO vo) throws Exception;
+	
+	public void questionRemove(SessionVO vo) throws Exception;
 		
 }

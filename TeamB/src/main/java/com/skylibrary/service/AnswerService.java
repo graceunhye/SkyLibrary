@@ -17,4 +17,6 @@ public interface AnswerService {
 	public void answerUpdate(AnswerVO vo) throws Exception;
 	
 	public Map<String,String> aViewMap(AnswerVO vo) throws Exception;
+	
+	public void answerRemove(int questionNo) throws Exception;
 }

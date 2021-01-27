@@ -6,6 +6,7 @@ function returnFn(node, id, isbn){
 					data : "isbn="+isbn+"&id="+id,
 					success : function(data){
 						$(node).parent().parent().remove();
+						alert("반납이 완료 되었습니다.");
 					}	
 				});			
 			}
@@ -23,6 +24,7 @@ function returnFn(node, id, isbn){
 						
 						$(node).parent().prev().prev(".endd_td").html(str1);
 						$(node).parent().html(str2);
+						alert("연장이 완료 되었습니다.");
 					}
 				});
 			}

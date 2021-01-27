@@ -81,7 +81,7 @@ select
 }
 
 .fixTable>td:nth-child(2) {
-	width: 150px;
+	width: 120px;
 	text-align: center;
 }
 
@@ -106,12 +106,17 @@ select
 }
 
 .fixTable>td:nth-child(7) {
-	width: 100px;
+	width: 120px;
 	text-align: center;
 }
 
 .fixTable>td:nth-child(8) {
-	width: 120px;
+	width: 110px;
+	text-align: center;
+}
+
+.fixTable>td:nth-child(9) {
+	width: 50px;
 	text-align: center;
 }
 
@@ -139,7 +144,7 @@ input[type="button"]{
 }
 
 .resultTable>td:nth-child(2) {
-	width: 150px;
+	width: 120px;
 	text-align: center;
 }
 
@@ -164,15 +169,52 @@ input[type="button"]{
 }
 
 .resultTable>td:nth-child(7) {
-	width: 100px;
+	width: 120px;
 	text-align: center;
 }
 
 .resultTable>td:nth-child(8) {
+	width: 110px;
 	text-align: center;
 }
+
+.resultTable>td:nth-child(9) {
+	width: 50px;
+	text-align: center;
+}
+
 
 .resultTable:hover {
 	background-color: #a8a8a8;
 	cursor: pointer;
 }
+
+.viewTable {
+	border-collapse: collapse;
+	font-size: 12px;
+}
+
+.viewTable tbody {
+	overflow-y: auto;
+	overflow-x: hidden;
+	float: left;
+	width: 600px;
+	height: 400px;
+}
+
+
+.viewTable thead {
+	float:left;
+	width: 1200px;
+}
+
+.viewTable tbody tr:nth-child(1){
+	background-color: #4A90E2;
+	color: white;
+	height: 50px;
+}
+
+.userInfoTable {
+	border-collapse: collapse;
+}
+

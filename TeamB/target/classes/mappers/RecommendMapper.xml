@@ -83,8 +83,7 @@
 <!-- 도서상세페이지 rbook 테이블 update-->
 <update id="updateRbook" parameterType="bookVO">
 	UPDATE rbook 
-		SET 
-	recommendWhy = #{recommendWhy}
+	SET   recommendWhy = #{recommendWhy}
 	WHERE recommendNo = #{recommendNo}	 
 </update>
 

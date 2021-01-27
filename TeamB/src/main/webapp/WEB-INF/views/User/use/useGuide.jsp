@@ -29,7 +29,7 @@
 						<li class="left_menu_title">도서관 이용</li>
 						<a href="/use/useTime"><li class="left_menu_sub">이용시간</li></a>
 						<a href="/use/useGuide"><li class="on left_menu_sub">대출/반납/예약/연장</li></a>
-						<a href="/use/qna"><li class="on left_menu_sub last_sub">질의응답</li></a>
+						<a href="/use/qna"><li class="left_menu_sub last_sub">질의응답</li></a>
 					</ul>
 				</nav>
 				<div class="section">

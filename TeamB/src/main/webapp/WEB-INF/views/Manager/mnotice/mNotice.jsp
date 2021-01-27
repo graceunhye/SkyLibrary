@@ -59,9 +59,9 @@
 							<td>작성일</td>
 							<td>조회수</td>
 						</tr>
-						<c:forEach items="${noticelist}" var="list">
+						<c:forEach items="${noticelist}" var="list" varStatus="status">
 							<tr class="mid_tr">
-								<td align="center">${list.noticeNo}</td>
+								<td align="center">${paging.total - ((paging.nowPage-1)*paging.cntPerPage+status.index)}</td>
 								<td><a href="mNoticeView?noticeNo=${list.noticeNo}">${list.noticeTitle}</a></td>
 								<td align="center">${list.userID}</td>
 								<td align="center">${list.noticeDate}</td>
@@ -73,7 +73,7 @@
 						<br>
 						<div class="notice_page">	
 							<c:if test="${paging.startPage != 1}">
-							<a href="/Manager/mnotice/mNotice?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+							<a href="/mnotice/mNotice?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
 							</c:if>
 							<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
 								<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
@@ -82,12 +82,12 @@
 										<b>${p}</b>
 									</c:when>
 									<c:when test="${p != paging.nowPage}">
-										<a href="/Manager/mnotice/mNotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+										<a href="/mnotice/mNotice?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
 									</c:when>
 								</c:choose>
 							</c:forEach>
 							<c:if test="${paging.endPage != paging.lastPage}">
-								<a href="/Manager/mnotice/mNotice?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+								<a href="/mnotice/mNotice?nowPage=${paging.nowPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
 							</c:if>
 						</div>														
 					</div>

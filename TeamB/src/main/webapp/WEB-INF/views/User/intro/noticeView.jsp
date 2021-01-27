@@ -58,7 +58,7 @@
 							    <c:when test="${noticeVO.noticeFile != null}"> 
 							    	<c:out value="${noticeVO.noticeBody}"/>
 							    	<br> 
-									<img src="/upload/${noticeVO.noticeFile}">
+									<img src="/upload/${noticeVO.noticeFile}" width="300px">
 							    </c:when>  
 							    <c:otherwise>  
 							        <c:out value="${noticeVO.noticeBody}"/>
@@ -70,7 +70,7 @@
 							<th align="center" height="50px">첨부파일</th>
 							<td colspan="2">		
 								<c:if test="${noticeVO.noticeFile != null}">
-									<a href="/Manager/mnotice/noticeFileDown?fileName=${noticeVO.noticeFile}"><c:out value="${noticeVO.noticeFile}"/></a>
+									<a href="/mnotice/noticeFileDown?fileName=${noticeVO.noticeFile}"><c:out value="${noticeVO.noticeFile}"/></a>
 								</c:if>
 								
 							</td>

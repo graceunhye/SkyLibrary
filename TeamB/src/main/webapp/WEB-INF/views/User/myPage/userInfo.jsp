@@ -62,14 +62,14 @@
 							<tr>
 								<th>주소</th>
 								<td id="userAddressInfo">
-									<c:if test="${userInfo.userPostNum != null }">
-									[<font id="userPostNum">${userInfo.userPostNum }</font>]&nbsp; 
-									<font id="userAddr">${userInfo.userAddr }</font>&nbsp;
-									<c:if test="${userInfo.userAddrDetail != null}">
-									<font id="userAddrDetail">${userInfo.userAddrDetail }</font>
+									<c:if test="${userInfo.userPostNum != null and userInfo.userPostNum != '' }">
+										[<font id="userPostNum">${userInfo.userPostNum }</font>]&nbsp; 
+										<font id="userAddr">${userInfo.userAddr }</font>&nbsp;
+										<c:if test="${userInfo.userAddrDetail != null}">
+										<font id="userAddrDetail">${userInfo.userAddrDetail }</font>
+										</c:if>
 									</c:if>
-									</c:if>
-									<c:if test="${userInfo.userPostNum == null }">
+									<c:if test="${userInfo.userPostNum == null or userInfo.userPostNum == ''}">
 									등록된 정보가 없습니다.
 									</c:if>
 								</td>

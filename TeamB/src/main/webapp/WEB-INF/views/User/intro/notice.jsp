@@ -56,7 +56,7 @@
 						</tr>
 						<c:forEach var="list" items="${noticeList}" varStatus="status">
 						<tr class="mid_tr">
-							<th align="center" class="mid_td">${status.count + paging.start}</th>
+							<th align="center" class="mid_td">${paging.total - ((paging.nowPage-1)*paging.cntPerPage+status.index)}</th>
 							<td>
 								<a href="/intro/notice/view?noticeNo=${list.noticeNo }" class="mid_td">
 								${list.noticeTitle }
@@ -86,7 +86,7 @@
 							</c:choose>
 						</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
-							<a href="/intro/notice?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+							<a href="/intro/notice?nowPage=${paging.nowPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
 						</c:if>
 					</div>			
 				</div>										

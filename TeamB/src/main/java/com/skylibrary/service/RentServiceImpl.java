@@ -1,6 +1,7 @@
 package com.skylibrary.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.skylibrary.dao.RentDAO;
 import com.skylibrary.vo.BookVO;
 import com.skylibrary.vo.RentVO;
-import com.skylibrary.vo.UserVO;
+import com.skylibrary.vo.SessionVO;
 
 @Service
 public class RentServiceImpl implements RentService {
@@ -40,5 +41,10 @@ public class RentServiceImpl implements RentService {
 	@Override
 	public int deleteRent(RentVO vo) throws Exception {
 		return dao.deleteRent(vo);
+	}
+
+	@Override
+	public List<Map<String, String>> userRentInfo(SessionVO vo) throws Exception {
+		return dao.userRentInfo(vo);
 	}
 }

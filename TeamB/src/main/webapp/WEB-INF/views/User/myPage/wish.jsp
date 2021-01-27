@@ -137,8 +137,8 @@
 							</ul>
 						</div>
 						<div class="wishBtns">
-							<input type="button" onclick="wishNeedLoginFn(0)" value="신청하기" class="wishBtn">
-							<input type="button" onclick="wishNeedLoginFn(1)" value="신청확인" class="wishBtn">
+							<input type="button" onclick="location.href='/myPage/wishApply'" value="신청하기" class="wishBtn">
+							<input type="button" onclick="location.href='/myPage/wishCheck'" value="신청확인" class="wishBtn">
 						</div> 
 					</div>
 				</div>

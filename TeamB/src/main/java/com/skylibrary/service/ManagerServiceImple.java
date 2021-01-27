@@ -25,4 +25,9 @@ public class ManagerServiceImple implements ManagerService {
 	public SessionVO mlogin(SessionVO vo) throws Exception {
 		return dao.mlogin(vo);
 	}
+
+	@Override
+	public int isManager(SessionVO vo) throws Exception {
+		return dao.isManager(vo);
+	}
 }

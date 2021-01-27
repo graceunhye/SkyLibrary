@@ -13,7 +13,7 @@
 <script>
 	function deleteFn(){
 		if(confirm("삭제하시겠습니까?") == true){
-			location.href = "/Manager/mnotice/mNoticeDelete?noticeNo=${noticeView.noticeNo}";
+			location.href = "/mnotice/mNoticeDelete?noticeNo=${noticeView.noticeNo}";
 		}
 	}
 </script>
@@ -68,7 +68,7 @@
 							<td colspan="3">
 								<c:choose>  
 								    <c:when test="${noticeView.noticeFile != null}">  
-										<a href="/Manager/mnotice/noticeFileDown?fileName=${noticeView.noticeFile}"><c:out value="${noticeView.noticeFile}"/></a>
+										<a href="/mnotice/noticeFileDown?fileName=${noticeView.noticeFile}"><c:out value="${noticeView.noticeFile}"/></a>
 								    </c:when>  
 								    <c:otherwise>  
 								    </c:otherwise>   
@@ -79,7 +79,7 @@
 					<br>
 					<br>
 					<div class="view_btn">
-						<input type="button" value="수정" id="nmodify" class="optionBox_btn_free" onclick="location.href='/Manager/mnotice/mNoticeModify?noticeNo=${noticeView.noticeNo}'">
+						<input type="button" value="수정" id="nmodify" class="optionBox_btn_free" onclick="location.href='/mnotice/mNoticeModify?noticeNo=${noticeView.noticeNo}'">
 						<input type="button" value="삭제" id="ndelete"  class="optionBox_btn_free" onclick="deleteFn();">
 						<input type="button" value="목록"  class="optionBox_btn_free" onclick="location.href='mNotice'">
 					</div>	

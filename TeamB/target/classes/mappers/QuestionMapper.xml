@@ -64,20 +64,29 @@
 	</select>
 	 -->
 	<select id="qnaView" parameterType="questionVO" resultType="java.util.Map">
-	select questionNo
+	SELECT questionNo
 	     , userID
 	     , questionTitle
 	     , questionBody
-	     , questionOkDate
-	     , questionDate
+	     , DATE_FORMAT(questionOkDate, '%Y-%m-%d') as questionOkDate
+	     , DATE_FORMAT(questionDate, '%Y-%m-%d') as questionDate
 	     , questionHit
 	     , questionType
 	     , (select managerID   from a where questionNo = q.questionNo) as managerID
 	     , (select answerTitle from a where questionNo = q.questionNo) as answerTitle
 	     , (select answerBody  from a where questionNo = q.questionNo) as answerBody
-	     , (select answerDate  from a where questionNo = q.questionNo) as answerDate
-	  from q
-	  where questionNo = #{questionNo}
+	     , (select DATE_FORMAT(answerDate, '%Y-%m-%d') from a where questionNo = q.questionNo) as answerDate
+	  FROM q
+	  WHERE questionNo = #{questionNo}
 	</select>
 	<!-- manager qna -->
+	<delete id="questionRemove" parameterType="sessionVO">
+		DELETE FROM q WHERE userID=#{userID}
+	</delete>
+	<select id="userQuestionList" parameterType="sessionVO" resultType="answerVO">
+		SELECT   userID
+				,(select questionNo from a where questionNo=q.questionNo) as questionNo
+		FROM q
+		WHERE userID=#{userID}
+	</select>
 </mapper>

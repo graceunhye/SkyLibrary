@@ -28,5 +28,7 @@ public interface ApplyBookService {
 	//신청 도서 조회
 	public List<ApplyBookVO> view(String userID) throws Exception;
 	
+	public void applyRemove(SessionVO vo) throws Exception;
+	
 
 }

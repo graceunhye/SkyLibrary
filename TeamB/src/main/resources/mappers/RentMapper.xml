@@ -19,7 +19,6 @@
 			,	u.userAddr
 			,	u.userAddrDetail
 			,	u.userEmail
-			,	u.userEmailDomain
 			,	r.rentNo
 			,	r.bookISBN
 			,	r.rentStartDate
@@ -41,8 +40,37 @@
 	AND 
 		u.userID = #{userID}
 </select>
-
-<update id="extensionBook" parameterType="com.skylibrary.vo.BookVO">
+<select id="userRentInfo" resultType="java.util.Map" parameterType="sessionVO">
+		SELECT  u.userID
+			,   u.userPW
+			,	u.userName
+			,	u.userNum
+			,	u.userPostNum
+			,	u.userAddr
+			,	u.userAddrDetail
+			,	u.userEmail
+			,	r.rentNo
+			,	r.bookISBN
+			,	DATE_FORMAT(r.rentStartDate, '%Y-%m-%d') as rentStartDate
+			,	DATE_FORMAT(r.rentEndDate, '%Y-%m-%d') as rentEndDate
+			,	b.bookSubject
+			,	b.bookStory
+			,	b.bookCount
+			,	b.bookCompany
+			,	b.bookWriter
+			,	b.bookPublicationDate
+			,	b.bookRent
+			,	b.bookCoverImg
+			,   DATEDIFF(r.rentEndDate, now()) as lateTime
+		FROM user u, rent r, book b
+	WHERE 
+		r.userID = u.userID
+	AND 
+		r.bookISBN = b.bookISBN
+	AND 
+		u.userID = #{userID}
+</select>
+<update id="extensionBook" parameterType="bookVO">
 	UPDATE rent 
 	SET rentEndDate = DATE_ADD(rentEndDate, INTERVAL 7 DAY)
 	WHERE bookISBN = #{bookISBN}
@@ -55,15 +83,14 @@
 	WHERE bookISBN = #{bookISBN}
 </select>
 
-<update id="updateBook" parameterType="com.skylibrary.vo.BookVO">
+<update id="updateBook" parameterType="bookVO">
 	UPDATE book 
 	SET bookRent = 0 
 	WHERE bookISBN = #{bookISBN}
 </update>
 
-<delete id="deleteRent" parameterType="com.skylibrary.vo.RentVO">
+<delete id="deleteRent" parameterType="rentVO">
 	DELETE FROM rent
 	WHERE bookISBN = #{bookISBN}
 </delete>
-
 </mapper>

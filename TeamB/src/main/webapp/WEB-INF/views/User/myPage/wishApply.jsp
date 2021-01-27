@@ -72,7 +72,7 @@
 										<label for="price">가격<span class="point">*</span></label>
 									</th>
 									<td>
-										<input type="text" name="price" id="applyPrice" />
+										<input type="text" name="applyPrice" id="price" />
 									</td>
 								</tr>
 								<tr>
@@ -80,7 +80,7 @@
 										<label for="writer">저자명</label>
 									</th>
 									<td>
-										<input type="text" name="writer" id="applyWriter" />
+										<input type="text" name="applyWriter" id="writer" />
 									</td>
 								</tr>
 								<tr>

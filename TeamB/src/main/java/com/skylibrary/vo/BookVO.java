@@ -10,6 +10,7 @@ import lombok.ToString;
 public class BookVO extends SessionVO {
 
 	//book 테이블
+	private int no;
 	private String bookISBN;            //isbn
 	private String bookSubject;         //책제목
 	private String bookStory;           //줄거리

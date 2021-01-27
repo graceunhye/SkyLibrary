@@ -17,6 +17,7 @@ import com.skylibrary.service.ApplyBookService;
 import com.skylibrary.service.QuestionService;
 import com.skylibrary.service.RentService;
 import com.skylibrary.service.UserService;
+import com.skylibrary.vo.AnswerVO;
 import com.skylibrary.vo.RentVO;
 import com.skylibrary.vo.SearchVO;
 import com.skylibrary.vo.SessionVO;
@@ -52,21 +53,13 @@ public class mUserController {
 	@RequestMapping(value="/ajax/searchOk", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Map<String,String>> searchOk(SearchVO vo) throws Exception {
-		System.out.println("searchOption::"+vo);
+
 		List<Map<String,String>> Result = userService.userSearchOk(vo);
-		System.out.println("searchOk::"+Result);
+
 		return Result;
 	}
 	
 	
-//	//대출도서목록
-//	@RequestMapping(value="/ajax/userRentInfoOk", method=RequestMethod.GET)
-//	@ResponseBody
-//	public List<Map<String,String>> userRentInfoOk(RentVO vo) throws Exception {
-//		List<Map<String,String>> Result = rentService.userRentInfoOk(vo);
-//		System.out.println("userRentInfoOk::"+Result);
-//		return Result;
-//	}
 	
 	//희망도서목록
 	@RequestMapping(value="/ajax/userWishInfoOk", method=RequestMethod.GET)
@@ -75,6 +68,15 @@ public class mUserController {
 		List<Map<String,String>> Result = applyService.userWishInfoOk(vo);
 		System.out.println("userWishInfoOk::"+Result);
 		return Result;
+	}
+	
+	//회원 대출정보 조회
+	@RequestMapping(value="/ajax/userRentInfo", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Map<String,String>> userRentInfo(SessionVO vo) throws Exception {
+		System.out.println("userID::"+vo.getUserID());
+		List<Map<String,String>> rentInfo = rentService.userRentInfo(vo);
+		return rentInfo;
 	}
 	
 	
@@ -89,8 +91,24 @@ public class mUserController {
 	
 	//회원강제탈퇴
 	@RequestMapping(value="/ajax/userRemoveOk", method=RequestMethod.GET)
+	@ResponseBody
 	public void userRemoveOk(SessionVO vo) throws Exception {
+		System.out.println("인");
+		
+		//답변이 있는 질문의 번호 조회
+		List<AnswerVO> answervo = questionService.userQuestionList(vo); 
+		for(int i=0;i<answervo.size();i++) {
+			//답변삭제
+			answerService.answerRemove(answervo.get(i).getQuestionNo());
+		} 
+		//답변 없는 질문들 모두 삭제
+		questionService.questionRemove(vo);
+		//사용자가 등록한 희망도서신청 모두 삭제
+		applyService.applyRemove(vo);
+		
+		//사용자 타입 2:강제탈퇴 로 업데이트
 		userService.userRemove(vo);
+	
 	}
 	
 }

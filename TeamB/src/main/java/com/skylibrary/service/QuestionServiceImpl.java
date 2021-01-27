@@ -8,9 +8,11 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.skylibrary.dao.QuestionDAO;
+import com.skylibrary.vo.AnswerVO;
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.QuestionVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.SessionVO;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -72,6 +74,17 @@ public class QuestionServiceImpl implements QuestionService {
 	public Map<String,String> qnaView(QuestionVO vo) throws Exception {
 		
 		return dao.qnaView(vo);
+	}
+
+	@Override
+	public List<AnswerVO> userQuestionList(SessionVO vo) throws Exception {
+
+		return dao.userQuestionList(vo);
+	}
+
+	@Override
+	public void questionRemove(SessionVO vo) throws Exception {
+		dao.questionRemove(vo);
 	}
 
 }

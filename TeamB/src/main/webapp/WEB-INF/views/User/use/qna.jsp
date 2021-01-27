@@ -50,7 +50,7 @@
 								</tr>
 								<c:forEach items="${questionList }" var="list" varStatus="status">
 								<tr>
-									<td>${status.count + paging.start}</td>
+									<td>${paging.total - ((paging.nowPage-1)*paging.cntPerPage + status.index)}</td>
 									<td>
 										<a href="/use/qna/qnaView?questionNo=${list.questionNo }">${list.questionTitle }</a>
 									</td>
@@ -94,7 +94,7 @@
 							</c:choose>
 						</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
-							<a href="/use/qna?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+							<a href="/use/qna?nowPage=${paging.nowPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
 						</c:if>
 						</div>	
 					</div>

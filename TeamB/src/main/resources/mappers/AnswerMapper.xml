@@ -51,5 +51,7 @@
 		,answerDate = now()
 	WHERE questionNo = #{questionNo}		
 </update>
-
+<delete id="answerRemove" parameterType="int">
+	DELETE FROM a WHERE questionNo=#{questionNo}
+</delete>
 </mapper>

@@ -15,6 +15,7 @@ public class ApplyBookVO extends SessionVO {
 	private String applyDate;            //신청일
 	private String applyOkDate;          //신청완료일
 	private String applyWriter;          //작가명
+	private String applyWhy;
 	private String applyPrice;           //가격
 	private int    applyType;            //진행여부
 

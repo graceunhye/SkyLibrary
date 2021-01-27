@@ -41,4 +41,8 @@ public class AnswerDAO {
 	public Map<String,String> aViewMap(AnswerVO vo) throws Exception {
 		return sql.selectOne(namespace + ".aViewMap", vo);
 	}
+	
+	public void answerRemove(int questionNo) throws Exception {
+		sql.delete(namespace + ".answerRemove", questionNo);
+	}
 }

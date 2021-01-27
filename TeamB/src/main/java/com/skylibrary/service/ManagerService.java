@@ -7,6 +7,7 @@ public interface ManagerService {
 	
 	public void mjoin(ManagerVO vo) throws Exception;
 	
-
 	public SessionVO mlogin(SessionVO vo) throws Exception;
+	
+	public int isManager(SessionVO vo) throws Exception;
 }

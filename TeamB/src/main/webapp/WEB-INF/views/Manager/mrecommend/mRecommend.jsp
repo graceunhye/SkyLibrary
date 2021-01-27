@@ -84,8 +84,8 @@
 								<option value="bookWriter">저자</option>
 								<option value="bookCompany" selected>출판사</option>
 							</c:if>
-							<c:if test="${search.searchType eq null }">
-								<option value="all">전체</option>
+							<c:if test="${search.searchType eq null || search.searchType eq ''}">
+								<option value="all" selected>전체</option>
 								<option value="bookSubject">도서명</option>
 								<option value="bookWriter">저자</option>
 								<option value="bookCompany">출판사</option>
@@ -104,7 +104,7 @@
 								<table width="800px">
 									<tr>
 										<td rowspan="4" width="15%" align="center">
-											<a href="/Manager/mrecommend/mRecommendView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg}" alt="${list.bookSubject}" width="82px"></a>
+											<a href="/mrecommend/mRecommendView?isbn=${list.bookISBN}"><img src="${list.bookCoverImg}" alt="${list.bookSubject}" width="82px"></a>
 										</td>
 										<td colspan="2"><a href="/mrecommend/mRecommendView?isbn=${list.bookISBN}"><b>${list.bookSubject}</b></a></td>
 									</tr>
@@ -126,7 +126,7 @@
 						<br>							
 						<div class="searchpage">	
 							<c:if test="${paging.startPage != 1}">
-							<a href="/mrecommend/mRecommend?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+							<a href="/mrecommend/mRecommend?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}&searchType=${search.searchType}&searchText=${search.searchText}">&lt;</a>
 							</c:if>
 							<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
 								<!-- 현재 페이지면 진하게, 아니면 링크갖고 진하지 않도록! -->
@@ -135,12 +135,12 @@
 										<b>${p}</b>
 									</c:when>
 									<c:when test="${p != paging.nowPage}">
-										<a href="/mrecommend/mRecommend?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+										<a href="/mrecommend/mRecommend?nowPage=${p }&cntPerPage=${paging.cntPerPage}&searchType=${search.searchType}&searchText=${search.searchText}">${p }</a>
 									</c:when>
 								</c:choose>
 							</c:forEach>
 							<c:if test="${paging.endPage != paging.lastPage}">
-								<a href="/mrecommend/mRecommend?nowPage=${paging.startPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+								<a href="/mrecommend/mRecommend?nowPage=${paging.nowPage + 1}&cntPerPage=${paging.cntPerPage}&searchType=${search.searchType}&searchText=${search.searchText}">&gt;</a>
 							</c:if>
 						</div>	
 					</div>		
