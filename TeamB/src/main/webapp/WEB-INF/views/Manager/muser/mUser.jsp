@@ -17,16 +17,7 @@
 	</head>
 	<body style="margin: 0px;">
 		<div class="wrap">
-			<header>
-				<div class="header">
-					<div>
-						<span>관리자 페이지&nbsp;</span>
-						<span>하늘도서관</span>
-					</div>
-				</div>
-			</header>
-			<!-- header end -->
-			
+			<jsp:include page="../include/header.jsp" />	
 			<section>
 				<jsp:include page="../include/nav.jsp" />
 				<div class="section">
@@ -76,9 +67,9 @@
 							</tbody>
 						</table>
 					</div>
-					<div id="userInfoView" class="userInfoView">				
+					<div id="userInfoView" class="userInfoView">
+						<div id="rentInfoResultTable"></div>				
 					</div>
-					<div id="userInfoView2"></div>
 				</div>
 			</section>
 		</div>

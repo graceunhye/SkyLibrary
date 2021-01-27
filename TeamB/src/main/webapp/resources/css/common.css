@@ -24,7 +24,7 @@
 	font-weight: bold;
 }
 
-.head_btn {
+.head_btns input[type='button'] {
 	width: 100px;
 	height: 30px;
 	margin-left:5px;
@@ -36,6 +36,27 @@
 	border-radius: 3px;
 	font-size: 14px;
 }
+
+.head_btns span {
+	color: white;
+	margin-top: 10px;
+	width: 100px;
+	float: left;
+	font-weight: bold;
+	text-align: right;
+}
+/* .head_btn {
+	width: 100px;
+	height: 30px;
+	margin-left:5px;
+	margin-top: 5px;
+	float: right;
+	border: 1px solid white;
+	color: #376DB5;
+	font-weight: bold;
+	border-radius: 3px;
+	font-size: 14px;
+} */
 .head_span {
 	float:left;
 	margin: 10px 10px 0 0px;
@@ -259,13 +280,13 @@ a {
 	margin: 50px 30px 100px 50px;
 }
 
-.head_id {
+/* .head_id {
 	color: white;
 	margin-top: 10px;
 	width: 100px;
 	float: left;
 	font-weight: bold;
-}
+} */
 
 .rentbtn {
 		background-color : #2C78D7;

@@ -20,11 +20,7 @@
 </head>
 <body style="margin: 0px;">
 	<div class="wrap">
-		<header>
-			<div class="header">
-				<div class="title_box"><span class="head_title">관리자 페이지 </span><span class="name">하늘도서관</span></div>
-			</div>
-		</header>
+		<jsp:include page="../include/header.jsp" />
 		<section>
 			<jsp:include page="../include/nav.jsp" />
 			<div class="section">

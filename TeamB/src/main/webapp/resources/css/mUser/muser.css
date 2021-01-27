@@ -65,7 +65,7 @@ select
 	border:1px solid #F5F5F5;
 }
 
-.viewTable {
+/* .viewTable {
 	border-collapse:collapse;
 }
 
@@ -73,7 +73,7 @@ select
 	background-color: #4A90E2;
 	color: white;
 	border: none;
-}
+} */
 
 .fixTable>td:nth-child(1) {
 	width: 50px;
@@ -192,9 +192,12 @@ input[type="button"]{
 .viewTable {
 	border-collapse: collapse;
 	font-size: 12px;
+	width: 1220px;
+	height: 300px;
 }
 
-.viewTable tbody {
+
+/* .viewTable tbody {
 	overflow-y: auto;
 	overflow-x: hidden;
 	float: left;
@@ -208,13 +211,165 @@ input[type="button"]{
 	width: 1200px;
 }
 
-.viewTable tbody tr:nth-child(1){
+.viewTable tbody tr {
+	display: table;
+	height: 10px;
+}
+
+.viewTable thead tr:nth-child(1){
 	background-color: #4A90E2;
 	color: white;
 	height: 50px;
+}
+
+.viewTable thead tr:nth-child(1) td:nth-child(1){
+	width: 50px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(1) td:nth-child(2){
+	width: 100px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(1) td:nth-child(3){
+	width: 200px;
+	text-align: left;
+}
+
+.viewTable thead tr:nth-child(1) td:nth-child(4){
+	width: 50px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(1) td:nth-child(5){
+	width: 70px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(1) td:nth-child(6){
+	width: 50px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(1) td:nth-child(7){
+	width: 50px;
+	text-align: center;
+}
+
+
+.viewTable thead tr:nth-child(1) td:nth-child(8){
+	width: 50px;
+	text-align: center;
+}
+
+
+*
+.viewTable thead tr:nth-child(2) td:nth-child(1){
+	width: 50px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(2) td:nth-child(2){
+	width: 100px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(2) td:nth-child(3){
+	width: 200px;
+	text-align: left;
+}
+
+.viewTable thead tr:nth-child(2) td:nth-child(4){
+	width: 50px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(2) td:nth-child(5){
+	width: 70px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(2) td:nth-child(6){
+	width: 50px;
+	text-align: center;
+}
+
+.viewTable thead tr:nth-child(2) td:nth-child(7){
+	width: 50px;
+	text-align: center;
+}
+
+
+.viewTable thead tr:nth-child(2) td:nth-child(8){
+	width: 50px;
+	text-align: center;
+}
+ */
+
+.viewTable tbody tr td:nth-child(1){
+	text-align: center;
+	width: 50px;
+} 
+
+.viewTable tbody tr td:nth-child(2){
+	text-align: center;
+	width: 100px;
+} 
+
+.viewTable tbody tr td:nth-child(3){
+	width: 470px;
+	padding-left: 5px;
+} 
+
+
+.viewTable tbody tr td:nth-child(4){
+	text-align: center;
+	width: 160px;
+} 
+
+.viewTable tbody tr td:nth-child(5){
+	text-align: center;
+	width: 150px;
+} 
+
+.viewTable tbody tr td:nth-child(6){
+	text-align: center;
+	width: 120px;
+} 
+
+.viewTable tbody tr td:nth-child(7){
+	text-align: center;
+	width: 120px;
+} 
+
+.viewTable tbody tr td:nth-child(8){
+	text-align: center;
+	width: 50px;
+} 
+
+.viewFixTable {
+	height: 30px;
+}
+
+
+.viewFixTable td{
+	text-align: center;
+	color: white;
+	background-color: #4A90E2;
 }
 
 .userInfoTable {
 	border-collapse: collapse;
 }
 
+/* #userInfoResultTable {
+	width: 400px;
+	float: left;
+} */
+
+#rentInfoResultTable {
+	border: 1px solid #666666;
+	width: 1220px;
+	height: 300px;
+} 

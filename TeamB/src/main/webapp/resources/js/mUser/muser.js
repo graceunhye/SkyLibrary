@@ -27,7 +27,7 @@ function userRemoveFn(){
 
 //검색
 function userSearchFn() {
-	alert("!");
+
 	$.ajax({
 		url: "/muser/ajax/searchOk",
 		type: "GET",
@@ -76,7 +76,6 @@ function userSearchFn() {
 function userInfoViewFn(node) {
 	
 	var userID = $(node).data("u");
-	alert(userID);
 	
 	$.ajax({
 		url: "/muser/ajax/userRentInfo",
@@ -90,7 +89,7 @@ function userInfoViewFn(node) {
 			
 			str += "<table border='1' class='viewTable'>";
 			str += "<thead>";
-			str += "<tr>";
+			str += "<tr class='viewFixTable'>";
 			str += "<td>번호</td>";
 			str += "<td>ISBN</td>";
 			str += "<td>책제목</td>";
@@ -141,9 +140,9 @@ function userInfoViewFn(node) {
 			str += "</table>";
 			
 			console.log(data);
-			$("#userInfoView").html(str);
+			$("#rentInfoResultTable").html(str);
 			
-			var info = "";
+			/*var info = "";
 			info += "<table border='1' class='userInfoTable'>";
 			info += "<tr>";
 			info += "<td>이름</td>";
@@ -178,7 +177,7 @@ function userInfoViewFn(node) {
 			info += "</tr>";
 			info += "</table>";
 
-			$("#userInfoView2").html(info);
+			$("#userInfoResultTable").html(info);*/
 		}
 	})
 }

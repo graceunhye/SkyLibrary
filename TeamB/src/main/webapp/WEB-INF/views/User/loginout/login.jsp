@@ -39,7 +39,7 @@
 								</tr>
 								<tr class="login_option">
 									<td colspan="2" align="center">
-										<a href="#">아이디/비밀번호찾기</a>
+										<a href="/loginout/findId">아이디/비밀번호찾기</a>
 										<font color="#2C78D7">&nbsp;|&nbsp;</font>
 										<a href="/join">회원가입</a>
 										<font color="#2C78D7">&nbsp;|&nbsp;</font>

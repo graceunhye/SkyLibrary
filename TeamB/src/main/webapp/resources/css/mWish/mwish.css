@@ -238,3 +238,54 @@ input[type="button"]{
 	background-color: #a8a8a8;
 	cursor: pointer;
 }
+/* 
+.header div:nth-child(2) {
+	float: right;
+	width: 450px;
+	margin-top: 25px;
+}
+
+
+.header div:nth-child(2) span:nth-child(1) {
+	color: #F5F5F5;
+	font-weight: bold;
+	padding-top: 3px;
+	float: left;
+}
+
+.header div:nth-child(2) span:nth-child(1) a {
+	color: #4690E2;	
+}
+
+.header div:nth-child(2) span:nth-child(2) {
+	background-color: #707070;
+	color: #F5F5F5;
+	font-szie: 20px;
+	font-weight: bold;
+	border: 1px solid #707070;
+	border-radius: 5px;
+	margin-top: 5px;
+}
+
+
+.header div:nth-child(2)>a {
+	text-decoration: none;
+	float: right;
+	color: #4690E2#4A90E2;
+	font-weight: bold;
+	font-size: 20px;
+	padding-right: 100px;
+	padding-top: 5px;
+}
+
+.header div:nth-child(2) span a img{
+	width: 40px;
+	margin-bottom: 5px;
+}
+
+.header div:nth-child(2) span span{
+	width: 200px;
+	text-align: right;
+}
+
+ */

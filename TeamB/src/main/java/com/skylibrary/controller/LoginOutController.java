@@ -136,14 +136,14 @@ public class LoginOutController {
 	
 	
 	//아이디 찾기 
-	@RequestMapping(value="/findId")
+	@RequestMapping(value="/loginout/findId")
 	public String findId() throws Exception {
 		
 			return "/User/loginout/findId";		
 	}
 
 	
-	@RequestMapping(value="/findIdAjax", method=RequestMethod.POST)
+	@RequestMapping(value="/loginout/findIdAjax", method=RequestMethod.POST)
 	@ResponseBody
 	public String findIdAjax(String userNum, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			

@@ -10,24 +10,6 @@
 	<link rel="stylesheet" href="/css/mainCommon.css"  type="text/css"/>
 	<link rel="stylesheet" href="/css/mainSection.css" type="text/css"/>
 	
-<!-- 	<script>
-	function test(){
-		//alert("?");
-		var msg = '${msg}';
-		var mmsg = '${mmsg}';
-		if(msg != null && msg != ''){
-			alert(msg);
-			if(mmsg != null && mmsg != ""){
-				if(confirm(mmsg)){
-					location.href="/muser/mUser";
-				}else {
-					return;
-				}
-			}
-		}
-	}
-	
-	</script> -->
 </head>
 <body style="margin:0px">
 	<div class="wrap"> 
