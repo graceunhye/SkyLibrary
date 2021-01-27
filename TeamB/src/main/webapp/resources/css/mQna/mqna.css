@@ -82,6 +82,38 @@
 	height: 50px;
 }
 
+.fixTable th:nth-child(1){
+	text-align: center;
+	width: 50px;
+}
+
+.fixTable th:nth-child(2){
+	width: 605px;
+}
+
+.fixTable th:nth-child(3){
+	text-align: center;
+	width: 150px;
+}
+
+
+.fixTable th:nth-child(4){
+	text-align: center;
+	width: 200px;
+}
+
+
+.fixTable th:nth-child(5){
+	text-align: center;
+	width: 200px;
+}
+
+
+.fixTable th:nth-child(6){
+	text-align: center;
+	width: 200px;
+}
+
 .table{
 	font-size: 14px;
 	width: 1300px;
@@ -161,4 +193,34 @@ input.a_button {
 
 .a_content_body {
 	padding: 15px;
+}
+
+#result tr td:nth-child(1){
+	text-align: center;
+	width: 50px;
+}
+
+#result tr td:nth-child(2){
+	width: 600px;
+	padding-left: 8px;
+}
+
+#result tr td:nth-child(3){
+	text-align: center;
+	width: 150px;
+}
+
+#result tr td:nth-child(4){
+	text-align: center;
+	width: 200px;
+}
+
+#result tr td:nth-child(5){
+	text-align: center;
+	width: 200px;
+}
+
+#result tr td:nth-child(6){
+	text-align: center;
+	width: 200px;
 }

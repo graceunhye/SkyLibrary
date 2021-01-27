@@ -19,9 +19,9 @@
 		<div class="wrap">
 			<header>
 				<div class="header">
-					<div class="title_box">
-						<span class="head_title">관리자 페이지 </span>
-						<span class="name">하늘도서관</span>
+					<div>
+						<span>관리자 페이지 </span>
+						<span>하늘도서관</span>
 					</div>
 				</div>
 			</header>
@@ -49,12 +49,12 @@
 						<table class="table" border="1">
 							<thead>
 								<tr class="fixTable">
-									<th align="center" width="50">번호</th>
-									<th width="605">제목</th>
-									<th align="center" width="150">작성자</th>
-									<th align="center" width="200">작성일</th>
-									<th align="center" width="200">답변일</th>
-									<th align="center" width="200">상태</th>
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>작성일</th>
+									<th>답변일</th>
+									<th>상태</th>
 								</tr>
 							</thead>
 							<tbody id="result">
@@ -62,7 +62,6 @@
 						</table>
 					</div>
 					<div id="userInfoView" class="userInfoView">
-						
 					</div>
 				</div>
 			</section>

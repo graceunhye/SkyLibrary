@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 .wrap {
 	width: 1930px;
 }
@@ -8,11 +8,6 @@
 	background-color: #383838;
 }
 
-.head_title {
-	font-size: 20px;
-	font-weight: bold;
-	color: #707070;
-}
 
 .optionBox_btn {
 	width: 70px;
@@ -55,17 +50,25 @@
 	float: right;
 }
 
-.name {
-	color: #4A90E2;
-	font-weight: bold;
-	font-size: 20px;
-}
 
-.title_box {
+.header div{
 	float:left;
 	width: 500px;
 	margin: 30px 0 0 50px;
 }
+
+.header div span:nth-child(1){
+	font-size: 20px;
+	font-weight: bold;
+	color: #707070;
+}
+
+.header div span:nth-child(2){
+		color: #4A90E2;
+	font-weight: bold;
+	font-size: 20px;
+}
+
 
 .input {
 	border: 1px solid  #666666;

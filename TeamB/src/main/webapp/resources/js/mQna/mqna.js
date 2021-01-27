@@ -19,15 +19,17 @@ function searchFn() {
 				for(var i=0; i<data.length; i++){
 					
 					str += "<tr id='tr_"+data[i].questionNo+"' onclick='viewFn("+data[i].questionNo+")'>";
-					str += "	<td align='center' width='50'>"+data[i].questionNo+"</td>";
-					str += "	<td width='600' style='padding-left: 8px;'><a href='javascript:viewFn("+data[i].questionNo+")'>"+data[i].questionTitle+"</a></td>";
-					str += "	<td align='center' width='150'>"+data[i].userID+"</td>";
-					str += "	<td align='center' width='200'>"+data[i].questionDate+"</td>";
+					str += "	<td>"+data[i].questionNo+"</td>";
+					str += "	<td>";
+					str += "		<a href='javascript:viewFn("+data[i].questionNo+")'>"+data[i].questionTitle+"</a>";
+					str += "	</td>";
+					str += "	<td>"+data[i].userID+"</td>";
+					str += "	<td>"+data[i].questionDate+"</td>";
 					if(data[i].questionOkDate == null){ data[i].questionOkDate = ""; }
 					if(data[i].questionType == "0"){ data[i].questionType = "<font color='blue'>답변대기</font></td>"; }
 					if(data[i].questionType == "1"){ data[i].questionType = "<font color='orange'>답변완료</font></td>"; }
-					str += "	<td align='center' width='200' id='okdate_"+data[i].questionNo+"'>"+data[i].questionOkDate+"</td>";
-					str += "	<td align='center' width='200' id='atype_"+data[i].questionNo+"'>"+data[i].questionType+"</td>";
+					str += "	<td id='okdate_"+data[i].questionNo+"'>"+data[i].questionOkDate+"</td>";
+					str += "	<td id='atype_"+data[i].questionNo+"'>"+data[i].questionType+"</td>";
 					str += "</tr>";
 				}
 					alert(data.length+"건이 검색 되었습니다.");

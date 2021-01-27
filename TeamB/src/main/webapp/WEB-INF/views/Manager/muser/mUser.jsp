@@ -19,9 +19,9 @@
 		<div class="wrap">
 			<header>
 				<div class="header">
-					<div class="title_box">
-						<span class="head_title">관리자 페이지 </span>
-						<span class="name">하늘도서관</span>
+					<div>
+						<span>관리자 페이지&nbsp;</span>
+						<span>하늘도서관</span>
 					</div>
 				</div>
 			</header>
@@ -32,8 +32,8 @@
 				<div class="section">
 					<div class="user_info">
 						<span class="info_title">
-							<span class="point">*</span>
-						회원 정보</span>
+							<span class="point">*</span>회원 정보
+						</span>
 						<div class="optionBox">
 						조회:: 
 							  회원구분::
