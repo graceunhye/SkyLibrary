@@ -78,7 +78,7 @@ create table notice
 -- 도서정보
 create table book
 (
-	bookISBN            varchar(20)          comment 'ISBN',
+	bookISBN            bigint          comment 'ISBN',
 	bookSubject         varchar(100)   comment '제목',
 	bookStory           text           comment '줄거리', 
 	bookCount           int default 0  comment '대출횟수',
