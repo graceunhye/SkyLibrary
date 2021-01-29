@@ -14,7 +14,6 @@
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/join/join.js"></script>
-		<script src="/js/common.js"></script>
 	</head>
 	<body style="margin:0px">
 		<div class="wrap"> 
@@ -65,12 +64,15 @@
 									<td>이메일<span class="star">*</span></td>
 									<td>
 										<input type="text" id="userEmail" name="userEmail" onblur="Email_Check()"> @
-										<select name="userEmailDomain">
-											<option value="naver.com">naver.com
-											<option value="nate.com">nate.com
-											<option value="gmail.com">gmail.com
+										<select name="userEmailDomain" id="userEmailDomain">
+											<option value="naver.com">naver.com</option>
+											<option value="nate.com">nate.com</option>
+											<option value="daum.net">nate.com</option>
+											<option value="gmail.com">gmail.com</option>
 										</select>
+										<input type="button" value="이메일 인증" class="joinbtn1" onclick="EmailCheck()">
 										<br /><span id="emailCheckResult"></span>
+										<br /><span id="emailCheckResult2"></span>
 									</td>
 								</tr>
 								<tr>

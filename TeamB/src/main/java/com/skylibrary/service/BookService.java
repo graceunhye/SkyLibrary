@@ -34,4 +34,10 @@ public interface BookService {
 	public int bestCountList() throws Exception;
 	
 	public int recommendCountList() throws Exception;
+	
+	public List<BookVO> mBookList(SearchVO vo) throws Exception;
+	
+	public void bookAddOk(BookVO vo) throws Exception;
+	
+	public void bookDeleteOk(BookVO vo) throws Exception;
 }

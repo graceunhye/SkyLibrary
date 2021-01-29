@@ -49,6 +49,7 @@
 			AND bookSubject  like CONCAT('%',#{searchText},'%')
 			OR  bookCompany   like CONCAT('%',#{searchText},'%')
 			OR  bookWriter like CONCAT('%',#{searchText},'%')
+			OR  bookISBN like CONCAT('%',#{searchText},'%')
 		</if>
 		<if test="searchType eq 'bookSubject'">
 			AND bookSubject like CONCAT('%',#{searchText},'%')
@@ -59,9 +60,40 @@
 		<if test="searchType eq 'bookWriter'">
 			AND bookWriter like CONCAT('%',#{searchText},'%')
 		</if>
+		<if test="searchType eq 'bookISBN'">
+			AND bookISBN like CONCAT('%',#{searchText},'%')
+		</if>
 	</if>
 	ORDER BY bookSubject
 	LIMIT #{start},#{end}
+</select>
+<select id="mBookList" resultType="bookVO" parameterType="searchVO">
+	SELECT 
+			bookISBN,
+			bookSubject, 
+			bookStory, 
+			bookCount, 
+			bookCompany, 
+			bookWriter, 
+			DATE_FORMAT(bookPublicationDate, '%Y-%m-%d') as bookPublicationDate,
+			bookRent, 
+			bookCoverImg
+	FROM 	book
+	WHERE 1=1
+	<if test="searchText != null and searchText != ''">
+		<if test="searchType == 'all'">
+			AND bookSubject  like CONCAT('%',#{searchText},'%')
+			OR  bookCompany   like CONCAT('%',#{searchText},'%')
+			OR  bookWriter like CONCAT('%',#{searchText},'%')
+			OR  bookISBN like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType == 'bookSubject'">
+			AND bookSubject like CONCAT('%',#{searchText},'%')
+		</if>
+		<if test="searchType == 'bookISBN'">
+			AND bookISBN like CONCAT('%',#{searchText},'%')
+		</if>
+	</if>
 </select>
 
 <select id="countList" parameterType="searchVO" resultType="int">
@@ -85,7 +117,27 @@
 		</if>
 	</if>
 </select>
-
+<insert id="bookAddOk" parameterType="bookVO">
+	insert into book
+	(
+		bookISBN,
+		bookSubject, 
+		bookStory, 
+		bookCompany, 
+		bookWriter, 
+		bookPublicationDate, 
+		bookCoverImg
+	)value
+	(
+		#{bookISBN},
+		#{bookSubject}, 
+		#{bookStory}, 
+		#{bookCompany}, 
+		#{bookWriter}, 
+		#{bookPublicationDate}, 
+		#{bookCoverImg}
+	)
+</insert>
 <!-- 인기도서 -->
 <select id="best" resultType="bookVO" parameterType="pagingVO">
 	SELECT 
@@ -200,5 +252,7 @@
 	SELECT COUNT(*)
 	FROM rbook
 </select>
-
+<delete id="bookDeleteOk" parameterType="bookVO">
+	DELETE FROM book WHERE bookISBN=#{bookISBN}
+</delete>
 </mapper>

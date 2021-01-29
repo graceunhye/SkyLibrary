@@ -21,7 +21,6 @@ public interface UserService {
 	//동일 아이디 존재 여부
 	public int userExist(UserVO vo) throws Exception;
 	
-	
 	//유저들 정보 조회
 	public List<UserVO> userList() throws Exception;
 	

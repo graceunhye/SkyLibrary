@@ -29,6 +29,20 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	
+	<!-- Gmail -->
+	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="9rac.eun@gmail.com" />
+	    <property name="password" value="sk79424989!!" />
+	    <property name="javaMailProperties">
+	    <props>
+	      <prop key="mail.smtp.auth">true</prop>
+	      <prop key="mail.smtp.starttls.enable">true</prop>
+	    </props>
+	    </property>
+	  </bean>
+		
 	<context:component-scan base-package="com.skylibrary.dao" />
 	<context:component-scan base-package="com.skylibrary.service" />	
 </beans>

@@ -87,4 +87,19 @@ public class BookServiceImpl implements BookService {
 		return dao.recommendCountList();
 	}
 
+	@Override
+	public List<BookVO> mBookList(SearchVO vo) throws Exception {
+		return dao.mBookList(vo);
+	}
+
+	@Override
+	public void bookAddOk(BookVO vo) throws Exception {
+		dao.bookAddOk(vo);
+	}
+	
+	@Override
+	public void bookDeleteOk(BookVO vo) throws Exception {
+		dao.bookDeleteOk(vo);
+	}
+
 }

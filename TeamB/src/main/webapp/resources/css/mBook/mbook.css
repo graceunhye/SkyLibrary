@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+.table tbody {
+	overflow-y: auto;
+	overflow-x: hidden;
+	float: left;
+	width: 1320px;
+	height: 400px;
+}
+
+.table tbody tr {
+	display: table;
+	width: 1300px;
+}
+
+.fixTable {
+	background-color: #4A90E2;
+	color: white;
+	height: 50px;
+}
+
+.table{
+	font-size: 14px;
+	width: 1300px;
+	border-collapse:collapse;
+	margin: 30px 0 0 0;
+}
+
+.table thead {
+	float:left;
+	width: 1300px;
+}
+
+.optionBox {
+	background-color: #F5F5F5;
+	width: 1300px;
+	border-radius: 5px;
+	padding: 10px 0 0 30px;
+}
+
+.slot {
+	margin-left: 20px;
+	margin-right: 20px;
+	font-weight: bold;
+	color: #666666;
+}
+
+
+select
+{
+	border: 1px solid #F5F5F5;
+	color: #383838;
+}
+
+.userInfoView {
+	width: 1320px;
+	background-color: #F5F5F5;
+	border: 1px solid #F5F5F5;
+	border-radius: 5px;
+	height: 410px;
+	margin-left: 50px;
+}
+
+.table tbody td {
+	border:1px solid #F5F5F5;
+}
+
+
+.fixTable>td:nth-child(1) {
+	width: 70px;
+	text-align: center;
+}
+
+.fixTable>td:nth-child(2) {
+	width: 150px;
+	text-align: center;
+}
+
+.fixTable>td:nth-child(3) {
+	width: 400px;
+	text-align: center;
+}
+
+.fixTable>td:nth-child(4) {
+	width: 250px;
+	text-align: center;
+}
+
+.fixTable>td:nth-child(5) {
+	width: 200px;
+	text-align: center;
+}
+
+.fixTable>td:nth-child(6) {
+	width: 160px;
+	text-align: center;
+}
+
+.fixTable>td:nth-child(7) {
+	width: 70px;
+	text-align: center;
+}
+
+
+.optionBox button{
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	width: 150px;
+	height: 30px;
+}
+
+.optionBox button:nth-child(1){
+	background-color: blue;
+}
+
+.optionBox button:nth-child(2){
+	background-color: red;
+}
+
+.resultTable>td:nth-child(1){
+	width: 70px;
+	text-align: center;
+}
+
+.resultTable>td:nth-child(2) {
+	width: 150px;
+	text-align: center;
+}
+
+.resultTable>td:nth-child(3) {
+	width: 400px;
+	text-align: left;
+	padding-left: 5px;
+}
+
+.resultTable>td:nth-child(4) {
+	width: 250px;
+	text-align: center;
+}
+
+.resultTable>td:nth-child(5) {
+	width: 200px;
+	text-align: center;
+}
+
+.resultTable>td:nth-child(6) {
+	width: 160px;
+	text-align: center;
+}
+
+.resultTable>td:nth-child(7) {
+	width: 70px;
+	text-align: center;
+}
+
+.resultTable:hover{
+	background-color: #EEEEEE;	
+	cursor: pointer;
+}
+
+.viewTable {
+	border-collapse: collapse;
+	width: 1320px;
+}
+
+.viewTable tr:nth-child(1),
+.viewTable tr:nth-child(2),
+.viewTable tr:nth-child(3) {
+	height: 70px;
+}
+
+.viewTable tr:nth-child(5) {
+	height: 200px;
+}
+
+
+
+.viewTable tr:nth-child(1) td:nth-child(1) {
+	width: 150px;
+}
+
+.viewTable tr:nth-child(1) td:nth-child(2) {
+	width: 80px;
+	text-align: center;
+}
+
+.viewTable tr:nth-child(2) td:nth-child(1) {
+	text-align: center;
+}
+
+
+.viewTable tr:nth-child(2) td:nth-child(3) {
+	width: 80px;
+	text-align: center;
+}
+
+.viewTable tr:nth-child(3) td:nth-child(1) {
+	width: 80px;
+	text-align: center;
+}
+
+.viewTable tr:nth-child(3) td:nth-child(3) {
+	width: 80px;
+	text-align: center;
+}
+
+.viewTable tr:nth-child(4) td:nth-child(1) {
+	height: 30px;
+}
+
+
+.viewTable tr:nth-child(5) td:nth-child(1) {
+	height: 100px;
+}
+
+.viewTable tr:nth-child(6) td:nth-child(1) {
+	text-align: right;
+}
+
+.insertBtn {
+	background-color: orange;
+	font-weight: bold;
+	color: white;
+	border: 1px solid #e0e0e0;
+}
+
+.deleteBtn {
+	background-color: #124993;
+	font-weight: bold;
+	color: white;
+	border: 1px solid #e0e0e0;
+}
+
+

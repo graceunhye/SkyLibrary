@@ -1,39 +1,31 @@
-		var isCheck = "false";
-
-		function idCheck(){
-			var userID = $("input[name='userID']").val();
+		var isCheck = false;
+		var dice = 0;
+		var checkNumResult = false;
 		
+		function idCheck(){
 			if(userID != null && userID != ""){
 				
 				$.ajax({
 					url: "/join/ajax/idCheckOk?",
 					type: "GET",
-					data: {userID:userID},
+					data: {userID:$("#userID").val()},
 					error: function(){
 						alert("idCheck function error");
 					}, success: function(data)
 					{
-						if(data == "idEmpty") {
-						
-							$("#idCheckResult").css("color", "red");
-							$("#idCheckResult").html("아이디를 입력해주세요.");
-							$("input[name='userID']").focus();
-							isCheck="false";
-							alert("아이디를 입력해주세요.");
-							
-						}else if(data == "mismatch") {
+						if(data == "mismatch") {
 						
 							$("#idCheckResult").css("color", "red");
 							$("#idCheckResult").html("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
 							$("input[name='userID']").val("");
-							isCheck="false";
+							isCheck = false;
 							alert("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
 								
 						}else if(data == "alreadyUse") {
 						
 							$("#idCheckResult").css("color", "red");
 							$("#idCheckResult").html("이미 사용중인 아이디 입니다.");
-							isCheck="false";
+							isCheck = false;
 							alert("이미 사용중인 아이디 입니다.");
 							
 						}else{
@@ -41,7 +33,7 @@
 							$("#idCheckResult").css("color", "blue");
 							$("#idCheckResult").html("사용 가능한 아이디입니다.");
 							alert("사용 가능한 아이디입니다.");
-							isCheck="true";
+							isCheck = true;
 							
 						}
 				}
@@ -50,7 +42,8 @@
 				
 				$("#idCheckResult").html("아이디를 입력해주세요.");
 				$("#idCheckResult").css("color", "red");
-				$("input[name='userID']").focus();
+				$("#userID").focus();
+				isCheck = false;
 			}
 		}
 		
@@ -218,6 +211,11 @@
 				userEmailValue = "";
 				$("input[name='userEmail']").focus();
 				
+			}else if(checkNumResult != true)
+			{
+				alert("true??::"+checkNumResult);
+				alert("이메일 인증은 필수입니다.");
+				
 			}else if(userNumSplit2Value == "" && userNumSplit3Value == "")
 			{
 				alert("연락처는 필수 항목 입니다.");
@@ -256,8 +254,46 @@
 			}
 			else
 			{
-				isCheck = "false";
+				isCheck = false;
+				emailCheckResult = false;
 				document.joinfrm.submit();
 			}
 
+		}
+		
+		
+		function EmailCheck(){
+			$.ajax({
+				url: "/email",
+				type: "post",
+				data: {
+					userEmailID: $("#userEmail").val(),
+					userEmailDomain: $("#userEmailDomain").val()
+				},error:function(){
+					alert("이메일 인증 오류가 발생했습니다. 다시 시도해주세요.");
+				},success:function(data){
+					dice = data;
+					var str = "";
+					str += "<input type='text' id='emailCheck' placeholder='인증번호'>";
+					str += "&nbsp;<input type='button' value='인증' onclick='EmailCheckOkFn()'>";
+					str += "<br />이메일 인증번호가 전송 되었습니다.";
+					$("#emailCheckResult").html(str);	
+				}
+			})
+
+		}
+		
+		function EmailCheckOkFn(){
+			var checkNum = $("#emailCheck").val();
+			
+			if(checkNum == dice){
+				checkNumResult = true;
+				alert("인증성공");
+				$("#emailCheckResult2").html("<font color='blue'>인증성공</font>");
+			}else {
+				checkNumResult = false;
+				alert("인증실패");
+				$("#emailCheckResult2").html("<font color='red'>인증실패</font>");
+			}
+			
 		}

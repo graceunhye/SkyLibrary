@@ -31,7 +31,7 @@ import com.skylibrary.vo.SessionVO;
 
 @Controller
 @RequestMapping(value="/mnotice")
-public class mNoticeCotroller {
+public class mNoticeController {
 	
 	@Inject
 	NoticeService noticeservice;

@@ -42,8 +42,6 @@
 	FROM  abook
 	WHERE userID = #{userID}
 </select>
-
-
 <update id="checkedSave" parameterType="applyBookVO">
 	UPDATE abook 
 	SET    applyType=#{applyType} 
@@ -58,6 +56,7 @@
 		,applyCompany
 		,applyPublicationDate
 		,DATE_FORMAT(applyDate, '%Y-%m-%d') as applyDate
+		,DATE_FORMAT(applyOkDate, '%Y-%m-%d') as applyOkDate
 		,applyWriter
 		,applyPrice
 		,applyWhy

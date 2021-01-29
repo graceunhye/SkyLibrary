@@ -75,4 +75,17 @@ public class BookDAO {
 		return sql.selectOne(namespace + ".recommendCountList");
 	}
 	
+	public List<BookVO> mBookList(SearchVO vo) throws Exception {
+		return sql.selectList(namespace + ".mBookList", vo);
+	}
+	
+	public void bookAddOk(BookVO vo) throws Exception {
+		sql.insert(namespace + ".bookAddOk", vo);
+	}
+	
+	public void bookDeleteOk(BookVO vo) throws Exception {
+		sql.delete(namespace + ".bookDeleteOk", vo);
+	}
+	
+	
 }

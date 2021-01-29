@@ -13,7 +13,7 @@
 				<li class="rain"><img src="/image/homePage/rain.png" width="20px" alt="빗방울"></li>
 				<li><a href="/intro/notice">도서관 소개</a></li>
 				<li class="rain"><img src="/image/homePage/rain.png" width="20px" alt="빗방울"></li>
-				<li><a href="/myPage/userInfo" class="myPage">마이페이지</a></li>
+				<li><a href="/myPage/userInfo" class="myPage">나의 도서관</a></li>
 			</ul>
 		</nav>
 	</div>

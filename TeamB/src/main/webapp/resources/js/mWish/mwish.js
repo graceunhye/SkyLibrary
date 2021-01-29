@@ -14,11 +14,12 @@ var getData  ="";
 					},error: function(){
 						alert("checked save function error");
 					},success: function(data){
-						searchFn();
 					}				 
 				})
 			}
 		}
+		alert("처리가 완료 되었습니다.");
+		searchFn();
 	}
 	
 	
@@ -66,6 +67,7 @@ var getData  ="";
 					str += "	</td>";
 					str += "</tr>";
 				}
+				alert(data.length+"건이 검색되었습니다.");
 				$("#result").html(str);
 			}
 		})
