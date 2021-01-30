@@ -39,10 +39,13 @@
 				            	<tr></tr>
 				            	<tr></tr>
 				            	<tr align="center">
-				            		<td><h1>잘못된 접근입니다.</h1></td>
+				            		<td>
+				            			<h1>${error.STATUS_CODE } 에러</h1>
+				            			<br />${error.MASSAGE }
+				            		</td>
 				            	</tr>
 				            	<tr align="center">
-				            		<td><a href="<c:url value='/'/>"> [HOME] </a>을 클릭하시면, 홈으로 돌아갑니다.</td>
+				            		<td><a href="/"> [HOME] </a>을 클릭하시면, 홈으로 돌아갑니다.</td>
 				            	</tr>
 				            </table>			                   
 				        </div>
