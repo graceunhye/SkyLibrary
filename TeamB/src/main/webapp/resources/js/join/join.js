@@ -19,20 +19,20 @@
 							$("#idCheckResult").html("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
 							$("input[name='userID']").val("");
 							isCheck = false;
-							alert("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
+							//alert("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
 								
 						}else if(data == "alreadyUse") {
 						
 							$("#idCheckResult").css("color", "red");
 							$("#idCheckResult").html("이미 사용중인 아이디 입니다.");
 							isCheck = false;
-							alert("이미 사용중인 아이디 입니다.");
+							//alert("이미 사용중인 아이디 입니다.");
 							
 						}else{
 						
 							$("#idCheckResult").css("color", "blue");
 							$("#idCheckResult").html("사용 가능한 아이디입니다.");
-							alert("사용 가능한 아이디입니다.");
+							//alert("사용 가능한 아이디입니다.");
 							isCheck = true;
 							
 						}
@@ -130,7 +130,7 @@
 		}
 		
 		function Email_Check(){
-			var Email = $("input[name='userEmail']").val();
+			var Email = $("input[name='userEmailID']").val();
 			
 			if(Email == ""){
 				$("#emailCheckResult").html("이메일을 입력해주세요.");
@@ -170,7 +170,7 @@
 			var userNameValue      = $("input[name='userName']").val();
 			var userPWValue        = $("input[name='userPW']").val();
 			var userRPWValue       = $("input[name='userRPW']").val();
-			var userEmailValue     = $("input[name='userEmail']").val();
+			var userEmailValue     = $("input[name='userEmailID']").val();
 			var userNumSplit2Value = $("input[name='userNumSplit2']").val();
 			var userNumSplit3Value = $("input[name='userNumSplit3']").val();
 			var userPostNumValue   = $("input[name='userPostNum']").val();
@@ -203,17 +203,17 @@
 			}else if(userEmailValue == "") 
 			{
 				alert("이메일은 필수 항목입니다.");
-				$("input[name='userEmail']").focus();
+				$("input[name='userEmailID']").focus();
 				
 			}else if(userEmailValue.trim() == "") 
 			{
 				alert("이메일에 공백은 넣을 수 없습니다. 다시 시도해주세요.");
 				userEmailValue = "";
-				$("input[name='userEmail']").focus();
+				$("input[name='userEmailID']").focus();
 				
 			}else if(checkNumResult != true)
 			{
-				alert("true??::"+checkNumResult);
+				//alert("true??::"+checkNumResult);
 				alert("이메일 인증은 필수입니다.");
 				
 			}else if(userNumSplit2Value == "" && userNumSplit3Value == "")
@@ -263,11 +263,12 @@
 		
 		
 		function EmailCheck(){
+			//alert($("#userEmailID").val());
 			$.ajax({
 				url: "/email",
 				type: "post",
 				data: {
-					userEmailID: $("#userEmail").val(),
+					userEmailID: $("#userEmailID").val(),
 					userEmailDomain: $("#userEmailDomain").val()
 				},error:function(){
 					alert("이메일 인증 오류가 발생했습니다. 다시 시도해주세요.");
@@ -275,7 +276,7 @@
 					dice = data;
 					var str = "";
 					str += "<input type='text' id='emailCheck' placeholder='인증번호'>";
-					str += "&nbsp;<input type='button' value='인증' onclick='EmailCheckOkFn()'>";
+					str += "&nbsp;<input type='button' value='인증' onclick='EmailCheckOkFn()' class='joinbtn1'>";
 					str += "<br />이메일 인증번호가 전송 되었습니다.";
 					$("#emailCheckResult").html(str);	
 				}

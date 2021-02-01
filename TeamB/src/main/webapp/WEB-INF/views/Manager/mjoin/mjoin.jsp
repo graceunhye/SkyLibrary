@@ -14,7 +14,6 @@
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/join/mjoin.js"></script>
-		<script src="/js/common.js"></script>
 	</head>
 	<body style="margin:0px">
 		<div class="wrap"> 
@@ -63,12 +62,15 @@
 									<td>이메일<span class="star">*</span></td>
 									<td>
 										<input type="text" id="managerEmailID" name="managerEmailID" onblur="Email_Check()"> @
-										<select name="managerEmailDomain">
-											<option value="naver.com">naver.com
-											<option value="nate.com">nate.com
-											<option value="gmail.com">gmail.com
+										<select name="managerEmailDomain" id="managerEmailDomain">
+											<option value="naver.com">naver.com</option>
+											<option value="nate.com">nate.com</option>
+											<option value="daum.net">nate.com</option>
+											<option value="gmail.com">gmail.com</option>
 										</select>
+										<input type="button" value="이메일 인증" class="joinbtn1" onclick="EmailCheck()">
 										<br /><span id="emailCheckResult"></span>
+										<br /><span id="emailCheckResult2"></span>
 									</td>
 								</tr>
 								<tr>
@@ -94,6 +96,13 @@
 										<input type="text" id="managerAddr" name="managerAddr" size="50" placeholder="주소"><br />
 										<input type="text" id="managerAddrDetail" name="managerAddrDetail" size="50" placeholder="상세주소"><br />
 										<span id="postCheckResult"></span>
+									</td>
+								</tr>
+								<tr>
+									<td>사서코드 <span class="star">*</span></td>
+									<td>
+										<input type="text" size="5" placeholder="인증코드" name="managerCode">
+										<input type="button" value="확인" class="joinbtn1" onclick="codeCheckFn()">
 									</td>
 								</tr>
 							</table>

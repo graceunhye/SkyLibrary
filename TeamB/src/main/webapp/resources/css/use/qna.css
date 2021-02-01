@@ -188,5 +188,8 @@ font-weight: bold;
 		border: 1px solid #383838;
 	}
 	
+	.aTable tr:nth-child(1) th {
+		width: 150px;
+	}
 	
 	

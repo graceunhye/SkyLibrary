@@ -7,6 +7,22 @@ function wishCancelFn(){
 	}
 }
 
+function wishSearchFn(){
+	$.ajax({
+		url: "/myPage/wishCheck",
+		type: "POST",
+		data: {
+			startDate:$("input[name='startDate']").val(),
+			endDat:$("input[name='endDate']").val()
+		},error:function(){
+			alert("검색오류가 발생하였습니다. 다시 시도 해주세요.");
+		},success:function(){
+			
+		}
+	});
+};
+
+
 //
 //function wishNeedLoginFn(value){
 //	if(value == "0" ){

@@ -22,6 +22,7 @@ public class ManagerVO extends SessionVO{
 	private String managerPostNum;
 	private String managerAddr;
 	private String managerAddrDetail;
+	private String managerCode;
 	
 	public void setManagerEmail(String managerEmailID, String managerEmailDomain) {
 		this.managerEmail = managerEmailID+"@"+managerEmailDomain;

@@ -1,6 +1,4 @@
 function searchFn(query, type){
-	//alert("query::"+query);
-	//alert("type::"+type);
 	$.ajax({
 		url: "/mbook/ajax/searchOk",
 		type: "POST",
@@ -213,121 +211,8 @@ function deleteFn(isbn,where) {
 					break;
 				}
 			}else {
-				alert("삭제에 실패했습니다. 다시 시도해주세요.");
+				alert("대출 중인 도서입니다.");
 			}
 		}
 	});
 }
-/*
-function addBookFn(){
-	var str = "";
-	str += "<form method='POST' enctype='multipart/form-data' action=''>";
-	str += "<table class='viewTable' border='1'>";
-	str += "<tr>";
-	str += "	<td rowspan='3'><span id='image_container'></span></td>";
-	str += "	<td>제목</td>";
-	str += "	<td colspan='3'>";
-	str += "		<input type='text' placholder='도서명' name='bookSubject' placeholder='도서명' size='120'>";
-	str += "	</td>";
-	str += "</tr>";
-	str += "<tr>";
-	str += "	<td>작가명</td>";
-	str += "	<td><input type='text' placeholder='작가명' name='bookWriter'></td>";
-	str += "	<td>출판사</td>";
-	str += "	<td><input type='text' placeholder='출판일' name='bookCompany'></td>";
-	str += "</tr>";
-	str += "<tr>";
-	str += "	<td rowspan='2'>발행일</td>";
-	str += "	<td rowspan='2'><input type='text' placeholder='yyyy-MM-dd' name='bookPublicationDate'></td>";
-	str += "	<td rowspan='2'>ISBN</td>";
-	str += "	<td rowspan='2'><input type='text' placeholder='ISBN' name='bookISBN'></td>";
-	str += "</tr>";
-	str += "<tr>";
-	str += "	<td>";
-	str += "		<input type='file' accept='image/*' name='' onchange='setThumbnail(event)'>";
-	str += "	</td>";
-	str += "</tr>";
-	str += "<tr>";
-	str += "	<td colspan='5'>";
-	str += "		<textarea cols='185' rows='8' placeholder='줄거리'></textarea>";
-	str += "	</td>";
-	str += "</tr>";
-	str += "<tr>";
-	str += "	<td colspan='5'>";
-	str += "		<input type='button' value='등록'>";
-	str += "	</td>";
-	str += "</tr>";
-	str += "</table>";
-	str += "</form>";
-	
-	$("#viewArea").html(str);
-}
-
-function setThumbnail(event){
-	var reader = new FileReader(); //파일 읽어주는 객체
-	
-	reader.onload = function(event) {
-		var img = document.createElement("img");
-		img.setAttribute("src", event.target.result);
-		img.setAttribute("width", "130");
-		document.querySelector("span#image_container").appendChild(img);
-		imgSet = true;
-	};
-	
-	reader.readAsDataURL(event.target.files[0]);
-}
-
-function testAPI(){
-	var client_id = "aMyBgmxx8CpcNAM_n6m7";
-	var client_secret = "YTxq9Am9iW";
-	
-	$.ajax({
-		url: "https://openapi.naver.com/v1/search/book.json",
-		type: "GET",
-		headers: {
-			"X-Naver-Client-Id": client_id,
-			"X-Naver-Client-Secret": client_secret},
-		data: {
-			query: $("#searchText").val()
-		},error:function(){
-			alert("API호출 오류입니다. 다시 시도해주세요.")
-		},success:function(data){
-			var apiData = data;
-			var searchDate;
-			
-			$.ajax({
-				url: "/mbook/ajax/searchOk",
-				type: "POST",
-				data: {
-					searchText:$("#searchText").val()
-				},error: function(){
-					
-				},success: function(data){
-					searchDate = data;
-				}
-			})
-			
-			
-			for(var i=0; i<apiData.length; i++){
-				
-				str += "<tr class='resultTable' id='info_"+i+"'>";
-				str += "	<td>"+(i+1)+"</td>";
-				str += "	<td>"+apiData[i].isbn+"</td>";
-				str += "	<td>"+apiData[i].title+"</td>";
-				str += "	<td>"+apiData[i].author+"</td>";
-				str += "	<td>"+apiData[i].publisher+"</td>";
-				str += "	<td>"+apiData[i].pubdate+"</td>";
-				for(var j=0; j<searchData; j++){
-					if(apiData[i].isbn == searchData[j].bookISBN){
-						str += "	<td>O</td>";
-					}else{
-						str += "	<td></td>";
-					}
-				}
-				str += "</tr>";	
-					
-			}
-			$("#result").html(str);
-		}
-	})
-}*/

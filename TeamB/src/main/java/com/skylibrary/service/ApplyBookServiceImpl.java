@@ -49,8 +49,8 @@ public class ApplyBookServiceImpl implements ApplyBookService {
 	}
 
 	@Override
-	public List<ApplyBookVO> view(String userID) throws Exception {
-		 return dao.view(userID);
+	public List<ApplyBookVO> view(SearchVO vo) throws Exception {
+		 return dao.view(vo);
 	}
 
 	@Override

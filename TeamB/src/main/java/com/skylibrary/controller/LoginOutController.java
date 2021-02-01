@@ -147,7 +147,7 @@ public class LoginOutController {
 	@ResponseBody
 	public String findIdAjax(String userNum, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
-			String userID = userService.FindId(userNum);
+			String userID = userService.findId(userNum);
 			
 			return userID;		
 	}

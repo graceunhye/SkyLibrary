@@ -37,11 +37,9 @@
 				</div>
 				<div>
 					<div class="searchOptionWrap">
-						<form method="post" action="/myPage/wishCheck">
-							날짜:: <input type="date" name="startDay"/> 일부터
-							<input type="date" name="finishDay"/> 일까지
-							<input type="submit" value="적용" class="normalBtn">
-						</form> 
+						날짜:: <input type="date" name="startDate"/> 일부터
+						<input type="date" name="endDate"/> 일까지
+						<input type="button" value="적용" onclick="wishSearchFn()" class="normalBtn">
 					</div>
 					<div class="wishTableWrap">
 						<table border="1" class="wishTable">
@@ -107,8 +105,7 @@
 											<td class="mid"></td>
 										</tr>
 									</c:forEach>
-								</c:if>
-									
+								</c:if>								
 							</tbody>
 						</table>
 					</div>

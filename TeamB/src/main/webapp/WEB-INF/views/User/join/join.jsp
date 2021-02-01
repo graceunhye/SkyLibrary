@@ -63,7 +63,7 @@
 								<tr>
 									<td>이메일<span class="star">*</span></td>
 									<td>
-										<input type="text" id="userEmail" name="userEmail" onblur="Email_Check()"> @
+										<input type="text" id="userEmailID" name="userEmailID" onblur="Email_Check()"> @
 										<select name="userEmailDomain" id="userEmailDomain">
 											<option value="naver.com">naver.com</option>
 											<option value="nate.com">nate.com</option>

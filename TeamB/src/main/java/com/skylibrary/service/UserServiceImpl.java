@@ -61,9 +61,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String FindId(String userNum) throws Exception {
-		return dao.FindId(userNum);
+	public String findId(String userNum) throws Exception {
+		return dao.findId(userNum);
 	}
+
 	
 
 

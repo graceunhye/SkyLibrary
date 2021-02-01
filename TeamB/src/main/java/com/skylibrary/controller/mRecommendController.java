@@ -1,10 +1,12 @@
 package com.skylibrary.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -15,13 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skylibrary.service.BookService;
+import com.skylibrary.service.ManagerService;
 import com.skylibrary.service.RecommendService;
 import com.skylibrary.vo.BookVO;
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.RecommendVO;
 import com.skylibrary.vo.SearchVO;
 import com.skylibrary.vo.SessionVO;
-import com.skylibrary.vo.UserVO;
+//import com.skylibrary.vo.UserVO;
 
 @Controller
 @RequestMapping(value="/mrecommend")
@@ -33,8 +36,32 @@ public class mRecommendController {
 	@Inject
 	RecommendService recommendService;
 	
+	@Inject
+	ManagerService managerService;
+	
 	@RequestMapping(value="/mRecommend", method=RequestMethod.GET)
-	public String getRecommendList(Locale locale, Model model, SearchVO search, PagingVO paging) throws Exception {
+	public String getRecommendList(Locale locale, Model model, SearchVO search,
+			PagingVO paging, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+		
+		//비회원
+        if(sessionVO == null) {
+        	
+        	out.println("<script>"
+        				+"location.href='/';"
+           		 		+"</script>");
+            out.flush();
+        }else if(managerService.isManager(sessionVO) != 1){
+        	out.println("<script>"
+       		 		+"location.href='/';"
+       		 		+"</script>");
+        	out.flush();
+        }
 		
 		int total = bookService.countList(search); 
 
@@ -64,7 +91,28 @@ public class mRecommendController {
 	}
 	
 	@RequestMapping(value="/mRecommendView", method=RequestMethod.GET)
-	public String getRecommendView(@RequestParam("isbn") String isbn, Model model) throws Exception {
+	public String getRecommendView(@RequestParam("isbn") String isbn, Model model,
+					HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+		
+		//비회원
+        if(sessionVO == null) {
+        	
+        	out.println("<script>"
+        				+"location.href='/';"
+           		 		+"</script>");
+            out.flush();
+        }else if(managerService.isManager(sessionVO) != 1){
+        	out.println("<script>"
+       		 		+"location.href='/';"
+       		 		+"</script>");
+        out.flush();
+        }
 		
 		BookVO vo = bookService.bookView(isbn);
 		

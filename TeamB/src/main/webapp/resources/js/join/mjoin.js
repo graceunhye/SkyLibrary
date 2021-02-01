@@ -1,28 +1,22 @@
 		var isCheck = false;
 		var isCheckPost = false
-
+		var checkNumResult = false;
+		var codeCheckResult = false;
+		var dice = 0;
 		function idCheck(){
 			var managerID = $("input[name='userID']").val();
 		
 			if(managerID != null && managerID != ""){
 				
 				$.ajax({
-					url: "/join/ajax/idCheckOk?",
+					url: "/mjoin/ajax/idCheckOk?",
 					type: "GET",
 					data: {userID:managerID},
 					error: function(){
 						alert("idCheck function error");
 					}, success: function(data)
 					{
-						if(data == "idEmpty") {
-						
-							$("#idCheckResult").css("color", "red");
-							$("#idCheckResult").html("아이디를 입력해주세요.");
-							$("input[name='userID']").focus();
-							isCheck=false;
-							alert("아이디를 입력해주세요.");
-							
-						}else if(data == "mismatch") {
+						if(data == "mismatch") {
 						
 							$("#idCheckResult").css("color", "red");
 							$("#idCheckResult").html("아이디는 5~20자로 영어와 숫자만 사용하실 수 있습니다.");
@@ -234,7 +228,7 @@
 			}else if(managerEmailValue.trim() == "") 
 			{
 				alert("이메일에 공백은 넣을 수 없습니다. 다시 시도해주세요.");
-				userEmailValue = "";
+				managerEmailIDValue = "";
 				$("input[name='managerEmailID']").focus();
 				
 			}else if(managerNumSplit2Value == "" && managerNumSplit3Value == "")
@@ -268,6 +262,11 @@
 				if(managerNumSplit3Value == "") {
 					$("input[name='managerNumSplit3']").focus();
 				}
+			}else if(checkNumResult != true)
+			{
+				//alert("true??::"+checkNumResult);
+				alert("이메일 인증은 필수입니다.");
+				
 			}else if(managerPostNumValue == ""){
 				alert("우편번호를 입력해주세요.");
 				
@@ -280,12 +279,74 @@
 			}else if(managerPostNumValue != "" && isNaN(managerPostNumValue))
 			{
 				alert("올바른 형식의 우편번호가 아닙니다. 다시 시도해주세요.");
-			}
-			else
+			}else if(codeCheckResult == false){
+				alert("사서 인증코드는 필수입니다.");
+				$("input[name='managerCode']").focus();
+			}else
 			{
+				isCheck = false;
+				emailCheckResult = false;
+				codeCheckResult = false;
 				document.joinfrm.submit();
 			}
 			
-			isCheck = false;
-	
+		}
+		
+		function EmailCheck(){
+			//alert($("#userEmailID").val());
+			$.ajax({
+				url: "/email",
+				type: "post",
+				data: {
+					userEmailID: $("#managerEmailID").val(),
+					userEmailDomain: $("#managerEmailDomain").val()
+				},error:function(){
+					alert("이메일 인증 오류가 발생했습니다. 다시 시도해주세요.");
+				},success:function(data){
+					dice = data;
+					var str = "";
+					str += "<input type='text' id='emailCheck' placeholder='인증번호'>";
+					str += "&nbsp;<input type='button' value='인증' onclick='EmailCheckOkFn()' class='joinbtn1'>";
+					str += "<br />이메일 인증번호가 전송 되었습니다.";
+					$("#emailCheckResult").html(str);	
+				}
+			})
+
+		}
+		
+		function EmailCheckOkFn(){
+			var checkNum = $("#emailCheck").val();
+			
+			if(checkNum == dice){
+				checkNumResult = true;
+				alert("인증성공");
+				$("#emailCheckResult2").html("<font color='blue'>인증성공</font>");
+			}else {
+				checkNumResult = false;
+				alert("인증실패");
+				$("#emailCheckResult2").html("<font color='red'>인증실패</font>");
+			}
+			
+		}
+		
+		
+		function codeCheckFn(){
+			var code = $("input[name='managerCode']").val();
+			
+			$.ajax({
+				url: "/mjoin/ajax/codeCheckOk",
+				type: "GET",
+				data: "managerCode="+code,
+				error: function(){
+					alert("인증코드 오류입니다. 다시 입력해주세요.");
+				},success:function(checkResult){
+					alert("js checkResult::"+checkResult);
+					if(checkResult == "ok"){
+						alert("인증 되었습니다.");
+						codeCheckResult = true;
+					}else {
+						return;
+					}
+				}
+			});
 		}

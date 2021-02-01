@@ -1,10 +1,14 @@
 package com.skylibrary.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +17,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skylibrary.service.AnswerService;
+import com.skylibrary.service.ManagerService;
 import com.skylibrary.service.QuestionService;
 import com.skylibrary.vo.AnswerVO;
 import com.skylibrary.vo.QuestionVO;
 import com.skylibrary.vo.SearchVO;
+import com.skylibrary.vo.SessionVO;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+//import net.sf.json.JSONArray;
+//import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping(value="/mqna")
@@ -29,10 +35,33 @@ public class mQnaController {
 	QuestionService questionService;
 	@Inject
 	AnswerService answerService;
-
+	@Inject
+	ManagerService managerService;
 	
 	@RequestMapping(value="/mQna", method=RequestMethod.GET)
-	public String getQnaList(Locale locale, Model model) throws Exception {
+	public String getQnaList(Locale locale, Model model, 
+					HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+		
+		//비회원
+        if(sessionVO == null) {
+        	
+        	out.println("<script>"
+        				+"location.href='/';"
+           		 		+"</script>");
+            out.flush();
+        }else if(managerService.isManager(sessionVO) != 1){
+        	out.println("<script>"
+       		 		+"location.href='/';"
+       		 		+"</script>");
+        out.flush();
+        }
+		
 		return "/Manager/mqna/mQna";
 	}
 	

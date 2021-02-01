@@ -78,10 +78,9 @@ public class UserDAO {
 	}
 
 	//아이디 찾기
-	public String FindId(String userNum) throws Exception{
+	public String findId(String userNum) throws Exception{
 		return sql.selectOne(namespace + ".findId", userNum);
 	}	
-	
 
 	
 }

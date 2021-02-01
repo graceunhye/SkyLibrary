@@ -41,9 +41,9 @@ public class ApplyBookDAO {
 	};
 	
 	//신청 도서 조회
-	public List<ApplyBookVO>  view(String userID)throws Exception {
+	public List<ApplyBookVO>  view(SearchVO vo)throws Exception {
 		
-		return sql.selectList(namespace+".view", userID);	
+		return sql.selectList(namespace+".view", vo);	
 	}
 	
 	

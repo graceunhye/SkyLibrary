@@ -10,7 +10,7 @@ import lombok.ToString;
 public class BookVO extends SessionVO {
 
 	//book 테이블
-	private int no;
+	//private int no;
 	private String bookISBN;            //isbn
 	private String bookSubject;         //책제목
 	private String bookStory;           //줄거리
@@ -20,6 +20,7 @@ public class BookVO extends SessionVO {
 	private String bookPublicationDate; //출판일
 	private int    bookRent;            //대여여부
 	private String bookCoverImg;        //책커버이미지
+	private String bookDate;			//도서등록일
 	
 	//rent 테이블
 	private String userID;        //회원 아이디
@@ -42,6 +43,9 @@ public class BookVO extends SessionVO {
 		this.rentEndDate = array[0];
 	}
 
-		
+	public void setBookPublicationDate(String bookPublicationDate) {
+		String[] array = bookPublicationDate.split(" ");
+		this.bookPublicationDate = array[0];
+	}	
 	
 }

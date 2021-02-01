@@ -3,8 +3,8 @@ package com.skylibrary.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import com.skylibrary.service.NoticeService;
 import com.skylibrary.vo.NoticeVO;
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.SearchVO;
-import com.skylibrary.vo.UserVO;
+//import com.skylibrary.vo.UserVO;
 
 @Controller
 @RequestMapping(value = "/intro")

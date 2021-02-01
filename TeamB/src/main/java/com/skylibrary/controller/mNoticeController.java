@@ -1,8 +1,9 @@
 package com.skylibrary.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mysql.cj.util.StringUtils;
+import com.skylibrary.service.ManagerService;
 import com.skylibrary.service.NoticeService;
 import com.skylibrary.vo.NoticeVO;
 import com.skylibrary.vo.PagingVO;
@@ -36,8 +38,33 @@ public class mNoticeController {
 	@Inject
 	NoticeService noticeservice;
 	
+	@Inject
+	ManagerService managerService;
+	
 	@RequestMapping(value="/mNotice", method=RequestMethod.GET)
-	public String getNoticeList(Locale locale, Model model, PagingVO paging) throws Exception {
+	public String getNoticeList(Locale locale, Model model, PagingVO paging, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		
+		
+		HttpSession session = request.getSession();
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+		
+		//비회원
+        if(sessionVO == null) {
+        	
+        	out.println("<script>"
+        				+"location.href='/';"
+           		 		+"</script>");
+            out.flush();
+        }else if(managerService.isManager(sessionVO) != 1){
+        	out.println("<script>"
+       		 		+"location.href='/';"
+       		 		+"</script>");
+        out.flush();
+        }
+        
 		
 		int total = noticeservice.noticeCountList();
 		
@@ -64,7 +91,28 @@ public class mNoticeController {
 	}
 	
 	@RequestMapping(value="/mNoticeInsert", method=RequestMethod.GET)
-	public String getNoticeWrite() throws Exception {		
+	public String getNoticeWrite( Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {		
+		
+		HttpSession session = request.getSession();
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+		
+		//비회원
+        if(sessionVO == null) {
+        	
+        	out.println("<script>"
+        				+"location.href='/';"
+           		 		+"</script>");
+            out.flush();
+        }else if(managerService.isManager(sessionVO) != 1){
+        	out.println("<script>"
+       		 		+"location.href='/';"
+       		 		+"</script>");
+        out.flush();
+        }
+        
 		
 		return "/Manager/mnotice/mNoticeInsert";
 	}
@@ -110,7 +158,29 @@ public class mNoticeController {
 	@RequestMapping(value="/mNoticeView", method=RequestMethod.GET)
 	public String getNoticeView(@RequestParam("noticeNo") int noticeNo, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {		
 		
-		// ����� ��Ű �ҷ����� 
+		
+		HttpSession session = request.getSession();
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+		
+		//비회원
+        if(sessionVO == null) {
+        	
+        	out.println("<script>"
+        				+"location.href='/';"
+           		 		+"</script>");
+            out.flush();
+        }else if(managerService.isManager(sessionVO) != 1){
+        	out.println("<script>"
+       		 		+"location.href='/';"
+       		 		+"</script>");
+        out.flush();
+        }
+        
+		
+		
 		Cookie cookies[] = request.getCookies(); 
 		Map mapCookie = new HashMap(); 
 		if(request.getCookies() != null){ 
@@ -120,22 +190,12 @@ public class mNoticeController {
 			} 
 		}
 		
-		// ����� ��Ű�߿� read_count �� �ҷ����� 
 		String cookie_read_count = (String) mapCookie.get("noticeHit"); 
-		
-		// ����� ���ο� ��Ű�� ���� 
 		String new_cookie_read_count = "|" + noticeNo;
 		
-		// ����� ��Ű�� ���ο� ��Ű���� �����ϴ� �� �˻� 
 		if ( StringUtils.indexOfIgnoreCase(cookie_read_count, new_cookie_read_count) == -1 ) { 
-		
-			// ���� ��� ��Ű ���� 
-			Cookie cookie = new Cookie("noticeHit", cookie_read_count + new_cookie_read_count); 
-		
-			//cookie.setMaxAge(1000); 
+			Cookie cookie = new Cookie("noticeHit", cookie_read_count + new_cookie_read_count);  
 			response.addCookie(cookie); 
-		
-			// ��ȸ�� ������Ʈ 
 			noticeservice.updateHit(noticeNo); 
 		}
 		
@@ -143,12 +203,36 @@ public class mNoticeController {
 		model.addAttribute("noticeView", vo);
 		model.addAttribute("noticeNo", vo.getNoticeNo());
 		
+		
 		return "/Manager/mnotice/mNoticeView";
 
 	}
 	
 	@RequestMapping(value="/mNoticeModify", method=RequestMethod.GET)
-	public String getNoticeModify(@RequestParam("noticeNo") int noticeNo, Model model) throws Exception {		
+	public String getNoticeModify(@RequestParam("noticeNo") int noticeNo, Model model,
+							HttpServletResponse response, HttpServletRequest request) throws Exception {		
+		
+
+		HttpSession session = request.getSession();
+		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+		
+		//비회원
+        if(sessionVO == null) {
+        	
+        	out.println("<script>"
+        				+"location.href='/';"
+           		 		+"</script>");
+            out.flush();
+        }else if(managerService.isManager(sessionVO) != 1){
+        	out.println("<script>"
+       		 		+"location.href='/';"
+       		 		+"</script>");
+        out.flush();
+        }
+        
 		
 		NoticeVO vo = noticeservice.NoticeView(noticeNo);
 		model.addAttribute("noticeView", vo);
@@ -163,7 +247,6 @@ public class mNoticeController {
 		
 		SessionVO sessionVO = (SessionVO)session.getAttribute("user");
 		
-		// ���� ���ε� ó��
 		String fileName=null;
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) req;
@@ -173,13 +256,12 @@ public class mNoticeController {
 		if (!uploadFile.isEmpty()) {
 			
 			String originalFileName = uploadFile.getOriginalFilename();
-			String ext = FilenameUtils.getExtension(originalFileName);	//Ȯ���� ���ϱ�
+			String ext = FilenameUtils.getExtension(originalFileName);	
 			
-			UUID uuid = UUID.randomUUID();	//UUID ���ϱ�
+			UUID uuid = UUID.randomUUID();	
 			
 			fileName = uuid + "." + ext;
 			
-//			uploadFile.transferTo(new File("D:\\gitgit\\TeamB\\src\\main\\webapp\\resources\\upload\\" + fileName));
 			uploadFile.transferTo(new File("C:\\Users\\Administrator\\git\\SkyLibrary\\TeamB\\src\\main\\webapp\\resources\\upload\\" + fileName));
 		}
 		

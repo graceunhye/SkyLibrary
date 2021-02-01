@@ -16,6 +16,46 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<!-- 한글설정 -->
+
+	<filter>
+
+		<filter-name>encodingFilter</filter-name>
+
+		<filter-class>
+
+			org.springframework.web.filter.CharacterEncodingFilter
+
+		</filter-class>
+
+		<init-param>
+
+			<param-name>encoding</param-name>
+
+			<param-value>UTF-8</param-value>
+
+		</init-param>
+
+		<init-param>
+
+			<param-name>forceEncoding</param-name>
+
+			<param-value>true</param-value>
+
+		</init-param>
+
+	</filter>
+
+	<filter-mapping>
+
+		<filter-name>encodingFilter</filter-name>
+
+		<url-pattern>/*</url-pattern>
+
+	</filter-mapping>
+
+	<!-- 한글설정 END -->
+
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
@@ -23,34 +63,34 @@
 	<!-- ERROR PAGES: START -->
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
-		<location>/WEB-INF/views/error.jsp</location>
+		<location>/error</location>
 	</error-page>
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
-		<location>/WEB-INF/views/error.jsp</location>
+		<location>/error</location>
 	</error-page>
 	<error-page>
 		<error-code>400</error-code>
-		<location>/WEB-INF/views/error.jsp</location>
+		<location>/error400</location>
 	</error-page>
 	<error-page>
 	  <error-code>403</error-code>
-	  <location>/WEB-INF/views/error.jsp</location>
+	  <location>/error403</location>
 	</error-page>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/WEB-INF/views/error.jsp</location>
+		<location>/error404</location>
 	</error-page>
 	<error-page>
 		<error-code>405</error-code>
-		<location>/WEB-INF/views/error.jsp</location>
+		<location>/error405</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/WEB-INF/views/error.jsp</location>
+		<location>/error500</location>
 	</error-page>
 	<error-page>
 		<error-code>503</error-code>
-		<location>/WEB-INF/views/error.jsp</location>
+		<location>/error503</location>
 	</error-page>	
 </web-app>

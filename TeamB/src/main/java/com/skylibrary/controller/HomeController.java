@@ -1,11 +1,11 @@
 package com.skylibrary.controller;
 
 import java.util.HashMap;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map.Entry;
+//import java.util.Map.Entry;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -46,19 +46,24 @@ public class HomeController {
 		return "home";
 	}
 	
-	
+	// web에서 error location url 뒤에 오는 값을 변수로 받겠다는 의미
 	 @RequestMapping(value="/error{error_code}")
 	    public ModelAndView error(HttpServletRequest request, @PathVariable String error_code) {
 	        
+		 	//return page /error
 	    	ModelAndView mv = new ModelAndView("/error");
-	        String msg = (String) request.getAttribute("javax.servlet.error.message"); 
-	         
+	    	
+	        String msg = "";
+	       //(String) request.getAttribute("javax.servlet.error.message"); 
+	       // error_code = (String) request.getAttribute("javax.servlet.error.status_code");
+	        
 	        Map<String, Object> map = new HashMap<String, Object>();
+	        
 	        map.put("STATUS_CODE", request.getAttribute("javax.servlet.error.status_code"));
-	        map.put("REQUEST_URI", request.getAttribute("javax.servlet.error.request_uri"));
-	        map.put("EXCEPTION_TYPE", request.getAttribute("javax.servlet.error.exception_type"));
-	        map.put("EXCEPTION", request.getAttribute("javax.servlet.error.exception"));
-	        map.put("SERVLET_NAME", request.getAttribute("javax.servlet.error.servlet_name"));
+	       // map.put("REQUEST_URI", request.getAttribute("javax.servlet.error.request_uri"));
+	       // map.put("EXCEPTION_TYPE", request.getAttribute("javax.servlet.error.exception_type"));
+	       // map.put("EXCEPTION", request.getAttribute("javax.servlet.error.exception"));
+	       // map.put("SERVLET_NAME", request.getAttribute("javax.servlet.error.servlet_name"));
 	         
 	        try {
 	            int status_code = Integer.parseInt(error_code);
@@ -75,17 +80,17 @@ public class HomeController {
 	        } catch(Exception e) {
 	            msg = "기타 오류가 발생하였습니다.";
 	        } finally {
-	            map.put("MESSAGE", msg);
+	            map.put("MASSAGE", msg);
 	        }
 	         
 	        //logging
-	        if(map.isEmpty() == false ) {
+	        /*if(map.isEmpty() == false ) {
 	            Iterator<Entry<String,Object>> iterator = map.entrySet().iterator();
 	            Entry<String,Object> entry = null;
 	            while(iterator.hasNext()) {
 	                entry = iterator.next();
 	            }
-	        }
+	        }*/
 	         
 	        mv.addObject("error", map);
 	        return mv;

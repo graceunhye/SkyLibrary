@@ -1,15 +1,16 @@
 package com.skylibrary.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skylibrary.service.AnswerService;
 import com.skylibrary.service.QuestionService;
@@ -23,7 +24,9 @@ import com.skylibrary.vo.SessionVO;
 public class UseController {
 
 	@Inject
-	QuestionService questionService;	
+	QuestionService questionService;
+	
+	@Inject
 	AnswerService answerService;
 	
 	@RequestMapping(value = "/useGuide")
@@ -72,12 +75,13 @@ public class UseController {
 		QuestionVO q = questionService.qView(vo);
 		System.out.println(vo);
 		try {
-		int aCount = answerService.aViewCount(vo);
+		int aCount = answerService.aViewCount(vo); //1
 		if(aCount == 0) {
 			model.addAttribute("a", null);
 		}else {
 			AnswerVO a = answerService.aView(vo);
 			model.addAttribute("a",a);
+			System.out.println("a:::"+a);
 		}		
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -89,18 +93,50 @@ public class UseController {
 	
 	
 	  @RequestMapping(value="/qna/qnaInsert") 
-	  public String qInsert() throws Exception {
-	  
+	  public String qInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		  
+		  HttpSession session = request.getSession();
+		  SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+			
+		  response.setContentType("text/html; charset=UTF-8");
+		  PrintWriter out = response.getWriter();
+		  
+		  //비회원
+	        if(sessionVO == null) {
+	        	
+	        	out.println("<script>"
+	           		 		+"location.href='/';"
+	           		 		+"</script>");
+	            out.flush();
+	        }
 	  return "/User/use/qnaInsert"; }
 	 
 	
 	@RequestMapping(value="/qna/qnaInsertOk")
-	public String qInsertOk(Model model, QuestionVO qvo) throws Exception {
+	public String qInsertOk(Model model, QuestionVO qvo, 
+				HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("qvo::"+ qvo.getUserID() + "," + qvo.getQuestionTitle() + "," + qvo.getQuestionBody());
 		questionService.questionAdd(qvo);
-		model.addAttribute("msg","qnaInsertOk");
-		System.out.println("Out UseController (value=/qna/insertOk)");
+		
+		 HttpSession session = request.getSession();
+		 SessionVO sessionVO = (SessionVO)session.getAttribute("user");
+			
+		 response.setContentType("text/html; charset=UTF-8");
+		 PrintWriter out = response.getWriter();
+		  
+		  //비회원
+	        if(sessionVO == null) {
+	        	
+	        	out.println("<script>"
+	           		 		+"location.href='/';"
+	           		 		+"</script>");
+	            out.flush();
+	        }else {
+	        	out.println("<script>"
+           		 		+"location.href='/use/qna';"
+           		 		+"</script>");
+            out.flush();
+	        }
 		
 		return "redirect:/use/qna";
 	}

@@ -11,7 +11,12 @@
 	,answerDate
 </sql>
 <select id="aView" resultType="answerVO" parameterType="questionVO">
-	SELECT <include refid="allColumns"/> 
+	SELECT
+			questionNo
+			,managerID as userID
+			,answerTitle
+			,answerBody
+			,answerDate
 	FROM a 
 	WHERE questionNo = #{questionNo}
 </select>
@@ -19,7 +24,7 @@
 	SELECT * FROM a WHERE questionNo=#{questionNo}
 </select>
 <select id="aViewCount" resultType="int" parameterType="questionVO">
-	SELECT COUNT(<include refid="allColumns"/>) 
+	SELECT COUNT(*) 
 	FROM a 
 	WHERE questionNo = #{questionNo}
 </select>

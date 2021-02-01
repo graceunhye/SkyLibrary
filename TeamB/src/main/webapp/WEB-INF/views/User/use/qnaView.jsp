@@ -15,30 +15,16 @@
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script src="/js/common.js"></script>
 		<script>
-		
 		$(document).ready(function(){
 			
 			$("#modifyBtn").click(function(){
-				alert("답변이 등록된 글을 수정할 수 없습니다.");
+				alert("답변이 등록된 글은 수정할 수 없습니다.");
 			});
 			
 			$("#deleteBtn").click(function(){
-				alert("답변이 등록된 글을 삭제할 수 없습니다.");
+				alert("답변이 등록된 글은 삭제할 수 없습니다.");
 			});
-			
-			/* $("#modifyOkBtn").onlick(function(){
-				location.href="/use/qna/modify";
-			}) */
-			
-		/* 	$("#deleteOkBtn").click(function(){
-				
-				if(confirm("삭제된 글은 복구할 수 없습니다. 정말 삭제하시겠습니까?") == true){
-					location.href="qna.jsp";
-				}else{
-					return;
-				}	
-			}); */
-			
+
 			$("#listBtn").click(function(){
 				location.href="/use/qna";
 			});
@@ -109,7 +95,7 @@
 									<th>제목</th>
 									<td>${a.answerTitle }</td>
 									<th>작성자</th>
-									<td>${a.managerID }</td>
+									<td>${a.userID }</td>
 									<th>답변일</th>
 									<td>${a.answerDate }</td>
 								</tr>

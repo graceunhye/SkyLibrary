@@ -232,4 +232,12 @@ select
 	border: 1px solid #e0e0e0;
 }
 
-
+searchBtn {
+	width: 70px;
+	border: 1px solid white;
+	background-color:#383838;
+	color: white; 
+	height: 25px;
+	border-radius: 5px;
+	font-weight: bold;
+}

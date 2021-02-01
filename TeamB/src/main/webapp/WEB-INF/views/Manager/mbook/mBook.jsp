@@ -33,7 +33,7 @@
 								<option value="bookISBN">ISBN</option>
 							</select>
 							<input type="text" name="searchText">
-							<input type="button" value="검색" id="search">
+							<input type="button" value="검색" id="search" class="searchBtn">
 							<span class="slot">|</span>
 							외부도서조회::
 							<select id="searchType_outside">
@@ -43,7 +43,7 @@
 								<option value="publisher">출판사</option>
 							</select>
 							<input type="text" id="searchText_outside">
-							<input type="button" value="검색" id="search_outside">
+							<input type="button" value="검색" class="searchBtn" id="search_outside">
 						</div>
 						<table class="table" border="1">
 							<thead>

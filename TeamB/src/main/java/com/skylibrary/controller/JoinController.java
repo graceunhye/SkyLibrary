@@ -1,6 +1,6 @@
 package com.skylibrary.controller;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -14,16 +14,17 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skylibrary.service.ManagerService;
 import com.skylibrary.service.UserService;
 import com.skylibrary.vo.ManagerVO;
+import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
 @Controller
@@ -40,6 +41,8 @@ public class JoinController {
 	@RequestMapping(value="/email")
 	@ResponseBody
 	public int email(UserVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		//vo.setUserEmail(userEmailID,userEmailDomain);
 		
 		 Random r = new Random();
          int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
@@ -165,5 +168,45 @@ public class JoinController {
 		return checkResult;
 	}
 	
+	@RequestMapping(value = "/mjoin/ajax/idCheckOk", method = RequestMethod.GET)
+	@ResponseBody
+	public String mIdCheck(Model model, SessionVO vo) throws Exception {
+		System.out.println("userID:::::"+vo.getUserID());
+		String checkResult = null;
+		int ExistResult = managerService.isManager(vo);
+		if(ExistResult == 1) 
+		{
+			checkResult="alreadyUse";
+		}else if(ExistResult == 0) 
+		{
+			if(Pattern.matches("^[a-zA-Z0-9]*$", vo.getUserID()) == false) 
+			{
+				checkResult="mismatch";
+			}else 
+			{
+				checkResult="pass";
+			}
+		}else {
+			ExistResult = 0; 
+		}
+		System.out.println("ExistResult:::"+ExistResult);
+		return checkResult;
+	}
+	
+	@RequestMapping(value = "/mjoin/ajax/codeCheckOk", method = RequestMethod.GET)
+	@ResponseBody
+	public String codeCheckOk(ManagerVO vo) throws Exception {
+		String userInsertCode = vo.getManagerCode();
+		System.out.println("userInsertCode::"+userInsertCode);
+		String realCode = "ezen007";
+		String checkResult = "";
+		if(userInsertCode.equals(realCode)) {
+			checkResult = "ok";
+		}else {
+			checkResult = "no";
+		}
+		System.out.println("checkResult::"+checkResult);
+		return checkResult;
+	}
 
 }

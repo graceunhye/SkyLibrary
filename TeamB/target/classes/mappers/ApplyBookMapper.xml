@@ -26,7 +26,7 @@
 		,#{applyWhy}
 	)
 </insert>
-<select id="view" parameterType="String" resultType="applyBookVO">
+<select id="view" parameterType="SearchVO" resultType="applyBookVO">
 	SELECT
 			applyNo
 			,applyISBN
@@ -37,10 +37,15 @@
 			,applyWriter
 			,applyPrice
 			,applyWhy
-			,applyType
-				
+			,applyType			
 	FROM  abook
-	WHERE userID = #{userID}
+	WHERE 1=1
+	AND userID = #{userID}
+	<if test="startDate != null and startDate != '' and endDate != null and startDate != ''">
+	AND applyDate BETWEEN #{startDate} AND #{endDate}
+	</if>
+	ORDER BY applyNo ASC;
+	
 </select>
 <update id="checkedSave" parameterType="applyBookVO">
 	UPDATE abook 

@@ -19,7 +19,7 @@ import com.skylibrary.vo.BookVO;
 import com.skylibrary.vo.PagingVO;
 import com.skylibrary.vo.SearchVO;
 import com.skylibrary.vo.SessionVO;
-import com.skylibrary.vo.UserVO;
+//import com.skylibrary.vo.UserVO;
 
 @Controller
 @RequestMapping(value = "/search")
@@ -230,7 +230,7 @@ public class SearchController {
 		
 		bookService.updateBook(bookVO);
 		bookService.insertRent(bookVO);
-		bookVO = bookService.selectRent(bookVO.getNo());
+		bookVO = bookService.selectRent(bookVO.getRentNo());
 		
 		return bookVO;
 	}

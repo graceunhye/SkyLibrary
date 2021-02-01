@@ -74,7 +74,6 @@
 						</table>
 					</div>
 					<div id="userInfoView" class="userInfoView">
-						
 					</div>
 				</div>
 			</section>

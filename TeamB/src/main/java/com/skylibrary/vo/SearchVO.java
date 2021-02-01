@@ -7,7 +7,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class SearchVO {
+public class SearchVO extends SessionVO {
+	private String userID;
 	private int start;
 	private int end;
 	private String searchType; //검색옵션

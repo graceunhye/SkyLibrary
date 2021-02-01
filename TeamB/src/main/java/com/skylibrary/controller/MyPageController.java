@@ -22,6 +22,7 @@ import com.skylibrary.service.UserService;
 import com.skylibrary.vo.ApplyBookVO;
 import com.skylibrary.vo.BookVO;
 import com.skylibrary.vo.RentVO;
+import com.skylibrary.vo.SearchVO;
 import com.skylibrary.vo.SessionVO;
 import com.skylibrary.vo.UserVO;
 
@@ -188,7 +189,7 @@ public class MyPageController {
 		
 		//희망도서 신청 목록
 		@RequestMapping(value = "/wishCheck") 
-		public String wishCheck(Model model,  HttpServletRequest req, HttpServletResponse response) throws Exception {
+		public String wishCheck(SearchVO searchVO, Model model,  HttpServletRequest req, HttpServletResponse response) throws Exception {
 			
 			HttpSession session = req.getSession();
 			SessionVO sessionVO = (SessionVO)session.getAttribute("user");
@@ -217,11 +218,13 @@ public class MyPageController {
 	            
 	        }
 	        
-	        List<ApplyBookVO> vo = applyBookService.view(sessionVO.getUserID());
+	        searchVO.setUserID(sessionVO.getUserID());
+	        List<ApplyBookVO> vo = applyBookService.view(searchVO);
 			model.addAttribute("wishCheckData",vo);
 			
 			return "/User/myPage/wishCheck";
 		}
+		
 		
 	
 		@RequestMapping(value = "/ajax/userInfoModifyOk")

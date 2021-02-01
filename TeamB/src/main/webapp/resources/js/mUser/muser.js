@@ -14,11 +14,11 @@ function userRemoveFn(){
 				},
 				success:function(data){
 
-					alert("강제탈퇴처리 되었습니다");
-					userSearchFn();
 				}
 			})	
 		});
+		alert("강제탈퇴처리 되었습니다");
+		userSearchFn();
 	}
 	else{
 	    return ;
@@ -64,7 +64,6 @@ function userSearchFn() {
 				str += "	<td><input type='checkbox' name='checkDel' value='"+data[i].userID+"'></td>";
 				str += "</tr>";			
 			}
-			alert("총 "+data.length+"건이 검색 되었습니다.");
 			$("#result").html(str);
 
 		}
@@ -141,43 +140,6 @@ function userInfoViewFn(node) {
 			
 			console.log(data);
 			$("#rentInfoResultTable").html(str);
-			
-			/*var info = "";
-			info += "<table border='1' class='userInfoTable'>";
-			info += "<tr>";
-			info += "<td>이름</td>";
-			info += "<td>"+data[0].userName+"</td>";
-			info += "</tr>";
-			info += "<tr>";
-			info += "<td>아이디</td>";
-			info += "<td>"+data[0].userID+"</td>";
-			info += "</tr>";
-			info += "<tr>";
-			info += "<td>전화번호</td>";
-			info += "<td>"+data[0].userNum+"</td>";
-			info += "</tr>";
-			info += "<tr>";
-			info += "<td>주소</td>";
-			if(data[0].userPostNum != null && data[0].userPostNum != ''){
-				addr = "["+data[0].userPostNum+"]";
-				
-				if(data[0].userAddr != null && data[0].userAddr != ''){
-					addr = "["+data[0].userPostNum+"]"+data[0].userAddr;
-					
-					if(data[0].userAddrDetail != null && data[0].userAddrDetail != ''){
-						addr = "["+data[0].userPostNum+"]"+data[0].userAddr+" "+data[0].userAddrDetail;
-					}
-				}
-			}
-			info += "<td>"+addr+"</td>";
-			info += "</tr>";
-			info += "<tr>";
-			info += "<td>이메일</td>";
-			info += "<td>"+data[0].userEmail+"</td>";
-			info += "</tr>";
-			info += "</table>";
-
-			$("#userInfoResultTable").html(info);*/
 		}
 	})
 }
