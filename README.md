@@ -6,7 +6,7 @@
 |java|Eclipse, Spring Framework|MySQL|Ajax, JSTL, JSP ...|
 
 
-### :simple_smile: 들어가기 전에...
+### :smile: 들어가기 전에...
  > 위 프로젝트는 1개월간은 MVC1모델로 구현했었습니다. 그리고 이후 1개월간은 MVC1을 분해해 MVC2로 만드는 작업을 했습니다. 위 과정을 통해 데이터가 어떻게 나뉘어지는지 자세히 알 수 있었습니다.
 
 ### :star2: 프로젝트 목표
