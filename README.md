@@ -42,40 +42,6 @@ AJAX에서 URI를 조회해 Controller에 데이터를 전달하고 Service - DA
 
 회원 탈퇴 외에도 관리자는 회원이름/아이디/가입날짜 로 검색이 가능합니다. 검색 결과는 테이블 내에 AJAX에 의해 출력됩니다. 출력 된 결과 중 대출중(권), 연체여부는 대여테이블과 조인한 결과로 얻었습니다. 그 밖에도 회원정보 1행을 누를 시 하단에 상세정보가 나오는데, 서브쿼리를 사용해 상세한 도서대여정보를 가져올 수 있었습니다.
 
-```sql
-<select id="userSearchOk" resultType="java.util.Map" parameterType="searchVO">
-	SELECT  userID,
-			userPW,
-			userName,
-			userNum,
-			userPostNum, 
-			userAddr,
-			userAddrDetail,
-			userEmail,
-			userType,
-			DATE_FORMAT(userJoinDate, '%Y-%m-%d') as userJoinDate,
-			(select count(bookISBN) from rent where userID=user.userID) as rentCount,
-			<![CDATA[(select count(rentEndDate) from rent where userID=user.userID and rentEndDate < curdate()) as lateRentCount]]>
-	FROM user
-	WHERE 1=1
-	<if test="selectType != null and selectType !='' and selectType != 3">
-	AND userType=#{selectType}
-	</if>
-	<if test="startDate != null and endDate != null 
-	and startDate != '' and endDate !=''">
-	AND userJoinDate BETWEEN #{startDate} AND #{endDate}
-	</if>
-	<if test="searchText != null and searchText != ''">
-		<if test="searchType == 'userID' ">
-		AND userID LIKE CONCAT('%',#{searchText},'%')
-		</if>
-		<if test="searchType == 'userName' ">
-		AND userName LIKE CONCAT('%',#{searchText},'%')
-		</if>
-	</if>
-	ORDER BY userName ASC
-</select>
-```
 위 프로젝트를 진행하다 원하는 DATA 포맷으로 출력하기 위하여 MySQL에서 제공하는 **DATAFORMAT()** 함수를 이용하여 **yyyy-mm-dd**포맷으로 데이터를 SELECT 하여 출력하였습니다.
 
 
